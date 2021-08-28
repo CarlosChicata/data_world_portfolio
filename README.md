@@ -6,8 +6,9 @@ This is a portfolio contains all my ideas in data world: projects/PoC, theoretic
 the use of followed folders are:
 * **Concepts**: Contain all documents of topics like data warehouse, data lake, design patterns and others data world applied theoretical concepts.
 * **Projects**: Contain all ideas of project, PoC and experiments with focus in data engineering.
+* **Certifications**: Contain all documents of my certifications and achievements.
 
-## Certificates and achievements
+## Certifications and achievements
 The table is composed by followed columns:
 * **Title**: Name of certification or achievements.
 * **Company**: Name of company or entity gave me this document.
