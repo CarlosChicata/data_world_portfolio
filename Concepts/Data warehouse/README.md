@@ -22,13 +22,13 @@ But you will have a problem if you don't structure a unified infraestructure to 
 ![alt text](ExtractDataFromExternalProblem.png?raw=true)
 
 Based in above image, we have 3 problems in this bad infraestructure:
-* Lack of credibility: if 2 departments generate a report same focus, it's possibly both are difference in results, because both use difference data source in their report. there are some reason associated:
+* **Lack of credibility**: if 2 departments generate a report same focus, it's possibly both are difference in results, because both use difference data source in their report. there are some reason associated:
   * Change data continually in all sources.
   * Sources can have difference type of data.
   * Don't share sources in all department.
   * When you extract data of external, i need to capture of identity source to accredit those data.
-* Productivity low: it's so hard to access and processing several sources in diference locations inside organization.
-* From data to information: it's so hard to reconciliate and normalize structure of data from several different sources to generate a column in report.
+* **Productivity low**: it's so hard to access and processing several sources in diference locations inside organization.
+* **From data to information**: it's so hard to reconciliate and normalize structure of data from several different sources to generate a column in report.
 
 
 # References
