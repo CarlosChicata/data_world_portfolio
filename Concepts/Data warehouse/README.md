@@ -14,6 +14,7 @@ This is a index to best navigation inside document.
   - [Inmon model](#inmon-model)
     - [Diagram of model](#diagram-of-model-in-inmon)
     - [Integrations level](#integrations-levels-in-inmon)
+    - [Development life cycle](#development-life-cycle-in-inmon)
     - [General aspects](#general-aspects-in-inmon) 
 
 # The problems of external data sources
@@ -54,6 +55,23 @@ You need to garantize the integral data of data warehouse level from operational
 ![Integration from operationa level to data warehouse level](ETLProcesssOperationalDatawarehouseLevel.png?raw=true)
  
 In general, all level in architecture using ETL program to passing data between them. The complex of programm depending from requirement of level but it's so easy comparing with ETL process between operational-datawarehouse level.
+
+## Development life cycle in inmon
+To build the functionality of system, you need to understand the methodology to evaluate and building system based in end user will use it. In classic software development, you need the requirements to define capacity of software; but you'll build this system you need to start of data!.
+
+This focus is called data-driven development and the phrase "Give me what I say I want, and then I can tell you what I really want" can summary all life cycle you will be implementing. This focus is a spiral development methodology.
+
+Those are the steps to use the methodology:
+1. Get a datasets to work.
+2. Integrate of all data inside data warehouse.
+3. Test it to see what bias there is to the data, if any.
+4. Write the program against the data and analyze it.
+5. Undestand requirements of system.
+6. Adjustment of the design of system and start the cycle from new dataset data inside warehouse.
+
+In general, build a level of enviroment is a end users needing based process which it's a long time . Remember the data warehouse are not built all at once. Instead they are designed and populated a step at a time. While the data warehouse is populated with several subjects, you will need to best the performance, then i need to create a next level: data mart level. This phenomenon is named "the 1 day to n day".
+
+![The 1 day to n day process](developmentCycleLifeInmon.png?raw=true)
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
