@@ -13,9 +13,11 @@ This is a index to best navigation inside document.
 - [Architecture in Data Warehouse](#arquitecture-in-data-warehouse)
   - [Inmon model](#inmon-model)
     - [Diagram of model](#diagram-of-model-in-inmon)
-    - [Integrations level](#integrations-levels-in-inmon)
+    - [Integrations between levels](#integrations-between-levels-in-inmon)
     - [Development life cycle](#development-life-cycle-in-inmon)
-    - [General aspects](#general-aspects-in-inmon) 
+    - [General aspects](#general-aspects-in-inmon)
+- [Solutions](#solutions)
+  - [Problem of performance in operational-datawarehouse extract process](#problem-of-performancein-operational-datawarehouse-extract-process)
 
 # The problems of external data sources
 You wanna extract data of external sources to analyze them to get insight/knowledge. The extract process is good for 2 reason:
@@ -48,11 +50,18 @@ As shown in the diagram, there are 4 level in model:
 * **data mart level**: this level contains specified subject-oriented, and different granular data. it contains some summarized and details data for a specified department, and can be denormalized and shaped by the operating requirements of a single department.
 * **individual level**: this is temporary and small data passed by heuristic. it supported by the PC.
 
-## Integrations levels in inmon
+## Integrations between levels in inmon
 
-You need to garantize the integral data of data warehouse level from operational level. This is hard by complex, time-consuming process to access several operational data sources to generate a integral data. `You must need a ETL focus program can automate this tedious process and only mantain this program`. From granular data focus, this model based top-down focus to implement the management of data.
+You need to garantize the integral data of data warehouse level from operational level because this is core of enviroment and next levels depend it. This is hard by complex, time-consuming process to access several operational data sources to generate a integral data. `You must need a ETL focus program can automate this tedious process and only mantain this program`. From granular data focus, this model based top-down focus to implement the management of data.
 
 ![Integration from operationa level to data warehouse level](ETLProcesssOperationalDatawarehouseLevel.png?raw=true)
+ 
+In case of integration of operational - data warehouse level, there are some problem you need to confront with data and its sources:
+1.  Normalize data in its name, metrics to apply and value to shows to integrate in data warehouse. (integration problem)
+2.  Different formats under many different DBMSs. This trasnlations of technology could be hard. (integration problem)
+3.  The efficiency of accessing from operational system. This can impact in performance of warehouse and implementations of requirements. (performance problem)
+4.  The operational data must undergo a time-basis shift as it passes into the data warehouse. A important shift in the modes de processing surrounding the data is necesary. (processing design problem).
+5.  When passing data is the need to manage the volumen of data that resides in and passes into the data warehouse. You must be condensed both at the moment of extraction and as it arrives at the data warehouse. (Volumen of data problem)
  
 In general, all level in architecture using ETL program to passing data between them. The complex of programm depending from requirement of level but it's so easy comparing with ETL process between operational-datawarehouse level.
 
@@ -72,6 +81,10 @@ Those are the steps to use the methodology:
 In general, build a level of enviroment is a end users needing based process which it's a long time . Remember the data warehouse are not built all at once. Instead they are designed and populated a step at a time. While the data warehouse is populated with several subjects, you will need to best the performance, then i need to create a next level: data mart level. This phenomenon is named "the 1 day to n day".
 
 ![The 1 day to n day process](developmentCycleLifeInmon.png?raw=true)
+
+# Solutions
+There are some ideas, best practics and methods to solve some problem you might confront while you implement a data warehouse.
+## Problem of performance in operational-datawarehouse extract process
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
