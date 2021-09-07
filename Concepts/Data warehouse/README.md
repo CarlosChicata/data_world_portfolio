@@ -94,5 +94,7 @@ Loading data on an ongoing basis — as changes are made to the operationalenvir
 4. `modify application code to report this changes`: don't use because much application code is old and fragile.
 5. `comparing images of the operational file together`: comparing "before" and "after" image to determine the activity that has transpired. This is a complex, resourcer-utilizations and cumbersome approach.
 
+![5 common techniques to scanning data in ETL operational- data warehouse level](techniquesExtractDataOperationDatawarehouse.png?raw=true)
+
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
