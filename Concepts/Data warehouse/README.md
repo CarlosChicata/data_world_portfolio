@@ -18,6 +18,8 @@ This is a index to best navigation inside document.
     - [General aspects](#general-aspects-in-inmon)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
+  - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
+    - [Dual level of granularity: manage granularity](#Dual-levels-of-granularity)  
 
 # The problems of external data sources
 You wanna extract data of external sources to analyze them to get insight/knowledge. The extract process is good for 2 reason:
@@ -95,6 +97,21 @@ Loading data on an ongoing basis — as changes are made to the operationalenvir
 5. `comparing images of the operational file together`: comparing "before" and "after" image to determine the activity that has transpired. This is a complex, resourcer-utilizations and cumbersome approach.
 
 ![5 common techniques to scanning data in ETL operational- data warehouse level](techniquesExtractDataOperationDatawarehouse.png?raw=true)
+
+## Alternatived techniques to design data warehouse
+There are some techniques you can use to modeling a arquitecture enviroment of data.
+
+### Dual levels of granularity
+`When a organization has lots of data in data warehouse and you need to efficiently storing and accessing data in great detail; you can use this techniques.`
+
+This technique say you that manage a data from data warehouse level using 2 instance with different levels of granularity:
+* **Lightly summarized data**: In primary level of data warehouse because it will be a part of enviroment. this is a data is lightly summarized only to a very small extent. This summary of data did into fields that are likely to be used to analyze but there are a level of details that can be accessed in the lightly summarized data.
+* **True archival data**: this data contain all details comming from the operational enviroment is stored. this a separated part of the data mart level.
+
+While a Lightly summarized data tier is more frecuently and easy to access but a true arhival data tier is rare and hard to access. All it because the access of data to analyze. 
+
+![Dual levels of granularity in data warehouse](DualLevelOfGranularity.png?raw=true)
+
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
