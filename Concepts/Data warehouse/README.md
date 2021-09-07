@@ -17,7 +17,7 @@ This is a index to best navigation inside document.
     - [Development life cycle](#development-life-cycle-in-inmon)
     - [General aspects](#general-aspects-in-inmon)
 - [Solutions](#solutions)
-  - [Problem of performance in operational-datawarehouse extract process](#problem-of-performancein-operational-datawarehouse-extract-process)
+  - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
 
 # The problems of external data sources
 You wanna extract data of external sources to analyze them to get insight/knowledge. The extract process is good for 2 reason:
@@ -84,7 +84,15 @@ In general, build a level of enviroment is a end users needing based process whi
 
 # Solutions
 There are some ideas, best practics and methods to solve some problem you might confront while you implement a data warehouse.
-## Problem of performance in operational-datawarehouse extract process
+## Techniques to scanning data in operational datawarehouse extract process
+Loading data on an ongoing basis — as changes are made to the operationalenvironment — presents the largest challenge to the data architect. Efficientlytrapping those ongoing daily changes and manipulating them is not easy. Scanning existing files is a major issue facing the data warehouse architect.
+
+5 common techniques are used to limit the amount of operational data scanned at the point of refreshing the data warehouse:
+1. `Scan data that has been timestamped in the operational enviroment`: When an application stamps the time of the last change or updateon a record, the data warehouse scan can run quite efficiently because data witha date other than that applicable does not have to be touched.
+2. `limiting the data to be scanned is to scan a delta file`: A delta file contains only the changes made to an application as a result of the transactions that have run through the operational environment. With a deltafile, the scan process is very efficient because data that is not a candidate for scanning is never touched. Not many applications, however, build delta files.
+3. `scan a log file or an audit file created as a by-productof  transaction  processing`: A log  file  contains  essentially  the  same  data  as  adelta file. However, there are some major differences: it's more protected (main used to recovery process),formatting internal system is built for system purposes and not applications, more useless data that data warehouse need to process.
+4. `modify application code to report this changes`: don't use because much application code is old and fragile.
+5. `comparing images of the operational file together`: comparing "before" and "after" image to determine the activity that has transpired. This is a complex, resourcer-utilizations and cumbersome approach.
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
