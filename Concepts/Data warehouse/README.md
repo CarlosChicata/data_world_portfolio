@@ -15,11 +15,11 @@ This is a index to best navigation inside document.
     - [Diagram of model](#diagram-of-model-in-inmon)
     - [Integrations between levels](#integrations-between-levels-in-inmon)
     - [Development life cycle](#development-life-cycle-in-inmon)
-    - [General aspects](#general-aspects-in-inmon)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
-    - [Dual level of granularity: manage granularity](#Dual-levels-of-granularity)  
+    - [Dual level of granularity: manage granularity and access the data](#Dual-levels-of-granularity)
+    - [Living sample database](#living-sample-database)
 
 # The problems of external data sources
 You wanna extract data of external sources to analyze them to get insight/knowledge. The extract process is good for 2 reason:
@@ -112,6 +112,16 @@ While a Lightly summarized data tier is more frecuently and easy to access but a
 
 ![Dual levels of granularity in data warehouse](DualLevelOfGranularity.png?raw=true)
 
+### Living sample database
+`When a organization has a volumn of data very large to hard analyze this data because the time of accessing and cost of resources; you can use this techniques`.
+
+This technique say you must sample data from a so-large volumen of data in data warehouse into subset DB and you need to periodically refresh data. You get a most performance in the accessing of data, best utilization of resources to be productive.
+
+When you use this technique, you must know how data will load, the amount of data will store in subset and how randomg the data will be. You can sample either lightly summarized or true archival data.
+
+![Living sample database](LivingSampleDatawarehouse.png?raw=true)
+
+You must use this subset to statistical analysis, looking at trends or analytical focus or preparing process; don't use as general-purpose database because it hasn't all data. Because the living sample DB is refreshed with current data, your analytical answers or implementation of processes will not suffer in accurancy.
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
