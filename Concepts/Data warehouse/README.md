@@ -9,7 +9,6 @@ Contain all concepts, best practices, patterns, architectures and concepts about
 This is a index to best navigation inside document.
 
 - [The problems of external data sources: unified storage of data](#the-problems-of-external-data-sources)
-- [References](#references)
 - [Architecture in Data Warehouse](#arquitecture-in-data-warehouse)
   - [Inmon model](#inmon-model)
     - [Diagram of model](#diagram-of-model-in-inmon)
@@ -20,6 +19,7 @@ This is a index to best navigation inside document.
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
     - [Dual level of granularity: manage granularity and access the data](#Dual-levels-of-granularity)
     - [Living sample database](#living-sample-database)
+- [References](#references)
 
 # The problems of external data sources
 You wanna extract data of external sources to analyze them to get insight/knowledge. The extract process is good for 2 reason:
