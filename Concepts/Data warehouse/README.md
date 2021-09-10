@@ -99,6 +99,8 @@ The granularity impact following issues:
 1.  The high of level in granularity means lowest storage capacity for data and the low of level in granularity means highest storage capacity for data.
 2.  More storage capacity, you need more capacity to process it.
 
+![Granularity in data warehouse](GranularityInmon.png?raw=true)
+
 Those are the benefits of granularity:
 
 1. **Reausability of data**: The granular data found in the data warehouse is the key to use by many people in different ways.
