@@ -14,6 +14,7 @@ This is a index to best navigation inside document.
     - [Diagram of enviroment](#diagram-of-enviroment-in-inmon)
     - [Integrations between levels](#integrations-between-levels-in-inmon)
     - [Development life cycle](#development-life-cycle-in-inmon)
+    - [Important aspects of the desing](#important-aspects-of-the-desing-in-immon)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -83,6 +84,28 @@ Those are the steps to use the methodology:
 In general, build a level of enviroment is a end users needing based process which it's a long time . Remember the data warehouse are not built all at once. Instead they are designed and populated a step at a time. While the data warehouse is populated with several subjects, you will need to best the performance, then i need to create a next level: data mart level. This phenomenon is named "the 1 day to n day".
 
 ![The 1 day to n day process](developmentCycleLifeInmon.png?raw=true)
+
+## Important aspects of the desing in immon
+When you design of data warehouse you need to note some the following crucial aspects; if you ignored it, you will hard to modify and get a poor performance in the environment.
+
+### Granularity
+This is a level of details or summarization of the units of data in the data warehouse. The more detail there is, the lower the level of granularity.  The less detail there is, the higher the level of granularity. 
+
+In almost all cases, data comes into the data warehouse at too high a level of granularity. This means that the developer must spend a lot of design and development resources breaking the data apart before it can be stored in the
+data warehouse.
+
+The granularity impact following issues:
+
+1.  The high of level in granularity means lowest storage capacity for data and the low of level in granularity means highest storage capacity for data.
+2.  More storage capacity, you need more capacity to process it.
+
+Those are the benefits of granularity:
+
+1. **Reausability of data**: The granular data found in the data warehouse is the key to use by many people in different ways.
+2. **reconciliation of data**: When same data is used in different ways,if you need to reconciliate the data, it's so easy.
+3. **Flexibility to query**: Depending of the granular data, can you answer all o a subset of query.
+4. **Get all history events**: it contains all historical events in company. And the level of granularity is detailed enough that the data can be reshaped across the corporation for many different needs.
+5. **Fast solution to unknown requirements**: When new requirements of knowledge need by the company, the granularity of data must support those requirements.
 
 # Solutions
 There are some ideas, best practics and methods to solve some problem you might confront while you implement a data warehouse.
