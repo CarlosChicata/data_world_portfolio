@@ -11,7 +11,7 @@ This is a index to best navigation inside document.
 - [The problems of external data sources: unified storage of data](#the-problems-of-external-data-sources)
 - [Architecture in Data Warehouse](#arquitecture-in-data-warehouse)
   - [Inmon model](#inmon-model)
-    - [Diagram of model](#diagram-of-model-in-inmon)
+    - [Diagram of enviroment](#diagram-of-enviroment-in-inmon)
     - [Integrations between levels](#integrations-between-levels-in-inmon)
     - [Development life cycle](#development-life-cycle-in-inmon)
 - [Solutions](#solutions)
@@ -42,7 +42,7 @@ Based in above image, we have 3 problems in this bad infraestructure:
 There are 2 common models to implement data warehouse in enterprised world: Inmon and Kimball. Those are considered parents of data warehouse and define severel attributes, process and practices to implement it.
 
 ## Inmon model
-### Diagram of model in Inmon
+### Diagram of enviroment in Inmon
 
 ![Diagram of arquitecture of data warehouse in Inmon model](ArchitectureLevelInmon.png?raw=true)
 
