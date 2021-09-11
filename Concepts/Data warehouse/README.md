@@ -1,4 +1,5 @@
 # Data warehouse
+
 ======================================
 
 ## Purpose
@@ -22,6 +23,7 @@ This is a index to best navigation inside document.
     - [Living sample database](#living-sample-database)
 - [References](#references)
 
+
 # The problems of external data sources
 You wanna extract data of external sources to analyze them to get insight/knowledge. The extract process is good for 2 reason:
 * don't degrade the performance of the source system when you need to analyze in mass.
@@ -42,6 +44,7 @@ Based in above image, we have 3 problems in this bad infraestructure:
 # Arquitecture in Data Warehouse
 There are 2 common models to implement data warehouse in enterprised world: Inmon and Kimball. Those are considered parents of data warehouse and define severel attributes, process and practices to implement it.
 
+
 ## Inmon model
 ### Diagram of enviroment in Inmon
 
@@ -52,6 +55,7 @@ As shown in the diagram, there are 4 level in model:
 * **data warehouse level**: this level contains most integral, subject-oriented, historical/time variant and non-overlapping data in organization. All change in data in operational layer, will create a new records inside data warehouse layer.
 * **data mart level**: this level contains specified subject-oriented, and different granular data. it contains some summarized and details data for a specified department, and can be denormalized and shaped by the operating requirements of a single department.
 * **individual level**: this is temporary and small data passed by heuristic. it supported by the PC.
+
 
 ## Integrations between levels in inmon
 
@@ -67,6 +71,7 @@ In case of integration of operational - data warehouse level, there are some pro
 5.  When passing data is the need to manage the volumen of data that resides in and passes into the data warehouse. You must be condensed both at the moment of extraction and as it arrives at the data warehouse. (Volumen of data problem)
  
 In general, all level in architecture using ETL program to passing data between them. The complex of programm depending from requirement of level but it's so easy comparing with ETL process between operational-datawarehouse level.
+
 
 ## Development life cycle in inmon
 To build the functionality of system, you need to understand the methodology to evaluate and building system based in end user will use it. In classic software development, you need the requirements to define capacity of software; but you'll build this system you need to start of data!.
@@ -84,6 +89,7 @@ Those are the steps to use the methodology:
 In general, build a level of enviroment is a end users needing based process which it's a long time . Remember the data warehouse are not built all at once. Instead they are designed and populated a step at a time. While the data warehouse is populated with several subjects, you will need to best the performance, then i need to create a next level: data mart level. This phenomenon is named "the 1 day to n day".
 
 ![The 1 day to n day process](developmentCycleLifeInmon.png?raw=true)
+
 
 ## Important aspects of the desing in immon
 When you design of data warehouse you need to note some the following crucial aspects; if you ignored it, you will hard to modify and get a poor performance in the environment.
@@ -109,6 +115,25 @@ Those are the benefits of granularity:
 4. **Get all history events**: it contains all historical events in company. And the level of granularity is detailed enough that the data can be reshaped across the corporation for many different needs.
 5. **Fast solution to unknown requirements**: When new requirements of knowledge need by the company, the granularity of data must support those requirements.
 
+### Partition
+The breakup of data into separate physical units that can be handled independently. This feature to add flexibility to manage data from physical unis.
+
+Following are some of the tasks that cannot easily be performad when data resides in large physical units: restructuring, indexing, reorganization, recovery, monitoring and sequential scanning. The partition can benefit the data warehouse by loading, accessing archiving, deleting, monitoring and storing data. 
+
+![partitions of data warehouse](PartitionInmon.png?raw=true)
+
+The matter inside feature is how it should be done rather whether it should be done. The choices for partitioning data are strictly up to the developer. In the datawarehouse environment, however, it is almost mandatory that one of the criteria for partitioning be by date.
+
+Partitioning can be done in 2 levels:
+* **System**: it is a function of the DBMS and the operating system to some extent.
+* **Application**: it is done by application code and is solely and strictly controlled by the developer, so the DBMS and the system know of no relation between one partition and the other.
+
+The best option is application level for some reasons:
+
+1.  There can be a different definition of data by each partition.
+2.  Data can be moved from one processing complex to another with impunity.
+
+
 # Solutions
 There are some ideas, best practics and methods to solve some problem you might confront while you implement a data warehouse.
 ## Techniques to scanning data in operational datawarehouse extract process
@@ -123,8 +148,10 @@ Loading data on an ongoing basis — as changes are made to the operationalenvir
 
 ![5 common techniques to scanning data in ETL operational- data warehouse level](techniquesExtractDataOperationDatawarehouse.png?raw=true)
 
+
 ## Alternatived techniques to design data warehouse
 There are some techniques you can use to modeling a arquitecture enviroment of data.
+
 
 ### Dual levels of granularity
 `When a organization has lots of data in data warehouse and you need to efficiently storing and accessing data in great detail; you can use this techniques.`
@@ -137,6 +164,7 @@ While a Lightly summarized data tier is more frecuently and easy to access but a
 
 ![Dual levels of granularity in data warehouse](DualLevelOfGranularity.png?raw=true)
 
+
 ### Living sample database
 `When a organization has a volumn of data very large to hard analyze this data because the time of accessing and cost of resources; you can use this techniques`.
 
@@ -147,6 +175,7 @@ When you use this technique, you must know how data will load, the amount of dat
 ![Living sample database](LivingSampleDatawarehouse.png?raw=true)
 
 You must use this subset to statistical analysis, looking at trends or analytical focus or preparing process; don't use as general-purpose database because it hasn't all data. Because the living sample DB is refreshed with current data, your analytical answers or implementation of processes will not suffer in accurancy.
+
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
