@@ -17,6 +17,7 @@ This is a index to best navigation inside document.
     - [Development life cycle](#development-life-cycle-in-inmon)
     - [Important aspects of the desing](#important-aspects-of-the-desing-in-immon)
     - [Process models in enviroment](#process-models-in-enviroment-in-inmon)
+    - [Data models in enviroment](#data-models-in-enviroment-in-inmon)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -47,6 +48,7 @@ Based in above image, we have 3 problems in this bad infraestructure:
 There are 2 common models to implement data warehouse in enterprised world: Inmon and Kimball. Those are considered parents of data warehouse and define severel attributes, process and practices to implement it.
 
 
+
 ## Inmon model
 ### Diagram of enviroment in Inmon
 
@@ -57,6 +59,7 @@ As shown in the diagram, there are 4 level in model:
 * **data warehouse level**: this level contains most integral, subject-oriented, historical/time variant and non-overlapping data in organization. All change in data in operational layer, will create a new records inside data warehouse layer.
 * **data mart level**: this level contains specified subject-oriented, and different granular data. it contains some summarized and details data for a specified department, and can be denormalized and shaped by the operating requirements of a single department.
 * **individual level**: this is temporary and small data passed by heuristic. it supported by the PC.
+
 
 
 ## Integrations between levels in inmon
@@ -73,6 +76,7 @@ In case of integration of operational - data warehouse level, there are some pro
 5.  When passing data is the need to manage the volumen of data that resides in and passes into the data warehouse. You must be condensed both at the moment of extraction and as it arrives at the data warehouse. (Volumen of data problem)
  
 In general, all level in architecture using ETL program to passing data between them. The complex of programm depending from requirement of level but it's so easy comparing with ETL process between operational-datawarehouse level.
+
 
 
 ## Development life cycle in inmon
@@ -136,15 +140,24 @@ The best option is application level for some reasons:
 2.  Data can be moved from one processing complex to another with impunity.
 
 ## Process models in enviroment in inmon
-The data designer must undestand the applicability and the limitations of those techniques. Process model applies only to the operational level.
+The data designer must undestand the applicability and the limitations of those techniques. Process model is used process in organizetion. Process model applies only to the operational level.
 
 ![process adn data modeling in enviroment](procesModelingInInmon.png?raw=true)
 
 There are many contexts and environments in which a process models is invaluable; for example, when you buildin the data mart level. However, `the process model assumes that a set of known processing requirements exists a priori; such an assupmption can be made but those assumptions do not hold for the data warehouse level`.
 
+## Data models in enviroment in inmon
+The data models is representations of entity in real world inside system. data model is applicable to both the existing systems enviroment and the data warehouse enviroment.
+
+The data model applied in operational level passed following process: this model represents only primitive data, performance factor are added into it and it's transported to operational level with few changes. but the data model applied in data warehouse level is: removed operational only focus fields in model; enhace to model with time field, if they don't already have one; derived  data  is  added  to  the  corporate  data  model  where  the derived data is publicly used and calculated once, not repeatedly. Finally, data relationships in the operational environment are turned into “artifacts” of the relationship in the data warehouse.
+
+The final design activity in data models to the data warehouse data model is stability analysis. `The stability analysis involves grouping aatributes of data together based on their propensity for change`. 
+
+
 
 # Solutions
 There are some ideas, best practics and methods to solve some problem you might confront while you implement a data warehouse.
+
 ## Techniques to scanning data in operational datawarehouse extract process
 Loading data on an ongoing basis — as changes are made to the operationalenvironment — presents the largest challenge to the data architect. Efficientlytrapping those ongoing daily changes and manipulating them is not easy. Scanning existing files is a major issue facing the data warehouse architect.
 
@@ -158,8 +171,10 @@ Loading data on an ongoing basis — as changes are made to the operationalenvir
 ![5 common techniques to scanning data in ETL operational- data warehouse level](techniquesExtractDataOperationDatawarehouse.png?raw=true)
 
 
+
 ## Alternatived techniques to design data warehouse
 There are some techniques you can use to modeling a arquitecture enviroment of data.
+
 
 
 ### Dual levels of granularity
