@@ -16,11 +16,13 @@ This is a index to best navigation inside document.
     - [Integrations between levels](#integrations-between-levels-in-inmon)
     - [Development life cycle](#development-life-cycle-in-inmon)
     - [Important aspects of the desing](#important-aspects-of-the-desing-in-immon)
+    - [Process models in enviroment](#process-models-in-enviroment-in-inmon)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
     - [Dual level of granularity: manage granularity and access the data](#Dual-levels-of-granularity)
     - [Living sample database](#living-sample-database)
+  - [Techniques to denormalization data](#techniques-to-denormalization-data) 
 - [References](#references)
 
 
@@ -132,6 +134,11 @@ The best option is application level for some reasons:
 
 1.  There can be a different definition of data by each partition.
 2.  Data can be moved from one processing complex to another with impunity.
+
+## Process models in enviroment in inmon
+The data designer must undestand the applicability and the limitations of those techniques. Process model applies only to the operational level.
+
+There are many contexts and environments in which a process models is invaluable; for example, when you buildin the data mart level. However, `the process model assumes that a set of known processing requirements exists a priori; such an assupmption can be made but those assumptions do not hold for the data warehouse level`.
 
 
 # Solutions
