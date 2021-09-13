@@ -23,7 +23,9 @@ This is a index to best navigation inside document.
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
     - [Dual level of granularity: manage granularity and access the data](#Dual-levels-of-granularity)
     - [Living sample database](#living-sample-database)
-  - [Techniques to denormalization data](#techniques-to-denormalization-data) 
+  - [Techniques of enhanced performance in data model
+](#techniques-of-enhanced-performance-in-data-model
+)
 - [References](#references)
 
 
@@ -199,6 +201,20 @@ When you use this technique, you must know how data will load, the amount of dat
 ![Living sample database](LivingSampleDatawarehouse.png?raw=true)
 
 You must use this subset to statistical analysis, looking at trends or analytical focus or preparing process; don't use as general-purpose database because it hasn't all data. Because the living sample DB is refreshed with current data, your analytical answers or implementation of processes will not suffer in accurancy.
+
+## Techniques of enhanced performance in data model
+When you create a data model and it applied in architecture (either at the operational level or at the data warehouse level), you wanna get a good performance and if you have a several tables you will suffer performance in I/O by queries several tables to get answer.
+
+There are some techniques i can use to enhance this performance:
+
+1.  `Merge some of tables` so that minimal I/O is consumed by a get a large table.
+2.  `Create an array of data`. When normalized data so that each occurrence of a sequence of data reside in a different physical location. Only when there are a stable number of occurrences, where data is accessed in sequence, where it is created and/or updated in a statistically well-behaved in sequence; it is a good choice.
+3.  `Replicate common accessed data inside several tables` that those data are common between tables. Enhace performance in read queries but update queries is complex. 
+4.  `Separate of data when there is a wide disparity in the probability of access in differenct tables`. Get a short I/O cost and access of data, so then you get a efficient performance in queries.
+5.  `Use derived data into data model` can reduce the amount of I/O needed: if program accesses regularly data in order to calculate something and you need to create this data in specified time; you can use this techniques.
+6.  `Use creative index/profile`. it's created as data is passed from the operational level to the data warehouse level.  Because each unit of data must be handled in any case, it requires very little overhead to calculate or create an index at this point. The creative index/profile does a profile on items of interese to the end user: largest purchases, the most inactive accounts, etc. If the requiriements that might be of intereset of management can be anticipated, it makes sesnse to build a creative index.
+7.  `Referential integrity as artifact` of relationships in the data warehouse between databases. Therefore some data will be duplicated and some data will be deleted when other data is still in the data warehouse. 
+
 
 
 # References
