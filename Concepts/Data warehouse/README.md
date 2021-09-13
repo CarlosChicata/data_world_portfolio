@@ -138,6 +138,8 @@ The best option is application level for some reasons:
 ## Process models in enviroment in inmon
 The data designer must undestand the applicability and the limitations of those techniques. Process model applies only to the operational level.
 
+![process adn data modeling in enviroment](procesModelingInInmon.png?raw=true)
+
 There are many contexts and environments in which a process models is invaluable; for example, when you buildin the data mart level. However, `the process model assumes that a set of known processing requirements exists a priori; such an assupmption can be made but those assumptions do not hold for the data warehouse level`.
 
 
