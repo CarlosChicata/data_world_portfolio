@@ -161,7 +161,7 @@ Also name "entity-relation diagram" o ERD. In this level, you will modeling feat
 
 The data model need to define the scope of integration to determinate what data can be or can't be inside the model before to modeling processes. It need to be written in language understable to the business person.
 
-![Generate a coporated ERD of organization](#createCorporateERDFromDifferentUser.png?raw=true)
+![Generate a coporated ERD of organization](createCorporateERDFromDifferentUser.png?raw=true)
 
 The recommendation is created ERD per user of different areas across the corporation, to merge those into the single and corporated ERD represents the organization.
 
