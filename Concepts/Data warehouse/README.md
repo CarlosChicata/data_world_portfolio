@@ -100,6 +100,8 @@ In general, build a level of enviroment is a end users needing based process whi
 
 ![The 1 day to n day process](developmentCycleLifeInmon.png?raw=true)
 
+The critical resource to get a good process is the data model. Not only does the data model tell what needs to be done, also it suggests how any one development effort will be integrated with any other development effort. Remember: the data warehouse serves as a roadmap for each of the development efforts, and data model produces a cohesive and tightly orchaestrated whole to achieve long-term integration and harmonious effort in the incremental and iterative development.
+
 
 ## Important aspects of the desing in immon
 When you design of data warehouse you need to note some the following crucial aspects; if you ignored it, you will hard to modify and get a poor performance in the environment.
