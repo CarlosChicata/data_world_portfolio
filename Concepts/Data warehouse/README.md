@@ -181,6 +181,8 @@ For each major subject area; or entity; identified in high level data model, a m
 ### Low level of data model
 Also named the physical data model, It is created from midlevel data model merely by extending it to include keys and physical characteristics of the model, to looks like a series of relational tables.
 
+![Mapping Middle level to low level of data model](lowLevelOfDataModel.png?raw=true)
+
 Issues like partitions, granularity, I/O performance of storage-compute are relevant in this level.
 
 
