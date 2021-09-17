@@ -19,6 +19,7 @@ This is a index to best navigation inside document.
     - [Process models in enviroment](#process-models-in-enviroment-in-inmon)
     - [Data models in enviroment](#data-models-in-enviroment-in-inmon)
       - [High level of data model](#high-level-of-data-model-in-inmon)
+      - [Middle level of data model](#middle-level-of-data-model)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -164,6 +165,15 @@ The data model need to define the scope of integration to determinate what data 
 ![Generate a coporated ERD of organization](createCorporateERDFromDifferentUser.png?raw=true)
 
 The recommendation is created ERD per user of different areas across the corporation, to merge those into the single and corporated ERD represents the organization.
+
+### Middle level of data model
+For each major subject area; or entity; identified in high level data model, a midlevel mode is created. This model is gradually expanded part by part. This model use 4 basic constructs to build:
+1.  `Primary grouping`: it exists once and only once for each subject area, it holds attributes that exists only once for each major area.
+2.  `Secondary grouping`: it holnd data attributes that can exist multiple times for each major subject area.
+3.  `Connector`: it relates data from one grouping to another. Generally use a foreign key. and represents a relationship in ERD.
+4.  `Type of `: this data is indicated by a line leading to the right of a subtype of data.
+
+
 
 
 
