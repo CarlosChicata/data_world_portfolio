@@ -20,6 +20,7 @@ This is a index to best navigation inside document.
     - [Data models in enviroment](#data-models-in-enviroment-in-inmon)
       - [High level of data model](#high-level-of-data-model-in-inmon)
       - [Middle level of data model](#middle-level-of-data-model)
+      - [Low level of data model](#low-level-of-data-model)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -176,6 +177,12 @@ For each major subject area; or entity; identified in high level data model, a m
 4.  `Type of `: this data is indicated by a line leading to the right of a subtype of data.
 
 ![Diagram of middle level of data model](MiddleLevelOfDataModel.png?raw=true)
+
+### Low level of data model
+Also named the physical data model, It is created from midlevel data model merely by extending it to include keys and physical characteristics of the model, to looks like a series of relational tables.
+
+Issues like partitions, granularity, I/O performance of storage-compute are relevant in this level.
+
 
 
 
