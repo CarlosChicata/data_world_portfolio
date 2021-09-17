@@ -173,7 +173,7 @@ For each major subject area; or entity; identified in high level data model, a m
 3.  `Connector`: it relates data from one grouping to another. Generally use a foreign key. and represents a relationship in ERD.
 4.  `Type of `: this data is indicated by a line leading to the right of a subtype of data.
 
-
+![Diagram of middle level of data model](MiddleLevelOfDataModel.png?raw=true)
 
 
 
