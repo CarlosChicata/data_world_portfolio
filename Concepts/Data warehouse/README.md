@@ -21,6 +21,7 @@ This is a index to best navigation inside document.
       - [High level of data model](#high-level-of-data-model-in-inmon)
       - [Middle level of data model](#middle-level-of-data-model)
       - [Low level of data model](#low-level-of-data-model)
+    - [Work Units: Snapshot and Profile Records](#work-units-snapshot-and-profile-records)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -185,6 +186,15 @@ Also named the physical data model, It is created from midlevel data model merel
 
 Issues like partitions, granularity, I/O performance of storage-compute are relevant in this level.
 
+
+## Work units : Snapshot and profile records
+All types of data warehouse around a structure of data called a snapshot. The snapshots are created as a result of some event occuring. A event is the recording of information about a discrete activity, and types of event: predictable by scheduled time and random by operational activity.
+
+The snapshot has a following components:
+1.  **Key**: it can be unique or nonunique. the key is a composite made up of many elements of data that serve to identify the primary data but it can be a single of element of data. `it use to identify the record and the primary data`.
+2.  **Unit Time**: The unit of time when the event being described by the snapshot has occurred. Occasionally, the unit of time refers to the moment when the capture of data takes place.
+3.  **Primary data**: it is data relates directly to the key of the record inside snapshot.
+4.  **Secondary data**: it is optional. this is data offers other extraneous information captured at the momento when the snapshot was created. if this data sources from other table, you would get a inferred relationship between primary and secondary data, this type of occurences is named artifact.
 
 
 
