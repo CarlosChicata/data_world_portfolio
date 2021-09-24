@@ -21,7 +21,7 @@ This is a index to best navigation inside document.
       - [High level of data model](#high-level-of-data-model-in-inmon)
       - [Middle level of data model](#middle-level-of-data-model)
       - [Low level of data model](#low-level-of-data-model)
-    - [Work Units: Snapshot and Profile Records](#work-units-snapshot-and-profile-records)
+    - [Work Units: Snapshot and Profile Records](#work-units:-snapshot-and-profile-records)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -187,7 +187,7 @@ Also named the physical data model, It is created from midlevel data model merel
 Issues like partitions, granularity, I/O performance of storage-compute are relevant in this level.
 
 
-## Work units : Snapshot and profile records
+## Work units: Snapshot and profile records
 All types of data warehouse around a structure of data called a snapshot. The snapshots are created as a result of some event occuring. A event is the recording of information about a discrete activity, and types of event: predictable by scheduled time and random by operational activity.
 
 The snapshot has a following components:
