@@ -188,7 +188,9 @@ Issues like partitions, granularity, I/O performance of storage-compute are rele
 
 
 ## Snapshot and Profile records in inmon
-All types of data warehouse around a structure of data called a snapshot. The snapshots are created as a result of some event occuring. A event is the recording of information about a discrete activity, and types of event: predictable by scheduled time and random by operational activity.
+
+### Snapshot
+All types of data warehouse around a structure of data called a snapshot. The snapshots are created as a result of some event occuring. A event is the recording of information about a discrete activity, and types of event: predictable by scheduled time and random by operational activity. When there is a one-to-one correspondence between the activities in the operational environment and the snapshots in the data warehouse, the data warehouse tracks the history of all the activity relating to a subject area.
 
 The snapshot has a following components:
 1.  **Key**: it can be unique or nonunique. the key is a composite made up of many elements of data that serve to identify the primary data but it can be a single of element of data. `it use to identify the record and the primary data`.
