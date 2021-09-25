@@ -198,6 +198,11 @@ The snapshot has a following components:
 3.  **Primary data**: it is data relates directly to the key of the record inside snapshot.
 4.  **Secondary data**: it is optional. this is data offers other extraneous information captured at the momento when the snapshot was created. if this data sources from other table, you would get a inferred relationship between primary and secondary data, this type of occurences is named artifact.
 
+### Profile records
+There are cases in which data does not meet the criteria of stability and infrequency of change, a massive volumes of data, changes data frequently or not business need for meticulous historical details of data. When one or more of theses conditions prevail, you need to use profile records.
+
+A profile records groups many different, detailed occurrences of operational data into a single record and represents the many operational records in aggregation. it is created by events too. The ways to aggregate those records inside profile record depending of developer and its affect the case of usage to analyze and accesss of profile records.
+
 
 
 # Solutions
