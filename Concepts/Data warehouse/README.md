@@ -22,6 +22,7 @@ This is a index to best navigation inside document.
       - [Middle level of data model](#middle-level-of-data-model)
       - [Low level of data model](#low-level-of-data-model)
     - [Work Units: Snapshot and Profile Records](#snapshot-and-profile-records-in-inmon)
+- [Requirements of technology to support data warehouse](#requirements-of-technology)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -202,6 +203,19 @@ The snapshot has a following components:
 There are cases in which data does not meet the criteria of stability and infrequency of change, a massive volumes of data, changes data frequently or not business need for meticulous historical details of data. When one or more of theses conditions prevail, you need to use profile records.
 
 A profile records groups many different, detailed occurrences of operational data into a single record and represents the many operational records in aggregation. it is created by events too. The ways to aggregate those records inside profile record depending of developer and its affect the case of usage to analyze and accesss of profile records.
+
+
+# Requirements of technology
+The data warehouse enviroment requires a simple set of technological features than its operations predecessors. This is a list of  following  needed features:
+
+1.  `Managing large amounts of data`: The explosion of data volume came about because  the data warehouse required that both detail and history be mixed in the same environment. it's a issue about the cost of storage and processing to manage large amounts of data, so then its need to do well.
+2.  `Managing multiple media`: The technology underlying the data warehouse must handle multiple  storage  media like cache, main memory, magnetic tape and others. it's manage following a hierarchy of storage of data in terms of speed of access and cost of storage.
+3.  `Indexing and monitoring data`: The data warehouse needs a easily and efficiently  several techiques of indexing; like example: sparse, temporary or dynamic indexes; to get the flexibility. the monitoring of data to determinate what data has and has been used. The purpose of monitoring evaluation of performance of data warehouse to usage of data.
+4.  `Interfaces to many technologies`: the ability both to receive data from and to pass data to a wide variaty of technologies. This interface need to easy to use and operate in a batch and online mode.
+5.  `Control of data placement`: the designer must have a specific control over the placement of data at the physical block or page level. Designer often can arrange for the physical placementof data to coincide with its usage to gain more efficient access of data.
+6.  `Parallel storage and management of data`: When data is stored and managed in a parallel fashion, the gains in performance can be dramatic.As a rule, the performance boost is inversely proportional to the number of phys-ical devices over which the data is physically distributed, assuming there is an even probability of access for the data.
+7.  `Metadata management`: Without a good source of metadata to operate from, the job of users is much more difficult. There are differents varieties in metadata: business metadata is use by business person. Technical metadata is use by developer. Note: every technology in the business inteligence enviroment has its own metadata: Tools, ETLS, reports and others.
+8.  `Languajge interface`: The data warehouse must have a rich language to access data inside. This language should be easy to use and robust, and operate efficiently. Only technical peoples write direct SQL queries, others need to have a language interface more simple than SQL that you need to create. Each of these language has its own strengths and weakness.
 
 
 
