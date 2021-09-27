@@ -229,7 +229,7 @@ The data warehouse enviroment requires a simple set of technological features th
 16.  `Fast restore`: it is a capacity to quickly restore a data warehouse table from a secondary storage; you need to support restore full and partial database operation. you need use tools to detect corrupted data inside of data warehouse.
 
 ## Difference transactional database and data warehouse enviroment
-There a difference between 2 parts:
+There are differences between 2 parts:
 
 * Data warehouse processing can be characterized as load-and-access processing: the data is accessed and analyzed there, an update is not normally done once the data is loaded, corrections or adjustments to be made at off hours.
 * Data warehouse holds much more data because have atomic, granular, historial and summaried information. 
