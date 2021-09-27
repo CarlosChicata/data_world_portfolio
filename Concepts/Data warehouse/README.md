@@ -24,6 +24,7 @@ This is a index to best navigation inside document.
     - [Work Units: Snapshot and Profile Records](#snapshot-and-profile-records-in-inmon)
 - [Requirements of technology](#requirements-of-technology)
   - [Main features needed to support data warehouse](#main-features-needed-to-support-data-warehouse)
+  - [Difference transactional database and data warehouse enviroment](#difference-transactional-database-and-data-warehouse-enviroment)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -226,6 +227,16 @@ The data warehouse enviroment requires a simple set of technological features th
 14.  `Lock management`: to able to selectively turn lock manager of and on is necessary to manage a cost of resource used by lock manager.
 15.  `Index-only processing`: it is possible to service a request by simply looking in a index without going to the primary source of data.
 16.  `Fast restore`: it is a capacity to quickly restore a data warehouse table from a secondary storage; you need to support restore full and partial database operation. you need use tools to detect corrupted data inside of data warehouse.
+
+## Difference transactional database and data warehouse enviroment
+There a difference between 2 parts:
+
+* Data warehouse processing can be characterized as load-and-access processing: the data is accessed and analyzed there, an update is not normally done once the data is loaded, corrections or adjustments to be made at off hours.
+* Data warehouse holds much more data because have atomic, granular, historial and summaried information. 
+* Transactional database must be able to accommodate record-level, transaction-based updates as a normal part of operation with a own set of commands to support. In data warehouse doesn't need it.
+* Transactional database DBMS include reserved space for future block expansion at the moment of update or insert. Data warehouse not include extra space to insert rows.
+* Data warehouse has more technique of index than transactional database to get best access of data.
+* Transactional database is optimized for transaction access, and a data warehouse is optimized a physical location to access and analysis.
 
 
 
