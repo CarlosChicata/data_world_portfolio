@@ -22,7 +22,8 @@ This is a index to best navigation inside document.
       - [Middle level of data model](#middle-level-of-data-model)
       - [Low level of data model](#low-level-of-data-model)
     - [Work Units: Snapshot and Profile Records](#snapshot-and-profile-records-in-inmon)
-- [Requirements of technology to support data warehouse](#requirements-of-technology)
+- [Requirements of technology](#requirements-of-technology)
+  - [Main features needed to support data warehouse](Main-features-needed-to-support-data-warehouse)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -204,8 +205,9 @@ There are cases in which data does not meet the criteria of stability and infreq
 
 A profile records groups many different, detailed occurrences of operational data into a single record and represents the many operational records in aggregation. it is created by events too. The ways to aggregate those records inside profile record depending of developer and its affect the case of usage to analyze and accesss of profile records.
 
-
 # Requirements of technology
+
+## Main features needed to support data warehouse
 The data warehouse enviroment requires a simple set of technological features than its operations predecessors. This is a list of  following  needed features:
 
 1.  `Managing large amounts of data`: The explosion of data volume came about because  the data warehouse required that both detail and history be mixed in the same environment. it's a issue about the cost of storage and processing to manage large amounts of data, so then its need to do well.
