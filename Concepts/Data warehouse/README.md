@@ -215,7 +215,15 @@ The data warehouse enviroment requires a simple set of technological features th
 5.  `Control of data placement`: the designer must have a specific control over the placement of data at the physical block or page level. Designer often can arrange for the physical placementof data to coincide with its usage to gain more efficient access of data.
 6.  `Parallel storage and management of data`: When data is stored and managed in a parallel fashion, the gains in performance can be dramatic.As a rule, the performance boost is inversely proportional to the number of phys-ical devices over which the data is physically distributed, assuming there is an even probability of access for the data.
 7.  `Metadata management`: Without a good source of metadata to operate from, the job of users is much more difficult. There are differents varieties in metadata: business metadata is use by business person. Technical metadata is use by developer. Note: every technology in the business inteligence enviroment has its own metadata: Tools, ETLS, reports and others.
-8.  `Language interface`: The data warehouse must have a rich language to access data inside. This language should be easy to use and robust, and operate efficiently. Only technical peoples write direct SQL queries, others need to have a language interface more simple than SQL that you need to create. Each of these language has its own strengths and weakness.
+8.  `Language interface`: The data warehouse must have a rich language to access data inside. This language should be easy to use and robust, and operate efficiently. Only technical peoples write direct SQL queries, others need to have a language interface more simple than SQL that you need to create. Each of these language has its own strengths and weakness based in focus to use: analysis. data mining and others.
+9.  `Efficient loading of data`: The need of efficient load data capacity is important everywhere, but even more so in a large warehouse. 2 fundamentals ways: records at a time through a language interface or in masse with a utility. a techniques to manage load of data to use a staging data to storing data.
+10.  `Efficient Index Utilization`: The indexes must be able to be accessed efficiently and support several ways: using bit map, multilevels, storing all or part in main memory, create selective indexes and range indexes and others.
+11.  `Compaction of data`: When you compact data, you get small volume, reduce consume of I/O resource and access of the data efficiently.
+12.  `Compound keys`: Support compound keys occur everywhere in data warehouse because of time variancy and key foreign relationships are quite common in the atomic data that makes up the data warehouse.
+13.  `Variable-length data`: manage variable length data efficiently to support the access of variety of data.
+14.  `Lock management`: to able to selectively turn lock manager of and on is necessary to manage a cost of resource used by lock manager.
+15.  `Index-only processing`: it is possible to service a request by simply looking in a index without going to the primary source of data.
+16.  `Fast restore`: it is a capacity to quickly restore a data warehouse table from a secondary storage; you need to support restore full and partial database operation. you need use tools to detect corrupted data inside of data warehouse.
 
 
 
