@@ -23,7 +23,7 @@ This is a index to best navigation inside document.
       - [Low level of data model](#low-level-of-data-model)
     - [Work Units: Snapshot and Profile Records](#snapshot-and-profile-records-in-inmon)
 - [Requirements of technology](#requirements-of-technology)
-  - [Main features needed to support data warehouse](Main-features-needed-to-support-data-warehouse)
+  - [Main features needed to support data warehouse](#main-features-needed-to-support-data-warehouse)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
