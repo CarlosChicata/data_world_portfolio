@@ -216,6 +216,8 @@ A direct access of data warehouse data is limited by constraint of data warehous
 
 A undirect acces of data warehouse data is efficient focus: the data warehouse is analyzed periodically by a program that examines relevant and criteria, then creates a small file in the online enviroment that contains succinct information about the business of the enterprise. this file is used quickly and efficiently in criterias of operational enviroment.
 
+![Pattern of undirect access data of data warehouse from operation enviroment](undirectAccessOfDataInDataWarehouse.png?raw=true)
+
 
 
 # Requirements of technology
