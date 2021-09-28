@@ -207,6 +207,8 @@ There are cases in which data does not meet the criteria of stability and infreq
 
 A profile records groups many different, detailed occurrences of operational data into a single record and represents the many operational records in aggregation. it is created by events too. The ways to aggregate those records inside profile record depending of developer and its affect the case of usage to analyze and accesss of profile records.
 
+You can created multiple profile records with several focus of analysis. Usually create the profile record involves sorting and merging data. Passing profile records to other level of enviroment require a customize this records.
+
 
 ## Interaction between operational and data warehouse enviroment in access of data
 
