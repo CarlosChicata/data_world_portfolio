@@ -22,6 +22,7 @@ This is a index to best navigation inside document.
       - [Middle level of data model](#middle-level-of-data-model)
       - [Low level of data model](#low-level-of-data-model)
     - [Work Units: Snapshot and Profile Records](#snapshot-and-profile-records-in-inmon)
+    - [Interaction between operational and data warehouse enviroment  in access of data](#interaction-between-operational-and-data-warehouse-enviroment-in-access-of-data)
 - [Requirements of technology](#requirements-of-technology)
   - [Main features needed to support data warehouse](#main-features-needed-to-support-data-warehouse)
   - [Difference transactional database and data warehouse enviroment](#difference-transactional-database-and-data-warehouse-enviroment)
@@ -205,6 +206,17 @@ The snapshot has a following components:
 There are cases in which data does not meet the criteria of stability and infrequency of change, a massive volumes of data, changes data frequently or not business need for meticulous historical details of data. When one or more of theses conditions prevail, you need to use profile records.
 
 A profile records groups many different, detailed occurrences of operational data into a single record and represents the many operational records in aggregation. it is created by events too. The ways to aggregate those records inside profile record depending of developer and its affect the case of usage to analyze and accesss of profile records.
+
+
+## Interaction between operational and data warehouse enviroment in access of data
+
+Its natural passing data from operation enviroment to data warehouse enviroment; but in occasion is good passing data from the data warehouse to operational enviroment but it's a not natural flow of process.
+
+A direct access of data warehouse data is limited by constraint of data warehouse: time responde of request to use in operation enviroment; compatible communication in technology level in operational and data warehouse enviroment: protocols, capacity, formatting and so on; minimal amount of data in request. In general, it's not good choice this type of access.
+
+A undirect acces of data warehouse data is efficient focus: the data warehouse is analyzed periodically by a program that examines relevant and criteria, then creates a small file in the online enviroment that contains succinct information about the business of the enterprise. this file is used quickly and efficiently in criterias of operational enviroment.
+
+
 
 # Requirements of technology
 
