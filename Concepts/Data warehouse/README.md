@@ -26,6 +26,7 @@ This is a index to best navigation inside document.
 - [Requirements of technology](#requirements-of-technology)
   - [Main features needed to support data warehouse](#main-features-needed-to-support-data-warehouse)
   - [Difference transactional database and data warehouse enviroment](#difference-transactional-database-and-data-warehouse-enviroment)
+  - [Multidimensional DBMS and data warehouse](#multidimensional-dbms-and-data-warehouse)
 - [Solutions](#solutions)
   - [Techniques to scanning data in operational-datawarehouse extract process](#techniques-to-scanning-data-in-operational-datawarehouse-extract-process)
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
@@ -253,6 +254,12 @@ There are differences between 2 parts:
 * Transactional database DBMS include reserved space for future block expansion at the moment of update or insert. Data warehouse not include extra space to insert rows.
 * Data warehouse has more technique of index than transactional database to get best access of data.
 * Transactional database is optimized for transaction access, and a data warehouse is optimized a physical location to access and analysis.
+
+## Multidimensional DBMS and data warehouse
+
+A Multidimensional DBMS or OLAP processing provide an information system with the structure that allows an organization to have very flexible access to data, to slice and dice data any number of ways, and to dynamically explore the relationship between summary and detail data.
+
+`The data warehouse is an architecture infraestructure and Multidimensional DBMS is a technology`. The data warehosue serves as a foundation for the data that will flow into multidimensional DBMS by data warehouse have a centralized and integrated data across organization.
 
 
 
