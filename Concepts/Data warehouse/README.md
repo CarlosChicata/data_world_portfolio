@@ -257,9 +257,13 @@ There are differences between 2 parts:
 
 ## Multidimensional DBMS and data warehouse
 
-A Multidimensional DBMS or OLAP processing provide an information system with the structure that allows an organization to have very flexible access to data, to slice and dice data any number of ways, and to dynamically explore the relationship between summary and detail data.
+A Multidimensional DBMS or OLAP processing provide an information system with the structure that allows an organization to have very flexible access to data, to slice and dice data any number of ways, and to dynamically explore the relationship between summary and detail data. It is called data marts too.
 
-`The data warehouse is an architecture infraestructure and Multidimensional DBMS is a technology`. The data warehosue serves as a foundation for the data that will flow into multidimensional DBMS by data warehouse have a centralized and integrated data across organization.
+`The data warehouse is an architecture infraestructure and Multidimensional DBMS is a technology`. The data warehosue serves as a foundation for the data that will flow into multidimensional DBMS by data warehouse have a centralized and integrated data across organization to avoid those problem in Multidimensional DBMS to get best performance to query it.
+
+Another advantages is that summary data may be calculated and collected in the OLAP processing and then stored in the data warehouse to archived long time. `So data warehouse and OLAP processing can be bidirectional communication` if it is need.
+
+There are 2 type of Multidimensional: relational technology or "slicing and dicing" technology, this last options is called a "Cube". the relationa option can support a lot of data, dynamic joining of data, general-purpose update processing and good structure to support no known pattern of usage; but it is less perfomance and  can not optimized for access processing. the "Cube" option get a good performance, can be optiomized for very fast access of data, can "sliced and diced" data, can be examined in many way and if pattern of access if know, then the structure of data can be optimized; but it take a long time to load, can't control as mucho data as a relational option and dont support a dynamic joins of data.
 
 
 
