@@ -35,6 +35,7 @@ This is a index to best navigation inside document.
   - [Techniques of enhanced performance in data model
 ](#techniques-of-enhanced-performance-in-data-model
 )
+  - [Techniques to control refreshed data from operational enviroment](#techniques-to-control-refreshed-data-from-operational-enviroment)
 - [References](#references)
 
 
@@ -326,6 +327,17 @@ There are some techniques i can use to enhance this performance:
 5.  `Use derived data into data model` can reduce the amount of I/O needed: if program accesses regularly data in order to calculate something and you need to create this data in specified time; you can use this techniques.
 6.  `Use creative index/profile`. it's created as data is passed from the operational level to the data warehouse level.  Because each unit of data must be handled in any case, it requires very little overhead to calculate or create an index at this point. The creative index/profile does a profile on items of interese to the end user: largest purchases, the most inactive accounts, etc. If the requiriements that might be of intereset of management can be anticipated, it makes sesnse to build a creative index.
 7.  `Referential integrity as artifact` of relationships in the data warehouse between databases. Therefore some data will be duplicated and some data will be deleted when other data is still in the data warehouse. 
+
+
+## Techniques to control refreshed data from operational enviroment
+
+The ongoing updates of old data from operational environment to data warehouse environment is a load that need to manage by data warehouse because this is a largest unexpected expense in day-to-day operations.
+
+There are several focus to manage this load that is part of data warehouse integrity:
+1.  `read data to legacy database`: this is an inefficient and expensive method, because a process scanning all file inside legacy database to identify change that it will be few. You must get a online legacy database while process work to scanning database.
+2.  `data replication`: this method need know that data to be trapped be identified prior to the update, then as update occurs, the data is trapped. This method can be selectively control that data need to trap and well documented by understand of structure of data. it need a extra I/O to trap data.
+3.  `Changed data capture`: this method use the logs to capture and identify teh changes that have occurred. this method no need a extra I/O to trap data, and get all update processing; but i will get more data in log that you need.
+4.  `lift the changed data out of the DBMS buffers`: when change occurs, the change is reflected immediately so saving time but you need more online required resource (like software snesitive to  change), there is a performance impact. This focus can handle large amount of processsing at a very high speed.
 
 
 
