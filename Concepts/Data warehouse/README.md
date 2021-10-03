@@ -257,7 +257,7 @@ There are differences between 2 parts:
 
 ## Multidimensional DBMS and data warehouse
 
-A Multidimensional DBMS or OLAP processing provide an information system with the structure that allows an organization to have very flexible access to data, to slice and dice data any number of ways, and to dynamically explore the relationship between summary and detail data. It is called data marts too.
+A Multidimensional DBMS or OLAP processing provide an information system with the structure that allows an organization to have very flexible access to data, to slice and dice data any number of ways, and to dynamically explore the relationship between summary and detail data. It is called data marts too and this focus is used in data mart level inside data warehouse arquitecture.
 
 `The data warehouse is an architecture infraestructure and Multidimensional DBMS is a technology`. The data warehosue serves as a foundation for the data that will flow into multidimensional DBMS by data warehouse have a centralized and integrated data across organization to avoid those problem in Multidimensional DBMS to get best performance to query it.
 
