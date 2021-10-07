@@ -23,6 +23,7 @@ This is a index to best navigation inside document.
       - [Low level of data model](#low-level-of-data-model)
     - [Work Units: Snapshot and Profile Records](#snapshot-and-profile-records-in-inmon)
     - [Interaction between operational and data warehouse enviroment  in access of data](#interaction-between-operational-and-data-warehouse-enviroment-in-access-of-data)
+    - [Distributed architecture models](#distributed-architecture-models)
 - [Requirements of technology](#requirements-of-technology)
   - [Main features needed to support data warehouse](#main-features-needed-to-support-data-warehouse)
   - [Difference transactional database and data warehouse enviroment](#difference-transactional-database-and-data-warehouse-enviroment)
@@ -221,6 +222,11 @@ A direct access of data warehouse data is limited by constraint of data warehous
 A undirect acces of data warehouse data is efficient focus: the data warehouse is analyzed periodically by a program that examines relevant and criteria, then creates a small file in the online enviroment that contains succinct information about the business of the enterprise. this file is used quickly and efficiently in criterias of operational enviroment.
 
 ![Pattern of undirect access data of data warehouse from operation enviroment](undirectAccessOfDataInDataWarehouse.png?raw=true)
+
+
+## Distributed architecture models
+
+
 
 
 
