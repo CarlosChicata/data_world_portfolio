@@ -24,6 +24,7 @@ This is a index to best navigation inside document.
     - [Work Units: Snapshot and Profile Records](#snapshot-and-profile-records-in-inmon)
     - [Interaction between operational and data warehouse enviroment  in access of data](#interaction-between-operational-and-data-warehouse-enviroment-in-access-of-data)
     - [Distributed architecture models](#distributed-architecture-models)
+      - [Global data warehouse model](#global-data-warehouse-model)
 - [Requirements of technology](#requirements-of-technology)
   - [Main features needed to support data warehouse](#main-features-needed-to-support-data-warehouse)
   - [Difference transactional database and data warehouse enviroment](#difference-transactional-database-and-data-warehouse-enviroment)
@@ -226,6 +227,13 @@ A undirect acces of data warehouse data is efficient focus: the data warehouse i
 
 ## Distributed architecture models
 
+There are 3 types of distributed data warehouse model based in focus of architecture:
+
+### Global data warehouse model
+
+### Technologically distribyted data warehouse model
+
+### Independently evolving distributed data warehouse model
 
 
 
