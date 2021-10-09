@@ -25,9 +25,7 @@ This is a index to best navigation inside document.
     - [Interaction between operational and data warehouse enviroment  in access of data](#interaction-between-operational-and-data-warehouse-enviroment-in-access-of-data)
     - [Distributed architecture models](#distributed-architecture-models)
       - [Global data warehouse motel](#global-da-a-warehouse-mode-)
-      --[Technologically distribyted data warehouse model
-](#technologically-distribyted-data-warehouse-model
-)
+      - [Technologically distribyted data warehouse model](#technologically-distribyted-data-warehouse-model)
       - [Independently evolving distributed data warehouse model](#independently-evolving-distributed-data-warehouse-model)
 - [Requirements of technology](#requirements-of-technology)
   - [Main features needed to support data warehouse](#main-features-needed-to-support-data-warehouse)
