@@ -235,6 +235,8 @@ There are 3 types of distributed data warehouse model based in focus of architec
 
 `In case you need to store information locally and globally data; use this focus`. This method consistent in 2 parts: a local data warehouse to store and manage data in local level ;like region sede in example; and global data warehouse to store and manage a global level; Like a corporation finance operations in example. Others example is there are geographically or distributed business distributed data warehouse makes sense.
 
+![Architecture of operation in Global/Local distributed data warehouse](GlobalLocalDistributedDWH.png?raw=true)
+
 The local data warehouse is autonomous to operate with its data and enhancement this architecture enviroment. Only on occasion and for certain type of processing will data be sent to the global data warehouse.
 
 
