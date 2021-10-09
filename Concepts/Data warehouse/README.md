@@ -24,8 +24,8 @@ This is a index to best navigation inside document.
     - [Work Units: Snapshot and Profile Records](#snapshot-and-profile-records-in-inmon)
     - [Interaction between operational and data warehouse enviroment  in access of data](#interaction-between-operational-and-data-warehouse-enviroment-in-access-of-data)
     - [Distributed architecture models](#distributed-architecture-models)
-      - [Global data warehouse motel](#global-da-a-warehouse-mode-)
-      - [Technologically distribyted data warehouse model](#technologically-distribyted-data-warehouse-model)
+      - [Global data warehouse model](#global-data-warehouse-model)
+      - [Technologically distributed data warehouse model](#technologically-distributed-data-warehouse-model)
       - [Independently evolving distributed data warehouse model](#independently-evolving-distributed-data-warehouse-model)
 - [Requirements of technology](#requirements-of-technology)
   - [Main features needed to support data warehouse](#main-features-needed-to-support-data-warehouse)
@@ -231,7 +231,7 @@ A undirect acces of data warehouse data is efficient focus: the data warehouse i
 
 There are 3 types of distributed data warehouse model based in focus of architecture:
 
-### Global/local distributed data warehouse model
+### Global data warehouse model
 
 `In case you need to store information locally and globally data; use this focus`. This method consistent in 2 parts: a local data warehouse to store and manage data in local level ;like region sede in example; and global data warehouse to store and manage a global level; Like a corporation finance operations in example. Others example is there are geographically or distributed business distributed data warehouse makes sense.
 
