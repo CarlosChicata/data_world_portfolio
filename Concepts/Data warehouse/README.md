@@ -243,6 +243,8 @@ The global data warehouse's scope is the business that is integrated across the 
 
 A important thing in this method is the mapping of data from local data warehouse to global data warehouse. this determines which data goes into the global data warehouse, the structure of the data, definitions and identification of common corporate data and any conversion that must be done. it will be different for each implementation in local data warehouse and depending of local developer/designer, this local mapping will be improves over the time to solidicate the global mapping. 
 
+![Example of Global data warehouse staging in local data warehouse](GlobalDataWarehouseStaging.png?raw=true)
+
 A variation of the local/global data warehouse structure is to allow a global data warehouse staging area to be kept at the local level, to support storing data will be moving the global data warehouse to achieve the mapping. 
 
 
