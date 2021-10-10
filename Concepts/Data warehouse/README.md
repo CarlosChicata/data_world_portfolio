@@ -237,7 +237,13 @@ There are 3 types of distributed data warehouse model based in focus of architec
 
 ![Architecture of operation in Global/Local distributed data warehouse](GlobalLocalDistributedDWH.png?raw=true)
 
-The local data warehouse is autonomous to operate with its data and enhancement this architecture enviroment. Only on occasion and for certain type of processing will data be sent to the global data warehouse.
+The local data warehouse is autonomous to operate with its data and enhancement this architecture enviroment, everything without coordination any another local data warehouse. Only on occasion and for certain type of processing will data be sent to the global data warehouse. If there are intersection/commonality of data between local data warehouses is coincidental by there are not common structure or processing its data with coordination.
+
+The global data warehouse's scope is the business that is integrated across the corporation, so that depending case it will be massive or a little integrated data. it contains historical data, as do the local data warehouses. In some cases a direct update can go into global data warehouse. if there are intersection of data between local sites, it is best contained in a global data warehouse by local data warehouse need to support to store data to fed the global data warehouse.
+
+A important thing in this method is the mapping of data from local data warehouse to global data warehouse. this determines which data goes into the global data warehouse, the structure of the data, definitions and identification of common corporate data and any conversion that must be done. it will be different for each implementation in local data warehouse and depending of local developer/designer, this local mapping will be improves over the time to solidicate the global mapping. 
+
+A variation of the local/global data warehouse structure is to allow a global data warehouse staging area to be kept at the local level, to support storing data will be moving the global data warehouse to achieve the mapping. 
 
 
 ### Technologically distributed data warehouse model
