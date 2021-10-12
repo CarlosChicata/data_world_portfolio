@@ -257,6 +257,7 @@ The issue of routing of requests for information into the architected environmen
 
 ### Independently evolving distributed data warehouse model
 
+In this method in which independent data warehouses are developed concurrently and in an uncontrolled manner by result of political and organizational differences, so that the data warehouse architecture has to manage and coordinate multiple data warehouse efforts within the organization.
 
 
 
