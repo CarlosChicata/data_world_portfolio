@@ -241,12 +241,17 @@ The local data warehouse is autonomous to operate with its data and enhancement 
 
 The global data warehouse's scope is the business that is integrated across the corporation, so that depending case it will be massive or a little integrated data. it contains historical data, as do the local data warehouses. In some cases a direct update can go into global data warehouse. if there are intersection of data between local sites, it is best contained in a global data warehouse by local data warehouse need to support to store data to fed the global data warehouse.
 
-A important thing in this method is the mapping of data from local data warehouse to global data warehouse. this determines which data goes into the global data warehouse, the structure of the data, definitions and identification of common corporate data and any conversion that must be done. it will be different for each implementation in local data warehouse and depending of local developer/designer, this local mapping will be improves over the time to solidicate the global mapping. 
+A important thing in this method is the mapping of data from local data warehouse to global data warehouse. this determines which data goes into the global data warehouse, the structure of the data, definitions and identification of common corporate data and any conversion that must be done. it will be different for each implementation in local data warehouse and depending of local developer/designer, this local mapping will be improves over the time to solidicate the global mapping. Remember: `the global mapping is more about corporation needs rather the local mapping is more local and specified in site.`
 
 ![Example of Global data warehouse staging in local data warehouse](GlobalDataWarehouseStaging.png?raw=true)
 
 A variation of the local/global data warehouse structure is to allow a global data warehouse staging area to be kept at the local level, to support storing data will be moving the global data warehouse to achieve the mapping. 
 
+How transfering data between global and local data warehouse is a complex issue by you need to meet legal, security, functional and technical requirements between the parties to achieve.
+
+The issue of access of data is matter in this method. Depending what is being asked for and how to require in process, this may or may not be appropiate use data of global data warehouse from local data warehouse; but the general principle is the same: local data should be used locally and global data should be used globally. 
+
+The issue of routing of requests for information into the architected environment is a complex in this method that the enviroment need to routing the appropiated place. 
 
 ### Technologically distributed data warehouse model
 
