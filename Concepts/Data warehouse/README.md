@@ -255,6 +255,11 @@ The issue of routing of requests for information into the architected environmen
 
 ### Technologically distributed data warehouse model
 
+In this method, use the distribuited architectured to support data warehouse. This focus has several advantage:  the entry cost os cheap in hardware and software, there is not theoretical limit to how much data can be placed in the data warehouse and computes to process it.
+
+There are considerations: when data warehouse start to expand, an excessive amount of traffic starts to appear on the network by overlapping data in several processors or transfering data between processors. In crucial issues in this focus is how organize to manage better the queries of user from enviroment.
+
+
 ### Independently evolving distributed data warehouse model
 
 In this method in which independent data warehouses are developed concurrently and in an uncontrolled manner by result of political and organizational differences, so that the data warehouse architecture has to manage and coordinate multiple data warehouse efforts within the organization.
