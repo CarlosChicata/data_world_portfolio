@@ -264,6 +264,8 @@ There are considerations: when data warehouse start to expand, an excessive amou
 
 In this method in which independent data warehouses are developed concurrently and in an uncontrolled manner by result of political and organizational differences, so that the data warehouse architecture has to manage and coordinate multiple data warehouse efforts within the organization but he isn't know what kinds of efforts are occuring and how they relate to the overall architecture, the management and coordination is more difficult.
 
+![Type of development efforts to build a independently evolving distributed data warehouse model based in cases](TypeOfEfforts.png?raw=true)
+
 In general there are different types of efforts require very different approaches to management, it is based in above image this phrase:
 
 1.  The rare case, `a corporation has totally separate and unintegrated lines of business` for which enviroment are being independently built by different develoment teams. Accordingly there is a little or no need for cross-management and coordination of development efforts with a little dange that one development efforst will conflict with another.
