@@ -262,7 +262,14 @@ There are considerations: when data warehouse start to expand, an excessive amou
 
 ### Independently evolving distributed data warehouse model
 
-In this method in which independent data warehouses are developed concurrently and in an uncontrolled manner by result of political and organizational differences, so that the data warehouse architecture has to manage and coordinate multiple data warehouse efforts within the organization.
+In this method in which independent data warehouses are developed concurrently and in an uncontrolled manner by result of political and organizational differences, so that the data warehouse architecture has to manage and coordinate multiple data warehouse efforts within the organization but he isn't know what kinds of efforts are occuring and how they relate to the overall architecture, the management and coordination is more difficult.
+
+In general there are different types of efforts require very different approaches to management, it is based in above image this phrase:
+
+1.  The rare case, `a corporation has totally separate and unintegrated lines of business` for which enviroment are being independently built by different develoment teams. Accordingly there is a little or no need for cross-management and coordination of development efforts with a little dange that one development efforst will conflict with another.
+2.  The case is when `corporate distributed data warehouse is being built and various development team are creating different parts of the same data warehouse`. This case require a discipline, atenttion and close coordination among teams to achievere a collectively satisfying result.
+3.  This case is when `multiple different development teams are building different levels of data (summarized, archived and detailed data) inside data warehouse enviroment`. this is easier to management then either of the two previous cases: the relations and hierarchy of use and expectations in data inside of the enviroment.
+4.  The last case occurs when `multiple teams are trying to build different part of the current level of details of the data warehouse enviroment in a nondistributed manner`. This is a rare phenomenon and require a special attention, data architecture must be aware of what the issues are and how they relate to success.
 
 
 
