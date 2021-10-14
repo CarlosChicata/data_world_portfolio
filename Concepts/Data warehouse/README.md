@@ -39,7 +39,8 @@ This is a index to best navigation inside document.
   - [Techniques of enhanced performance in data model](#techniques-of-enhanced-performance-in-data-model)
   - [Techniques to control refreshed data from operational enviroment](#techniques-to-control-refreshed-data-from-operational-enviroment)
   - [Consideration in types of development efforts in distributed data warehouse](#consideration-in-types-of-development-efforts-in-distributed-data-warehouse)
-    - [Completely unrelated data warehouses](#completely-unrelated-data-warehouses) 
+    - [Completely unrelated data warehouses](#completely-unrelated-data-warehouses)
+    - [Distributed Data Warehouse Development](#distributed-data-warehouse-development)
 - [References](#references)
 
 
@@ -401,6 +402,21 @@ If all business/regions/areas are autonomous to build a data warehouse with diff
 !["Integrated" data warehouse : financial area](CompletelyUnrelatedDataWarehouses.png?rraw=true)
 
 The metadata is vital at the local level and it is also need at the corporate financial level inside corporate data warehouse; however, there is not real integration between data warehouses, there is no need to tie any of the metadata together.
+
+### Distributed Data Warehouse Development
+
+In this effort, there is a degree of business integration by the corporation entities are sharing among the different areas, independently its implementation of data warehouse.
+
+If there are many similarities between this method and datawarehouse of the unrealted companies, the is one major difference: the  corporate  distributed  data  warehouse  represents  the  very  fabric  of  the business itself in several aspects.; In other cases, if users try to use the data warehouse beyond the financial area, they will be disappointment with the data warehouse.
+
+after all areas get a data model to build a data warehouse; the corporate data model will create to build a data warehouse. This corporate data model reflects the integrations of business at the corporate level and maybe overlap considerably with parts of the local data models. the local teams are better to reshape their data based in requirements of corporate data model.
+
+In corporate data model, there is not overlap in content of data; the source of data are either local data warehouses or local operational systems and this decision to pasing data is unique of local teams. 
+
+The important issue is how to create and transport the local system of record data into corporate data warehouse at the technology level. In some cases, staged data is kept at the local level; or other cases, the staged data is passed on to the corporate enviroment with no access at the local level.
+
+The metadata plays a very important role across the distributed corporate data warehouse, it will provides the consistency and uniformity tools to coordinate the structure of data betweeen the local data warehouses to move the distributed data warehouse.
+
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
