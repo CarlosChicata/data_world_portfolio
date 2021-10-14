@@ -398,6 +398,8 @@ There are many considerations about all development efforts to build of distribu
 
 If all business/regions/areas are autonomous to build a data warehouse with difference stack technology based in requirements; there is a common aspect of integration all at one : financial area; so then the organization need to build a corporation financial data warehouse to store this data. This data warehouse contains simple entities and don't get a integration of entity. this data warehouse will feed either local data warehouse or operational system of the local area.
 
+!["Integrated" data warehouse : financial area](CompletelyUnrelatedDataWarehouses.png?rraw=true)
+
 The metadata is vital at the local level and it is also need at the corporate financial level inside corporate data warehouse; however, there is not real integration between data warehouses, there is no need to tie any of the metadata together.
 
 # References
