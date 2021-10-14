@@ -36,10 +36,10 @@ This is a index to best navigation inside document.
   - [Alternatived techniques to design data warehouse](#alternatived-techniques-to-design-data-warehouse)
     - [Dual level of granularity: manage granularity and access the data](#Dual-levels-of-granularity)
     - [Living sample database](#living-sample-database)
-  - [Techniques of enhanced performance in data model
-](#techniques-of-enhanced-performance-in-data-model
-)
+  - [Techniques of enhanced performance in data model](#techniques-of-enhanced-performance-in-data-model)
   - [Techniques to control refreshed data from operational enviroment](#techniques-to-control-refreshed-data-from-operational-enviroment)
+  - [Consideration in types of development efforts in distributed data warehouse](#consideration-in-types-of-development-efforts-in-distributed-data-warehouse)
+    - [Completely unrelated data warehouses](#completely-unrelated-data-warehouses) 
 - [References](#references)
 
 
@@ -390,7 +390,15 @@ There are several focus to manage this load that is part of data warehouse integ
 3.  `Changed data capture`: this method use the logs to capture and identify teh changes that have occurred. this method no need a extra I/O to trap data, and get all update processing; but i will get more data in log that you need.
 4.  `lift the changed data out of the DBMS buffers`: when change occurs, the change is reflected immediately so saving time but you need more online required resource (like software snesitive to  change), there is a performance impact. This focus can handle large amount of processsing at a very high speed.
 
+## Consideration in types of development efforts in distributed data warehouse
 
+There are many considerations about all development efforts to build of distributed data warehouse you need to know.
+
+### Completely unrelated data warehouses
+
+If all business/regions/areas are autonomous to build a data warehouse with difference stack technology based in requirements; there is a common aspect of integration all at one : financial area; so then the organization need to build a corporation financial data warehouse to store this data. This data warehouse contains simple entities and don't get a integration of entity. this data warehouse will feed either local data warehouse or operational system of the local area.
+
+The metadata is vital at the local level and it is also need at the corporate financial level inside corporate data warehouse; however, there is not real integration between data warehouses, there is no need to tie any of the metadata together.
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
