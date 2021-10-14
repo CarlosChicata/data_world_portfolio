@@ -41,6 +41,7 @@ This is a index to best navigation inside document.
   - [Consideration in types of development efforts in distributed data warehouse](#consideration-in-types-of-development-efforts-in-distributed-data-warehouse)
     - [Completely unrelated data warehouses](#completely-unrelated-data-warehouses)
     - [Distributed Data Warehouse Development](#distributed-data-warehouse-development)
+    - [Building the warehouse on multiple levels](#building-the-warehouse-on-multiple-levels)
 - [References](#references)
 
 
@@ -416,6 +417,18 @@ In corporate data model, there is not overlap in content of data; the source of 
 The important issue is how to create and transport the local system of record data into corporate data warehouse at the technology level. In some cases, staged data is kept at the local level; or other cases, the staged data is passed on to the corporate enviroment with no access at the local level.
 
 The metadata plays a very important role across the distributed corporate data warehouse, it will provides the consistency and uniformity tools to coordinate the structure of data betweeen the local data warehouses to move the distributed data warehouse.
+
+### Building the warehouse on multiple levels
+
+In this case; the easier all cases; like data architecture, you need to coordinate the efforts of the different development teams, both in terms of the specification of content and structure and in terms of the timing of development.
+
+The  data  model  for  the  data  warehouse  directly  reflects  the  design  and development  effort  by  the  group  doing  current-level  detailed  analysis  and design. Of course, indirectly the data warehouse data model reflects the needs of all groups. the groups working on the higher levels of summarization have their own data models that reflect their own specialized needs.
+
+The different teams can use difference technology tools to implement the different detailed levels of data based in performance and other criterios. whether the different levels of data are on a single platform or on multiple platforms, metadata must be carefully stored and managed, so that continuity from one level of detail to the next can be maintained. 
+
+Because  different  platforms  are  commonly  used  for  the  different  levels  of data that are being developed by different groups, the issue of interconnectivity arises. the effective bandwidth of the interface or the compatibility of access at the call level are part of this problem.
+
+The coordination among the groups can be as simple as an agreement on a data model that satisfies the needs of all parties, or the agreement can be much more elaborate if circumstances warrant.
 
 
 # References
