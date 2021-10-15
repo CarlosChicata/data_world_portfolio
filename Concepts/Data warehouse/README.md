@@ -42,6 +42,7 @@ This is a index to best navigation inside document.
     - [Completely unrelated data warehouses](#completely-unrelated-data-warehouses)
     - [Distributed Data Warehouse Development](#distributed-data-warehouse-development)
     - [Building the warehouse on multiple levels](#building-the-warehouse-on-multiple-levels)
+    - [Multiple Groups Building the Current Level of Detail](#multiple-groups-building-the-current-level-of-detail)
 - [References](#references)
 
 
@@ -429,6 +430,13 @@ The different teams can use difference technology tools to implement the differe
 Because  different  platforms  are  commonly  used  for  the  different  levels  of data that are being developed by different groups, the issue of interconnectivity arises. the effective bandwidth of the interface or the compatibility of access at the call level are part of this problem.
 
 The coordination among the groups can be as simple as an agreement on a data model that satisfies the needs of all parties, or the agreement can be much more elaborate if circumstances warrant.
+
+### Multiple Groups Building the Current Level of Detail
+
+As long as the groups that are developing the current level of detail are developing mutually exclusive sets of data, there is little difficulty. This is a exception reathre than the rule. It is much more common for the multiple development groups to be designing and populating some or all of the same data.
+
+There are problems arises when the groups overlap: cost of storage and processing by redundacy of data; create a spider web into the enviroment by uneffective reconcilability data in several parts. The solutions of problems is a data model that it will reflect the collective need among the teams. there is no need to build all of the tables at once, the teams implement some table at a time and the end-user feedback can be factored into the modification of the table or  add new tables at a later time ti reflect new requirements.
+
 
 
 # References
