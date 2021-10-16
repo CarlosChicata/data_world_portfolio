@@ -413,6 +413,8 @@ If there are many similarities between this method and datawarehouse of the unre
 
 after all areas get a data model to build a data warehouse; the corporate data model will create to build a data warehouse. This corporate data model reflects the integrations of business at the corporate level and maybe overlap considerably with parts of the local data models. the local teams are better to reshape their data based in requirements of corporate data model.
 
+![Similar Unrelated distributed and distributed cases](image/SimilarUnrealatedAndMultieDWH.png)
+
 In corporate data model, there is not overlap in content of data; the source of data are either local data warehouses or local operational systems and this decision to pasing data is unique of local teams. 
 
 The important issue is how to create and transport the local system of record data into corporate data warehouse at the technology level. In some cases, staged data is kept at the local level; or other cases, the staged data is passed on to the corporate enviroment with no access at the local level.
@@ -424,6 +426,8 @@ The metadata plays a very important role across the distributed corporate data w
 In this case; the easier all cases; like data architecture, you need to coordinate the efforts of the different development teams, both in terms of the specification of content and structure and in terms of the timing of development.
 
 The  data  model  for  the  data  warehouse  directly  reflects  the  design  and development  effort  by  the  group  doing  current-level  detailed  analysis  and design. Of course, indirectly the data warehouse data model reflects the needs of all groups. the groups working on the higher levels of summarization have their own data models that reflect their own specialized needs.
+
+![Multiple development teams implement multiple levels of data warehouse](image/TeamsInMultiLevelCase.png?raw=true)
 
 The different teams can use difference technology tools to implement the different detailed levels of data based in performance and other criterios. whether the different levels of data are on a single platform or on multiple platforms, metadata must be carefully stored and managed, so that continuity from one level of detail to the next can be maintained. 
 
@@ -437,7 +441,9 @@ As long as the groups that are developing the current level of detail are develo
 
 There are problems arises when the groups overlap: cost of storage and processing by redundacy of data; create a spider web into the enviroment by uneffective reconcilability data in several parts. The solutions of problems is a data model that it will reflect the collective need among the teams. there is no need to build all of the tables at once, the teams implement some table at a time and the end-user feedback can be factored into the modification of the table or  add new tables at a later time ti reflect new requirements.
 
-`Normally, different groups have unique requirements. These requirements  result  in  what  can  be  termed  “local”  current-level  detail.` The local data is certainly part of the data warehouse. It is, however, distinctively different from the “common” part. The local data has its own data model, usually much smaller and simpler than the common detailed data model. 
+`Normally, different groups have unique requirements. These requirements  result  in  what  can  be  termed  “local”  current-level  detail.` The local data is certainly part of the data warehouse. It is, however, distinctively different from the “common” part. The local data has its own data model, usually much smaller and simpler than the common detailed data model. Just because data is not common to all development groups does not mean that it does not belong in the current-level detail of the data warehouse
+
+![Several Team will get difference requirements of implementation](image/NonredundancyByNonKey.png?raw=true)
 
 `There is nonredundancy of data across all of the detailed data.` Of course, the nonredundancy of the data is restricted to nonkey data. Redundancy exists at the key level because a form of foreign key relationships is used to relate the different types of data.
 
@@ -445,6 +451,7 @@ Another strategy is to use different platforms for the different types of datafo
 
 there are several drawbacks in strategy from previous phrase: multiple technologies must be purchased and supported, the end user needs to be trained in this tech stacks and the boundaries between them may not be as easy to cross and will transform in problems of performance and manage of the access of data.
 
+![Problem to use several tech stack to implement a detailed data](image/ProblemWithMultiTechInDetailData.png?raw=true)
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
