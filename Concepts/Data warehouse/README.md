@@ -427,20 +427,23 @@ The  data  model  for  the  data  warehouse  directly  reflects  the  design  an
 
 The different teams can use difference technology tools to implement the different detailed levels of data based in performance and other criterios. whether the different levels of data are on a single platform or on multiple platforms, metadata must be carefully stored and managed, so that continuity from one level of detail to the next can be maintained. 
 
-Because  different  platforms  are  commonly  used  for  the  different  levels  of data that are being developed by different groups, the issue of interconnectivity arises. the effective bandwidth of the interface or the compatibility of access at the call level are part of this problem.
+`Because  different  platforms  are  commonly  used  for  the  different  levels  of data that are being developed by different groups, the issue of interconnectivity arises.` the effective bandwidth of the interface or the compatibility of access at the call level are part of this problem.
 
 The coordination among the groups can be as simple as an agreement on a data model that satisfies the needs of all parties, or the agreement can be much more elaborate if circumstances warrant.
 
 ### Multiple Groups Building the Current Level of Detail
 
-As long as the groups that are developing the current level of detail are developing mutually exclusive sets of data, there is little difficulty. This is a exception reathre than the rule. It is much more common for the multiple development groups to be designing and populating some or all of the same data.
+As long as the groups that are developing the current level of detail are developing mutually exclusive sets of data, there is little difficulty. This is a exception reathre than the rule. It is much more common for the multiple development groups to be designing and populating some or all of the same data. The metadata in this case is critical to manage all efforts.
 
 There are problems arises when the groups overlap: cost of storage and processing by redundacy of data; create a spider web into the enviroment by uneffective reconcilability data in several parts. The solutions of problems is a data model that it will reflect the collective need among the teams. there is no need to build all of the tables at once, the teams implement some table at a time and the end-user feedback can be factored into the modification of the table or  add new tables at a later time ti reflect new requirements.
 
-Normally, different groups have unique requirements. These requirements  result  in  what  can  be  termed  “local”  current-level  detail.  The local data is certainly part of the data warehouse. It is, however, distinctively different from the “common” part. The local data has its own data model, usually much smaller and simpler than the common detailed data model. 
+`Normally, different groups have unique requirements. These requirements  result  in  what  can  be  termed  “local”  current-level  detail.` The local data is certainly part of the data warehouse. It is, however, distinctively different from the “common” part. The local data has its own data model, usually much smaller and simpler than the common detailed data model. 
 
-There is nonredundancy of data across all of the detailed data. Of course, the nonredundancy of the data is restricted to nonkey data. Redundancy exists at the key level because a form of foreign key relationships is used to relate the different types of data.
+`There is nonredundancy of data across all of the detailed data.` Of course, the nonredundancy of the data is restricted to nonkey data. Redundancy exists at the key level because a form of foreign key relationships is used to relate the different types of data.
 
+Another strategy is to use different platforms for the different types of datafound at the detailed level. This option is certainly one that isvalid, and it often satisfies the different political needs of the organization. With  this option, each  group doing development can feel that it has some degree of control of at least its own peculiar needs.
+
+there are several drawbacks in strategy from previous phrase: multiple technologies must be purchased and supported, the end user needs to be trained in this tech stacks and the boundaries between them may not be as easy to cross and will transform in problems of performance and manage of the access of data.
 
 
 # References
