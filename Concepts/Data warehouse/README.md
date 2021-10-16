@@ -437,6 +437,10 @@ As long as the groups that are developing the current level of detail are develo
 
 There are problems arises when the groups overlap: cost of storage and processing by redundacy of data; create a spider web into the enviroment by uneffective reconcilability data in several parts. The solutions of problems is a data model that it will reflect the collective need among the teams. there is no need to build all of the tables at once, the teams implement some table at a time and the end-user feedback can be factored into the modification of the table or  add new tables at a later time ti reflect new requirements.
 
+Normally, different groups have unique requirements. These requirements  result  in  what  can  be  termed  “local”  current-level  detail.  The local data is certainly part of the data warehouse. It is, however, distinctively different from the “common” part. The local data has its own data model, usually much smaller and simpler than the common detailed data model. 
+
+There is nonredundancy of data across all of the detailed data. Of course, the nonredundancy of the data is restricted to nonkey data. Redundancy exists at the key level because a form of foreign key relationships is used to relate the different types of data.
+
 
 
 # References
