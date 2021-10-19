@@ -9,7 +9,9 @@ Contain all concepts, best practices, patterns, architectures and concepts about
 ## Index of readme
 This is a index to best navigation inside document.
 
-- [The problems of external data sources: unified storage of data](#the-problems-of-external-data-sources)
+- [External data in data warehouse](#external-data-in-data-warehouse)
+  - [The problems of external data sources: unified storage of data](#the-problems-of-external-data-sources)
+  - [modeling, storing and metadata about external data in data warehouse](#modeling-storing-metadata-of-external-data-in-data-warehouse)
 - [Architecture in Data Warehouse](#arquitecture-in-data-warehouse)
   - [Inmon model](#inmon-model)
     - [Diagram of enviroment](#diagram-of-enviroment-in-inmon)
@@ -45,8 +47,17 @@ This is a index to best navigation inside document.
     - [Multiple Groups Building the Current Level of Detail](#multiple-groups-building-the-current-level-of-detail)
 - [References](#references)
 
+# External data in data warehouse
+ whole host of other data is of legitimate use to a corporation that is not
+generated from the corporatio's own systems. This class of data is called external data and usually enters the corporation in an unpredictable format.
 
-# The problems of external data sources
+There are 2 types of external data:
+1. Records of external data collected by some source (such as a drug store,
+a supermarket, and so forth).
+2. External data from random reports, articles, and other sources. 
+
+
+##  The problems of external data sources
 You wanna extract data of external sources to analyze them to get insight/knowledge. The extract process is good for 2 reason:
 * don't degrade the performance of the source system when you need to analyze in mass.
 * control this data because you move this data into your system.
@@ -62,6 +73,10 @@ Based in above image, we have 3 problems in this bad infraestructure:
   * When you extract data of external, i need to capture of identity source to accredit those data.
 * **Productivity low**: it's so hard to access and processing several sources in diference locations inside organization.
 * **From data to information**: it's so hard to reconciliate and normalize structure of data from several different sources to generate a column in report.
+
+## Modeling storing metadata of external data in data warehouse
+
+
 
 # Arquitecture in Data Warehouse
 There are 2 common models to implement data warehouse in enterprised world: Inmon and Kimball. Those are considered parents of data warehouse and define severel attributes, process and practices to implement it.
