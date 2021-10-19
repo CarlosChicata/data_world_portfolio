@@ -80,6 +80,8 @@ The metadata is critical to manage and store external data by this is use to acc
 
 If it's convenient and cost-efficient to do, the external data will store in data warehouse but usually this data is stored in secondary storage like fiche or magnetic tape while a entry of this document of external data is stored in metadata of the warehouse describing where the document can be found. The implication is that once the data is captured and managed centrally, the organization has to undergo the expense of dealing with such data only once.
 
+![Storing external data inside data warehouse enviroment](image/metadataStoringOfExternalData.png?raw=true)
+
 Maybe appears  that  there  is  very  little  relationship between the data model and external data by external  data  is  not  malleable  to any  extent  at  all when he is creating the data modeling. Attempting to use the data model for any serious reshaping of the external data is a mistake. About the best that can be done is to note the differences between the data model and external data as far as the interpretation of key phrases and words are concerned. The most that
 can be done is to create subsets of the data that are compatible with the existing internal data
 
