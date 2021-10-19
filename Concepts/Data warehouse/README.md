@@ -11,7 +11,7 @@ This is a index to best navigation inside document.
 
 - [External data in data warehouse](#external-data-in-data-warehouse)
   - [The problems of external data sources: unified storage of data](#the-problems-of-external-data-sources)
-  - [modeling, storing and metadata about external data in data warehouse](#modeling-storing-metadata-of-external-data-in-data-warehouse)
+  - [Modeling, storing and metadata about external data in data warehouse](#modeling-storing-metadata-of-external-data-in-data-warehouse)
 - [Architecture in Data Warehouse](#arquitecture-in-data-warehouse)
   - [Inmon model](#inmon-model)
     - [Diagram of enviroment](#diagram-of-enviroment-in-inmon)
@@ -76,7 +76,12 @@ Based in above image, we have 3 problems in this bad infraestructure:
 
 ## Modeling storing metadata of external data in data warehouse
 
+The metadata is critical to manage and store external data by this is use to access and control it in data warehouse enviroment, feature like id of document, date of entry into enviroment, source of the document, date of source of the document, description of the document, classification of document, index words, related references, purge date and others are part to the looking of manager of metadata to control those data.
 
+If it's convenient and cost-efficient to do, the external data will store in data warehouse but usually this data is stored in secondary storage like fiche or magnetic tape while a entry of this document of external data is stored in metadata of the warehouse describing where the document can be found. The implication is that once the data is captured and managed centrally, the organization has to undergo the expense of dealing with such data only once.
+
+Maybe appears  that  there  is  very  little  relationship between the data model and external data by external  data  is  not  malleable  to any  extent  at  all when he is creating the data modeling. Attempting to use the data model for any serious reshaping of the external data is a mistake. About the best that can be done is to note the differences between the data model and external data as far as the interpretation of key phrases and words are concerned. The most that
+can be done is to create subsets of the data that are compatible with the existing internal data
 
 # Arquitecture in Data Warehouse
 There are 2 common models to implement data warehouse in enterprised world: Inmon and Kimball. Those are considered parents of data warehouse and define severel attributes, process and practices to implement it.
