@@ -45,6 +45,8 @@ This is a index to best navigation inside document.
     - [Distributed Data Warehouse Development](#distributed-data-warehouse-development)
     - [Building the warehouse on multiple levels](#building-the-warehouse-on-multiple-levels)
     - [Multiple Groups Building the Current Level of Detail](#multiple-groups-building-the-current-level-of-detail)
+- [Migration to the architected enviroment]
+  - [A migration Plan](#a-migration-plan)
 - [References](#references)
 
 # External data in data warehouse
@@ -474,6 +476,15 @@ Another strategy is to use different platforms for the different types of datafo
 there are several drawbacks in strategy from previous phrase: multiple technologies must be purchased and supported, the end user needs to be trained in this tech stacks and the boundaries between them may not be as easy to cross and will transform in problems of performance and manage of the access of data.
 
 ![Problem to use several tech stack to implement a detailed data](image/ProblemWithMultiTechInDetailData.png?raw=true)
+
+# Migration to the architected enviroment
+
+## A migration Plan
+`A plan starts to build a corporate data model`. This model represents the information neeed of the corportation and not necessarily what it currerntly has in legacy systems. This one may be built internally or it may be have been generated from a generic data model; and need to identify major subjects with theirs attributes, keys, definitions and relationship between them.
+
+The corporate data model identifies corporate information at a high level and this use to build a lower-level model, this low level identifies details that have been glossed over by the  corporate data model. this mid-level model is built from the identified subject areas in corporate data model and built one at a time. both high-level and mid-level model focus only on the atomic data of the corporation and excluded derived data by several reasons: change frequently, are created from atomic data, deleted altogether frequently, there are many variations in the creations and others.
+
+
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
