@@ -484,6 +484,7 @@ there are several drawbacks in strategy from previous phrase: multiple technolog
 
 The corporate data model identifies corporate information at a high level and this use to build a lower-level model, this low level identifies details that have been glossed over by the  corporate data model. this mid-level model is built from the identified subject areas in corporate data model and built one at a time. both high-level and mid-level model focus only on the atomic data of the corporation and excluded derived data by several reasons: change frequently, are created from atomic data, deleted altogether frequently, there are many variations in the creations and others.
 
+![Step of interation of data model in a migration plan](image/dataModelInMigrationPlan.png?raw=true)
 
 
 # References
