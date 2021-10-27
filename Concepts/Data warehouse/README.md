@@ -45,7 +45,7 @@ This is a index to best navigation inside document.
     - [Distributed Data Warehouse Development](#distributed-data-warehouse-development)
     - [Building the warehouse on multiple levels](#building-the-warehouse-on-multiple-levels)
     - [Multiple Groups Building the Current Level of Detail](#multiple-groups-building-the-current-level-of-detail)
-- [Migration to the architected enviroment]
+- [Migration to the architected enviroment](#migration-to-the-architected-enviroment)
   - [A migration Plan](#a-migration-plan)
 - [References](#references)
 
