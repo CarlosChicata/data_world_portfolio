@@ -490,6 +490,19 @@ The corporate data model identifies corporate information at a high level and th
 
 Once the system of record is defined, you identify the technological challenges are to bring data of system of records into data warehouse enviroment. Others challenges you need to face are: volumen of data will move, processing data previously to store in data warehouse: cleasing and/or summarized data.
 
+`After  the  system  of  record  is  defined  and  the  technological  challenges are solved, you need to design the data warehouse`. If all previous activities has been done properly, this activity is simple. Adding array of data, adding data redundantly, separating data under the right conditions and merging table are appropiated methods when the structure of the data need.
+
+Principally, the following things need to be done:
+* An element of time needs to be added to the key structure if one is not present.
+* All purely operation data need to be eliminated.
+* Referential integrity relationships need to be turned into artifacts.
+* Derived data that is frequently needed is added to the design.
+
+Stability  analysis  of  the  data  needs  to  be  done. In stability analysis,  data whose content has a propensity for change is isolated from data whose content is very stable. Once the data warehouse is designed, is organized by subject areas with its separated tables. 
+
+Depending of the number of occurrences of data would have a difference considerations of design this part: summarized, aggregated or partitions data or using profile records. The same case is applied to arrival rate of data into data warehouse: you will need to use staging of data, parallelization of the load stream, delated indexing and other methods to handle the data flow. There are consideration to see in process of design of data warehouse.
+
+
 
 
 # References
