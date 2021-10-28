@@ -492,6 +492,8 @@ Once the system of record is defined, you identify the technological challenges 
 
 `After  the  system  of  record  is  defined  and  the  technological  challenges are solved, you need to design the data warehouse`. If all previous activities has been done properly, this activity is simple. Adding array of data, adding data redundantly, separating data under the right conditions and merging table are appropiated methods when the structure of the data need.
 
+![design data warehouse in a migration plan](image/designDataWarehouseInMigrationPlan.png?raw=true)
+
 Principally, the following things need to be done:
 * An element of time needs to be added to the key structure if one is not present.
 * All purely operation data need to be eliminated.
