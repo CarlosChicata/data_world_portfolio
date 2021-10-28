@@ -486,6 +486,11 @@ The corporate data model identifies corporate information at a high level and th
 
 ![Step of interation of data model in a migration plan](image/dataModelInMigrationPlan.png?raw=true)
 
+`After the corporate data model and the mid-level model are in place, you need define the system record`. This system is defined based in legacy systems of company and other systems inside organization. This activity is identify the "best" data have in all legacy system, you use data model like a benchmark to determinate what the data is best to goald of requirements of data models. criterias like what data is the most complete, the timeliest, the most accurate and others are part to process.
+
+Once the system of record is defined, you identify the technological challenges are to bring data of system of records into data warehouse enviroment. Others challenges you need to face are: volumen of data will move, processing data previously to store in data warehouse: cleasing and/or summarized data.
+
+
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
