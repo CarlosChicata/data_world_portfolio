@@ -504,6 +504,13 @@ Stability  analysis  of  the  data  needs  to  be  done. In stability analysis, 
 
 Depending of the number of occurrences of data would have a difference considerations of design this part: summarized, aggregated or partitions data or using profile records. The same case is applied to arrival rate of data into data warehouse: you will need to use staging of data, parallelization of the load stream, delated indexing and other methods to handle the data flow. There are consideration to see in process of design of data warehouse.
 
+`After the data warehouse design, the next step is to design and build the interfaces between the system of record and the data warehouses`. This method to populate the data warehouse and consuming more time of process the plan; if the interfaces appear to be merely and extract process but it contains more activities:
+
+* Integration of data from the operational, application-oriented enviroment.
+* Alteration of the time basis of data.
+* Efficient scanning of the existing systems environment
+* Condensation of data
+
 
 
 
