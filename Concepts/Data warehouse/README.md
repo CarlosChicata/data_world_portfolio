@@ -516,6 +516,8 @@ start the population of the first subject area`. In theory you need to read data
 
 There are many good reasons to populate a fraction of warehouse: changes to the data easily and quickly, get feedback of user by interation of warehouse enviroment, data architect can adjust of enviroment by feeadback quickly.
 
+![Running of migration plan](image/activitiesInMigrationPlan.png?raw=true)
+
 Remember: he population and feedback processes continue for a long period. In  addition,  the  data  in  the  warehouse  continues  to  be  changed.  Of course, over time, as the data becomes stable, it changes less and less. End users don’t know what their requirements are until they see what the possibilities are.
 
 you need to schedule the refreshment of data in data warehouse. As a rule, data warehouse data should be  refreshed  no  more  frequently  than  every  24  hours. By  making  sure  that there is at least a 24-hour time delay in the loading of data, the data warehouse developer minimizes the temptation to turn the data warehouse into an operational environment. **By strictly enforcing this lag of time, the data warehouse serves the DSS needs of the company, not the operational needs**.
