@@ -522,6 +522,7 @@ Remember: he population and feedback processes continue for a long period. In  a
 
 you need to schedule the refreshment of data in data warehouse. As a rule, data warehouse data should be  refreshed  no  more  frequently  than  every  24  hours. By  making  sure  that there is at least a 24-hour time delay in the loading of data, the data warehouse developer minimizes the temptation to turn the data warehouse into an operational environment. **By strictly enforcing this lag of time, the data warehouse serves the DSS needs of the company, not the operational needs**.
 
+The lag of time can be use to adjust the enviroment without impact of performance of warehouse. there  are  cases  where  rapidly  placing  data  in  the  warehouse  may  be what the requirements are. In this case, it helps to have technology suited for what is termed active data warehousing. Active data warehousing refers to the technology of being able to support some small amount of online access processing  in  the  data  warehouse.
 
 
 # References
