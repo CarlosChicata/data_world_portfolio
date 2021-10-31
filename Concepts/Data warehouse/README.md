@@ -528,6 +528,8 @@ The lag of time can be use to adjust the enviroment without impact of performanc
 
 The migration plan that has been discussed is solely for the construction of the data warehouse. Isn’t there an opportunity to rectify some or much of the operational  “mess”  at  the  same  time  that  the  data  warehouse  is  being  built? The answer is that, to some extent, the migration plan that has been described presents an opportunity to rebuild at least some of the less than aesthetically pleasing aspects of the operational environment.
 
+![Data arquitect using agent of change to becomecompelling and ally the efforts toward the architected environment with the appropriate agents](image/StrategistToChangeOperationalSystems.png?raw=true)
+
 One approach is to use the data model as a guideline and make a case to management that major changes need to be made to the operational enviroment. The amount of effort, the amount of resources, and the disruption to the end userin  undertaking  a  massive  rewrite  and  restructuring  of  operational  data  andsystems  is  such  that  management  seldom  supports  such  an  effort  with  the needed level of commitment and resources.
 
 Other focus is to coordinate the effort to rebuild operational system with the "agents of change": the aging of systems, the radical changing of technology, organizational upheaval, massive business changes. The steps the data architect takes to restructure the operational environment are:
