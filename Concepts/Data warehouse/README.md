@@ -524,6 +524,20 @@ you need to schedule the refreshment of data in data warehouse. As a rule, data 
 
 The lag of time can be use to adjust the enviroment without impact of performance of warehouse. there  are  cases  where  rapidly  placing  data  in  the  warehouse  may  be what the requirements are. In this case, it helps to have technology suited for what is termed active data warehousing. Active data warehousing refers to the technology of being able to support some small amount of online access processing  in  the  data  warehouse.
 
+## Strategic Considerations
+
+The migration plan that has been discussed is solely for the construction of the data warehouse. Isn’t there an opportunity to rectify some or much of the operational  “mess”  at  the  same  time  that  the  data  warehouse  is  being  built? The answer is that, to some extent, the migration plan that has been described presents an opportunity to rebuild at least some of the less than aesthetically pleasing aspects of the operational environment.
+
+One approach is to use the data model as a guideline and make a case to management that major changes need to be made to the operational enviroment. The amount of effort, the amount of resources, and the disruption to the end userin  undertaking  a  massive  rewrite  and  restructuring  of  operational  data  andsystems  is  such  that  management  seldom  supports  such  an  effort  with  the needed level of commitment and resources.
+
+Other focus is to coordinate the effort to rebuild operational system with the "agents of change": the aging of systems, the radical changing of technology, organizational upheaval, massive business changes. The steps the data architect takes to restructure the operational environment are:
+
+1.  **Create a delta list**: it is an assessmeent of the differences between the  operational environment and the environment depicted by the data model. The delta list is simple, with very little elaboration.
+2.  **The impact analysis**: At this point an assessment is made of the impact of each item on the delta list. Some items may have a serious impact; other items may have a negligible impact on the running of the company.
+3.  **Create resource estimate**: This estimate is for the determination of how many resources will be required to “fix” the delta list item.
+4.   **Report that goes to information systems management**: Management then makes a decision as to what work should proceed, at what pace, and so forth. The decision is made in light of all the priorities of the corporation
+
+
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
