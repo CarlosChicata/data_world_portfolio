@@ -47,6 +47,7 @@ This is a index to best navigation inside document.
     - [Multiple Groups Building the Current Level of Detail](#multiple-groups-building-the-current-level-of-detail)
 - [Migration to the architected enviroment](#migration-to-the-architected-enviroment)
   - [A migration Plan](#a-migration-plan)
+  - [Data driven and spiral methodologies](#data-driven-and-spiral-methodologies)
 - [References](#references)
 
 # External data in data warehouse
@@ -538,6 +539,11 @@ Other focus is to coordinate the effort to rebuild operational system with the "
 2.  **The impact analysis**: At this point an assessment is made of the impact of each item on the delta list. Some items may have a serious impact; other items may have a negligible impact on the running of the company.
 3.  **Create resource estimate**: This estimate is for the determination of how many resources will be required to “fix” the delta list item.
 4.   **Report that goes to information systems management**: Management then makes a decision as to what work should proceed, at what pace, and so forth. The decision is made in light of all the priorities of the corporation
+
+## Data driven and spiral methodologies
+
+`The methodology for the building of the data warehouse is called a spiral development methodology`. This methodology is much larger than just a development methodology by it contain information about how to build and alse describes how to use the data warehouse. The migration plan describes general activities dynamically but the spiral development methodology describes specific activities, deliverables from those activities and the order of the activities.
+
 
 
 
