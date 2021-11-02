@@ -546,6 +546,8 @@ Other focus is to coordinate the effort to rebuild operational system with the "
 
 The spiral methodology is difference of waterfall methodology: all of one activity is completed before the next activity can begin and the result of one activity feed another.
 
+![Comparing spiral and waterfall methodologies](image/SpiralAndWaterfallMethodologies.png?raw=true)
+
 One of the salient aspect of a data driven methodology is that it builds on previous efforts using both code and processes that have been developed and it can be achieved is through the recognition of commonality: before the developer to start the design or build, he need to know what already exist and how it affects the development process. Don't reinvent the whell is the essences of data driven development.
 
 Anohter aspect is an emphasis on the central store of data as the basis of Analysis processing, recognizion that processing has a very different development life cycle than operational system: processing begins with data and ends with requirements
