@@ -571,6 +571,9 @@ There are part to integrated unstructed and structured data in enviroment.
 * Incomplete names of subject: is word reference to the subject.
 * Word steams match.
 
+The fundamental mismatch between both world is the enviroment representation: the unstructured data represents document and communications while the structured data represents transactions. In structured data, the textula data is used to identify and clarify the transaction; but the unstructured data, the text can be verbose, cryptic, eloquent and/or confusing.  Despite the difficulties of matching text across the enviroments, it still is the key to the integrations.
+
+To match both world, you need to remove stop words and reduce all words to stem of this word to normalize the text.
 
 
 
