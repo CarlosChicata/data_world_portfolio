@@ -48,6 +48,8 @@ This is a index to best navigation inside document.
 - [Migration to the architected enviroment](#migration-to-the-architected-enviroment)
   - [A migration Plan](#a-migration-plan)
   - [Data driven and spiral methodologies](#data-driven-and-spiral-methodologies)
+- [Unstructed data in data warehouse](#unstructed-data-in-data-warehouse)
+  - [Integrating the 2 worlds](#integrating-the-2-worlds)
 - [References](#references)
 
 # External data in data warehouse
@@ -551,6 +553,27 @@ The spiral methodology is difference of waterfall methodology: all of one activi
 One of the salient aspect of a data driven methodology is that it builds on previous efforts using both code and processes that have been developed and it can be achieved is through the recognition of commonality: before the developer to start the design or build, he need to know what already exist and how it affects the development process. Don't reinvent the whell is the essences of data driven development.
 
 Anohter aspect is an emphasis on the central store of data as the basis of Analysis processing, recognizion that processing has a very different development life cycle than operational system: processing begins with data and ends with requirements
+
+# Unstructed data in data warehouse
+
+Emails, ppts, sms, and others file are part of unstructured data that organization need to manage any degree. Those unstructured data file can be divied into 2 bradd groups: Communication and documents. The Communications are short and are for very limited distributed. The documents tend to live a lot longer than communications, are larger than communication and to be a wider audience. Both are based in Text.
+
+## Integrating the 2 worlds
+
+There are part to integrated unstructed and structured data in enviroment.
+
+`The text is the common link between them`. if applied a raw match of words between both world, you will get several problems: 
+* Mispelling words are found in the two enviroments that arise the question: should there be a match made between these worlds by those word?
+* Context to use those words: are words used in same context?
+* Same name on subject in both worlds: are words reference the same person?
+* Nicknames on subject in both words: are difference nicknames reference the same person?
+* Diminutives of unique word: is the group of words reference the unique word?
+* Incomplete names of subject: is word reference to the subject.
+* Word steams match.
+
+
+
+
 
 
 # References
