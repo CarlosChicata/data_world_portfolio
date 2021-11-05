@@ -577,7 +577,7 @@ To match both world, you need to remove stop words and reduce all words to stem 
 
 ![Using probability matching in both worlds](image/probabilityMatchedInBothEnviroment.png?raw=true)
 
-There are others methods to matching: Collecting documents of unstructured data and match the content of document and list of word from industrially recognized theme; clustering documents of unstructured data by phrases and words to find a theme of document group; using raw matching of data: create link if word in unstructured data document is found anywhere in the structured data; to create a link the two enviroments using metadata and abstraction of data.
+There are others methods to matching: Collecting documents of unstructured data and match the content of document and list of word from industrially recognized theme; clustering documents of unstructured data by phrases and words to find a theme of document group; using raw matching of data: create link if word in unstructured data document is found anywhere in the structured data; to create a link the two enviroments using metadata and abstraction of data of unstructured data with theme of unstructured data
 
 
 
