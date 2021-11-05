@@ -575,6 +575,7 @@ The fundamental mismatch between both world is the enviroment representation: th
 
 To match both world, you need to remove stop words and reduce all words to stem of this word to normalize the text. Then you get normalized words in both enviroment, you can apply probabilistic models to find match in words of two enviroments to create link of worlds. In General, you can use any NLP model to find similarity of words from two enviroments to create links in both enviroment.
 
+![Using probability matching in both worlds](image/probabilityMatchedInBothEnviroment.png?raw=true)
 
 
 
