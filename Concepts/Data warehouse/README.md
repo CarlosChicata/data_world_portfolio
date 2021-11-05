@@ -562,7 +562,7 @@ Emails, ppts, sms, and others file are part of unstructured data that organizati
 
 There are part to integrated unstructed and structured data in enviroment.
 
-`The text is the common link between them`. if applied a raw match of words between both world, you will get several problems: 
+`The text is the common link between them`. if applied a match of words between both world, you will get several problems: 
 * Mispelling words are found in the two enviroments that arise the question: should there be a match made between these worlds by those word?
 * Context to use those words: are words used in same context?
 * Same name on subject in both worlds: are words reference the same person?
@@ -577,7 +577,7 @@ To match both world, you need to remove stop words and reduce all words to stem 
 
 ![Using probability matching in both worlds](image/probabilityMatchedInBothEnviroment.png?raw=true)
 
-
+There are others methods to matching: Collecting documents of unstructured data and match the content of document and list of word from industrially recognized theme; clustering documents of unstructured data by phrases and words to find a theme of document group; using raw matching of data: create link if word in unstructured data document is found anywhere in the structured data; to create a link the two enviroments using metadata and abstraction of data.
 
 
 
