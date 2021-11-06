@@ -50,6 +50,7 @@ This is a index to best navigation inside document.
   - [Data driven and spiral methodologies](#data-driven-and-spiral-methodologies)
 - [Unstructed data in data warehouse](#unstructed-data-in-data-warehouse)
   - [Integrating the 2 worlds](#integrating-the-2-worlds)
+  - [Infrastructure of integration of data](#infrastructure-of-integration-of-data)
 - [References](#references)
 
 # External data in data warehouse
@@ -578,6 +579,17 @@ To match both world, you need to remove stop words and reduce all words to stem 
 ![Using probability matching in both worlds](image/probabilityMatchedInBothEnviroment.png?raw=true)
 
 There are others methods to matching: Collecting documents of unstructured data and match the content of document and list of word from industrially recognized theme; clustering documents of unstructured data by phrases and words to find a theme of document group; using raw matching of data: create link if word in unstructured data document is found anywhere in the structured data; to create a link the two enviroments using metadata and abstraction of data of unstructured data with theme of unstructured data
+
+## Infrastructure of integration of data
+
+There are 2 approaches to the usage of unstructured data in the data warehouse:
+
+* One approach is to access the unstructured enviroment and pull data over into the structured enviroment. This works well for certain kinds of unstructured of data.
+* Another approach is one tier of the data warehouse is for unstructured data and another tier of the data warehouse is for structured data.
+
+The last approach is name two-tier data warehouse. there may be either tight ir a casul relationshio of data between the 2 enviroment, or there may be no relationshio at all.
+
+Both enviroments share similar parts: it exists at a low level of granularity, has an element of time attached and it is typically organized by area or theme. But the someone of differences between both of enviroment in the data: the unstructured data can be dividied in two groups: Communications and documents, the difference to access if that the communications are organized by identifies main parts of text while the documents are organizaed according to words or/and theme.
 
 
 
