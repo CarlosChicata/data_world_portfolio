@@ -591,7 +591,7 @@ The last approach is name two-tier data warehouse. there may be either tight ir 
 
 Both enviroments share similar parts: it exists at a low level of granularity, has an element of time attached and it is typically organized by area or theme. But the someone of differences between both of enviroment in the data: the unstructured data can be dividied in two groups: Communications and documents, the difference to access if that the communications are organized by identifies main parts of text while the documents are organizaed according to words or/and theme.
 
-
+Depending on quite a few variables, it may be desirable to store the actual document in the unstructured data warehouse, or it may make sense to store only references to the location of the document in the data warehouse: How many documents are there?, What is the size of the documents?, How critical is the information in the document?, Can subsections of the document be captured? or Can the document be easily reached if it is not stored in the warehouse?. An intermediate solution between having the document in storage or out of storage is storing the sentence before and after where the themed word lies
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
