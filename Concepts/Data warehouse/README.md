@@ -52,6 +52,7 @@ This is a index to best navigation inside document.
   - [Integrating the 2 worlds](#integrating-the-2-worlds)
   - [Infrastructure of integration of data](#infrastructure-of-integration-of-data)
   - [Structure and topics of data warehouse for unstructured data](#structure-and-topics-of-data-warehouse-for-unstructured-data)
+- [Relational and dimensional model for database design](#relational-and-dimensional-model-for-database-design)
 - [References](#references)
 
 # External data in data warehouse
@@ -611,6 +612,9 @@ In the previous image, you show what text that relates the two environments. In 
 In the next image, it shows to how data in the differenct enviroment relate them based in fields in records.
 
 ![Relation by text based of recrods from unstructured and structured data warehouse](image/RelationUnstructuredAndStructureDW.png?raw=true)
+
+# Relational and dimensional model for database design
+
 
 
 
