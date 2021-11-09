@@ -51,6 +51,7 @@ This is a index to best navigation inside document.
 - [Unstructed data in data warehouse](#unstructed-data-in-data-warehouse)
   - [Integrating the 2 worlds](#integrating-the-2-worlds)
   - [Infrastructure of integration of data](#infrastructure-of-integration-of-data)
+  - [Structure and topics of data warehouse for unstructured data](#structure-and-topics-of-data-warehouse-for-unstructured-data)
 - [References](#references)
 
 # External data in data warehouse
