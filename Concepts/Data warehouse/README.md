@@ -595,6 +595,12 @@ Both enviroments share similar parts: it exists at a low level of granularity, h
 
 There are many commercial products `that are used to embody structured visualization` based in analyze, clustering, counting and otherwise preparation. The  SOM (self-organizing map)  produces  a  display  that appears to be a topographical map. The SOM shows how different words and the documents are clustered, and displayed according to themes. The SOM has several features: clustering  of information based on the data found in different document, toing drill-down processing.
 
+## structure and topics of data warehouse for unstructured data
+
+In next image you see the structure of records in unstructured data warehouse for communication and documents. There are common parts to manage this data inside the data warehouse.
+
+The volumen of data inside data warehouse are an order of magnitude more important simply because there is so much more unstructured data than structured data; and developer can mitigate: Do not store all of the documents; remove communications blather; Create an area where the documents or communications are stored separately, if they have to be stored at all; age data off by date wherever possible; do not store too many context references; monitor the usage of the unstructured data warehouse to determine what the patterns of usage are.
+
 
 
 
