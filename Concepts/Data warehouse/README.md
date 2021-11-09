@@ -610,7 +610,7 @@ In the previous image, you show what text that relates the two environments. In 
 
 In the next image, it shows to how data in the differenct enviroment relate them based in fields in records.
 
-
+![Relation by text based of recrods from unstructured and structured data warehouse](image/RelationUnstructuredAndStructureDW.png?raw=true)
 
 
 
