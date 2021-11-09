@@ -604,6 +604,8 @@ In next image you see the structure of records in unstructured data warehouse fo
 
 The volumen of data inside data warehouse are an order of magnitude more important simply because there is so much more unstructured data than structured data; and developer can mitigate: Do not store all of the documents; remove communications blather; Create an area where the documents or communications are stored separately, if they have to be stored at all; age data off by date wherever possible; do not store too many context references; monitor the usage of the unstructured data warehouse to determine what the patterns of usage are.
 
+![Record of structured data in data warehouse](image/recordsOfStructuredDataInDataWarehouse.png?raw=true)
+
 In the previous image, you show what text that relates the two environments. In structured enviroment has several components: an abstract level (metadata and repository) and record level ( raw data, identifiers and close identifiers). The identifiers are unique and use to locate a specified and unique records while close identifiers are good probability to specified records but it can use to more records.
 
 In the next image, it shows to how data in the differenct enviroment relate them based in fields in records.
