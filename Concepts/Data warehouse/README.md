@@ -53,6 +53,7 @@ This is a index to best navigation inside document.
   - [Infrastructure of integration of data](#infrastructure-of-integration-of-data)
   - [Structure and topics of data warehouse for unstructured data](#structure-and-topics-of-data-warehouse-for-unstructured-data)
 - [Relational and dimensional model for database design](#relational-and-dimensional-model-for-database-design)
+  - [Dimensional or relational models](#dimensional-or-relational-models)
 - [References](#references)
 
 # External data in data warehouse
@@ -615,6 +616,13 @@ In the next image, it shows to how data in the differenct enviroment relate them
 
 # Relational and dimensional model for database design
 
+There are some issues based in model approach to design a database in datawarehouse and data marts and other parts inside enviroments: kimball (dimensional model) or Inmmon (relational model).
+
+## Dimensional or relational models
+
+The relational model has different properties in tables, characteristic in columns, type of index and properties. one can use keys and foreign keys to establush relationships between rows, use SQL to interface to querying and manage data. The data in the relational model can be organized in several level of granularity by normalization process.
+
+The value of relational model to design a database for the data warehouse is the flexibility you have to use detailed level of normalized data, discipline to design and clarity of the meaning; and the versability because the detailed data is collected and can be combined, many different views of the data can be supported when the design for the data warehouse is based on the relational model.
 
 
 
