@@ -54,6 +54,7 @@ This is a index to best navigation inside document.
   - [Structure and topics of data warehouse for unstructured data](#structure-and-topics-of-data-warehouse-for-unstructured-data)
 - [Relational and dimensional model for database design](#relational-and-dimensional-model-for-database-design)
   - [Dimensional or relational models](#dimensional-or-relational-models)
+  - [Differences between the Models](#differences-between-the-models)
 - [References](#references)
 
 # External data in data warehouse
@@ -628,6 +629,11 @@ The multidimensional model is based in design of star join from main table (call
 
 `The value of multidimensional model is the efficiency of access` to delivery data to user but the achieve it you need the requirements must be gathered and assimilated: this is a heart of defining the model.
 
+## Differences between the Models
 
+This comparation is for a data warehouse design.
+
+The multidimensional model is good in the performance but it isn't in the flexibility while the relational model is good in the flexibility but it isn't in
+ the performance.
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
