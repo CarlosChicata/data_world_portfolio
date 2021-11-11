@@ -622,8 +622,11 @@ There are some issues based in model approach to design a database in datawareho
 
 The relational model has different properties in tables, characteristic in columns, type of index and properties. one can use keys and foreign keys to establush relationships between rows, use SQL to interface to querying and manage data. The data in the relational model can be organized in several level of granularity by normalization process.
 
-The value of relational model to design a database for the data warehouse is the flexibility you have to use detailed level of normalized data, discipline to design and clarity of the meaning; and the versability because the detailed data is collected and can be combined, many different views of the data can be supported when the design for the data warehouse is based on the relational model.
+`The value of relational model to design a database for the data warehouse is the flexibility` you have to use detailed level of normalized data, discipline to design and clarity of the meaning; `and the versability` because the detailed data is collected and can be combined, many different views of the data can be supported when the design for the data warehouse is based on the relational model.
 
+The multidimensional model is based in design of star join from main table (called fact table) that contains many occurrrences of data related with dimension table that contains details of context of occurences. When you need more fact table to represent the process, you need to use snowflake structure then one share dimension tables between them to shape a snowflake.
+
+`The value of multidimensional model is the efficiency of access` to delivery data to user but the achieve it you need the requirements must be gathered and assimilated: this is a heart of defining the model.
 
 
 # References
