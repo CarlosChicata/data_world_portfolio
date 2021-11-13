@@ -641,5 +641,12 @@ The consequences of the shaping of model are:
 * **Abstraction to use of data**: the relational model have a high level of abstraction to design the model, so then model can support many differents requirements of differents user. The multidimensional model is focus a set of user in their specified requirements to solve because the abstraction is not higher.
 * **Access of data**: The flexibility of model makes the relatonal model has not  terribly optimal for the performance of the direct access of data, if you want optimal access you need to create a model based in data warehouse model to do; while  in the multidimensional model will get a fast access by this model is designed to specified queries.
 
+`The capacity of build new customer tables based in corportation data model from relational model is it has not redundant of data organized in its simplest form.` if a specified group of user need to change data, it will impact in their customer tables and don't tables of another groups of users, this capacity can be easy in relational model but in multidimensional model has not.
+
+`Manage the future unknown requirements of unknown users is part the process, the granular data is the secrets to manage those situations`, so then the relational model is more capacity to control those but depending of model in multidimensional model , it can or not controls those.
+
+
+
+
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
