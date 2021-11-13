@@ -643,6 +643,8 @@ The consequences of the shaping of model are:
 
 `The capacity of build new customer tables based in corportation data model from relational model is it has not redundant of data organized in its simplest form.` if a specified group of user need to change data, it will impact in their customer tables and don't tables of another groups of users, this capacity can be easy in relational model but in multidimensional model has not.
 
+![Capacity of build customer tables in relation model](image/capacityOfCustomerTableRelationalModel.png?raw=true)
+
 `Manage the future unknown requirements of unknown users is part the process, the granular data is the secrets to manage those situations`, so then the relational model is more capacity to control those but depending of model in multidimensional model , it can or not controls those.
 
 
