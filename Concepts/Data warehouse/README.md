@@ -633,7 +633,13 @@ The multidimensional model is based in design of star join from main table (call
 
 This comparation is for a data warehouse design.
 
-The multidimensional model is good in the performance but it isn't in the flexibility while the relational model is good in the flexibility but it isn't in
- the performance.
+The multidimensional model is good in the performance but it isn't in the flexibility while the relational model is good in the flexibility but it isn't in 
+the performance. The roots of the differences is the shaping of models: the multidimensional model is shaped by the user requirements while the relational model is shaped by enterprise data model.
+
+The consequences of the shaping of model are: 
+
+* **Abstraction to use of data**: the relational model have a high level of abstraction to design the model, so then model can support many differents requirements of differents user. The multidimensional model is focus a set of user in their specified requirements to solve because the abstraction is not higher.
+* **Access of data**: The flexibility of model makes the relatonal model has not  terribly optimal for the performance of the direct access of data, if you want optimal access you need to create a model based in data warehouse model to do; while  in the multidimensional model will get a fast access by this model is designed to specified queries.
+
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
