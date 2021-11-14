@@ -55,6 +55,7 @@ This is a index to best navigation inside document.
 - [Relational and dimensional model for database design](#relational-and-dimensional-model-for-database-design)
   - [Dimensional or relational models](#dimensional-or-relational-models)
   - [Differences between the Models](#differences-between-the-models)
+  - [Data Marts types: independent or dependent](#data-marts-types)
 - [References](#references)
 
 # External data in data warehouse
@@ -647,7 +648,13 @@ The consequences of the shaping of model are:
 
 `Manage the future unknown requirements of unknown users is part the process, the granular data is the secrets to manage those situations`, so then the relational model is more capacity to control those but depending of model in multidimensional model , it can or not controls those.
 
+## Data marts types
 
+Based in previous models in data marts enviroment, it can divide: all data marts based in multidimensional model are created from directly legacy systems and it's called independe data marts; while all data marts based in relational model are created from data warehouse enviroment and it's called dependent data marts.
+
+The independent data marts are very popular because it can a relatively inexpensive thing to build, allow an department of organization get information in its own hands, only think in deparment constraints. It focus has a big problem: in the long-tem all data mart can be inconsistent to share information in same focus if the process are not consistent at all, you have several same interface with few change you need to maintain and/or writted and get several resources to manage programs executed.
+
+`Ìn general dependent data marts are best in long-term with global thinking focus while independet data marts are short-term with limited scope solution`.
 
 
 # References
