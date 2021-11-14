@@ -654,6 +654,8 @@ Based in previous models in data marts enviroment, it can divide: all data marts
 
 The independent data marts are very popular because it can a relatively inexpensive thing to build, allow an department of organization get information in its own hands, only think in deparment constraints. It focus has a big problem: in the long-tem all data mart can be inconsistent to share information in same focus if the process are not consistent at all, you have several same interface with few change you need to maintain and/or writted and get several resources to manage programs executed.
 
+![Problems of indepent data mart](image/independentDataMart.png?raw=true)
+
 `Ìn general dependent data marts are best in long-term with global thinking focus while independet data marts are short-term with limited scope solution`.
 
 
