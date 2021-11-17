@@ -56,6 +56,8 @@ This is a index to best navigation inside document.
   - [Dimensional or relational models](#dimensional-or-relational-models)
   - [Differences between the Models](#differences-between-the-models)
   - [Data Marts types: independent or dependent](#data-marts-types)
+- [Large Data warehouse](#large-data-warehouse)
+  - [Impact of large data warehouse](#impact-of-large-data-warehouse)
 - [References](#references)
 
 # External data in data warehouse
@@ -657,6 +659,12 @@ The independent data marts are very popular because it can a relatively inexpens
 ![Problems of indepent data mart](image/independentDataMart.png?raw=true)
 
 `Ìn general dependent data marts are best in long-term with global thinking focus while independet data marts are short-term with limited scope solution`.
+
+# Large Data warehouse
+When the data warehouse is so large, some consideration need to know about this situation.
+
+## Impact of large data warehouse
+
 
 
 # References
