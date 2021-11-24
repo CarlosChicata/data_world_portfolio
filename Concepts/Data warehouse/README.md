@@ -669,10 +669,15 @@ When the data warehouse collect large volumes of data; issues about cost, useful
 
 `The basic data-management activities are harder`: when the data is growing in data warehouse, to load, indexing and access take more time to complete this activities.
 
+![Management of activities in data](image/basicDataManagementActGrowData.png?raw=true)
+
 `The cost of storage is high`: when the data grows, the cost of budget to store data increments exponently as well component like processor and software to control the usage of the data increments to support this activity.
+
+![Cost of storage](image/costBudgetGrowData.png?raw=true)
 
 `The usage pattern of data is differents based in usage`: when the data grows, the data will use is fewer in all storage and don't scanning all storage to get this data. you will get 2 type of usage of data: unfrequently and frequently usage of data.
 
+![Pattern of usage in data ](image/patternOfUsageDataGrowData.png?raw=true)
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
