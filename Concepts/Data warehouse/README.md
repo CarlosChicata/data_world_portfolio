@@ -58,6 +58,7 @@ This is a index to best navigation inside document.
   - [Data Marts types: independent or dependent](#data-marts-types)
 - [Large Data warehouse](#large-data-warehouse)
   - [Impact of large data warehouse](#impact-of-large-data-warehouse)
+  - [Disk storage in usage of data](#disk-storage-in-usage-of-data)
 - [References](#references)
 
 # External data in data warehouse
@@ -675,9 +676,13 @@ When the data warehouse collect large volumes of data; issues about cost, useful
 
 ![Cost of storage](image/costBudgetGrowData.png?raw=true)
 
-`The usage pattern of data is differents based in usage`: when the data grows, the data will use is fewer in all storage and don't scanning all storage to get this data. you will get 2 type of usage of data: unfrequently and frequently usage of data.
+`The usage pattern of data is differents based in usage`: when the data grows, the data will use is fewer in all storage and don't scanning all storage to get this data. you will get 2 type of usage of data: unfrequent and frequent usage of data.
 
 ![Pattern of usage in data ](image/patternOfUsageDataGrowData.png?raw=true)
+
+## Disk storage in usage of data
+
+When you have frequent and unfrequent usage of data, you need to store this data in different storage to get optimal queries to answer enviroment.
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
