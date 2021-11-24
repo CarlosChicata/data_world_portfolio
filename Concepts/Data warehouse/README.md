@@ -661,10 +661,17 @@ The independent data marts are very popular because it can a relatively inexpens
 `Ìn general dependent data marts are best in long-term with global thinking focus while independet data marts are short-term with limited scope solution`.
 
 # Large Data warehouse
-When the data warehouse is so large, some consideration need to know about this situation.
+When the data warehouse is so large, some consideration need to know about this situation. The main components to grow the data warehouse are: detailed data, historical data and diverse data in time frame of usage in corporation.
 
 ## Impact of large data warehouse
 
+When the data warehouse collect large volumes of data; issues about cost, usefulness anda data management are relevant in design. This issues are explain in differents aspects.
+
+`The basic data-management activities are harder`: when the data is growing in data warehouse, to load, indexing and access take more time to complete this activities.
+
+`The cost of storage is high`: when the data grows, the cost of budget to store data increments exponently as well component like processor and software to control the usage of the data increments to support this activity.
+
+`The usage pattern of data is differents based in usage`: when the data grows, the data will use is fewer in all storage and don't scanning all storage to get this data. you will get 2 type of usage of data: unfrequently and frequently usage of data.
 
 
 # References
