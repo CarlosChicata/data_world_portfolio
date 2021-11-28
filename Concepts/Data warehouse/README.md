@@ -691,9 +691,16 @@ Get a split-storage media incurs a loss of speed in process of moving between th
 
 The main difference in archival and near-line enviroment is the near-line storage is seen an extension of data warehouse: the disk and near-line storages are only unit of storage and get transparent into end user to query this enviroment; while a archival enviroment, the end user need know that your query is proccess in this enviroment.
 
+This transparency in near-line and data warehouse enviroment is achieved in format of data row, compability in technology terms and the near-line system available to the database system.
+
 ## Moving data from enviroment to another
 
-This transparency in near-line and data warehouse enviroment is achieved in format of data row, compability in technology terms and the near-line system available to the database system.
+The moving data from the near-line and the data warehouse enviroment can be accomplished in many ways:
+* **The manually moving the data** between enviroments by database administrator; this focus is very flexibility and work well and it's a low-tech option and avaible to anyone.
+* **Use a hierarchical storage management approach**: whole data sets are moved, it can be automatic. In this focus, you loss the granularity in moving data sets.
+* **Use a cross-media storage management approach**: this option is fully automated and operates at the row level of granularity between enviroments. It's a complex and expensive focus to implement.
+
+The cross-media storage management can be streamlined by the usage of a data warehouse monitor: monitoring the SQL query and result, the system tell what data is and is not being used in the data warehouse. it can allow a more finely tuned in data warehouse system. In general, as a rule; use a third-party monitors to implement in enviroment.
 
 
 # References
