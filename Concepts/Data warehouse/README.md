@@ -687,9 +687,15 @@ When you have frequent and unfrequent usage of data, you need to store this data
 
 You need to store the frequently used data in storage of fast access mechanist; called near-line storage; to get the data while the data used unfrequenly stored a archival storage. The near-line storage are storage with robotically controlled, get bulk amounts of data, reliable over a long period of time; while a archival storage is more taped storage or ; in general; slow access and long live storage.
 
+![Storage system in big data warehouse](image/SplitStorageMedia.png?raw=true)
+
 Get a split-storage media incurs a loss of speed in process of moving between thoses storages; but in general performance in access of data the split-storage media better then a disk storage in performance depending of case and probability of usage in data.
 
+![Analogy in performance in two options of storage media in big data warehouse](image/PerformanceDiskAndSplitStorageMedia.png?raw=true)
+
 The main difference in archival and near-line enviroment is the near-line storage is seen an extension of data warehouse: the disk and near-line storages are only unit of storage and get transparent into end user to query this enviroment; while a archival enviroment, the end user need know that your query is proccess in this enviroment.
+
+![Logical units in storage inside data warehouse enviroment](image/StorageEnviromentInBigDWH.png?raw=true)
 
 This transparency in near-line and data warehouse enviroment is achieved in format of data row, compability in technology terms and the near-line system available to the database system.
 
@@ -699,6 +705,8 @@ The moving data from the near-line and the data warehouse enviroment can be acco
 * **The manually moving the data** between enviroments by database administrator; this focus is very flexibility and work well and it's a low-tech option and avaible to anyone.
 * **Use a hierarchical storage management approach**: whole data sets are moved, it can be automatic. In this focus, you loss the granularity in moving data sets.
 * **Use a cross-media storage management approach**: this option is fully automated and operates at the row level of granularity between enviroments. It's a complex and expensive focus to implement.
+
+![Table of disadvantage and advantage in data moving management](image/TableDataMovingManagement.png?raw=true)
 
 The cross-media storage management can be streamlined by the usage of a data warehouse monitor: monitoring the SQL query and result, the system tell what data is and is not being used in the data warehouse. it can allow a more finely tuned in data warehouse system. In general, as a rule; use a third-party monitors to implement in enviroment.
 
