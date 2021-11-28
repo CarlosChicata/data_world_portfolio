@@ -59,6 +59,7 @@ This is a index to best navigation inside document.
 - [Large Data warehouse](#large-data-warehouse)
   - [Impact of large data warehouse](#impact-of-large-data-warehouse)
   - [Disk storage in usage of data](#disk-storage-in-usage-of-data)
+  - [Moving data from enviroment to another](#moving-data-from-enviroment-to-another)
 - [References](#references)
 
 # External data in data warehouse
@@ -682,7 +683,18 @@ When the data warehouse collect large volumes of data; issues about cost, useful
 
 ## Disk storage in usage of data
 
-When you have frequent and unfrequent usage of data, you need to store this data in different storage to get optimal queries to answer enviroment.
+When you have frequent and unfrequent usage of data, you need to store this data in different storage to get optimal queries to answer enviroment. The disk storage is common storage into DBMS and use in transactional DB.
+
+You need to store the frequently used data in storage of fast access mechanist; called near-line storage; to get the data while the data used unfrequenly stored a archival storage. The near-line storage are storage with robotically controlled, get bulk amounts of data, reliable over a long period of time; while a archival storage is more taped storage or ; in general; slow access and long live storage.
+
+Get a split-storage media incurs a loss of speed in process of moving between thoses storages; but in general performance in access of data the split-storage media better then a disk storage in performance depending of case and probability of usage in data.
+
+The main difference in archival and near-line enviroment is the near-line storage is seen an extension of data warehouse: the disk and near-line storages are only unit of storage and get transparent into end user to query this enviroment; while a archival enviroment, the end user need know that your query is proccess in this enviroment.
+
+## Moving data from enviroment to another
+
+This transparency in near-line and data warehouse enviroment is achieved in format of data row, compability in technology terms and the near-line system available to the database system.
+
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
