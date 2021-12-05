@@ -45,6 +45,7 @@ This is a index to best navigation inside document.
     - [Distributed Data Warehouse Development](#distributed-data-warehouse-development)
     - [Building the warehouse on multiple levels](#building-the-warehouse-on-multiple-levels)
     - [Multiple Groups Building the Current Level of Detail](#multiple-groups-building-the-current-level-of-detail)
+  - [Inverted Data warehouse: Alternative to storage management](#inverted-data-warehouse-alternative-focus)
 - [Migration to the architected enviroment](#migration-to-the-architected-enviroment)
   - [A migration Plan](#a-migration-plan)
   - [Data driven and spiral methodologies](#data-driven-and-spiral-methodologies)
@@ -489,6 +490,16 @@ Another strategy is to use different platforms for the different types of datafo
 there are several drawbacks in strategy from previous phrase: multiple technologies must be purchased and supported, the end user needs to be trained in this tech stacks and the boundaries between them may not be as easy to cross and will transform in problems of performance and manage of the access of data.
 
 ![Problem to use several tech stack to implement a detailed data](image/ProblemWithMultiTechInDetailData.png?raw=true)
+
+## Inverted data warehouse alternative focus
+
+When i have large data warehouse; the common focus in storage management to put the data in the disk storage, then, after the data ages, the data is placed on near-line or archival storage.  There is an alternative: first to put the data into near-line storage and not disk storage.
+
+When a query is done, the data is "staged" from the near-line enviroment to the disk enviroment. Once  in  the  disk environment, the data is accessed and analyzed as if the data resided there permanently. Once the analysis is over, the data is returned to near-line storage.
+
+The inverted data warehouse have a price: every request must be stage and staging takes time but; depending on the analysis being done; stagin may not be an onerous penalty. If there are a lot of explorers accessing and analyzing the data, then staging may simply be part of the price to be paid for satisfying irregular requests. sSome of the performance penalty can be mitigated by running more than one instance of the disk-based DBMS. In other words, with two disk-based DBMSs running, two queries and analyses can be accommodated, thereby mitigating some of the time needed for queuing the data waiting for staging.  By  using  more  than  one  instance  of  the  disk  based  DBMS,  a  certain amount of parallelism can be achieved.
+
+
 
 # Migration to the architected enviroment
 
