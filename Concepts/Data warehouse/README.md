@@ -61,6 +61,7 @@ This is a index to best navigation inside document.
   - [Impact of large data warehouse](#impact-of-large-data-warehouse)
   - [Disk storage in usage of data](#disk-storage-in-usage-of-data)
   - [Moving data from enviroment to another](#moving-data-from-enviroment-to-another)
+  - [Maximum capacity](#maximum-capacity)
 - [References](#references)
 
 # External data in data warehouse
@@ -720,6 +721,10 @@ The moving data from the near-line and the data warehouse enviroment can be acco
 ![Table of disadvantage and advantage in data moving management](image/TableDataMovingManagement.png?raw=true)
 
 The cross-media storage management can be streamlined by the usage of a data warehouse monitor: monitoring the SQL query and result, the system tell what data is and is not being used in the data warehouse. it can allow a more finely tuned in data warehouse system. In general, as a rule; use a third-party monitors to implement in enviroment.
+
+## Maximum capacity
+
+The capacity of enviroment is meaning by combination with a fair parameters: volumen of data, number of users, workload complexity.
 
 
 # References
