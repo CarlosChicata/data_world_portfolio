@@ -62,6 +62,7 @@ This is a index to best navigation inside document.
   - [Disk storage in usage of data](#disk-storage-in-usage-of-data)
   - [Moving data from enviroment to another](#moving-data-from-enviroment-to-another)
   - [Maximum capacity](#maximum-capacity)
+- [The life cycle of data](#the-life-cycle-of-data)
 - [References](#references)
 
 # External data in data warehouse
@@ -725,6 +726,12 @@ The cross-media storage management can be streamlined by the usage of a data war
 ## Maximum capacity
 
 The capacity of enviroment is meaning by combination with a fair parameters: volumen of data, number of users, workload complexity.
+
+
+
+# The life cycle of data
+
+There is a life cycle of data as it enters the corporation and then is used there. It makes sense to match the life cycle of data to the different technologies found in the corportation based in usage of data.
 
 
 # References
