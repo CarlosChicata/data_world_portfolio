@@ -63,6 +63,7 @@ This is a index to best navigation inside document.
   - [Moving data from enviroment to another](#moving-data-from-enviroment-to-another)
   - [Maximum capacity](#maximum-capacity)
 - [The life cycle of data](#the-life-cycle-of-data)
+- [Testing and the data warehouse](#testing-and-the-data-warehouse)
 - [References](#references)
 
 # External data in data warehouse
@@ -736,6 +737,15 @@ There is a life cycle of data as it enters the corporation and then is used ther
 ![life cycle of data in data warehouse enviroment](image/lifeCycleOfDataInDWHEnviroment.png?raw=true)
 
 When the flow of dara throughout the information life cycle does not follow work in prevous image; those data becomes bloated and clogged up and analysis will be hard or impossible.
+
+
+
+# Testing and the data warehouse
+
+In operational enviroment need the testing enviroment like part of enviroment because operational code need to correct once it meets the production; it is a expectative in operational enviroment. `In data warehouse enviroment, the expectative is constant adjustment and readjustment based in the constant feedback of end users to get the accuracy and completeness data in data warehouse enviroment`.
+
+Then the question will arise is: does the data warehouse enviroment places bad data? or does the data in data warehouse enviroment is perfect?; the answer to both questions is Not, the principles is: `The data placed in the data warehouse is the best data that can be placed there, but no one guarantees the perfection of the data`.  This principle is based in the type of decision made with the data: business decision of data, features or properties in data, and others.
+
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
