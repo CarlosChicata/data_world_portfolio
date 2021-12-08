@@ -733,6 +733,7 @@ The capacity of enviroment is meaning by combination with a fair parameters: vol
 
 There is a life cycle of data as it enters the corporation and then is used there. It makes sense to match the life cycle of data to the different technologies found in the  data warehouse enviroment based in usage of data.
 
+![life cycle of data in data warehouse enviroment](image/lifeCycleOfDataInDWHEnviroment.png?raw=true)
 
 When the flow of dara throughout the information life cycle does not follow work in prevous image; those data becomes bloated and clogged up and analysis will be hard or impossible.
 
