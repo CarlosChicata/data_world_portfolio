@@ -9,7 +9,9 @@ Contain all concepts, best practices, patterns, architectures and concepts about
 ## Index of readme
 This is a index to best navigation inside document.
 
-- [The problems of external data sources: unified storage of data](#the-problems-of-external-data-sources)
+- [External data in data warehouse](#external-data-in-data-warehouse)
+  - [The problems of external data sources: unified storage of data](#the-problems-of-external-data-sources)
+  - [Modeling, storing and metadata about external data in data warehouse](#modeling-storing-metadata-of-external-data-in-data-warehouse)
 - [Architecture in Data Warehouse](#arquitecture-in-data-warehouse)
   - [Inmon model](#inmon-model)
     - [Diagram of enviroment](#diagram-of-enviroment-in-inmon)
@@ -43,10 +45,38 @@ This is a index to best navigation inside document.
     - [Distributed Data Warehouse Development](#distributed-data-warehouse-development)
     - [Building the warehouse on multiple levels](#building-the-warehouse-on-multiple-levels)
     - [Multiple Groups Building the Current Level of Detail](#multiple-groups-building-the-current-level-of-detail)
+  - [Inverted Data warehouse: Alternative to storage management](#inverted-data-warehouse-alternative-focus)
+- [Migration to the architected enviroment](#migration-to-the-architected-enviroment)
+  - [A migration Plan](#a-migration-plan)
+  - [Data driven and spiral methodologies](#data-driven-and-spiral-methodologies)
+- [Unstructed data in data warehouse](#unstructed-data-in-data-warehouse)
+  - [Integrating the 2 worlds](#integrating-the-2-worlds)
+  - [Infrastructure of integration of data](#infrastructure-of-integration-of-data)
+  - [Structure and topics of data warehouse for unstructured data](#structure-and-topics-of-data-warehouse-for-unstructured-data)
+- [Relational and dimensional model for database design](#relational-and-dimensional-model-for-database-design)
+  - [Dimensional or relational models](#dimensional-or-relational-models)
+  - [Differences between the Models](#differences-between-the-models)
+  - [Data Marts types: independent or dependent](#data-marts-types)
+- [Large Data warehouse](#large-data-warehouse)
+  - [Impact of large data warehouse](#impact-of-large-data-warehouse)
+  - [Disk storage in usage of data](#disk-storage-in-usage-of-data)
+  - [Moving data from enviroment to another](#moving-data-from-enviroment-to-another)
+  - [Maximum capacity](#maximum-capacity)
+- [The life cycle of data](#the-life-cycle-of-data)
+- [Testing and the data warehouse](#testing-and-the-data-warehouse)
 - [References](#references)
 
+# External data in data warehouse
+ whole host of other data is of legitimate use to a corporation that is not
+generated from the corporatio's own systems. This class of data is called external data and usually enters the corporation in an unpredictable format.
 
-# The problems of external data sources
+There are 2 types of external data:
+1. Records of external data collected by some source (such as a drug store,
+a supermarket, and so forth).
+2. External data from random reports, articles, and other sources. 
+
+
+##  The problems of external data sources
 You wanna extract data of external sources to analyze them to get insight/knowledge. The extract process is good for 2 reason:
 * don't degrade the performance of the source system when you need to analyze in mass.
 * control this data because you move this data into your system.
@@ -62,6 +92,17 @@ Based in above image, we have 3 problems in this bad infraestructure:
   * When you extract data of external, i need to capture of identity source to accredit those data.
 * **Productivity low**: it's so hard to access and processing several sources in diference locations inside organization.
 * **From data to information**: it's so hard to reconciliate and normalize structure of data from several different sources to generate a column in report.
+
+## Modeling storing metadata of external data in data warehouse
+
+The metadata is critical to manage and store external data by this is use to access and control it in data warehouse enviroment, feature like id of document, date of entry into enviroment, source of the document, date of source of the document, description of the document, classification of document, index words, related references, purge date and others are part to the looking of manager of metadata to control those data.
+
+If it's convenient and cost-efficient to do, the external data will store in data warehouse but usually this data is stored in secondary storage like fiche or magnetic tape while a entry of this document of external data is stored in metadata of the warehouse describing where the document can be found. The implication is that once the data is captured and managed centrally, the organization has to undergo the expense of dealing with such data only once.
+
+![Storing external data inside data warehouse enviroment](image/metadataStoringOfExternalData.png?raw=true)
+
+Maybe appears  that  there  is  very  little  relationship between the data model and external data by external  data  is  not  malleable  to any  extent  at  all when he is creating the data modeling. Attempting to use the data model for any serious reshaping of the external data is a mistake. About the best that can be done is to note the differences between the data model and external data as far as the interpretation of key phrases and words are concerned. The most that
+can be done is to create subsets of the data that are compatible with the existing internal data
 
 # Arquitecture in Data Warehouse
 There are 2 common models to implement data warehouse in enterprised world: Inmon and Kimball. Those are considered parents of data warehouse and define severel attributes, process and practices to implement it.
@@ -452,6 +493,261 @@ Another strategy is to use different platforms for the different types of datafo
 there are several drawbacks in strategy from previous phrase: multiple technologies must be purchased and supported, the end user needs to be trained in this tech stacks and the boundaries between them may not be as easy to cross and will transform in problems of performance and manage of the access of data.
 
 ![Problem to use several tech stack to implement a detailed data](image/ProblemWithMultiTechInDetailData.png?raw=true)
+
+## Inverted data warehouse alternative focus
+
+When i have large data warehouse; the common focus in storage management to put the data in the disk storage, then, after the data ages, the data is placed on near-line or archival storage.  There is an alternative: first to put the data into near-line storage and not disk storage.
+
+When a query is done, the data is "staged" from the near-line enviroment to the disk enviroment. Once  in  the  disk environment, the data is accessed and analyzed as if the data resided there permanently. Once the analysis is over, the data is returned to near-line storage.
+
+The inverted data warehouse have a price: every request must be stage and staging takes time but; depending on the analysis being done; stagin may not be an onerous penalty. If there are a lot of explorers accessing and analyzing the data, then staging may simply be part of the price to be paid for satisfying irregular requests. sSome of the performance penalty can be mitigated by running more than one instance of the disk-based DBMS. In other words, with two disk-based DBMSs running, two queries and analyses can be accommodated, thereby mitigating some of the time needed for queuing the data waiting for staging.  By  using  more  than  one  instance  of  the  disk  based  DBMS,  a  certain amount of parallelism can be achieved.
+
+
+
+# Migration to the architected enviroment
+
+## A migration Plan
+`A plan starts to build a corporate data model`. This model represents the information neeed of the corportation and not necessarily what it currerntly has in legacy systems. This one may be built internally or it may be have been generated from a generic data model; and need to identify major subjects with theirs attributes, keys, definitions and relationship between them.
+
+The corporate data model identifies corporate information at a high level and this use to build a lower-level model, this low level identifies details that have been glossed over by the  corporate data model. this mid-level model is built from the identified subject areas in corporate data model and built one at a time. both high-level and mid-level model focus only on the atomic data of the corporation and excluded derived data by several reasons: change frequently, are created from atomic data, deleted altogether frequently, there are many variations in the creations and others.
+
+![Step of interation of data model in a migration plan](image/dataModelInMigrationPlan.png?raw=true)
+
+`After the corporate data model and the mid-level model are in place, you need define the system record`. This system is defined based in legacy systems of company and other systems inside organization. This activity is identify the "best" data have in all legacy system, you use data model like a benchmark to determinate what the data is best to goald of requirements of data models. criterias like what data is the most complete, the timeliest, the most accurate and others are part to process.
+
+Once the system of record is defined, you identify the technological challenges are to bring data of system of records into data warehouse enviroment. Others challenges you need to face are: volumen of data will move, processing data previously to store in data warehouse: cleasing and/or summarized data.
+
+`After  the  system  of  record  is  defined  and  the  technological  challenges are solved, you need to design the data warehouse`. If all previous activities has been done properly, this activity is simple. Adding array of data, adding data redundantly, separating data under the right conditions and merging table are appropiated methods when the structure of the data need.
+
+![design data warehouse in a migration plan](image/designDataWarehouseInMigrationPlan.png?raw=true)
+
+Principally, the following things need to be done:
+* An element of time needs to be added to the key structure if one is not present.
+* All purely operation data need to be eliminated.
+* Referential integrity relationships need to be turned into artifacts.
+* Derived data that is frequently needed is added to the design.
+
+Stability  analysis  of  the  data  needs  to  be  done. In stability analysis,  data whose content has a propensity for change is isolated from data whose content is very stable. Once the data warehouse is designed, is organized by subject areas with its separated tables. 
+
+Depending of the number of occurrences of data would have a difference considerations of design this part: summarized, aggregated or partitions data or using profile records. The same case is applied to arrival rate of data into data warehouse: you will need to use staging of data, parallelization of the load stream, delated indexing and other methods to handle the data flow. There are consideration to see in process of design of data warehouse.
+
+`After the data warehouse design, the next step is to design and build the interfaces between the system of record and the data warehouses`. This method to populate the data warehouse and consuming more time of process the plan; if the interfaces appear to be merely and extract process but it contains more activities:
+
+* Integration of data from the operational, application-oriented enviroment.
+* Alteration of the time basis of data.
+* Efficient scanning of the existing systems environment
+* Condensation of data
+
+`Once the interface programs are designed and built, the next activity is to
+start the population of the first subject area`. In theory you need to read data from legacy system, move and store data in warehouse enviroment, directories are updated, metadata is created and indexes are made.
+
+There are many good reasons to populate a fraction of warehouse: changes to the data easily and quickly, get feedback of user by interation of warehouse enviroment, data architect can adjust of enviroment by feeadback quickly.
+
+![Running of migration plan](image/activitiesInMigrationPlan.png?raw=true)
+
+Remember: he population and feedback processes continue for a long period. In  addition,  the  data  in  the  warehouse  continues  to  be  changed.  Of course, over time, as the data becomes stable, it changes less and less. End users don’t know what their requirements are until they see what the possibilities are.
+
+you need to schedule the refreshment of data in data warehouse. As a rule, data warehouse data should be  refreshed  no  more  frequently  than  every  24  hours. By  making  sure  that there is at least a 24-hour time delay in the loading of data, the data warehouse developer minimizes the temptation to turn the data warehouse into an operational environment. **By strictly enforcing this lag of time, the data warehouse serves the DSS needs of the company, not the operational needs**.
+
+The lag of time can be use to adjust the enviroment without impact of performance of warehouse. there  are  cases  where  rapidly  placing  data  in  the  warehouse  may  be what the requirements are. In this case, it helps to have technology suited for what is termed active data warehousing. Active data warehousing refers to the technology of being able to support some small amount of online access processing  in  the  data  warehouse.
+
+## Strategic Considerations
+
+The migration plan that has been discussed is solely for the construction of the data warehouse. Isn’t there an opportunity to rectify some or much of the operational  “mess”  at  the  same  time  that  the  data  warehouse  is  being  built? The answer is that, to some extent, the migration plan that has been described presents an opportunity to rebuild at least some of the less than aesthetically pleasing aspects of the operational environment.
+
+![Data arquitect using agent of change to becomecompelling and ally the efforts toward the architected environment with the appropriate agents](image/StrategistToChangeOperationalSystems.png?raw=true)
+
+One approach is to use the data model as a guideline and make a case to management that major changes need to be made to the operational enviroment. The amount of effort, the amount of resources, and the disruption to the end userin  undertaking  a  massive  rewrite  and  restructuring  of  operational  data  andsystems  is  such  that  management  seldom  supports  such  an  effort  with  the needed level of commitment and resources.
+
+Other focus is to coordinate the effort to rebuild operational system with the "agents of change": the aging of systems, the radical changing of technology, organizational upheaval, massive business changes. The steps the data architect takes to restructure the operational environment are:
+
+1.  **Create a delta list**: it is an assessmeent of the differences between the  operational environment and the environment depicted by the data model. The delta list is simple, with very little elaboration.
+2.  **The impact analysis**: At this point an assessment is made of the impact of each item on the delta list. Some items may have a serious impact; other items may have a negligible impact on the running of the company.
+3.  **Create resource estimate**: This estimate is for the determination of how many resources will be required to “fix” the delta list item.
+4.   **Report that goes to information systems management**: Management then makes a decision as to what work should proceed, at what pace, and so forth. The decision is made in light of all the priorities of the corporation
+
+## Data driven and spiral methodologies
+
+`The methodology for the building of the data warehouse is called a spiral development methodology`. This methodology is much larger than just a development methodology by it contain information about how to build and alse describes how to use the data warehouse. The migration plan describes general activities dynamically but the spiral development methodology describes specific activities, deliverables from those activities and the order of the activities.
+
+The spiral methodology is difference of waterfall methodology: all of one activity is completed before the next activity can begin and the result of one activity feed another.
+
+![Comparing spiral and waterfall methodologies](image/SpiralAndWaterfallMethodologies.png?raw=true)
+
+One of the salient aspect of a data driven methodology is that it builds on previous efforts using both code and processes that have been developed and it can be achieved is through the recognition of commonality: before the developer to start the design or build, he need to know what already exist and how it affects the development process. Don't reinvent the whell is the essences of data driven development.
+
+Anohter aspect is an emphasis on the central store of data as the basis of Analysis processing, recognizion that processing has a very different development life cycle than operational system: processing begins with data and ends with requirements
+
+# Unstructed data in data warehouse
+
+Emails, ppts, sms, and others file are part of unstructured data that organization need to manage any degree. Those unstructured data file can be divied into 2 bradd groups: Communication and documents. The Communications are short and are for very limited distributed. The documents tend to live a lot longer than communications, are larger than communication and to be a wider audience. Both are based in Text.
+
+## Integrating the 2 worlds
+
+There are part to integrated unstructed and structured data in enviroment.
+
+`The text is the common link between them`. if applied a match of words between both world, you will get several problems: 
+* Mispelling words are found in the two enviroments that arise the question: should there be a match made between these worlds by those word?
+* Context to use those words: are words used in same context?
+* Same name on subject in both worlds: are words reference the same person?
+* Nicknames on subject in both words: are difference nicknames reference the same person?
+* Diminutives of unique word: is the group of words reference the unique word?
+* Incomplete names of subject: is word reference to the subject.
+* Word steams match.
+
+The fundamental mismatch between both world is the enviroment representation: the unstructured data represents document and communications while the structured data represents transactions. In structured data, the textula data is used to identify and clarify the transaction; but the unstructured data, the text can be verbose, cryptic, eloquent and/or confusing.  Despite the difficulties of matching text across the enviroments, it still is the key to the integrations.
+
+To match both world, you need to remove stop words and reduce all words to stem of this word to normalize the text. Then you get normalized words in both enviroment, you can apply probabilistic models to find match in words of two enviroments to create link of worlds. In General, you can use any NLP model to find similarity of words from two enviroments to create links in both enviroment.
+
+![Using probability matching in both worlds](image/probabilityMatchedInBothEnviroment.png?raw=true)
+
+There are others methods to matching: Collecting documents of unstructured data and match the content of document and list of word from industrially recognized theme; clustering documents of unstructured data by phrases and words to find a theme of document group; using raw matching of data: create link if word in unstructured data document is found anywhere in the structured data; to create a link the two enviroments using metadata and abstraction of data of unstructured data with theme of unstructured data
+
+## Infrastructure of integration of data
+
+There are 2 approaches to the usage of unstructured data in the data warehouse:
+
+* One approach is to access the unstructured enviroment and pull data over into the structured enviroment. This works well for certain kinds of unstructured of data.
+* Another approach is one tier of the data warehouse is for unstructured data and another tier of the data warehouse is for structured data.
+
+The last approach is name two-tier data warehouse. there may be either tight ir a casul relationshio of data between the 2 enviroment, or there may be no relationshio at all.
+
+Both enviroments share similar parts: it exists at a low level of granularity, has an element of time attached and it is typically organized by area or theme. But the someone of differences between both of enviroment in the data: the unstructured data can be dividied in two groups: Communications and documents, the difference to access if that the communications are organized by identifies main parts of text while the documents are organizaed according to words or/and theme.
+
+`Depending on quite a few variables, it may be desirable to store the actual document in the unstructured data warehouse, or it may make sense to store only references to the location of the document in the data warehouse`: How many documents are there?, What is the size of the documents?, How critical is the information in the document?, Can subsections of the document be captured? or Can the document be easily reached if it is not stored in the warehouse?. An intermediate solution between having the document in storage or out of storage is storing the sentence before and after where the themed word lies
+
+There are many commercial products `that are used to embody structured visualization` based in analyze, clustering, counting and otherwise preparation. The  SOM (self-organizing map)  produces  a  display  that appears to be a topographical map. The SOM shows how different words and the documents are clustered, and displayed according to themes. The SOM has several features: clustering  of information based on the data found in different document, toing drill-down processing.
+
+## Structure and topics of data warehouse for unstructured data
+
+In next image you see the structure of records in unstructured data warehouse for communication and documents. There are common parts to manage this data inside the data warehouse.
+
+![Records of unstructured data inside data warehouse](image/recordsOfUnstructuredDataInDataWarehouse.png?raw=true)
+
+The volumen of data inside data warehouse are an order of magnitude more important simply because there is so much more unstructured data than structured data; and developer can mitigate: Do not store all of the documents; remove communications blather; Create an area where the documents or communications are stored separately, if they have to be stored at all; age data off by date wherever possible; do not store too many context references; monitor the usage of the unstructured data warehouse to determine what the patterns of usage are.
+
+![Record of structured data in data warehouse](image/recordsOfStructuredDataInDataWarehouse.png?raw=true)
+
+In the previous image, you show what text that relates the two environments. In structured enviroment has several components: an abstract level (metadata and repository) and record level ( raw data, identifiers and close identifiers). The identifiers are unique and use to locate a specified and unique records while close identifiers are good probability to specified records but it can use to more records.
+
+In the next image, it shows to how data in the differenct enviroment relate them based in fields in records.
+
+![Relation by text based of recrods from unstructured and structured data warehouse](image/RelationUnstructuredAndStructureDW.png?raw=true)
+
+# Relational and dimensional model for database design
+
+There are some issues based in model approach to design a database in datawarehouse and data marts and other parts inside enviroments: kimball (dimensional model) or Inmmon (relational model).
+
+## Dimensional or relational models
+
+The relational model has different properties in tables, characteristic in columns, type of index and properties. one can use keys and foreign keys to establush relationships between rows, use SQL to interface to querying and manage data. The data in the relational model can be organized in several level of granularity by normalization process.
+
+`The value of relational model to design a database for the data warehouse is the flexibility` you have to use detailed level of normalized data, discipline to design and clarity of the meaning; `and the versability` because the detailed data is collected and can be combined, many different views of the data can be supported when the design for the data warehouse is based on the relational model.
+
+The multidimensional model is based in design of star join from main table (called fact table) that contains many occurrrences of data related with dimension table that contains details of context of occurences. When you need more fact table to represent the process, you need to use snowflake structure then one share dimension tables between them to shape a snowflake.
+
+`The value of multidimensional model is the efficiency of access` to delivery data to user but the achieve it you need the requirements must be gathered and assimilated: this is a heart of defining the model.
+
+## Differences between the Models
+
+This comparation is for a data warehouse design.
+
+The multidimensional model is good in the performance but it isn't in the flexibility while the relational model is good in the flexibility but it isn't in 
+the performance. The roots of the differences is the shaping of models: the multidimensional model is shaped by the user requirements while the relational model is shaped by enterprise data model.
+
+The consequences of the shaping of model are: 
+
+* **Abstraction to use of data**: the relational model have a high level of abstraction to design the model, so then model can support many differents requirements of differents user. The multidimensional model is focus a set of user in their specified requirements to solve because the abstraction is not higher.
+* **Access of data**: The flexibility of model makes the relatonal model has not  terribly optimal for the performance of the direct access of data, if you want optimal access you need to create a model based in data warehouse model to do; while  in the multidimensional model will get a fast access by this model is designed to specified queries.
+
+`The capacity of build new customer tables based in corportation data model from relational model is it has not redundant of data organized in its simplest form.` if a specified group of user need to change data, it will impact in their customer tables and don't tables of another groups of users, this capacity can be easy in relational model but in multidimensional model has not.
+
+![Capacity of build customer tables in relation model](image/capacityOfCustomerTableRelationalModel.png?raw=true)
+
+`Manage the future unknown requirements of unknown users is part the process, the granular data is the secrets to manage those situations`, so then the relational model is more capacity to control those but depending of model in multidimensional model , it can or not controls those.
+
+## Data marts types
+
+Based in previous models in data marts enviroment, it can divide: all data marts based in multidimensional model are created from directly legacy systems and it's called independe data marts; while all data marts based in relational model are created from data warehouse enviroment and it's called dependent data marts.
+
+The independent data marts are very popular because it can a relatively inexpensive thing to build, allow an department of organization get information in its own hands, only think in deparment constraints. It focus has a big problem: in the long-tem all data mart can be inconsistent to share information in same focus if the process are not consistent at all, you have several same interface with few change you need to maintain and/or writted and get several resources to manage programs executed.
+
+![Problems of indepent data mart](image/independentDataMart.png?raw=true)
+
+`Ìn general dependent data marts are best in long-term with global thinking focus while independet data marts are short-term with limited scope solution`.
+
+# Large Data warehouse
+When the data warehouse is so large, some consideration need to know about this situation. The main components to grow the data warehouse are: detailed data, historical data and diverse data in time frame of usage in corporation.
+
+## Impact of large data warehouse
+
+When the data warehouse collect large volumes of data; issues about cost, usefulness anda data management are relevant in design. This issues are explain in differents aspects.
+
+`The basic data-management activities are harder`: when the data is growing in data warehouse, to load, indexing and access take more time to complete this activities.
+
+![Management of activities in data](image/basicDataManagementActGrowData.png?raw=true)
+
+`The cost of storage is high`: when the data grows, the cost of budget to store data increments exponently as well component like processor and software to control the usage of the data increments to support this activity.
+
+![Cost of storage](image/costBudgetGrowData.png?raw=true)
+
+`The usage pattern of data is differents based in usage`: when the data grows, the data will use is fewer in all storage and don't scanning all storage to get this data. you will get 2 type of usage of data: unfrequent and frequent usage of data.
+
+![Pattern of usage in data ](image/patternOfUsageDataGrowData.png?raw=true)
+
+## Disk storage in usage of data
+
+When you have frequent and unfrequent usage of data, you need to store this data in different storage to get optimal queries to answer enviroment. The disk storage is common storage into DBMS and use in transactional DB.
+
+You need to store the frequently used data in storage of fast access mechanist; called near-line storage; to get the data while the data used unfrequenly stored a archival storage. The near-line storage are storage with robotically controlled, get bulk amounts of data, reliable over a long period of time; while a archival storage is more taped storage or ; in general; slow access and long live storage.
+
+![Storage system in big data warehouse](image/SplitStorageMedia.png?raw=true)
+
+Get a split-storage media incurs a loss of speed in process of moving between thoses storages; but in general performance in access of data the split-storage media better then a disk storage in performance depending of case and probability of usage in data.
+
+![Analogy in performance in two options of storage media in big data warehouse](image/PerformanceDiskAndSplitStorageMedia.png?raw=true)
+
+The main difference in archival and near-line enviroment is the near-line storage is seen an extension of data warehouse: the disk and near-line storages are only unit of storage and get transparent into end user to query this enviroment; while a archival enviroment, the end user need know that your query is proccess in this enviroment.
+
+![Logical units in storage inside data warehouse enviroment](image/StorageEnviromentInBigDWH.png?raw=true)
+
+This transparency in near-line and data warehouse enviroment is achieved in format of data row, compability in technology terms and the near-line system available to the database system.
+
+## Moving data from enviroment to another
+
+The moving data from the near-line and the data warehouse enviroment can be accomplished in many ways:
+* **The manually moving the data** between enviroments by database administrator; this focus is very flexibility and work well and it's a low-tech option and avaible to anyone.
+* **Use a hierarchical storage management approach**: whole data sets are moved, it can be automatic. In this focus, you loss the granularity in moving data sets.
+* **Use a cross-media storage management approach**: this option is fully automated and operates at the row level of granularity between enviroments. It's a complex and expensive focus to implement.
+
+![Table of disadvantage and advantage in data moving management](image/TableDataMovingManagement.png?raw=true)
+
+The cross-media storage management can be streamlined by the usage of a data warehouse monitor: monitoring the SQL query and result, the system tell what data is and is not being used in the data warehouse. it can allow a more finely tuned in data warehouse system. In general, as a rule; use a third-party monitors to implement in enviroment.
+
+## Maximum capacity
+
+The capacity of enviroment is meaning by combination with a fair parameters: volumen of data, number of users, workload complexity.
+
+
+
+# The life cycle of data
+
+There is a life cycle of data as it enters the corporation and then is used there. It makes sense to match the life cycle of data to the different technologies found in the  data warehouse enviroment based in usage of data.
+
+![life cycle of data in data warehouse enviroment](image/lifeCycleOfDataInDWHEnviroment.png?raw=true)
+
+When the flow of dara throughout the information life cycle does not follow work in prevous image; those data becomes bloated and clogged up and analysis will be hard or impossible.
+
+
+
+# Testing and the data warehouse
+
+In operational enviroment need the testing enviroment like part of enviroment because operational code need to correct once it meets the production; it is a expectative in operational enviroment. `In data warehouse enviroment, the expectative is constant adjustment and readjustment based in the constant feedback of end users to get the accuracy and completeness data in data warehouse enviroment`.
+
+![Constant feedback loop of end users ](image/ConstantFeedbackLoopOfEndUsers.png?raw=true)
+
+Then the question will arise is: does the data warehouse enviroment places bad data? or does the data in data warehouse enviroment is perfect?; the answer to both questions is Not, the principles is: `The data placed in the data warehouse is the best data that can be placed there, but no one guarantees the perfection of the data`.  This principle is based in the type of decision made with the data: business decision of data, features or properties in data, and others.
+
 
 # References
 1.   build of data warehouse, fourth edition. W. H. Inmon. 2005
