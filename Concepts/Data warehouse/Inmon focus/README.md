@@ -1,9 +1,9 @@
-# Data warehouse
+# Data warehouse based in Inmon focus
 
 ======================================
 
 ## Purpose
-Contain all concepts, best practices, patterns, architectures and concepts about data warehouse i learned.
+Contain all concepts, best practices, patterns, architectures and concepts about data warehouse i learned based in Inmon focus.
 
 
 ## Index of readme
