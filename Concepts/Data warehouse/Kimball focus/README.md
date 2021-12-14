@@ -11,7 +11,12 @@ This is a index to best navigation inside document.
 
 - [Dimensional modeling introduction](#dimensional-modeling-introduction)
   - [General issues in dimensional modeling](#general-issues-in-dimensional-modeling)
+  - [Star schema vs OLAP cude](#star-schema-vs-olap-cude)
 
 # Dimensional modeling introduction
+## General issues in dimensional modeling
 This technique to analyze data because it addresses two simultaneous requirements: deliver data fast and understandable to the business users by make simple database from complex data base.
+
 The dimensional modeling and 3NF models (or called ERD model) are compared in query performance issues, but the main diferent is in the degree of normalization: the RDMS can't efficiently query a efficient normalized data model, so you need to some degree of unnormalize into those queries.
+
+## Star schema vs OLAP cude
