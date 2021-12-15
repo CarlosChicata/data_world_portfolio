@@ -11,7 +11,7 @@ This is a index to best navigation inside document.
 
 - [Dimensional modeling introduction](#dimensional-modeling-introduction)
   - [General issues in dimensional modeling](#general-issues-in-dimensional-modeling)
-  - [Star schema vs OLAP cude](#star-schema-vs-olap-cude)
+  - [Star schema vs OLAP cube](#star-schema-vs-olap-cube)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -21,7 +21,7 @@ The dimensional modeling and 3NF models (or called ERD model) are compared in qu
 
 ## Star schema vs OLAP cube
 
-The dimensional models implemented in RDMS are referred to as Star schema while the dimensional models implemented in Multidimensional Database are referred to as OLAOP Cubes.
+The dimensional models implemented in RDMS are referred to as Star schema while the dimensional models implemented in Multidimensional Database are referred to as OLAP Cubes.
 
 ![Start schema and OLAP Cube](Images/StarSchemaVsOLAPCube.png?raw=true)
 
