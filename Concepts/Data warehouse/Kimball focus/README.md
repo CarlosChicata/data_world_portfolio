@@ -23,5 +23,6 @@ The dimensional modeling and 3NF models (or called ERD model) are compared in qu
 
 The dimensional models implemented in RDMS are referred to as Star schema while the dimensional models implemented in Multidimensional Database are referred to as OLAOP Cubes.
 
+![Start schema and OLAP Cube](Images/StarSchemaVsOLAPCube.png?raw=true)
 
 The OLAP cube is stored and indexed using techniques for dimensional data, performance aggregations or precalculated summary tables are created and managed by the OLAP cube engine and this deliver super query performances, flexibility to analyze and robust functions that exceed those available with SQL. The downside is that you pay a load performance price in generate this cube, especially with large data sets.
