@@ -12,7 +12,7 @@ This is a index to best navigation inside document.
 - [Dimensional modeling introduction](#dimensional-modeling-introduction)
   - [General issues in dimensional modeling](#general-issues-in-dimensional-modeling)
   - [Star schema vs OLAP cube](#star-schema-vs-olap-cube)
-
+- [Star schema modeling](#star-schema-modeling)
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
 This technique to analyze data because it addresses two simultaneous requirements: deliver data fast and understandable to the business users by make simple database from complex data base.
@@ -26,3 +26,6 @@ The dimensional models implemented in RDMS are referred to as Star schema while 
 ![Start schema and OLAP Cube](Images/StarSchemaVsOLAPCube.png?raw=true)
 
 The OLAP cube is stored and indexed using techniques for dimensional data, performance aggregations or precalculated summary tables are created and managed by the OLAP cube engine and this deliver super query performances, flexibility to analyze and robust functions that exceed those available with SQL. The downside is that you pay a load performance price in generate this cube, especially with large data sets.
+
+
+# Star schema modeling
