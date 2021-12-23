@@ -46,5 +46,5 @@ All fact tables have 2 or more foreign keys that connect to the dimension table'
 
 ## Dimensional tables
 
-
+The dimension tables contain the textual context associated with a business process measurement event. They describe the “who, what, where, when, how, and why” associated with the event.
 
