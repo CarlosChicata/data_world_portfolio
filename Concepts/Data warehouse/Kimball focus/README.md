@@ -34,6 +34,8 @@ The OLAP cube is stored and indexed using techniques for dimensional data, perfo
 
 # Star schema modeling
 
+![Example of star schema modeling](Images/StartModeling.png?raw=true)
+
 This schema focus in dimensional modeling is the simplicity and symmetry. You can navigate easily in schema; `The reduced number of tables and use of meaningful business descriptors make it easy to navigate and less likely that mistakes will occur`.
 
 This schema get a great performance to query because there are few joins to use. With indexed dimensional tables, the dabase optimizer get a best plan to query run.
