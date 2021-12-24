@@ -34,6 +34,14 @@ The OLAP cube is stored and indexed using techniques for dimensional data, perfo
 
 # Star schema modeling
 
+This schema focus in dimensional modeling is the simplicity and symmetry. You can navigate easily in schema; `The reduced number of tables and use of meaningful business descriptors make it easy to navigate and less likely that mistakes will occur`.
+
+This schema get a great performance to query because there are few joins to use. With indexed dimensional tables, the dabase optimizer get a best plan to query run.
+
+The last benefit is the extent fo accommodate change. Every dimension table is equivalent into the fact table and the dimensional model has no built-in bias regarding expected query patterns. `You can add new dimension table to the schema
+as long as a single value of that dimension is defined for each existing fact row from fact table`. Data would not need to be reloaded, and existing BI
+applications would continue to run without yielding different results.
+
 ## Fact tables
 
 The fact table in a dimensional model stores the performance measurements resulting from an organization’s business process events. `remember; the fact tables represents a business measure. You store the low-level measurement data resulting from a business process in a single dimensional model`. The volumen of data is overwhelmingly and represent the 90% of data in dimensional modeling, so then i don't duplicate in multiple places, then the all users access a central and consistent data  throughout the enterprise.
