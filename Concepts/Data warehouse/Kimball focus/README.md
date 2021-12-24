@@ -77,6 +77,8 @@ InDimensiona tables sample with denormalized hierarchies previous image,  shows 
 
 This arquitecture has 4 components: operational source system, ETL system, presentation are and bi application.
 
+![Kimball Arquitecture model](Images/KimballArquitecture.png?raw=true)
+
 ### Operation source system
 
 Operational Source system capture the business's transactions with own format of data and indepent system to operational activities in enterprise. `The main prioroties of this system are processing performance and availability`. it has a little historical information, and the datawarehouse manage this situation.
