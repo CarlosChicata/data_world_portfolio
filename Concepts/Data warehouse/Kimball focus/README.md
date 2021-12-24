@@ -21,6 +21,8 @@ This is a index to best navigation inside document.
     - [ETL system](#etl-system)
     - [Presentation Area](#presentation-area)
     - [Business intelligence applications](#business-intelligence-applications)
+  - [Alternative models](#alternative-models)
+    - [Independent Data mart Architecture](#ndependent-data-mart-architecture)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -100,4 +102,13 @@ The presentation data area should be structured around business process measurem
 ### Business intelligence applications
 
 The term BI application loosely refers to the range of capabilities provided to business users to leverage the presentation area for analytic decision making. A BI application can be as simple as an ad hoc query tool or as complex as a sophisticated data mining or modeling application.
+
+## Alternative models
+
+### Independent Data mart Architecture
+
+With this approach, analytic data is deployed on a departamental basis without concern to sharing and integrating information across the enterprise. The departament work with IT staff to build a database that satisfies ther departamental need, reflecting their business rules and preferred labeling in isolation.
+
+This focus consuming resources to generate ETL system, unefficient don't get homogenous data to use between deparments and generate confusing all users, generate more work to operational source system to interact to get data.
+
 
