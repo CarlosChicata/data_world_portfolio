@@ -19,7 +19,7 @@ This is a index to best navigation inside document.
   - [Kimball arquitecture](#kimball-arquitecture)
     - [Operation source system](#operation-source-system)
     - [ETL system](#etl-system)
-    - [Presentation Area](#presentation-arrea)
+    - [Presentation Area](#presentation-area)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
