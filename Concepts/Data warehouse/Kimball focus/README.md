@@ -109,6 +109,8 @@ The term BI application loosely refers to the range of capabilities provided to 
 
 With this approach, analytic data is deployed on a departamental basis without concern to sharing and integrating information across the enterprise. The departament work with IT staff to build a database that satisfies ther departamental need, reflecting their business rules and preferred labeling in isolation.
 
+![Data mart architecture model](Images/DataMartArchitectureModel.png?raw=true)
+
 This focus consuming resources to generate ETL system, unefficient don't get homogenous data to use between deparments and generate confusing all users, generate more work to operational source system to interact to get data.
 
 
