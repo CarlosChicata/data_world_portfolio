@@ -17,6 +17,8 @@ This is a index to best navigation inside document.
   - [Dimensional tables](#dimensional-tables)
 - [Arquitecture models](#arquitecture-models)
   - [Kimball arquitecture](#kimball-arquitecture)
+    - [Operation source system](#operation-source-system)
+    - [ETL system](#etl-system)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -70,5 +72,18 @@ InDimensiona tables sample with denormalized hierarchies previous image,  shows 
 # Arquitecture models
 
 ## Kimball arquitecture
+
+This arquitecture has 4 components: operational source system, ETL system, presentation are and bi application.
+
+### Operation source system
+
+Operational Source system capture the business's transactions with own format of data and indepent system to operational activities in enterprise. `The main prioroties of this system are processing performance and availability`. it has a little historical information, and the datawarehouse manage this situation.
+
+### ETL system
+
+ETL system is a work area wth a set of process to moving data from operational source system and Data warehouse. This system is focus in Extract-transform-load processes to build it. The transformation process can cleaning, combining from other source and deduplicate data; and you can use thses activities to create diagnostic meatadata, eventually leading to business process reengineering to improve data quality in the source system over time. `The primary mission of the ETL system os to hand off the dimension and fact table`.
+
+Many of these defi ned subsystems focus on dimension table processing, such as surrogate key assignments, code lookups to provide appropriate descriptions, splitting, or combining columns to present the appropriate data values, or joining underlying third normal form table structures into flattened denormalized dimensions. In contrast, fact tables are typically large and time consuming to load, but preparing them for the presentation area is typically straightforward.
+
 
 
