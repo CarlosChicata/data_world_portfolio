@@ -85,5 +85,5 @@ ETL system is a work area wth a set of process to moving data from operational s
 
 Many of these defi ned subsystems focus on dimension table processing, such as surrogate key assignments, code lookups to provide appropriate descriptions, splitting, or combining columns to present the appropriate data values, or joining underlying third normal form table structures into flattened denormalized dimensions. In contrast, fact tables are typically large and time consuming to load, but preparing them for the presentation area is typically straightforward.
 
-
+The ETL system is typically dominated by the simple activities of sorting and sequential processing to load data into presentation area's dimensional structure for querying and reporting.
 
