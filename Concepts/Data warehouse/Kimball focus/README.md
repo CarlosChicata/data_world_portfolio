@@ -22,7 +22,7 @@ This is a index to best navigation inside document.
     - [Presentation Area](#presentation-area)
     - [Business intelligence applications](#business-intelligence-applications)
   - [Alternative models](#alternative-models)
-    - [Independent Data mart Architecture](#ndependent-data-mart-architecture)
+    - [Independent Data mart Architecture](#independent-data-mart-architecture)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
