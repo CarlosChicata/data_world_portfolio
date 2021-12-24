@@ -15,7 +15,8 @@ This is a index to best navigation inside document.
 - [Star schema modeling](#star-schema-modeling)
   - [Fact tables](#fact-tables)
   - [Dimensional tables](#dimensional-tables)
-
+- [Arquitecture models](#arquitecture-models)
+  - [Kimball arquitecture](#kimball-arquitecture)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -66,6 +67,8 @@ You should strive to minimize the use of codes in dimension tables by replacing 
 
 InDimensiona tables sample with denormalized hierarchies previous image,  shows that dimension tables often represent hie?raw=truerarchical relationships. For example, products roll up into brands and then into categories. For each row in the product dimension, you should store the associated brand and category description. The hierarchical descriptive information is stored redundantly in the spirit of ease of use and query performance. You should resist the perhaps habitual urge to normalize data by storing only the brand code in the product dimension and creating a separate brand lookup table, and likewise for the category description in a separate category lookup table. This normalization is called snowflaking. `The dimensional table are highly unnormalized with flattened many-to-one relationships within a single dimension table`. Using normalizin or snowflaking is almost always trade off for simplicity and accessibility in dimensional table.
  
+# Arquitecture models
 
+## Kimball arquitecture
 
 
