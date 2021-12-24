@@ -23,6 +23,7 @@ This is a index to best navigation inside document.
     - [Business intelligence applications](#business-intelligence-applications)
   - [Alternative models](#alternative-models)
     - [Independent Data mart Architecture](#independent-data-mart-architecture)
+    - [Hub and spoke corporate information Factory Inmmon Architecture](#hub-and-spoke-corporate-information-factory-inmmon-architecture)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -113,4 +114,12 @@ With this approach, analytic data is deployed on a departamental basis without c
 
 This focus consuming resources to generate ETL system, unefficient don't get homogenous data to use between deparments and generate confusing all users, generate more work to operational source system to interact to get data.
 
+### Hub and spoke corporate information Factory Inmmon Architecture
 
+This focus is advocated by Bill Inmon and others in the industry. The follow image is a simplified version of this model.
+
+![Inmon architecture Model](Images/InmonArchitectureModel.png?raw=true)
+
+In this model, data is extracted ffrom the operational system and processed through an ETL system. The resulted atomic data from this process is loading in a 3NF database and this part is mandatory in this model, it is call Enterprise data warehouse (EDW). The kimball and Inmon model advocates a enterprise data coordination and integration same in Inmon the EDW fill this role and Kimball using enterprise bus with conformed dimensions. 
+
+All users access to EDW to get detailed data, however subsequent ETL data delivery processes also populate downstream reporting and analytic environments to support business users with summary and departmentally data. 
