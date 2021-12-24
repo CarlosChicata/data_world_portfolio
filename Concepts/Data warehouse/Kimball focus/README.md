@@ -19,6 +19,7 @@ This is a index to best navigation inside document.
   - [Kimball arquitecture](#kimball-arquitecture)
     - [Operation source system](#operation-source-system)
     - [ETL system](#etl-system)
+    - [Presentation Area](#presentation-arrea)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -87,3 +88,8 @@ Many of these defi ned subsystems focus on dimension table processing, such as s
 
 The ETL system is typically dominated by the simple activities of sorting and sequential processing to load data into presentation area's dimensional structure for querying and reporting.
 
+### Presentation Area
+
+`This area is where data is organized, stored and made available for direct querying by usersm report writers and other analytical BI applications`. The star schema or OLAP cube is used to implement this area and always have atomic data and optionally summaried data.
+
+The presentation data area should be structured around business process measurement events and dimensional model should correspond to physical data capture events and it need to be cross all departments in enterprise.
