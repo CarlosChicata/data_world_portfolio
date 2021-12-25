@@ -129,6 +129,8 @@ All users access to EDW to get detailed data, however subsequent ETL data delive
 
 This architecture is focus to mix kimball and inmon architecture. This architecture populates a Inmon models with centric EDW that is completely off-limits to business users for analysis and reporting. it is the source to populate a kimball-esque presentation area in which the data is dimensional, atomic, process-centric and conform to the enterprise data warehouse bus architecture.
 
+![Mix kimball and Inmon architecture model into One](Images/HybridKimballAndInmonModel.png?raw=true)
+
 This is the best of both worlds: it may leverage a preexisting investment in an integrated repository while addressing the performance and usability issues associated with the 3NF EDW by offloading queries to the dimensional presentation area to delivering data based on kimball tenets. If you've already invested in 3NF EDW and you need to improve in the speed and flexibility of analysis an reporting into users, this models is good.
 
 
