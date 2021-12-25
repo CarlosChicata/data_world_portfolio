@@ -24,6 +24,7 @@ This is a index to best navigation inside document.
   - [Alternative models](#alternative-models)
     - [Independent Data mart Architecture](#independent-data-mart-architecture)
     - [Hub and spoke corporate information Factory Inmmon Architecture](#hub-and-spoke-corporate-information-factory-inmmon-architecture)
+    - [Hybrid hub and spoke and kimball architecture](#hybrid-hub-and-spoke-and-kimball-architecture)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -123,3 +124,11 @@ This focus is advocated by Bill Inmon and others in the industry. The follow ima
 In this model, data is extracted ffrom the operational system and processed through an ETL system. The resulted atomic data from this process is loading in a 3NF database and this part is mandatory in this model, it is call Enterprise data warehouse (EDW). The kimball and Inmon model advocates a enterprise data coordination and integration same in Inmon the EDW fill this role and Kimball using enterprise bus with conformed dimensions. 
 
 All users access to EDW to get detailed data, however subsequent ETL data delivery processes also populate downstream reporting and analytic environments to support business users with summary and departmentally data. 
+
+### Hybrid hub and spoke and kimball architecture
+
+This architecture is focus to mix kimball and inmon architecture. This architecture populates a Inmon models with centric EDW that is completely off-limits to business users for analysis and reporting. it is the source to populate a kimball-esque presentation area in which the data is dimensional, atomic, process-centric and conform to the enterprise data warehouse bus architecture.
+
+This is the best of both worlds: it may leverage a preexisting investment in an integrated repository while addressing the performance and usability issues associated with the 3NF EDW by offloading queries to the dimensional presentation area to delivering data based on kimball tenets. If you've already invested in 3NF EDW and you need to improve in the speed and flexibility of analysis an reporting into users, this models is good.
+
+
