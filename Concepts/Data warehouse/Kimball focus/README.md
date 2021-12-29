@@ -28,6 +28,7 @@ This is a index to best navigation inside document.
 - [Techniques in Star modeling](#techniques-in-star-modeling)
   - [Techniques and concepts about fact tables](#techniques-and-concepts-about-fact-tables)
     - [Fact Table structure](#fact-table-structure)
+    - [Additive, Semi Additive and Non additive facts](#additive,-semi-additive-and-non-additive-facts)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -145,3 +146,7 @@ There are techniques to define and build the fact tables inside star schema mode
 A fact table contain the numeric measures produced by an operational measurement event in the real world. Each row has the lowest grain in event; and the fundamental design is entirely based on physical actitvity in real world.
 The fact table always contains foreign keys for each of its associated dimensions; abd the primary target of the fact table to compute and dynamic aggreation arising from queries.
 
+### Additive, Semi Additive and Non additive facts
+The numeric measures in fact tables fall in 3 categories: **additive** es el most flexible and usefull, that it can be summed accross any of the associated dimensions. **Semi-additive**: It can be summed accross some dimensions but not all dimensions except time. **Non-additive**: it can't summed accross any of the associated dimensions.
+
+A good approach for non-additive facts is, where possible, to store the fully additive components of the non-additive measure and sum these components into the fi nal answer set before calculating the fi nal non-additive fact.
