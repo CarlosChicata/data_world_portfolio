@@ -25,6 +25,9 @@ This is a index to best navigation inside document.
     - [Independent Data mart Architecture](#independent-data-mart-architecture)
     - [Hub and spoke corporate information Factory Inmmon Architecture](#hub-and-spoke-corporate-information-factory-inmmon-architecture)
     - [Hybrid hub and spoke and kimball architecture](#hybrid-hub-and-spoke-and-kimball-architecture)
+- [Techniques in Star modeling](#techniques-in-star-modeling)
+  - [Techniques and concepts about fact tables](#techniques-and-concepts-about-fact-tables)
+    - [Fact Table structure](#fact-table-structure)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -133,4 +136,12 @@ This architecture is focus to mix kimball and inmon architecture. This architect
 
 This is the best of both worlds: it may leverage a preexisting investment in an integrated repository while addressing the performance and usability issues associated with the 3NF EDW by offloading queries to the dimensional presentation area to delivering data based on kimball tenets. If you've already invested in 3NF EDW and you need to improve in the speed and flexibility of analysis an reporting into users, this models is good.
 
+# Techniques in Star modeling
+
+## Techniques and concepts about fact tables 
+There are techniques to define and build the fact tables inside star schema modeling.
+
+### Fact Table structure
+A fact table contain the numeric measures produced by an operational measurement event in the real world. Each row has the lowest grain in event; and the fundamental design is entirely based on physical actitvity in real world.
+The fact table always contains foreign keys for each of its associated dimensions; abd the primary target of the fact table to compute and dynamic aggreation arising from queries.
 
