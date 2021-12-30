@@ -32,6 +32,7 @@ This is a index to best navigation inside document.
     - [Nulls in Fact Tables](#nulls-in-fact-tables)
     - [Conformed Facts](#conformed-facts)
     - [Transaction Fact Tables](#transaction-fact-tables)
+    - [Periodic Snapshot Fact Tables](#periodic-snapshot-fact-tables)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -165,5 +166,6 @@ If the same measurement appears in separate fact tables, care must be taken to m
 
 `A row in a transaction fact table corresponds to a measurement event at a point in space and time`. Atomic transaction grain fact tables are the most dimensional and expressive fact tables; this robust dimensionality enables the maximum slicing and dicing of transaction data. Transaction fact tables may be dense or sparse because rows exist only if measurements take place. These fact tables always contain a foreign key for each associated dimension, and optionally contain precise time stamps and degenerate dimension keys. The measured numeric facts must be consistent with the transaction grain
 
+### Periodic Snapshot Fact Tables
 
-
+A row in a periodic snapshot fact table summarizes many measurement events occurring over a standard period, such as a day, a week, or a month. The grain is the period, not the individual transaction. Periodic snapshot fact tables often contain many facts because any measurement event consistent with the fact table grain is permissible. These fact tables are uniformly dense in their foreign keys because even if no activity takes place during the period, a row is typically inserted in the fact table containing a zero or null for each fact
