@@ -33,6 +33,7 @@ This is a index to best navigation inside document.
     - [Conformed Facts](#conformed-facts)
     - [Transaction Fact Tables](#transaction-fact-tables)
     - [Periodic Snapshot Fact Tables](#periodic-snapshot-fact-tables)
+    - [Accumulating Snapshot Fact Tables](#accumulating-snapshot-fact-tables)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -169,3 +170,7 @@ If the same measurement appears in separate fact tables, care must be taken to m
 ### Periodic Snapshot Fact Tables
 
 A row in a periodic snapshot fact table summarizes many measurement events occurring over a standard period, such as a day, a week, or a month. The grain is the period, not the individual transaction. Periodic snapshot fact tables often contain many facts because any measurement event consistent with the fact table grain is permissible. These fact tables are uniformly dense in their foreign keys because even if no activity takes place during the period, a row is typically inserted in the fact table containing a zero or null for each fact
+
+### Accumulating Snapshot Fact Tables
+
+A row in an accumulating snapshot fact table summarizes the measurement events occurring at predictable steps between the beginning and the end of a process. There is a date foreign key in the fact table for each critical milestone in the process. An individual row in an accumulating snapshot fact table, corresponding for instance to a line on an order, is initially inserted when the order line is created.  This consistent updating of accumulating snapshot fact rows is unique among the three types of fact tables. In addition to the date foreign keys associated with each critical process step, accumulating snapshot fact tables contain foreign keys for other dimensions and optionally contain degenerate dimensions. They often include numeric lag measurements consistent with the grain, along with milestone completion counters
