@@ -31,6 +31,7 @@ This is a index to best navigation inside document.
     - [Additive, Semi Additive and Non additive facts](#additive,-semi-additive-and-non-additive-facts)
     - [Nulls in Fact Tables](#nulls-in-fact-tables)
     - [Conformed Facts](#conformed-facts)
+    - [Transaction Fact Tables](#transaction-fact-tables)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -159,4 +160,10 @@ Null-valued measurements behave gracefully in fact tables. The aggregate functio
 
 ### Conformed Facts
 If the same measurement appears in separate fact tables, care must be taken to make sure the technical definitions of the facts are identical if they are to be compared or computed together. If the separate fact definitions are consistent, the conformed facts should be identically named; but if they are incompatible, they should be differently named to alert the business users and BI applications.
+
+### Transaction Fact Tables
+
+`A row in a transaction fact table corresponds to a measurement event at a point in space and time`. Atomic transaction grain fact tables are the most dimensional and expressive fact tables; this robust dimensionality enables the maximum slicing and dicing of transaction data. Transaction fact tables may be dense or sparse because rows exist only if measurements take place. These fact tables always contain a foreign key for each associated dimension, and optionally contain precise time stamps and degenerate dimension keys. The measured numeric facts must be consistent with the transaction grain
+
+
 
