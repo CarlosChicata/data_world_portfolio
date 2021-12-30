@@ -30,6 +30,7 @@ This is a index to best navigation inside document.
     - [Fact Table structure](#fact-table-structure)
     - [Additive, Semi Additive and Non additive facts](#additive,-semi-additive-and-non-additive-facts)
     - [Nulls in Fact Tables](#nulls-in-fact-tables)
+    - [Conformed Facts](#conformed-facts)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -156,4 +157,6 @@ A good approach for non-additive facts is, where possible, to store the fully ad
 ### Nulls in Fact Tables
 Null-valued measurements behave gracefully in fact tables. The aggregate functions all do the “right thing” with null facts. However, `nulls must be avoided in the fact table’s foreign keys because these nulls would automatically cause a referential integrity violation`. Rather than a null foreign key, the associated dimension table must have a default row (and surrogate key) representing the unknown or not applicable condition.
 
+### Conformed Facts
+If the same measurement appears in separate fact tables, care must be taken to make sure the technical definitions of the facts are identical if they are to be compared or computed together. If the separate fact definitions are consistent, the conformed facts should be identically named; but if they are incompatible, they should be differently named to alert the business users and BI applications.
 
