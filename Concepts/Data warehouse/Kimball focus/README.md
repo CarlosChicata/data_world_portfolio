@@ -34,6 +34,7 @@ This is a index to best navigation inside document.
     - [Transaction Fact Tables](#transaction-fact-tables)
     - [Periodic Snapshot Fact Tables](#periodic-snapshot-fact-tables)
     - [Accumulating Snapshot Fact Tables](#accumulating-snapshot-fact-tables)
+    - [Factless Fact Tables](#factless-fact-tables)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -174,3 +175,9 @@ A row in a periodic snapshot fact table summarizes many measurement events occur
 ### Accumulating Snapshot Fact Tables
 
 A row in an accumulating snapshot fact table summarizes the measurement events occurring at predictable steps between the beginning and the end of a process. There is a date foreign key in the fact table for each critical milestone in the process. An individual row in an accumulating snapshot fact table, corresponding for instance to a line on an order, is initially inserted when the order line is created.  This consistent updating of accumulating snapshot fact rows is unique among the three types of fact tables. In addition to the date foreign keys associated with each critical process step, accumulating snapshot fact tables contain foreign keys for other dimensions and optionally contain degenerate dimensions. They often include numeric lag measurements consistent with the grain, along with milestone completion counters
+
+### Factless Fact Tables
+Is possible that the event merely records a set of dimensional entities coming together at a moment in time. For example, an event of a student attending a class on a given day may not have a recorded numeric fact, but a fact row with foreign keys for calendar day, student, teacher, location, and class is well-defined. 
+
+These queries always have two parts: a factless coverage table that contains all the possibilities of events that might happen and an activity table that contains the events that did happen. When the activity is subtracted from the coverage, the result is the set of events that did not happen.
+
