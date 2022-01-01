@@ -28,7 +28,7 @@ This is a index to best navigation inside document.
 - [Techniques in Star modeling](#techniques-in-star-modeling)
   - [Techniques and concepts about fact tables](#techniques-and-concepts-about-fact-tables)
     - [Fact Table structure](#fact-table-structure)
-    - [Additive, Semi Additive and Non additive facts](#additive,-semi-additive-and-non-additive-facts)
+    - [Additive, Semi Additive and Non additive facts](#additive-and-semi-additive-and-non-additive-facts)
     - [Nulls in Fact Tables](#nulls-in-fact-tables)
     - [Conformed Facts](#conformed-facts)
     - [Transaction Fact Tables](#transaction-fact-tables)
@@ -40,7 +40,7 @@ This is a index to best navigation inside document.
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
-    - [Natural, Durable and Supernatural Keys](#Natural,-durable-and-supernatural-keys)
+    - [Natural, Durable and Supernatural Keys](#natural-and-durable-and-supernatural-keys)
 
 
 # Dimensional modeling introduction
@@ -160,7 +160,7 @@ There are techniques to define and build the fact tables inside star schema mode
 
 The fact table always contains foreign keys for each of its associated dimensions; abd the primary target of the fact table to compute and dynamic aggreation arising from queries.
 
-### Additive, Semi Additive and Non additive facts
+### Additive and Semi Additive and Non additive facts
 The numeric measures in fact tables fall in 3 categories: **additive** es el most flexible and usefull, that it can be summed accross any of the associated dimensions. **Semi-additive**: It can be summed accross some dimensions but not all dimensions except time. **Non-additive**: it can't summed accross any of the associated dimensions.
 
 A good approach for non-additive facts is, where possible, to store the fully additive components of the non-additive measure and sum these components into the fi nal answer set before calculating the fi nal non-additive fact.
@@ -206,7 +206,7 @@ Every  dimension table has a single primary key column. This primary key is embe
 
 A    dimension table is designed with one column serving as a unique primary key. This primary key cannot be the operational system’s natural key because there will be multiple dimension rows for that natural key when changes are tracked over time. In addition, natural keys for a dimension may be created by more than one source system, and these natural keys may be incompatible or poorly administered. The DW/BI system needs to claim control of the primary keys of all dimensions; rather than using explicit natural keys or natural keys with appended dates, you should create anonymous integer primary keys for every dimension. These dimensionsur-rogatekeys are simple integers, assigned in sequence, starting with the value 1, every time a new key is needed. 
 
-### Natural, Durable and Supernatural Keys
+### Natural and Durable and Supernatural Keys
 **Natural keys** created by  operational source systems are subject to business rules outside the control of the DW/BI system. 
 
 When the data warehouse system wants to have a single natural key, it's using a **durable key**, this is a persistent and unchanged key in system. Other name for this key is Supernatural key. The best durable keys have a format that is independent of the original business process and thus should be simple integers assigned in sequence beginning with 1. While multiple surrogate keys may be associated, the durable key never changes.
