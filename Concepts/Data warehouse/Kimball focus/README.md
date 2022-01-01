@@ -36,6 +36,7 @@ This is a index to best navigation inside document.
     - [Accumulating Snapshot Fact Tables](#accumulating-snapshot-fact-tables)
     - [Factless Fact Tables](#factless-fact-tables)
     - [Aggregate Fact Tables or OLAP Cubes](#aggregate-fact-tables-or-olap-cubes)
+    - [Consolidated Fact Tables](#consolidated-fact-tables)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -184,4 +185,8 @@ These queries always have two parts: a factless coverage table that contains all
 
 ### Aggregate Fact Tables or OLAP Cubes
 Aggregate fact tablesare simple numeric rollups of atomic fact table data built solely to accelerate query performance. These aggregate fact tables should be available to the BI layer at the same time as the atomic fact tables so that BI tools smoothly choose the appropriate aggregate level at query time.
+
+### Consolidated Fact Tables
+
+`It is often convenient to combine facts from multiple processes together into a single consolidatedfacttable if they can be expressed at the same grain`. Consolidated fact tables add bur-den to the ETL processing, but ease the analytic burden on the BI applications. They should be considered for cross-process metrics that are frequently analyzed together.
 
