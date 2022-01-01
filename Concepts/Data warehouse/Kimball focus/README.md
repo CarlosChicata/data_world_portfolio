@@ -37,6 +37,9 @@ This is a index to best navigation inside document.
     - [Factless Fact Tables](#factless-fact-tables)
     - [Aggregate Fact Tables or OLAP Cubes](#aggregate-fact-tables-or-olap-cubes)
     - [Consolidated Fact Tables](#consolidated-fact-tables)
+  - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
+    - [Dimension Table Structure](#dimension-table-structure)
+
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -190,3 +193,9 @@ Aggregate fact tablesare simple numeric rollups of atomic fact table data built 
 
 `It is often convenient to combine facts from multiple processes together into a single consolidatedfacttable if they can be expressed at the same grain`. Consolidated fact tables add bur-den to the ETL processing, but ease the analytic burden on the BI applications. They should be considered for cross-process metrics that are frequently analyzed together.
 
+## Techniques and concepts about Dimension Tables
+There are techniques to define and build the dimension tables inside star schema modeling.
+
+### Dimension Table Structure
+
+Every  dimension table has a single primary key column. This primary key is embedded as a foreign key in any associated fact table where the dimension row’s descriptive context is exactly correct for that fact table row. Dimension tables are usually wide, fl at denormalized tables with many low-cardinality text attributes. Dimension table attributes are the primary target of constraints and grouping specifi cations from queries and BI applications. 
