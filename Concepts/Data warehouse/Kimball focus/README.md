@@ -40,6 +40,7 @@ This is a index to best navigation inside document.
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
+    - [Natural, Durable and Supernatural Keys](#Natural,-durable-and-supernatural-keys)
 
 
 # Dimensional modeling introduction
@@ -204,3 +205,11 @@ Every  dimension table has a single primary key column. This primary key is embe
 ### Dimension Surrogate Keys
 
 A    dimension table is designed with one column serving as a unique primary key. This primary key cannot be the operational system’s natural key because there will be multiple dimension rows for that natural key when changes are tracked over time. In addition, natural keys for a dimension may be created by more than one source system, and these natural keys may be incompatible or poorly administered. The DW/BI system needs to claim control of the primary keys of all dimensions; rather than using explicit natural keys or natural keys with appended dates, you should create anonymous integer primary keys for every dimension. These dimensionsur-rogatekeys are simple integers, assigned in sequence, starting with the value 1, every time a new key is needed. 
+
+### Natural, Durable and Supernatural Keys
+**Natural keys** created by  operational source systems are subject to business rules outside the control of the DW/BI system. 
+
+When the data warehouse system wants to have a single natural key, it's using a **durable key**, this is a persistent and unchanged key in system. Other name for this key is Supernatural key. The best durable keys have a format that is independent of the original business process and thus should be simple integers assigned in sequence beginning with 1. While multiple surrogate keys may be associated, the durable key never changes.
+
+
+
