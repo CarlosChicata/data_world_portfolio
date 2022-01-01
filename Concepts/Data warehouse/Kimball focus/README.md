@@ -39,6 +39,7 @@ This is a index to best navigation inside document.
     - [Consolidated Fact Tables](#consolidated-fact-tables)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
+    - [Dimension Surrogate Keys](#dimension-surrogate-keys)
 
 
 # Dimensional modeling introduction
@@ -199,3 +200,7 @@ There are techniques to define and build the dimension tables inside star schema
 ### Dimension Table Structure
 
 Every  dimension table has a single primary key column. This primary key is embedded as a foreign key in any associated fact table where the dimension row’s descriptive context is exactly correct for that fact table row. Dimension tables are usually wide, fl at denormalized tables with many low-cardinality text attributes. Dimension table attributes are the primary target of constraints and grouping specifi cations from queries and BI applications. 
+
+### Dimension Surrogate Keys
+
+A    dimension table is designed with one column serving as a unique primary key. This primary key cannot be the operational system’s natural key because there will be multiple dimension rows for that natural key when changes are tracked over time. In addition, natural keys for a dimension may be created by more than one source system, and these natural keys may be incompatible or poorly administered. The DW/BI system needs to claim control of the primary keys of all dimensions; rather than using explicit natural keys or natural keys with appended dates, you should create anonymous integer primary keys for every dimension. These dimensionsur-rogatekeys are simple integers, assigned in sequence, starting with the value 1, every time a new key is needed. 
