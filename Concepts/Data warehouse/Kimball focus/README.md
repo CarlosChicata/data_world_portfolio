@@ -35,6 +35,7 @@ This is a index to best navigation inside document.
     - [Periodic Snapshot Fact Tables](#periodic-snapshot-fact-tables)
     - [Accumulating Snapshot Fact Tables](#accumulating-snapshot-fact-tables)
     - [Factless Fact Tables](#factless-fact-tables)
+    - [Aggregate Fact Tables or OLAP Cubes](#aggregate-fact-tables-or-olap-cubes)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -148,8 +149,8 @@ This is the best of both worlds: it may leverage a preexisting investment in an 
 ## Techniques and concepts about fact tables 
 There are techniques to define and build the fact tables inside star schema modeling.
 
-### Fact Table structure
-A fact table contain the numeric measures produced by an operational measurement event in the real world. Each row has the lowest grain in event; and the fundamental design is entirely based on physical actitvity in real world.
+### Fact Table `structure
+`A fact table contain the numeric measures produced by an operational measurement event in the real world`. Each row has the lowest grain in event; and the fundamental design is entirely based on physical actitvity in real world.
 
 The fact table always contains foreign keys for each of its associated dimensions; abd the primary target of the fact table to compute and dynamic aggreation arising from queries.
 
@@ -159,10 +160,10 @@ The numeric measures in fact tables fall in 3 categories: **additive** es el mos
 A good approach for non-additive facts is, where possible, to store the fully additive components of the non-additive measure and sum these components into the fi nal answer set before calculating the fi nal non-additive fact.
 
 ### Nulls in Fact Tables
-Null-valued measurements behave gracefully in fact tables. The aggregate functions all do the “right thing” with null facts. However, `nulls must be avoided in the fact table’s foreign keys because these nulls would automatically cause a referential integrity violation`. Rather than a null foreign key, the associated dimension table must have a default row (and surrogate key) representing the unknown or not applicable condition.
+`Null-valued measurements behave gracefully in fact tables`. The aggregate functions all do the “right thing” with null facts. However, `nulls must be avoided in the fact table’s foreign keys because these nulls would automatically cause a referential integrity violation`. Rather than a null foreign key, the associated dimension table must have a default row (and surrogate key) representing the unknown or not applicable condition.
 
 ### Conformed Facts
-If the same measurement appears in separate fact tables, care must be taken to make sure the technical definitions of the facts are identical if they are to be compared or computed together. If the separate fact definitions are consistent, the conformed facts should be identically named; but if they are incompatible, they should be differently named to alert the business users and BI applications.
+`If the same measurement appears in separate fact tables, care must be taken to make sure the technical definitions of the facts are identical if they are to be compared or computed together`. If the separate fact definitions are consistent, the conformed facts should be identically named; but if they are incompatible, they should be differently named to alert the business users and BI applications.
 
 ### Transaction Fact Tables
 
@@ -170,14 +171,17 @@ If the same measurement appears in separate fact tables, care must be taken to m
 
 ### Periodic Snapshot Fact Tables
 
-A row in a periodic snapshot fact table summarizes many measurement events occurring over a standard period, such as a day, a week, or a month. The grain is the period, not the individual transaction. Periodic snapshot fact tables often contain many facts because any measurement event consistent with the fact table grain is permissible. These fact tables are uniformly dense in their foreign keys because even if no activity takes place during the period, a row is typically inserted in the fact table containing a zero or null for each fact
+`A row in a periodic snapshot fact table summarizes many measurement events occurring over a standard period, such as a day, a week, or a month`. The grain is the period, not the individual transaction. Periodic snapshot fact tables often contain many facts because any measurement event consistent with the fact table grain is permissible. These fact tables are uniformly dense in their foreign keys because even if no activity takes place during the period, a row is typically inserted in the fact table containing a zero or null for each fact
 
 ### Accumulating Snapshot Fact Tables
 
-A row in an accumulating snapshot fact table summarizes the measurement events occurring at predictable steps between the beginning and the end of a process. There is a date foreign key in the fact table for each critical milestone in the process. An individual row in an accumulating snapshot fact table, corresponding for instance to a line on an order, is initially inserted when the order line is created.  This consistent updating of accumulating snapshot fact rows is unique among the three types of fact tables. In addition to the date foreign keys associated with each critical process step, accumulating snapshot fact tables contain foreign keys for other dimensions and optionally contain degenerate dimensions. They often include numeric lag measurements consistent with the grain, along with milestone completion counters
+`A row in an accumulating snapshot fact table summarizes the measurement events occurring at predictable steps between the beginning and the end of a process`. There is a date foreign key in the fact table for each critical milestone in the process. An individual row in an accumulating snapshot fact table, corresponding for instance to a line on an order, is initially inserted when the order line is created.  This consistent updating of accumulating snapshot fact rows is unique among the three types of fact tables. In addition to the date foreign keys associated with each critical process step, accumulating snapshot fact tables contain foreign keys for other dimensions and optionally contain degenerate dimensions. They often include numeric lag measurements consistent with the grain, along with milestone completion counters
 
 ### Factless Fact Tables
-Is possible that the event merely records a set of dimensional entities coming together at a moment in time. For example, an event of a student attending a class on a given day may not have a recorded numeric fact, but a fact row with foreign keys for calendar day, student, teacher, location, and class is well-defined. 
+`Is possible that the event merely records a set of dimensional entities coming together at a moment in time`. For example, an event of a student attending a class on a given day may not have a recorded numeric fact, but a fact row with foreign keys for calendar day, student, teacher, location, and class is well-defined. 
 
 These queries always have two parts: a factless coverage table that contains all the possibilities of events that might happen and an activity table that contains the events that did happen. When the activity is subtracted from the coverage, the result is the set of events that did not happen.
+
+### Aggregate Fact Tables or OLAP Cubes
+Aggregate fact tablesare simple numeric rollups of atomic fact table data built solely to accelerate query performance. These aggregate fact tables should be available to the BI layer at the same time as the atomic fact tables so that BI tools smoothly choose the appropriate aggregate level at query time.
 
