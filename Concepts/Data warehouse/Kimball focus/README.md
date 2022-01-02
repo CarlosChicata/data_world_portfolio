@@ -44,6 +44,7 @@ This is a index to best navigation inside document.
     - [Drilling Down](#drilling-down)
     - [Degenerate Dimensions](#degenerate-dimensions)
     - [Denormalized Flattened Dimensions](#denormalized-flattened-dimensions)
+    - [Multiple Hierarchies in Dimensions](#multiple-hierarchies-in-dimensions)
 
 
 # Dimensional modeling introduction
@@ -223,3 +224,5 @@ Sometimes  a dimension is defi ned that has no content except for its primary ke
 ### Denormalized Flattened Dimensions
 In  general, dimensional designers must resist the normalization urges caused by years of operational database designs and instead denormalize the many-to-one fi xed depth hierarchies into separate attributes on a fl attened dimension row. Dimension denormalization supports dimensional modeling’s twin objectives of simplicity and speed.
 
+###  Multiple Hierarchies in Dimensions
+Many  dimensions contain more than one natural hierarchy. For example, calendar date dimensions may have a day to week to fi scal period hierarchy, as well as a day to month to year hierarchy. Location intensive dimensions may have multiple geographic hierarchies. In all of these cases, the separate hierarchies can gracefully coexist in the same dimension table.
