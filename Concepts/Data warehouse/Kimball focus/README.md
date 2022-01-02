@@ -42,6 +42,7 @@ This is a index to best navigation inside document.
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
     - [Natural, Durable and Supernatural Keys](#natural-and-durable-and-supernatural-keys)
     - [Drilling Down](#drilling-down)
+    - [Degenerate Dimensions](#degenerate-dimensions)
 
 
 # Dimensional modeling introduction
@@ -215,5 +216,6 @@ When the data warehouse system wants to have a single natural key, it's using a 
 ### Drilling Down
 Drilling downis the most fundamental way data is analyzed by business users. Drilling down simply means adding a row header to an existing query; the new row header is a dimension attribute appended to the GROUP BY expression in an SQL query. The attribute can come from any dimension attached to the fact table in the query. Drilling down does not require the defi  nition of predetermined hierarchies or drill-down paths.
 
-
+### Degenerate Dimensions
+Sometimes  a dimension is defi ned that has no content except for its primary key. For example, when an invoice has multiple line items, the line item fact rows inherit all the descriptive dimension foreign keys of the invoice, and the invoice is left with no unique content. But the invoice number remains a valid dimension key for fact tables at the line item level. This degenerate dimension is placed in the fact table with the explicit acknowledgment that there is no associated dimension table. Degenerate dimensions are most common with transaction and accumulating snapshot fact tables.
 
