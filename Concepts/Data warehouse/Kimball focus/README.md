@@ -50,6 +50,7 @@ This is a index to best navigation inside document.
     - [Role Playing Dimensions](#role-playing-dimensions)
     - [Junk Dimensions](#junk-dimensions)
     - [Snowflaked Dimensions](#snowflaked-dimensions)
+    - [Outrigger Dimensions](#outrigger-dimensions)
 
 
 # Dimensional modeling introduction
@@ -247,3 +248,6 @@ Transactional  business processes typically produce a number of miscellaneous, l
 ### Snowflaked Dimensions
 
 When  a hierarchical relationship in a dimension table is normalized, low-cardinal-ity attributes appear as secondary tables connected to the base dimension table by an attribute key. When this process is repeated with all the dimension table’s hierarchies, a characteristic multilevel structure is created that is called a snowflake. Although the snowflake represents hierarchical data accurately, you should avoid snowflakes because it is difficult for business users to understand and navigate snowflakes. They can also negatively impact query performance. A flattened denormalized dimension table contains exactly the same information as a snowflaked dimension.
+
+### Outrigger Dimensions
+A dimension can contain a reference to another dimension table. For instance, a bank account dimension can reference a separate dimension representing the date the account was opened. These secondary dimension references are called outrigger dimensions. Outrigger dimensions are permissible, but should be used sparingly. In most cases, the correlations between dimensions should be demoted to a fact table, where both dimensions are represented as separate foreign keys.
