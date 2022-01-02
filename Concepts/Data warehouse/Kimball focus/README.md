@@ -46,6 +46,7 @@ This is a index to best navigation inside document.
     - [Denormalized Flattened Dimensions](#denormalized-flattened-dimensions)
     - [Multiple Hierarchies in Dimensions](#multiple-hierarchies-in-dimensions)
     - [Flags and Indicators as Textual Attributes](#flags-and-indicators-as-textual-attributes)
+    - [Null Attributes in Dimensions](#null-attributes-in-dimensions)
 
 
 # Dimensional modeling introduction
@@ -230,3 +231,7 @@ Many  dimensions contain more than one natural hierarchy. For example, calendar 
 
 ### Flags and Indicators as Textual Attributes
 Cryptic  abbreviations, true/false fl ags, and operational indicators should be sup-plemented in dimension tables with full text words that have meaning when independently viewed. Operational codes with embedded meaning within the code value should be broken down with each part of the code expanded into its own separate descriptive dimension attribute.
+
+### Null Attributes in Dimensions
+Null-valued  dimension attributes result when a given dimension row has not been fully populated, or when there are attributes that are not applicable to all the dimen-sion’s rows. In both cases, we recommend substituting a descriptive string, such as Unknown or Not Applicable in place of the null value. Nulls in dimension attributes should be avoided because diff erent databases handle grouping and constraining on nulls inconsistently.
+
