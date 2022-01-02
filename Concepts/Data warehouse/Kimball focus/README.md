@@ -45,6 +45,7 @@ This is a index to best navigation inside document.
     - [Degenerate Dimensions](#degenerate-dimensions)
     - [Denormalized Flattened Dimensions](#denormalized-flattened-dimensions)
     - [Multiple Hierarchies in Dimensions](#multiple-hierarchies-in-dimensions)
+    - [Flags and Indicators as Textual Attributes](#flags-and-indicators-as-textual-attributes)
 
 
 # Dimensional modeling introduction
@@ -226,3 +227,6 @@ In  general, dimensional designers must resist the normalization urges caused by
 
 ###  Multiple Hierarchies in Dimensions
 Many  dimensions contain more than one natural hierarchy. For example, calendar date dimensions may have a day to week to fi scal period hierarchy, as well as a day to month to year hierarchy. Location intensive dimensions may have multiple geographic hierarchies. In all of these cases, the separate hierarchies can gracefully coexist in the same dimension table.
+
+### Flags and Indicators as Textual Attributes
+Cryptic  abbreviations, true/false fl ags, and operational indicators should be sup-plemented in dimension tables with full text words that have meaning when independently viewed. Operational codes with embedded meaning within the code value should be broken down with each part of the code expanded into its own separate descriptive dimension attribute.
