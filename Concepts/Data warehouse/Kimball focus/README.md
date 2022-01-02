@@ -43,6 +43,7 @@ This is a index to best navigation inside document.
     - [Natural, Durable and Supernatural Keys](#natural-and-durable-and-supernatural-keys)
     - [Drilling Down](#drilling-down)
     - [Degenerate Dimensions](#degenerate-dimensions)
+    - [Denormalized Flattened Dimensions](#denormalized-flattened-dimensions)
 
 
 # Dimensional modeling introduction
@@ -218,4 +219,7 @@ Drilling downis the most fundamental way data is analyzed by business users. Dri
 
 ### Degenerate Dimensions
 Sometimes  a dimension is defi ned that has no content except for its primary key. For example, when an invoice has multiple line items, the line item fact rows inherit all the descriptive dimension foreign keys of the invoice, and the invoice is left with no unique content. But the invoice number remains a valid dimension key for fact tables at the line item level. This degenerate dimension is placed in the fact table with the explicit acknowledgment that there is no associated dimension table. Degenerate dimensions are most common with transaction and accumulating snapshot fact tables.
+
+### Denormalized Flattened Dimensions
+In  general, dimensional designers must resist the normalization urges caused by years of operational database designs and instead denormalize the many-to-one fi xed depth hierarchies into separate attributes on a fl attened dimension row. Dimension denormalization supports dimensional modeling’s twin objectives of simplicity and speed.
 
