@@ -47,6 +47,7 @@ This is a index to best navigation inside document.
     - [Multiple Hierarchies in Dimensions](#multiple-hierarchies-in-dimensions)
     - [Flags and Indicators as Textual Attributes](#flags-and-indicators-as-textual-attributes)
     - [Null Attributes in Dimensions](#null-attributes-in-dimensions)
+    - [Role Playing Dimensions](#role-playing-dimensions)
 
 
 # Dimensional modeling introduction
@@ -235,3 +236,5 @@ Cryptic  abbreviations, true/false fl ags, and operational indicators should be 
 ### Null Attributes in Dimensions
 Null-valued  dimension attributes result when a given dimension row has not been fully populated, or when there are attributes that are not applicable to all the dimen-sion’s rows. In both cases, we recommend substituting a descriptive string, such as Unknown or Not Applicable in place of the null value. Nulls in dimension attributes should be avoided because diff erent databases handle grouping and constraining on nulls inconsistently.
 
+### Role-Playing Dimensions
+A   single physical dimension can be referenced multiple times in a fact table, with each reference linking to a logically distinct role for the dimension. For instance, a fact table can have several dates, each of which is represented by a foreign key to the date dimension. It is essential that each foreign key refers to a separate view of the date dimension so that the references are independent. These separate dimen-sion views (with unique attribute column names) are called roles.
