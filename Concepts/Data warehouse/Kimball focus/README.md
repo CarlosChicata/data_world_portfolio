@@ -48,6 +48,7 @@ This is a index to best navigation inside document.
     - [Flags and Indicators as Textual Attributes](#flags-and-indicators-as-textual-attributes)
     - [Null Attributes in Dimensions](#null-attributes-in-dimensions)
     - [Role Playing Dimensions](#role-playing-dimensions)
+    - [Junk Dimensions](#junk-dimensions)
 
 
 # Dimensional modeling introduction
@@ -238,3 +239,5 @@ Null-valued  dimension attributes result when a given dimension row has not been
 
 ### Role-Playing Dimensions
 A   single physical dimension can be referenced multiple times in a fact table, with each reference linking to a logically distinct role for the dimension. For instance, a fact table can have several dates, each of which is represented by a foreign key to the date dimension. It is essential that each foreign key refers to a separate view of the date dimension so that the references are independent. These separate dimen-sion views (with unique attribute column names) are called roles.
+
+### Junk Dimensions
