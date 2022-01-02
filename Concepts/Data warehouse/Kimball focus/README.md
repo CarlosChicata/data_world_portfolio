@@ -41,6 +41,7 @@ This is a index to best navigation inside document.
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
     - [Natural, Durable and Supernatural Keys](#natural-and-durable-and-supernatural-keys)
+    - [Drilling Down](#drilling-down)
 
 
 # Dimensional modeling introduction
@@ -210,6 +211,9 @@ A    dimension table is designed with one column serving as a unique primary key
 **Natural keys** created by  operational source systems are subject to business rules outside the control of the DW/BI system. 
 
 When the data warehouse system wants to have a single natural key, it's using a **durable key**, this is a persistent and unchanged key in system. Other name for this key is Supernatural key. The best durable keys have a format that is independent of the original business process and thus should be simple integers assigned in sequence beginning with 1. While multiple surrogate keys may be associated, the durable key never changes.
+
+### Drilling Down
+Drilling downis the most fundamental way data is analyzed by business users. Drilling down simply means adding a row header to an existing query; the new row header is a dimension attribute appended to the GROUP BY expression in an SQL query. The attribute can come from any dimension attached to the fact table in the query. Drilling down does not require the defi  nition of predetermined hierarchies or drill-down paths.
 
 
 
