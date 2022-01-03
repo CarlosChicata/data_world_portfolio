@@ -55,6 +55,7 @@ This is a index to best navigation inside document.
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
     - [Drilling Across](#drilling-across)
+    - [Value Chain](#value-chain)
 
 
 # Dimensional modeling introduction
@@ -270,3 +271,5 @@ Another case of conformed dimension subsetting occurs when two dimensions are at
 ### Drilling Across
 Drilling across simply means making separate queries against two or more fact tables where the row headers of each query consist of identical conformed attributes. The answer sets from the two queries are aligned by performing a sort-merge operation on the common dimension attribute row headers. BI tool vendors refer to this functionality by various names, including stitch and multipass query.
 
+### Value Chain
+A value chain identifies the natural flow of an organization’s primary business processes. For example, a retailer’s value chain may consist of purchasing to warehousing to retail sales. A general ledger value chain may consist of budgeting to commitments to payments. Operational source systems typically produce transactions or snapshots at each step of the value chain. Because each process produces unique metrics at unique time intervals with unique granularity and dimensionality, each process typically spawns at least one atomic fact table.
