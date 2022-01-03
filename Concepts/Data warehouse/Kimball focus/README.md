@@ -54,6 +54,7 @@ This is a index to best navigation inside document.
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
+    - [Drilling Across](#drilling-across)
 
 
 # Dimensional modeling introduction
@@ -265,4 +266,7 @@ Dimension tables conform when attributes in separate dimension tables have the s
 Shrunken dimensions are conformed dimensions that are a subset of rows and/or columns of a base dimension. Shrunken rollup dimensions are required when constructing aggregate fact tables. They are also necessary for business processes that naturally capture data at a higher level of granularity, such as a forecast by month and brand (instead of the more atomic date and product associated with sales data). 
 
 Another case of conformed dimension subsetting occurs when two dimensions are at the same level of detail, but one represents only a subset of rows
+
+### Drilling Across
+Drilling across simply means making separate queries against two or more fact tables where the row headers of each query consist of identical conformed attributes. The answer sets from the two queries are aligned by performing a sort-merge operation on the common dimension attribute row headers. BI tool vendors refer to this functionality by various names, including stitch and multipass query.
 
