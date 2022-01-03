@@ -53,6 +53,7 @@ This is a index to best navigation inside document.
     - [Outrigger Dimensions](#outrigger-dimensions)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
+    - [Shrunken Dimensions](#shrunken-dimensions)
 
 
 # Dimensional modeling introduction
@@ -260,4 +261,8 @@ Techniques to integrate data from diff erent business processes.
 ### Conformed Dimensions
 Dimension tables conform when attributes in separate dimension tables have the same column names and domain contents. Information from separate fact tables can be combined in a single report by using conformed dimension attributes that are associated with each fact table. When a conformed attribute is used as the row header (that is, the grouping column in the SQL query), the results from the separate fact tables can be aligned on the same rows in a drill-across report. This is the essence of integration in an enterprise DW/BI system. Conformed dimensions, defined once in collaboration with the business’s data governance representatives, are reused across fact tables; they deliver both analytic consistency and reduced future development costs because the wheel is not repeatedly re-create.
 
+### Shrunken Dimensions
+Shrunken dimensions are conformed dimensions that are a subset of rows and/or columns of a base dimension. Shrunken rollup dimensions are required when constructing aggregate fact tables. They are also necessary for business processes that naturally capture data at a higher level of granularity, such as a forecast by month and brand (instead of the more atomic date and product associated with sales data). 
+
+Another case of conformed dimension subsetting occurs when two dimensions are at the same level of detail, but one represents only a subset of rows
 
