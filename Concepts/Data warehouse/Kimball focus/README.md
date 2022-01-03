@@ -51,6 +51,7 @@ This is a index to best navigation inside document.
     - [Junk Dimensions](#junk-dimensions)
     - [Snowflaked Dimensions](#snowflaked-dimensions)
     - [Outrigger Dimensions](#outrigger-dimensions)
+  - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
 
 
 # Dimensional modeling introduction
@@ -251,3 +252,7 @@ When  a hierarchical relationship in a dimension table is normalized, low-cardin
 
 ### Outrigger Dimensions
 A dimension can contain a reference to another dimension table. For instance, a bank account dimension can reference a separate dimension representing the date the account was opened. These secondary dimension references are called outrigger dimensions. Outrigger dimensions are permissible, but should be used sparingly. In most cases, the correlations between dimensions should be demoted to a fact table, where both dimensions are represented as separate foreign keys.
+
+## Integration via Conformed Dimensions
+Techniques to integrate data from diff erent business processes.
+
