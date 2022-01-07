@@ -59,6 +59,7 @@ This is a index to best navigation inside document.
     - [Enterprise Data Warehouse Bus Architecture](#enterprise-data-warehouse-bus-architecture)
     - [Enterprise Data Warehouse Bus Matrix](#enterprise-data-warehouse-bus-matrix)
     - [Detailed Implementation Bus Matrix](#detailed-implementation-bus-matrix)
+    - [Opportunity or Stakeholder Matrix](#opportunity-or-stakeholder-matrix)
 
 
 # Dimensional modeling introduction
@@ -286,4 +287,7 @@ The enterprise data warehouse bus architecture provides an incremental approach 
 ### Detailed Implementation Bus Matrix
 `The detailed implementation bus matrix is a more granular bus matrix where each business process row has been expanded to show specific fact tables or OLAP cubes`. At this level of detail, the precise grain statement and list of facts can be documented.
 
+### Opportunity or Stakeholder Matrix
+After  the enterprise data warehouse bus matrix rows have been identified, you can draft a different matrix by replacing the dimension columns with business functions, such as marketing, sales, and finance, and then shading the matrix cells to indicate which business functions are interested in which business process rows.
 
+It helps identify which business groups should be invited to the collaborative design sessions for each process-centric row.
