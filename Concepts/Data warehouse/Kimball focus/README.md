@@ -63,6 +63,7 @@ This is a index to best navigation inside document.
   - [Dealing with Slowly Changing Dimension Attributes](#dealing-with-slowly-changing-dimension-attributes)
     - [Type 0 or Retain Original](#type-0-or-retain-original)
     - [Type 1 or Overwrite](#type-1-or-overwrite)
+    - [Type 2 or Add New Row](#type-2-or-add-new-row)
 
 
 # Dimensional modeling introduction
@@ -303,3 +304,7 @@ With type 0, `the dimension attribute value never changes`, so facts are always 
 
 ### Type 1 or Overwrite
 With type 1, `the old attribute value in the dimension row is overwritten with the new value; type 1 attributes always reflects the most recent assignment, and therefore this technique destroys history`. Although this approach is easy to implement and does not create additional dimension rows, you must be careful that aggregate fact tables and OLAP cubes affected by this change are recomputed.
+
+### Type 2 or Add New Row
+Type 2 changes `add a new row in the dimension with the updated attribute values`. This requires generalizing the primary key of the dimension beyond the natural or durable key because there will potentially be multiple rows describing each member.
+When a new row is created for a dimension member, a new primary surrogate key is assigned and used as a foreign key in all fact tables from the moment of the update until a subsequent change creates a new dimension key and updated dimension row. A minimum of three additional columns should be added to the dimension row with type 2 changes: 1) row effective date or date/time stamp; 2) row expiration date or date/time stamp; and 3) current row indicator.
