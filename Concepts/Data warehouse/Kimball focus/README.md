@@ -60,6 +60,8 @@ This is a index to best navigation inside document.
     - [Enterprise Data Warehouse Bus Matrix](#enterprise-data-warehouse-bus-matrix)
     - [Detailed Implementation Bus Matrix](#detailed-implementation-bus-matrix)
     - [Opportunity or Stakeholder Matrix](#opportunity-or-stakeholder-matrix)
+   - [Dealing with Slowly Changing Dimension Attributes](#dealing-with-slowly-changing-dimension-attributes)
+    - [Type 0 or Retain Original](#type-0-or-retain-original)
 
 
 # Dimensional modeling introduction
@@ -291,3 +293,9 @@ The enterprise data warehouse bus architecture provides an incremental approach 
 After  the enterprise data warehouse bus matrix rows have been identified, you can draft a different matrix by replacing the dimension columns with business functions, such as marketing, sales, and finance, and then shading the matrix cells to indicate which business functions are interested in which business process rows.
 
 It helps identify which business groups should be invited to the collaborative design sessions for each process-centric row.
+
+## Dealing with Slowly Changing Dimension Attributes
+ It is quite common to have attributes in the same dimension table that are handled with diff erent change tracking techniques.
+ 
+ ### Type 0 or Retain Original
+With type 0, the dimension attribute value never changes, so facts are always grouped by this original value. Type 0 is appropriate for any attribute labeled “original,” such as a customer’s original credit score or a durable identifier.
