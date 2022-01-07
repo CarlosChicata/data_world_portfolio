@@ -64,6 +64,7 @@ This is a index to best navigation inside document.
     - [Type 0 or Retain Original](#type-0-or-retain-original)
     - [Type 1 or Overwrite](#type-1-or-overwrite)
     - [Type 2 or Add New Row](#type-2-or-add-new-row)
+    - [Type 3 or Add New Attribute](#type-3-or-add-new-attribute)
 
 
 # Dimensional modeling introduction
@@ -308,3 +309,6 @@ With type 1, `the old attribute value in the dimension row is overwritten with t
 ### Type 2 or Add New Row
 Type 2 changes `add a new row in the dimension with the updated attribute values`. This requires generalizing the primary key of the dimension beyond the natural or durable key because there will potentially be multiple rows describing each member.
 When a new row is created for a dimension member, a new primary surrogate key is assigned and used as a foreign key in all fact tables from the moment of the update until a subsequent change creates a new dimension key and updated dimension row. A minimum of three additional columns should be added to the dimension row with type 2 changes: 1) row effective date or date/time stamp; 2) row expiration date or date/time stamp; and 3) current row indicator.
+
+### Type 3 or Add New Attribute
+Type 3 changes `add a new attribute in the dimension to preserve the old attribute value; the new value overwrites the main attribute as in a type 1 change`. This kind of type 3 change is sometimes called an alternate reality. A business user can group and filter fact data by either the current value or alternate reality. This slowly changing dimension technique is used relatively infrequently.
