@@ -61,7 +61,7 @@ This is a index to best navigation inside document.
     - [Detailed Implementation Bus Matrix](#detailed-implementation-bus-matrix)
     - [Opportunity or Stakeholder Matrix](#opportunity-or-stakeholder-matrix)
    - [Dealing with Slowly Changing Dimension Attributes](#dealing-with-slowly-changing-dimension-attributes)
-    - [Type 0 or Retain Original](#type-0-or-retain-original)
+     - [Type 0 or Retain Original](#type-0-or-retain-original)
 
 
 # Dimensional modeling introduction
