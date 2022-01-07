@@ -65,6 +65,7 @@ This is a index to best navigation inside document.
     - [Type 1 or Overwrite](#type-1-or-overwrite)
     - [Type 2 or Add New Row](#type-2-or-add-new-row)
     - [Type 3 or Add New Attribute](#type-3-or-add-new-attribute)
+    - [Type 4 or Add Mini-Dimension](#type-4-or-add-mini-dimension)
 
 
 # Dimensional modeling introduction
@@ -312,3 +313,6 @@ When a new row is created for a dimension member, a new primary surrogate key is
 
 ### Type 3 or Add New Attribute
 Type 3 changes `add a new attribute in the dimension to preserve the old attribute value; the new value overwrites the main attribute as in a type 1 change`. This kind of type 3 change is sometimes called an alternate reality. A business user can group and filter fact data by either the current value or alternate reality. This slowly changing dimension technique is used relatively infrequently.
+
+### Type 4 or Add Mini Dimension
+The type 4 technique `is used when a group of attributes in a dimension rapidly changes and is split off to a mini-dimension`. This situation is sometimes called a rapidly changing monster dimension. Frequently used attributes in multimillion-row dimension tables are mini-dimension design candidates, even if they don’t frequently change. The type 4 mini-dimension requires its own unique primary key; the primary keys of both the base dimension and mini-dimension are captured in the associated fact tables.
