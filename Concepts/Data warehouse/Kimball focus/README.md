@@ -58,6 +58,7 @@ This is a index to best navigation inside document.
     - [Value Chain](#value-chain)
     - [Enterprise Data Warehouse Bus Architecture](#enterprise-data-warehouse-bus-architecture)
     - [Enterprise Data Warehouse Bus Matrix](#enterprise-data-warehouse-bus-matrix)
+    - [Detailed Implementation Bus Matrix](#detailed-implementation-bus-matrix)
 
 
 # Dimensional modeling introduction
@@ -281,4 +282,8 @@ The enterprise data warehouse bus architecture provides an incremental approach 
 
 ### Enterprise Data Warehouse Bus Matrix
 `The enterprise data warehousebus matrix is a tool for designing and communicating the enterprise data warehouse bus architecture`. The rows of the matrix are business processes and the columns are dimensions. `The shaded cells of the matrix indicate whether a dimension is associated with a given business process`. The design team scans each row to test whether a candidate dimension is well-defined for the business process and also scans each column to see where a dimension should be conformed across multiple business processes. Besides the technical design considerations, the bus matrix is used as input to prioritize DW/BI projects with business management as teams should implement one row of the matrix at a time.
+
+### Detailed Implementation Bus Matrix
+`The detailed implementation bus matrix is a more granular bus matrix where each business process row has been expanded to show specific fact tables or OLAP cubes`. At this level of detail, the precise grain statement and list of facts can be documented.
+
 
