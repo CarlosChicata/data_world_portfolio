@@ -60,8 +60,9 @@ This is a index to best navigation inside document.
     - [Enterprise Data Warehouse Bus Matrix](#enterprise-data-warehouse-bus-matrix)
     - [Detailed Implementation Bus Matrix](#detailed-implementation-bus-matrix)
     - [Opportunity or Stakeholder Matrix](#opportunity-or-stakeholder-matrix)
-   - [Dealing with Slowly Changing Dimension Attributes](#dealing-with-slowly-changing-dimension-attributes)
-     - [Type 0 or Retain Original](#type-0-or-retain-original)
+  - [Dealing with Slowly Changing Dimension Attributes](#dealing-with-slowly-changing-dimension-attributes)
+    - [Type 0 or Retain Original](#type-0-or-retain-original)
+    - [Type 1 or Overwrite](#type-1-or-overwrite)
 
 
 # Dimensional modeling introduction
@@ -297,5 +298,8 @@ It helps identify which business groups should be invited to the collaborative d
 ## Dealing with Slowly Changing Dimension Attributes
  It is quite common to have attributes in the same dimension table that are handled with diff erent change tracking techniques.
  
- ### Type 0 or Retain Original
-With type 0, the dimension attribute value never changes, so facts are always grouped by this original value. Type 0 is appropriate for any attribute labeled “original,” such as a customer’s original credit score or a durable identifier.
+### Type 0 or Retain Original
+With type 0, `the dimension attribute value never changes`, so facts are always grouped by this original value. Type 0 is appropriate for any attribute labeled “original,” such as a customer’s original credit score or a durable identifier.
+
+### Type 1 or Overwrite
+With type 1, `the old attribute value in the dimension row is overwritten with the new value; type 1 attributes always reflects the most recent assignment, and therefore this technique destroys history`. Although this approach is easy to implement and does not create additional dimension rows, you must be careful that aggregate fact tables and OLAP cubes affected by this change are recomputed.
