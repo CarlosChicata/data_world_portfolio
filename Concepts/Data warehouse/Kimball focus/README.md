@@ -66,6 +66,7 @@ This is a index to best navigation inside document.
     - [Type 2 or Add New Row](#type-2-or-add-new-row)
     - [Type 3 or Add New Attribute](#type-3-or-add-new-attribute)
     - [Type 4 or Add Mini-Dimension](#type-4-or-add-mini-dimension)
+    - [Type 5 or Add Mini-Dimension and Type 1 Outrigger](#type-5-or-add-mini-dimension-and-type-1-outrigger)
 
 
 # Dimensional modeling introduction
@@ -316,3 +317,6 @@ Type 3 changes `add a new attribute in the dimension to preserve the old attribu
 
 ### Type 4 or Add Mini Dimension
 The type 4 technique `is used when a group of attributes in a dimension rapidly changes and is split off to a mini-dimension`. This situation is sometimes called a rapidly changing monster dimension. Frequently used attributes in multimillion-row dimension tables are mini-dimension design candidates, even if they don’t frequently change. The type 4 mini-dimension requires its own unique primary key; the primary keys of both the base dimension and mini-dimension are captured in the associated fact tables.
+
+### Type 5 or Add Mini-Dimension and Type 1 Outrigger
+The type 5 technique `is used to accurately preserve historical attribute values, plus report historical facts according to current attribute values. Type 5 builds on the type 4 mini-dimension by also embedding a current type 1 reference to the mini-dimension in the base dimension`. This enables the currently-assigned mini-dimension attributes to be accessed along with the others in the base dimension without linking through a fact table. Logically, you’d represent the base dimension and mini-dimension outrigger as a single table in the presentation area. The ETL team must overwrite this type 1 mini-dimension reference whenever the current mini-dimension assignment changes
