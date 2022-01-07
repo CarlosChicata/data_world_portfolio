@@ -56,6 +56,7 @@ This is a index to best navigation inside document.
     - [Shrunken Dimensions](#shrunken-dimensions)
     - [Drilling Across](#drilling-across)
     - [Value Chain](#value-chain)
+    - [Enterprise Data Warehouse Bus Architecture](#enterprise-data-warehouse-bus-architecture)
 
 
 # Dimensional modeling introduction
@@ -273,3 +274,6 @@ Drilling across simply means making separate queries against two or more fact ta
 
 ### Value Chain
 A value chain identifies the natural flow of an organization’s primary business processes. For example, a retailer’s value chain may consist of purchasing to warehousing to retail sales. A general ledger value chain may consist of budgeting to commitments to payments. Operational source systems typically produce transactions or snapshots at each step of the value chain. Because each process produces unique metrics at unique time intervals with unique granularity and dimensionality, each process typically spawns at least one atomic fact table.
+
+### Enterprise Data Warehouse Bus Architecture
+The enterprise data warehouse bus architecture provides an incremental approach to building the enterprise DW/BI system. `This architecture decomposes the DW/BI planning process into manageable pieces by focusing on business processes, while delivering integration via standardized conformed dimensions that are reused across processes`. It provides an architectural framework, while also decomposing the program to encourage manageable agile implementations corresponding to the rows on the enterprise data warehouse bus matrix. The bus architecture is technology and database platform independent; both relational and OL AP dimensional structures can participate. 
