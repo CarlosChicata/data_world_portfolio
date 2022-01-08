@@ -70,7 +70,8 @@ This is a index to best navigation inside document.
     - [Type 6 or Add Type 1 Attributes to Type 2 Dimension](#Type-6-or-add-type-1-attributes-to-type-2-dimension)
     - [Type 7 or Dual Type 1 and Type 2 Dimensions](#type-7-or-dual-type-1-and-type-2-dimensions)
   - [Approaches for Dimension Hierarchies](#approaches-for-dimension-hierarchies)
-    - [Fixed Depth Positional Hierarchies](#fixed-depth-positional-hierarchies) 
+    - [Fixed Depth Positional Hierarchies](#fixed-depth-positional-hierarchies)
+    - [Slightly Ragged or Variable Depth Hierarchies](#slightly-ragged-or-variable-depth-hierarchies)
 
 
 # Dimensional modeling introduction
@@ -337,4 +338,5 @@ This section describes approaches for dealing with hierarchies, starting with th
 ### Fixed Depth Positional Hierarchies
 `A fixed depth hierarchy is a series of many-to-one relationships, such as product to brand to category to department`. the hierarchy levels should appear as separate positional attributes in a dimension table. A fixed depth hierarchy is by far the easiest to understand and navigate as long as the above criteria are met. It also delivers predictable and fast query performance.
 
-
+### Slightly Ragged or Variable Depth Hierarchies
+`Slightly ragged hierarchies don’t have a fixed number of levels, but the range in depth is small`. Geographic hierarchies often range in depth from perhaps three levels to six levels. Rather than using the complex machinery for unpredictably variable hierarchies, you can force-fit slightly ragged hierarchies into a fixed depth positional design with separate dimension attributes for the maximum number of levels, and then populate the attribute value based on rules from the business.
