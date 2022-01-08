@@ -70,6 +70,7 @@ This is a index to best navigation inside document.
     - [Type 6 or Add Type 1 Attributes to Type 2 Dimension](#Type-6-or-add-type-1-attributes-to-type-2-dimension)
     - [Type 7 or Dual Type 1 and Type 2 Dimensions](#type-7-or-dual-type-1-and-type-2-dimensions)
   - [Approaches for Dimension Hierarchies](#approaches-for-dimension-hierarchies)
+    - [Fixed Depth Positional Hierarchies](#fixed-depth-positional-hierarchies) 
 
 
 # Dimensional modeling introduction
@@ -328,7 +329,12 @@ The type 5 technique `is used to accurately preserve historical attribute values
 `type 6 delivers both historical and current dimension attribute values`. Type 6 builds on the type 2 technique by also embedding current type 1 versions of the same attributes in the dimension row so that fact rows can be filtered or grouped by either the type 2 attribute value in effect when the measurement occurred or the attribute’s current value. In this case, the type 1 attribute is systematically overwritten on all rows associated with a particular durable key whenever the attribute is updated.
 
 ### Type 7 or Dual Type 1 and Type 2 Dimensions
-Ty p e7is the fi nal hybrid technique used to support both as-was and as-is reporting. A fact table can be accessed through a dimension modeled both as a type 1 dimension showing only the most current attribute values, or as a type 2 dimension showing correct contemporary historical profiles. The same dimension table enables both perspectives. Both the durable key and primary surrogate key of the dimension are placed in the fact table. For the type 1 perspective, the current flag in the dimension is constrained to be current, and the fact table is joined via the durable key. For the type 2 perspective, the current flag is not constrained, and the fact table is joined via the surrogate primary key. These two perspectives would be deployed as separate views to the BI applications
+Type 7 is the final hybrid technique used to support both as-was and as-is reporting. A fact table can be accessed through a dimension modeled both as a type 1 dimension showing only the most current attribute values, or as a type 2 dimension showing correct contemporary historical profiles. The same dimension table enables both perspectives. Both the durable key and primary surrogate key of the dimension are placed in the fact table. For the type 1 perspective, the current flag in the dimension is constrained to be current, and the fact table is joined via the durable key. For the type 2 perspective, the current flag is not constrained, and the fact table is joined via the surrogate primary key. These two perspectives would be deployed as separate views to the BI applications
 
 ## Approaches for Dimension Hierarchies
 This section describes approaches for dealing with hierarchies, starting with the most basic.
+
+### Fixed Depth Positional Hierarchies
+`A fixed depth hierarchy is a series of many-to-one relationships, such as product to brand to category to department`. the hierarchy levels should appear as separate positional attributes in a dimension table. A fixed depth hierarchy is by far the easiest to understand and navigate as long as the above criteria are met. It also delivers predictable and fast query performance.
+
+
