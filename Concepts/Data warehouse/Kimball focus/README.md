@@ -72,6 +72,7 @@ This is a index to best navigation inside document.
   - [Approaches for Dimension Hierarchies](#approaches-for-dimension-hierarchies)
     - [Fixed Depth Positional Hierarchies](#fixed-depth-positional-hierarchies)
     - [Slightly Ragged or Variable Depth Hierarchies](#slightly-ragged-or-variable-depth-hierarchies)
+    - [Ragged or Variable Depth Hierarchies with Hierarchy Bridge Tables](#ragged-or-Variable-depth-hierarchies-with-hierarchy-bridge-tables)
 
 
 # Dimensional modeling introduction
@@ -340,3 +341,6 @@ This section describes approaches for dealing with hierarchies, starting with th
 
 ### Slightly Ragged or Variable Depth Hierarchies
 `Slightly ragged hierarchies don’t have a fixed number of levels, but the range in depth is small`. Geographic hierarchies often range in depth from perhaps three levels to six levels. Rather than using the complex machinery for unpredictably variable hierarchies, you can force-fit slightly ragged hierarchies into a fixed depth positional design with separate dimension attributes for the maximum number of levels, and then populate the attribute value based on rules from the business.
+
+### Ragged or Variable Depth Hierarchies with Hierarchy Bridge Tables
+`Ragged hierarchies of indeterminate depth are difficult to model and query in a relational database`. Although SQL extensions and OLAP access languages provide some support for recursive parent/child relationships, these approaches have limitations. With SQL extensions, alternative ragged hierarchies cannot be substituted at query time, shared ownership structures are not supported, and time varying ragged hierarchies are not supported. `All these objections can be overcome in relational databases by modeling a ragged hierarchy with a specially constructed bridge table`. This bridge table contains a row for every possible path in the ragged hierarchy and enables all forms of hierarchy traversal to be accomplished with standard SQL rather than using special language extensions.
