@@ -69,6 +69,7 @@ This is a index to best navigation inside document.
     - [Type 5 or Add Mini-Dimension and Type 1 Outrigger](#type-5-or-add-mini-dimension-and-type-1-outrigger)
     - [Type 6 or Add Type 1 Attributes to Type 2 Dimension](#Type-6-or-add-type-1-attributes-to-type-2-dimension)
     - [Type 7 or Dual Type 1 and Type 2 Dimensions](#type-7-or-dual-type-1-and-type-2-dimensions)
+  - [Approaches for Dimension Hierarchies](#approaches-for-dimension-hierarchies)
 
 
 # Dimensional modeling introduction
@@ -328,3 +329,6 @@ The type 5 technique `is used to accurately preserve historical attribute values
 
 ### Type 7 or Dual Type 1 and Type 2 Dimensions
 Ty p e7is the fi nal hybrid technique used to support both as-was and as-is reporting. A fact table can be accessed through a dimension modeled both as a type 1 dimension showing only the most current attribute values, or as a type 2 dimension showing correct contemporary historical profiles. The same dimension table enables both perspectives. Both the durable key and primary surrogate key of the dimension are placed in the fact table. For the type 1 perspective, the current flag in the dimension is constrained to be current, and the fact table is joined via the durable key. For the type 2 perspective, the current flag is not constrained, and the fact table is joined via the surrogate primary key. These two perspectives would be deployed as separate views to the BI applications
+
+## Approaches for Dimension Hierarchies
+This section describes approaches for dealing with hierarchies, starting with the most basic.
