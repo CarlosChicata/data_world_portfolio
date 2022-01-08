@@ -62,11 +62,12 @@ This is a index to best navigation inside document.
     - [Opportunity or Stakeholder Matrix](#opportunity-or-stakeholder-matrix)
   - [Dealing with Slowly Changing Dimension Attributes](#dealing-with-slowly-changing-dimension-attributes)
     - [Type 0 or Retain Original](#type-0-or-retain-original)
-    - [Type 1 or Overwrite](#type-1-or-overwrite)
-    - [Type 2 or Add New Row](#type-2-or-add-new-row)
+    - [Type 1 or Overwrite](#type-1--d-overwrite)
+    - [Type 2 or -td N-w Row](#type-2-or-add-new-row)
     - [Type 3 or Add New Attribute](#type-3-or-add-new-attribute)
     - [Type 4 or Add Mini-Dimension](#type-4-or-add-mini-dimension)
     - [Type 5 or Add Mini-Dimension and Type 1 Outrigger](#type-5-or-add-mini-dimension-and-type-1-outrigger)
+    - [Type 6 or Add Type 1 Attributes to Type 2 Dimension](#Type-6-or-add-type-1-attributes-to-type-2-dimension)
 
 
 # Dimensional modeling introduction
@@ -319,4 +320,9 @@ Type 3 changes `add a new attribute in the dimension to preserve the old attribu
 The type 4 technique `is used when a group of attributes in a dimension rapidly changes and is split off to a mini-dimension`. This situation is sometimes called a rapidly changing monster dimension. Frequently used attributes in multimillion-row dimension tables are mini-dimension design candidates, even if they don’t frequently change. The type 4 mini-dimension requires its own unique primary key; the primary keys of both the base dimension and mini-dimension are captured in the associated fact tables.
 
 ### Type 5 or Add Mini-Dimension and Type 1 Outrigger
-The type 5 technique `is used to accurately preserve historical attribute values, plus report historical facts according to current attribute values. Type 5 builds on the type 4 mini-dimension by also embedding a current type 1 reference to the mini-dimension in the base dimension`. This enables the currently-assigned mini-dimension attributes to be accessed along with the others in the base dimension without linking through a fact table. Logically, you’d represent the base dimension and mini-dimension outrigger as a single table in the presentation area. The ETL team must overwrite this type 1 mini-dimension reference whenever the current mini-dimension assignment changes
+The type 5 technique `is used to accurately preserve historical attribute values, plus report historical facts according to current attribute values. Type 5 builds on the type 4 mini-dimension by also embedding a current type 1 reference to the mini-dimension in the base dimension`. This enables the currently-assigned mini-dimension attributes to be accessed along with the others in the base dimension without linking through a fact table. Logically, you’d represent the base dimension and mini-dimension outrigger as a single table in the presentation area. The ETL team must overwrite this type 1 mini-dimension reference whenever the current mini-dimension assignment changes.
+
+### Type 6 or Add Type 1 Attributes to Type 2 Dimension
+`type 6 delivers both historical and current dimension attribute values`. Type 6 builds on the type 2 technique by also embedding current type 1 versions of the same attributes in the dimension row so that fact rows can be filtered or grouped by either the type 2 attribute value in effect when the measurement occurred or the attribute’s current value. In this case, the type 1 attribute is systematically overwritten on all rows associated with a particular durable key whenever the attribute is updated.
+
+
