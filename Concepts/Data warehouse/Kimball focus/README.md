@@ -40,6 +40,7 @@ This is a index to best navigation inside document.
     - [Fact Table Surrogate Keys](#fact-table-surrogate-keys)
     - [Centipede Fact Tables](#centipede-fact-tables)
     - [Numeric Values as Attributes or Facts](#numeric-values-as-attributes-or-facts)
+    - [Lag/Duration Facts](#lag-or-duration-Facts)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -238,6 +239,10 @@ Surrogate keys are used to implement the primary keys of almost all dimension ta
 
 ### Numeric Values as Attributes or Facts
 `Designers sometimes encounter numeric values that don’t clearly fall into either the fact or dimension attribute categories`. A classic example is a product’s standard list price. If the numeric value is used primarily for calculation purposes, it likely belongs in the fact table. If a stable numeric value is used predominantly for filtering and grouping, it should be treated as a dimension attribute; the discrete numeric values can be supplemented with value band attributes (such as $0-50). `In some cases, it is useful to model the numeric value as both a fact and dimension attribute, such as a quantitative on-time delivery metric and qualitative textual descriptor`.
+
+### Lag or duration facts
+`Accumulating snapshot fact tables capture multiple process milestones, each with a date foreign key and possibly a date/time stamp. Business users often want to analyze the lags or durations between these milestones; sometimes these lags are just the differences between dates, but other times the lags are based on more complicated business rules`. If there are dozens of steps in a pipeline, there could be hundreds of possible lags. Rather than forcing the user’s query to calculate each possible lag from the date/time stamps or date dimension foreign keys, just one time lag can be stored for each step measured against the process’s start point. Then every possible lag between two steps can be calculated as a simple subtraction between the two lags stored in the fact table.
+
 
 ## Techniques and concepts about Dimension Tables
 There are techniques to define and build the dimension tables inside star schema modeling.
