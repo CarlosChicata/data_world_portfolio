@@ -38,6 +38,7 @@ This is a index to best navigation inside document.
     - [Aggregate Fact Tables or OLAP Cubes](#aggregate-fact-tables-or-olap-cubes)
     - [Consolidated Fact Tables](#consolidated-fact-tables)
     - [Fact Table Surrogate Keys](#fact-table-surrogate-keys)
+    - [Centipede Fact Tables](#centipede-fact-tables)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -226,11 +227,13 @@ These queries always have two parts: a factless coverage table that contains all
 Aggregate fact tablesare simple numeric rollups of atomic fact table data built solely to accelerate query performance. These aggregate fact tables should be available to the BI layer at the same time as the atomic fact tables so that BI tools smoothly choose the appropriate aggregate level at query time.
 
 ### Consolidated Fact Tables
-
 `It is often convenient to combine facts from multiple processes together into a single consolidatedfacttable if they can be expressed at the same grain`. Consolidated fact tables add bur-den to the ETL processing, but ease the analytic burden on the BI applications. They should be considered for cross-process metrics that are frequently analyzed together.
 
 ### Fact Table Surrogate Keys
-Surrogate  keys are used to implement the primary keys of almost all dimension tables. In addition, single column surrogate fact keys can be useful, albeit not required. `Fact table surrogate keys, which are not associated with any dimension, are assigned sequentially during the ETL load process` and are used 1) as the single column primary key of the fact table; 2) to serve as an immediate identifier of a fact table row without navigating multiple dimensions for ETL purposes; 3) to allow an interrupted load process to either back out or resume; 4) to allow fact table update operations to be decomposed into less risky inserts plus deletes.
+Surrogate keys are used to implement the primary keys of almost all dimension tables. In addition, single column surrogate fact keys can be useful, albeit not required. `Fact table surrogate keys, which are not associated with any dimension, are assigned sequentially during the ETL load process` and are used 1) as the single column primary key of the fact table; 2) to serve as an immediate identifier of a fact table row without navigating multiple dimensions for ETL purposes; 3) to allow an interrupted load process to either back out or resume; 4) to allow fact table update operations to be decomposed into less risky inserts plus deletes.
+
+### Centipede Fact Tables
+`Some designers create separate normalized dimensions for each level of a many-to-one hierarchy, such as a date dimension, month dimension, quarter dimension, and year dimension, and then include all these foreign keys in a fact table. This results in a centipede fact table with dozens of hierarchically related dimensions. Centipede fact tables should be avoided`. All these fixed depth, many-to-one hierarchically related dimensions should be collapsed back to their unique lowest grains, such as the date for the example mentioned. Centipede fact tables also result when designers embed numerous foreign keys to individual low-cardinality dimension tables rather than creating a junk dimension.
 
 ## Techniques and concepts about Dimension Tables
 There are techniques to define and build the dimension tables inside star schema modeling.
