@@ -39,6 +39,7 @@ This is a index to best navigation inside document.
     - [Consolidated Fact Tables](#consolidated-fact-tables)
     - [Fact Table Surrogate Keys](#fact-table-surrogate-keys)
     - [Centipede Fact Tables](#centipede-fact-tables)
+    - [Numeric Values as Attributes or Facts](#numeric-values-as-attributes-or-facts)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -234,6 +235,9 @@ Surrogate keys are used to implement the primary keys of almost all dimension ta
 
 ### Centipede Fact Tables
 `Some designers create separate normalized dimensions for each level of a many-to-one hierarchy, such as a date dimension, month dimension, quarter dimension, and year dimension, and then include all these foreign keys in a fact table. This results in a centipede fact table with dozens of hierarchically related dimensions. Centipede fact tables should be avoided`. All these fixed depth, many-to-one hierarchically related dimensions should be collapsed back to their unique lowest grains, such as the date for the example mentioned. Centipede fact tables also result when designers embed numerous foreign keys to individual low-cardinality dimension tables rather than creating a junk dimension.
+
+### Numeric Values as Attributes or Facts
+`Designers sometimes encounter numeric values that don’t clearly fall into either the fact or dimension attribute categories`. A classic example is a product’s standard list price. If the numeric value is used primarily for calculation purposes, it likely belongs in the fact table. If a stable numeric value is used predominantly for filtering and grouping, it should be treated as a dimension attribute; the discrete numeric values can be supplemented with value band attributes (such as $0-50). `In some cases, it is useful to model the numeric value as both a fact and dimension attribute, such as a quantitative on-time delivery metric and qualitative textual descriptor`.
 
 ## Techniques and concepts about Dimension Tables
 There are techniques to define and build the dimension tables inside star schema modeling.
