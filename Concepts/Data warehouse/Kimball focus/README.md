@@ -42,6 +42,7 @@ This is a index to best navigation inside document.
     - [Numeric Values as Attributes or Facts](#numeric-values-as-attributes-or-facts)
     - [Lag/Duration Facts](#lag-or-duration-Facts)
     - [Header/Line Fact Tables](#Header-or-Line-Fact-Tables)
+    - [Allocated Facts](#Allocated-Facts)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -246,6 +247,10 @@ Surrogate keys are used to implement the primary keys of almost all dimension ta
 
 ### Header-or-Line-Fact-Tables
 Operational transaction systems often consist of a transaction header row that’s associated with multiple transaction lines. With header/line schemas (also known as parent/child schemas), all the header-level dimension foreign keys and degenerate dimensions should be included on the line-level fact table.
+
+### Allocated Facts
+`It is quite common in header/line transaction data to encounter facts of diff er-ing granularity, such as a header freight charge. You should strive to allocatethe header facts down to the line level based on rules provided by the business, so the allocated facts can be sliced and rolled up by all the dimensions`. In many cases, you can avoid creating a header-level fact table, unless this aggregation delivers query performance advantages.
+
 
 ## Techniques and concepts about Dimension Tables
 There are techniques to define and build the dimension tables inside star schema modeling.
