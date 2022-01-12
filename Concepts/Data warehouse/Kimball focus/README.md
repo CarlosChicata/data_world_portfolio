@@ -43,6 +43,7 @@ This is a index to best navigation inside document.
     - [Lag/Duration Facts](#lag-or-duration-Facts)
     - [Header/Line Fact Tables](#Header-or-Line-Fact-Tables)
     - [Allocated Facts](#Allocated-Facts)
+    - [Profit and Loss Fact Tables Using Allocations](#Profit-and-loss-fact-tables-using-allocations)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -250,6 +251,9 @@ Operational transaction systems often consist of a transaction header row that�
 
 ### Allocated Facts
 `It is quite common in header/line transaction data to encounter facts of diff er-ing granularity, such as a header freight charge. You should strive to allocatethe header facts down to the line level based on rules provided by the business, so the allocated facts can be sliced and rolled up by all the dimensions`. In many cases, you can avoid creating a header-level fact table, unless this aggregation delivers query performance advantages.
+
+### Profit and Loss Fact Tables Using Allocations
+`Fact  tables that expose the full equation of profit are among the most powerful deliverables of an enterprise DW/BI system`. The equation of profit is (revenue) – (costs) = (profit). `Fact tables ideally implement the profit equation at the grain of the atomic revenue transaction and contain many components of cost`. Because these tables are at the atomic grain, numerous rollups are possible, including customer profitability, product profitability, promotion profitability, channel profitability, and others. However, `these fact tables are difficult to build because the cost components must be allocated from their original sources to the fact table’s grain. This allocation step is often a major ETL subsystem and is a politically charged step that requires high-level executive support`. For these reasons, profit and loss fact tables are typically not tackled during the early implementation phases of a DW/BI program.
 
 
 ## Techniques and concepts about Dimension Tables
