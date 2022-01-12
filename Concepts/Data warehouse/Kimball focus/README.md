@@ -44,6 +44,7 @@ This is a index to best navigation inside document.
     - [Header/Line Fact Tables](#Header-or-Line-Fact-Tables)
     - [Allocated Facts](#Allocated-Facts)
     - [Profit and Loss Fact Tables Using Allocations](#Profit-and-loss-fact-tables-using-allocations)
+    - [Multiple Currency Facts](#Multiple-Currency-Facts)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -255,6 +256,8 @@ Operational transaction systems often consist of a transaction header row that�
 ### Profit and Loss Fact Tables Using Allocations
 `Fact  tables that expose the full equation of profit are among the most powerful deliverables of an enterprise DW/BI system`. The equation of profit is (revenue) – (costs) = (profit). `Fact tables ideally implement the profit equation at the grain of the atomic revenue transaction and contain many components of cost`. Because these tables are at the atomic grain, numerous rollups are possible, including customer profitability, product profitability, promotion profitability, channel profitability, and others. However, `these fact tables are difficult to build because the cost components must be allocated from their original sources to the fact table’s grain. This allocation step is often a major ETL subsystem and is a politically charged step that requires high-level executive support`. For these reasons, profit and loss fact tables are typically not tackled during the early implementation phases of a DW/BI program.
 
+### Multiple Currency Facts
+`Fact  tables that record financial transactions in multiple currencies should contain a pair of columns for every financial fact in the row`. One column contains the fact expressed in the true currency of the transaction, and the other contains the same fact expressed in a single standard currency that is used throughout the fact table. The standard currency value is created in an ETL process according to an approved business rule for currency conversion. This fact table also must have a currency dimension to identify the transaction’s true currency.
 
 ## Techniques and concepts about Dimension Tables
 There are techniques to define and build the dimension tables inside star schema modeling.
