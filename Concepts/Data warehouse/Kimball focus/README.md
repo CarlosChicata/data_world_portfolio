@@ -48,6 +48,7 @@ This is a index to best navigation inside document.
     - [Multiple Units of Measure Facts](#Multiple-Units-of-Measure-Facts)
     - [Year-to-Date Facts](#Year-to-Date-Facts)
     - [Multipass SQL to Avoid Fact-to-Fact Table Joins](#Multipass-SQL-to-Avoid-Fact-to-Fact-Table-Joins)
+    - [Timespan Tracking in Fact Tables](#Timespan-Tracking-in-Fact-Tables)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -269,7 +270,11 @@ Operational transaction systems often consist of a transaction header row that�
 `Business  users often request year-to-date (YTD) values in a fact table. It is hard to argue against a single request, but YTD requests can easily morph into “YTD at the close of the fiscal period” or “fiscal period to date”`. A more reliable, extensible way to handle these assorted requests is to calculate the YTD metrics in the BI applications or OLAP cube rather than storing YTD facts in the fact table.
 
 ### Multipass SQL to Avoid Fact-to-Fact Table Joins
-`A BI application must never issue SQL that joins two fact tables together across the fact table’s foreign keys`. It is impossible to control the cardinality of the answer set of such a join in a relational database, and incorrect results will be returned to the BI tool.  For instance, if two fact tables contain customer’s product shipments and returns, these two fact tables must not be joined directly across the customer and product foreign keys. `Instead, the technique of drilling across two fact tables should be used, where the answer sets from shipments and returns are separately created, and the results sort-merged on the common row header attribute values to produce the correct result`.
+`A BI application must never issue SQL that joins two fact tables together across the fact table’s foreign keys`. It is impossible to control the cardinality of the answer set of such a join in a relational database, and incorrectresults will be returned to the BI tool.  For instance, if two fact tables contain customer’s product shipments and returns, these two fact tables must not be joined directly across the customer and product foreign keys. `Instead, the technique of drilling across two fact tables should be used, where the answer sets from shipments and returns are separately created, and the results sort-merged on the common row header attribute values to produce the correct result`.
+
+### Timespan Tracking in Fact Tables
+There are three basic fact table grains: transaction, periodic snapshot, and accumulating snapshot. `In isolated cases, it is useful to add a row effective date, row expiration date, and current row indicator to the fact table, much like you do with type 2 slowly changing dimensions, to capture a timespan when the fact row was effective`. Although an unusual pattern, this pattern addresses scenarios such as slowly changing inventory balances where a frequent periodic snapshot would load identical rows with each snapshot. 
+
 
 ## Techniques and concepts about Dimension Tables
 There are techniques to define and build the dimension tables inside star schema modeling.
