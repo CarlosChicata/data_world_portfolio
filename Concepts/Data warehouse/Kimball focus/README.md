@@ -49,6 +49,7 @@ This is a index to best navigation inside document.
     - [Year-to-Date Facts](#Year-to-Date-Facts)
     - [Multipass SQL to Avoid Fact-to-Fact Table Joins](#Multipass-SQL-to-Avoid-Fact-to-Fact-Table-Joins)
     - [Timespan Tracking in Fact Tables](#Timespan-Tracking-in-Fact-Tables)
+    - [Late Arriving Facts](#Late-Arriving-Facts)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -275,6 +276,8 @@ Operational transaction systems often consist of a transaction header row thatâ€
 ### Timespan Tracking in Fact Tables
 There are three basic fact table grains: transaction, periodic snapshot, and accumulating snapshot. `In isolated cases, it is useful to add a row effective date, row expiration date, and current row indicator to the fact table, much like you do with type 2 slowly changing dimensions, to capture a timespan when the fact row was effective`. Although an unusual pattern, this pattern addresses scenarios such as slowly changing inventory balances where a frequent periodic snapshot would load identical rows with each snapshot. 
 
+### Late Arriving Facts
+`A fact row is late arriving if the most current dimensional context for new fact rows does not match the incoming row`. This happens when the fact row is delayed. In this case, the relevant dimensions must be searched to find the dimension keys that were effective when the late arriving measurement event occurred.
 
 ## Techniques and concepts about Dimension Tables
 There are techniques to define and build the dimension tables inside star schema modeling.
