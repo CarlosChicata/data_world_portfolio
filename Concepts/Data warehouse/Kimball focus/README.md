@@ -47,6 +47,7 @@ This is a index to best navigation inside document.
     - [Multiple Currency Facts](#Multiple-Currency-Facts)
     - [Multiple Units of Measure Facts](#Multiple-Units-of-Measure-Facts)
     - [Year-to-Date Facts](#Year-to-Date-Facts)
+    - [Multipass SQL to Avoid Fact-to-Fact Table Joins](#Multipass-SQL-to-Avoid-Fact-to-Fact-Table-Joins)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -267,6 +268,8 @@ Operational transaction systems often consist of a transaction header row that�
 ### Year-to-Date Facts
 `Business  users often request year-to-date (YTD) values in a fact table. It is hard to argue against a single request, but YTD requests can easily morph into “YTD at the close of the fiscal period” or “fiscal period to date”`. A more reliable, extensible way to handle these assorted requests is to calculate the YTD metrics in the BI applications or OLAP cube rather than storing YTD facts in the fact table.
 
+### Multipass SQL to Avoid Fact-to-Fact Table Joins
+`A BI application must never issue SQL that joins two fact tables together across the fact table’s foreign keys`. It is impossible to control the cardinality of the answer set of such a join in a relational database, and incorrect results will be returned to the BI tool.  For instance, if two fact tables contain customer’s product shipments and returns, these two fact tables must not be joined directly across the customer and product foreign keys. `Instead, the technique of drilling across two fact tables should be used, where the answer sets from shipments and returns are separately created, and the results sort-merged on the common row header attribute values to produce the correct result`.
 
 ## Techniques and concepts about Dimension Tables
 There are techniques to define and build the dimension tables inside star schema modeling.
