@@ -46,6 +46,7 @@ This is a index to best navigation inside document.
     - [Profit and Loss Fact Tables Using Allocations](#Profit-and-loss-fact-tables-using-allocations)
     - [Multiple Currency Facts](#Multiple-Currency-Facts)
     - [Multiple Units of Measure Facts](#Multiple-Units-of-Measure-Facts)
+    - [Year-to-Date Facts](#Year-to-Date-Facts)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -262,6 +263,9 @@ Operational transaction systems often consist of a transaction header row that�
 
 ### Multiple Units of Measure Facts
 `Some  business processes require facts to be stated simultaneously in several units of measure`. If the fact table contains a large number of facts, each of which must be expressed in all units of measure, a convenient technique is to store the facts once in the table at an agreed standard unit of measure, but also simultaneously store conversion factors between the standard measure and all the others.
+
+### Year-to-Date Facts
+`Business  users often request year-to-date (YTD) values in a fact table. It is hard to argue against a single request, but YTD requests can easily morph into “YTD at the close of the fiscal period” or “fiscal period to date”`. A more reliable, extensible way to handle these assorted requests is to calculate the YTD metrics in the BI applications or OLAP cube rather than storing YTD facts in the fact table.
 
 
 ## Techniques and concepts about Dimension Tables
