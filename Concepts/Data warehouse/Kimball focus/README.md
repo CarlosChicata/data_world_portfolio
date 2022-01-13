@@ -45,6 +45,7 @@ This is a index to best navigation inside document.
     - [Allocated Facts](#Allocated-Facts)
     - [Profit and Loss Fact Tables Using Allocations](#Profit-and-loss-fact-tables-using-allocations)
     - [Multiple Currency Facts](#Multiple-Currency-Facts)
+    - [Multiple Units of Measure Facts](#Multiple-Units-of-Measure-Facts)
   - [Techniques and concepts about Dimension Tables](#techniques-and-concepts-about-dimension-tables)
     - [Dimension Table Structure](#dimension-table-structure)
     - [Dimension Surrogate Keys](#dimension-surrogate-keys)
@@ -258,6 +259,10 @@ Operational transaction systems often consist of a transaction header row thatâ€
 
 ### Multiple Currency Facts
 `Fact  tables that record financial transactions in multiple currencies should contain a pair of columns for every financial fact in the row`. One column contains the fact expressed in the true currency of the transaction, and the other contains the same fact expressed in a single standard currency that is used throughout the fact table. The standard currency value is created in an ETL process according to an approved business rule for currency conversion. This fact table also must have a currency dimension to identify the transactionâ€™s true currency.
+
+### Multiple Units of Measure Facts
+`Some  business processes require facts to be stated simultaneously in several units of measure`. If the fact table contains a large number of facts, each of which must be expressed in all units of measure, a convenient technique is to store the facts once in the table at an agreed standard unit of measure, but also simultaneously store conversion factors between the standard measure and all the others.
+
 
 ## Techniques and concepts about Dimension Tables
 There are techniques to define and build the dimension tables inside star schema modeling.
