@@ -64,6 +64,7 @@ This is a index to best navigation inside document.
     - [Junk Dimensions](#junk-dimensions)
     - [Snowflaked Dimensions](#snowflaked-dimensions)
     - [Outrigger Dimensions](#outrigger-dimensions)
+    - [Dimension-to-Dimension Table Joins](#Dimension-to-Dimension-Table-Joins)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -310,7 +311,7 @@ Many  dimensions contain more than one natural hierarchy. For example, calendar 
 Cryptic  abbreviations, true/false fl ags, and operational indicators should be sup-plemented in dimension tables with full text words that have meaning when independently viewed. Operational codes with embedded meaning within the code value should be broken down with each part of the code expanded into its own separate descriptive dimension attribute.
 
 ### Null Attributes in Dimensions
-Null-valued  dimension attributes result when a given dimension row has not been fully populated, or when there are attributes that are not applicable to all the dimen-sion’s rows. In both cases, we recommend substituting a descriptive string, such as Unknown or Not Applicable in place of the null value. Nulls in dimension attributes should be avoided because diff erent databases handle grouping and constraining on nulls inconsistently.
+Null-valued  dimension attributes result when a given dimension row has not been fully populated, or when there are attributes that are not applicable to all the dimension’s rows. In both cases, we recommend substituting a descriptive string, such as Unknown or Not Applicable in place of the null value. Nulls in dimension attributes should be avoided because diff erent databases handle grouping and constraining on nulls inconsistently.
 
 ### Role-Playing Dimensions
 A single physical dimension can be referenced multiple times in a fact table, with each reference linking to a logically distinct role for the dimension. For instance, a fact table can have several dates, each of which is represented by a foreign key to the date dimension. It is essential that each foreign key refers to a separate view of the date dimension so that the references are independent. These separate dimen-sion views (with unique attribute column names) are called roles.
@@ -324,6 +325,12 @@ When  a hierarchical relationship in a dimension table is normalized, low-cardin
 
 ### Outrigger Dimensions
 A dimension can contain a reference to another dimension table. For instance, a bank account dimension can reference a separate dimension representing the date the account was opened. These secondary dimension references are called outrigger dimensions. Outrigger dimensions are permissible, but should be used sparingly. In most cases, the correlations between dimensions should be demoted to a fact table, where both dimensions are represented as separate foreign keys.
+
+### Dimension-to-Dimension Table Joins
+`Dimensions can contain references to other dimensions`. Although these relationships can be modeled with outrigger dimensions, in some cases, the existence of a
+foreign key to the outrigger dimension in the base dimension can result in explosive growth of the base dimension because type 2 changes in the outrigger force corresponding type 2 processing in the base dimension. `This explosive growth can often be avoided if you demote the correlation between dimensions by placing the
+foreign key of the outrigger in the fact table rather than in the base dimension`. This means the correlation between the dimensions can be discovered only by traversing the fact table, but this may be acceptable, especially if the fact table is a periodic snapshot where all the keys for all the dimensions are guaranteed to be present for each reporting period.
+
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
