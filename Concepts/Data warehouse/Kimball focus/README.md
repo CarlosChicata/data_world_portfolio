@@ -65,6 +65,7 @@ This is a index to best navigation inside document.
     - [Snowflaked Dimensions](#snowflaked-dimensions)
     - [Outrigger Dimensions](#outrigger-dimensions)
     - [Dimension-to-Dimension Table Joins](#Dimension-to-Dimension-Table-Joins)
+    - [Multivalued Dimensions and Bridge Tables](#Multivalued-Dimensions-and-Bridge-Tables)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -330,6 +331,9 @@ A dimension can contain a reference to another dimension table. For instance, a 
 `Dimensions can contain references to other dimensions`. Although these relationships can be modeled with outrigger dimensions, in some cases, the existence of a
 foreign key to the outrigger dimension in the base dimension can result in explosive growth of the base dimension because type 2 changes in the outrigger force corresponding type 2 processing in the base dimension. `This explosive growth can often be avoided if you demote the correlation between dimensions by placing the
 foreign key of the outrigger in the fact table rather than in the base dimension`. This means the correlation between the dimensions can be discovered only by traversing the fact table, but this may be acceptable, especially if the fact table is a periodic snapshot where all the keys for all the dimensions are guaranteed to be present for each reporting period.
+
+### Multivalued Dimensions and Bridge Tables
+`In a classic dimensional schema, each dimension attached to a fact table has a single value consistent with the fact table’s grain. But there are a number of situations in which a dimension is legitimately multivalued`. For example, a patient receiving a healthcare treatment may have multiple simultaneous diagnoses. In `these cases, the multivalued dimension must be attached to the fact table through a group dimension key to a bridge table with one row for each simultaneous diagnosis in a group`.
 
 
 ## Integration via Conformed Dimensions
