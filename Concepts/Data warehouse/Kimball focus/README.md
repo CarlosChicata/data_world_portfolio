@@ -66,6 +66,7 @@ This is a index to best navigation inside document.
     - [Outrigger Dimensions](#outrigger-dimensions)
     - [Dimension-to-Dimension Table Joins](#Dimension-to-Dimension-Table-Joins)
     - [Multivalued Dimensions and Bridge Tables](#Multivalued-Dimensions-and-Bridge-Tables)
+    - [Time Varying Multivalued Bridge Tables](#Time-Varying-Multivalued-Bridge-Tables)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -335,6 +336,8 @@ foreign key of the outrigger in the fact table rather than in the base dimension
 ### Multivalued Dimensions and Bridge Tables
 `In a classic dimensional schema, each dimension attached to a fact table has a single value consistent with the fact table’s grain. But there are a number of situations in which a dimension is legitimately multivalued`. For example, a patient receiving a healthcare treatment may have multiple simultaneous diagnoses. In `these cases, the multivalued dimension must be attached to the fact table through a group dimension key to a bridge table with one row for each simultaneous diagnosis in a group`.
 
+### Time Varying Multivalued Bridge Tables
+`A multivalued bridge table may need to be based on a type 2 slowly changing dimension`. For example, the bridge table that implements the many-to-many relationship between bank accounts and individual customers usually must be based on type 2 account and customer dimensions. `In this case, to prevent incorrect linkages between accounts and customers, the bridge table must include effective and expiration date/time stamps`, and the requesting application must constrain the bridge table to a specific moment in time to produce a consistent snapshot.
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
