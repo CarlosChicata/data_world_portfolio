@@ -68,6 +68,7 @@ This is a index to best navigation inside document.
     - [Multivalued Dimensions and Bridge Tables](#Multivalued-Dimensions-and-Bridge-Tables)
     - [Time Varying Multivalued Bridge Tables](#Time-Varying-Multivalued-Bridge-Tables)
     - [Behavior Tag Time Series](#Behavior-Tag-Time-Series)
+    - [Behavior Study Groups](#Behavior-Study-Groups)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -342,6 +343,9 @@ foreign key of the outrigger in the fact table rather than in the base dimension
 
 ### Behavior Tag Time Series
 `Almost all text in a data warehouse is descriptive text in dimension tables. Data mining customer cluster analyses typically results in textual behavior tags, often identified on a periodic basis`. In this case, the customers’ behavior measurements over time become a sequence of these behavior tags; `this time series should be stored as positional attributes in the customer dimension, along with an optional text string for the complete sequence of tags`. The behavior tags are modeled in a positional design because the behavior tags are the target of complex simultaneous queries rather than numeric computations.
+
+### Behavior Study Groups
+`Complex customer behavior can sometimes be discovered only by running lengthy iterative analyses. In these cases, it is impractical to embed the behavior analyses inside every BI application that wants to constrain all the members of the customer dimension who exhibit the complex behavior`. The results of the complex behavior analyses, however, `can be captured in a simple table, called a study group, consisting only of the customers’ durable keys. This static table can then be used as a kind of filter on any dimensional schema with a customer dimension by constraining the study group column to the customer dimension’s durable key in the target schema at query time`. Multiple study groups can be defined and derivative study groups can be created with intersections, unions, and set differences.
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
