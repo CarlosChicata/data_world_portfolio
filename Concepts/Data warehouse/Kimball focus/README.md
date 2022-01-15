@@ -75,6 +75,7 @@ This is a index to best navigation inside document.
     - [Multiple Time Zones](#Multiple-Time-Zones)
     - [Measure Type Dimensions](#Measure-Type-Dimensions)
     - [Step Dimensions](#Step-Dimensions)
+    - [Hot Swappable Dimensions](#Hot-Swappable-Dimensions)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -371,6 +372,9 @@ To capture both universal standard time, as well as local times in multi-time zo
 
 ### Step Dimensions
 `Sequential  processes, such as web page events, normally have a separate row in a transaction fact table for each step in a process`. To tell where the individual step fits into the overall session, a step dimension is used that shows what step number is represented by the current step and how many more steps were required to complete the session.
+
+### Hot Swappable Dimensions
+`Hot swappable dimensionsare used when the same fact table is alternatively paired with different copies of the same dimension`. For example, a single fact table containing stock ticker quotes could be simultaneously exposed to multiple separate investors, each of whom has unique and proprietar y attributes assigned to different stocks.
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
