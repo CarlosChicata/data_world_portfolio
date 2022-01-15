@@ -71,6 +71,7 @@ This is a index to best navigation inside document.
     - [Behavior Study Groups](#Behavior-Study-Groups)
     - [Aggregated Facts as Dimension Attributes](#Aggregated-Facts-as-Dimension-Attributes)
     - [Dynamic Value Bands](#Dynamic-Value-Bands)
+    - [Text Comments Dimension](#Text-Comments-Dimension)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -355,6 +356,9 @@ who exhibit the complex behavior`. The results of the complex behavior analyses,
 
 ### Dynamic Value Bands
 `A dynamic value banding report is organized as a series of report row headers that defi ne a progressive set of varying-sized ranges of a target numeric fact`. For instance, a common value banding report in a bank has many rows with labels such as “Balance from 0 to $10,” “Balance from $10.01 to $25,” and so on. `This kind of report is dynamic because the specific row headers are defined at query time, not during the ETL processing`. The row definitions can be implemented in a small value banding dimension table that is joined via greater-than/less-than joins to the fact table, or the definitions can exist only in an SQL CASE statement. The value banding dimension approach is probably higher performing, especially in a columnar database, because the CASE statement approach involves an almost unconstrained relation scan of the fact table.
+
+### Text Comments Dimension
+`Rather  than treating freeform comments as textual metrics in a fact table, they should be stored outside the fact table in a separate comments dimension` (or as attributes in a dimension with one row per transaction if the comments’ cardinality matches the number of unique transactions) with a corresponding foreign key in the fact table.
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
