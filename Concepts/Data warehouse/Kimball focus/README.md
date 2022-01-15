@@ -67,6 +67,7 @@ This is a index to best navigation inside document.
     - [Dimension-to-Dimension Table Joins](#Dimension-to-Dimension-Table-Joins)
     - [Multivalued Dimensions and Bridge Tables](#Multivalued-Dimensions-and-Bridge-Tables)
     - [Time Varying Multivalued Bridge Tables](#Time-Varying-Multivalued-Bridge-Tables)
+    - [Behavior Tag Time Series](#Behavior-Tag-Time-Series)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -338,6 +339,9 @@ foreign key of the outrigger in the fact table rather than in the base dimension
 
 ### Time Varying Multivalued Bridge Tables
 `A multivalued bridge table may need to be based on a type 2 slowly changing dimension`. For example, the bridge table that implements the many-to-many relationship between bank accounts and individual customers usually must be based on type 2 account and customer dimensions. `In this case, to prevent incorrect linkages between accounts and customers, the bridge table must include effective and expiration date/time stamps`, and the requesting application must constrain the bridge table to a specific moment in time to produce a consistent snapshot.
+
+### Behavior Tag Time Series
+`Almost all text in a data warehouse is descriptive text in dimension tables. Data mining customer cluster analyses typically results in textual behavior tags, often identified on a periodic basis`. In this case, the customers’ behavior measurements over time become a sequence of these behavior tags; `this time series should be stored as positional attributes in the customer dimension, along with an optional text string for the complete sequence of tags`. The behavior tags are modeled in a positional design because the behavior tags are the target of complex simultaneous queries rather than numeric computations.
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
