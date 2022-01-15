@@ -69,6 +69,7 @@ This is a index to best navigation inside document.
     - [Time Varying Multivalued Bridge Tables](#Time-Varying-Multivalued-Bridge-Tables)
     - [Behavior Tag Time Series](#Behavior-Tag-Time-Series)
     - [Behavior Study Groups](#Behavior-Study-Groups)
+    - [Aggregated Facts as Dimension Attributes](#Aggregated-Facts-as-Dimension-Attributes)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -345,7 +346,11 @@ foreign key of the outrigger in the fact table rather than in the base dimension
 `Almost all text in a data warehouse is descriptive text in dimension tables. Data mining customer cluster analyses typically results in textual behavior tags, often identified on a periodic basis`. In this case, the customers’ behavior measurements over time become a sequence of these behavior tags; `this time series should be stored as positional attributes in the customer dimension, along with an optional text string for the complete sequence of tags`. The behavior tags are modeled in a positional design because the behavior tags are the target of complex simultaneous queries rather than numeric computations.
 
 ### Behavior Study Groups
-`Complex customer behavior can sometimes be discovered only by running lengthy iterative analyses. In these cases, it is impractical to embed the behavior analyses inside every BI application that wants to constrain all the members of the customer dimension who exhibit the complex behavior`. The results of the complex behavior analyses, however, `can be captured in a simple table, called a study group, consisting only of the customers’ durable keys. This static table can then be used as a kind of filter on any dimensional schema with a customer dimension by constraining the study group column to the customer dimension’s durable key in the target schema at query time`. Multiple study groups can be defined and derivative study groups can be created with intersections, unions, and set differences.
+`Complex customer behavior can sometimes be discovered only by running lengthy iterative analyses. In these cases, it is impractical to embed the behavior analyses inside every BI application that wants to constrain all the members of the customer dimension 
+who exhibit the complex behavior`. The results of the complex behavior analyses, however, `can be captured in a simple table, called a study group, consisting only of the customers’ durable keys. This static table can then be used as a kind of filter on any dimensional schema with a customer dimension by constraining the study group column to the customer dimension’s durable key in the target schema at query time`. Multiple study groups can be defined and derivative study groups can be created with intersections, unions, and set differences.
+
+### Aggregated Facts as Dimension Attributes
+`Business users are often interested in constraining the customer dimension based on aggregated performance metrics`, such as filtering on all customers who spent over a certain dollar amount during last year or perhaps over the customer’s lifetime. `Selected aggregated facts can be placed in a dimension as targets for constraining and as row labels for reporting`. The metrics are often presented as banded ranges in the dimension table. `Dimension attributes representing aggregated performance metrics add burden to the ETL processing, but ease the analytic burden in the BI layer`.
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
