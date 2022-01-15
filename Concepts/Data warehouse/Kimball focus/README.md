@@ -73,6 +73,7 @@ This is a index to best navigation inside document.
     - [Dynamic Value Bands](#Dynamic-Value-Bands)
     - [Text Comments Dimension](#Text-Comments-Dimension)
     - [Multiple Time Zones](#Multiple-Time-Zones)
+    - [Measure Type Dimensions](#Measure-Type-Dimensions)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -363,6 +364,9 @@ who exhibit the complex behavior`. The results of the complex behavior analyses,
 
 ### Multiple Time Zones
 To capture both universal standard time, as well as local times in multi-time zone applications, dual foreign keys should be placed in the affected fact tables that join to two role-playing date (and potentially time-of-day) dimension tables.
+
+### Measure Type Dimensions
+`Sometimes  when a fact table has a long list of facts that is sparsely populated in any individual row, it is tempting to create a measure type dimension that collapses the fact table row down to a single generic fact identified by the measure type dimension`. We generally do not recommend this approach. Although it removes all the empty fact columns, it multiplies the size of the fact table by the average number of occupied columns in each row, and it makes intra-column computations much more difficult. This technique is acceptable when the number of potential facts is extreme (in the hundreds), but less than a handful would be applicable to any given fact table row.
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
