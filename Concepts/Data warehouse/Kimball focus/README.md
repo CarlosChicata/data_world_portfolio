@@ -72,6 +72,7 @@ This is a index to best navigation inside document.
     - [Aggregated Facts as Dimension Attributes](#Aggregated-Facts-as-Dimension-Attributes)
     - [Dynamic Value Bands](#Dynamic-Value-Bands)
     - [Text Comments Dimension](#Text-Comments-Dimension)
+    - [Multiple Time Zones](#Multiple-Time-Zones)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -359,6 +360,9 @@ who exhibit the complex behavior`. The results of the complex behavior analyses,
 
 ### Text Comments Dimension
 `Rather  than treating freeform comments as textual metrics in a fact table, they should be stored outside the fact table in a separate comments dimension` (or as attributes in a dimension with one row per transaction if the comments’ cardinality matches the number of unique transactions) with a corresponding foreign key in the fact table.
+
+### Multiple Time Zones
+To capture both universal standard time, as well as local times in multi-time zone applications, dual foreign keys should be placed in the affected fact tables that join to two role-playing date (and potentially time-of-day) dimension tables.
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
