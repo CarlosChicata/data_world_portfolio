@@ -107,6 +107,7 @@ This is a index to best navigation inside document.
 ](#Supertype-and-Subtype-Schemas-for-Heterogeneous-Products
 )
   - [Real-Time Fact Tables](#Real-Time-Fact-Tables)
+  - [Error Event Schemas](#Error-Event-Schemas)
 
 
 # Dimensional modeling introduction
@@ -477,3 +478,6 @@ The following design patterns are needed for specific use cases.
 
 ## Real-Time Fact Tables
 `Real-time fact tables need to be updated more frequently than the more traditional nightly batch process. There are many techniques for supporting this requirement`, depending on the capabilities of the DBMS or OLAP cube used for final deployment to the BI reporting layer. For example, a “hot partition” can be defined on a fact table that is pinned in physical memory. Aggregations and indexes are deliberately not built on this partition. Other DBMSs or OLAP cubes may support deferred updating that allows existing queries to run to completion but then perform the updates.
+
+## Error Event Schemas
+Managing data quality in a data warehouse requires a comprehensive system of data quality screens or filters that test the data as it flows from the source systems to the BI platform. When a data quality screen detects an error, this event is recorded in a special dimensional schema that is available only in the ETL back room. `This schema consists of an error event fact table whose grain is the individual error event and an associated error event detail fact table whose grain is each column in each table that participates in an error event`.
