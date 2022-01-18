@@ -102,7 +102,7 @@ This is a index to best navigation inside document.
     - [Slightly Ragged or Variable Depth Hierarchies](#slightly-ragged-or-variable-depth-hierarchies)
     - [Ragged or Variable Depth Hierarchies with Hierarchy Bridge Tables](#ragged-or-Variable-depth-hierarchies-with-hierarchy-bridge-tables)
     - [Ragged or Variable Depth Hierarchies with Pathstring Attributes](#ragged-or-variable-depth-hierarchies-with-pathstring-attributes)
-
+- [Special Purpose Schemas](#Special-Purpose-Schemas)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
@@ -462,3 +462,6 @@ This section describes approaches for dealing with hierarchies, starting with th
 
 ### Ragged or Variable Depth Hierarchies with Pathstring Attributes
 `The  use of a bridge table for ragged variable depth hierarchies can be avoided by implementing a pathstring attribute in the dimension. For each row in the dimension, the pathstring attribute contains a specially encoded text string containing the complete path description from the supreme node of a hierarchy down to the node described by the particular dimension row`. Many of the standard hierarchy analysis requests can then be handled by standard SQL, without resorting to SQL language extensions. However, the pathstring approach does not enable rapid sub-stitution of alternative hierarchies or shared ownership hierarchies. The pathstring approach may also be vulnerable to structure changes in the ragged hierarchy that could force the entire hierarchy to be relabeled.
+
+# Special Purpose Schemas
+The following design patterns are needed for specific use cases.
