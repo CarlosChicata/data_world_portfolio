@@ -465,3 +465,7 @@ This section describes approaches for dealing with hierarchies, starting with th
 
 # Special Purpose Schemas
 The following design patterns are needed for specific use cases.
+
+## Supertype and Subtype Schemas for Heterogeneous Products
+`Financial services and other businesses frequently offer a wide variety of products in disparate lines of business`. For example, a retail bank may offer dozens of types of accounts ranging from checking accounts to mortgages to business loans, but all are examples of an account. `Attempts to build a single, consolidated fact table with the union of all possible facts, linked to dimension tables with all possible attributes of these divergent products, will fail because there can be hundreds of incompatible facts and attributes`.
+`The solution is to build a single supertype fact table that has the intersection of the facts from all the account types (along with a supertype dimension table containing the common attributes), and then systematically build separate fact tables (and associated dimension tables) for each of the subtypes`. Supertype and subtype fact tables are also called core and custom fact tables
