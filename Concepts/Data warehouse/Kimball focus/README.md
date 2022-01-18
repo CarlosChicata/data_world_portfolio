@@ -77,6 +77,7 @@ This is a index to best navigation inside document.
     - [Step Dimensions](#Step-Dimensions)
     - [Hot Swappable Dimensions](#Hot-Swappable-Dimensions)
     - [Abstract Generic Dimensions](#Abstract-Generic-Dimensions)
+    - [Audit Dimensions](#Audit-Dimensions)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -380,6 +381,9 @@ To capture both universal standard time, as well as local times in multi-time zo
 ### Abstract Generic Dimensions
 `Some  modelers are attracted to abstract generic dimensions. For example, their schemas include a single generic location dimension rather than embedded geographic attributes in the store, warehouse, and customer dimensions`. Similarly, their person dimension includes rows for employees, customers, and vendor contacts because they are all human beings, regardless that significantly different attributes are collected for each type. `Abstract generic dimensions should be avoided in dimensional models. The attribute sets associated with each type often differ. If the attributes are common, such as a geographic state, then they should be uniquely labeled to distinguish a store’s state from a customer’s`. Finally, dumping all varieties of locations, people, or products into a single dimension invariably results in a larger dimension table. `Data abstraction may be appropriate in the operational source system or ETL processing, but it negatively impacts query performance and legibility in the dimensional model`.
 
+### Audit Dimensions
+`When a fact table row is created in the ETL back room, it is helpful to create an audit dimension containing the ETL processing metadata known at the time. A simple audit dimension row could contain one or more basic indicators of data quality, perhaps derived from examining an error event schema that records data quality violations encountered while processing the data`. Other useful audit dimension attributes could include environment variables describing the versions of ETL code used to create the fact rows or the ETL process execution time stamps. 
+`These environment variables are especially useful for compliance and auditing purposes` because they enable BI tools to drill down to determine which rows were created with what versions of the ETL software. 
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
