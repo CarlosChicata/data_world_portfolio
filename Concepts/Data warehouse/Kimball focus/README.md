@@ -76,6 +76,7 @@ This is a index to best navigation inside document.
     - [Measure Type Dimensions](#Measure-Type-Dimensions)
     - [Step Dimensions](#Step-Dimensions)
     - [Hot Swappable Dimensions](#Hot-Swappable-Dimensions)
+    - [Abstract Generic Dimensions](#Abstract-Generic-Dimensions)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -375,6 +376,10 @@ To capture both universal standard time, as well as local times in multi-time zo
 
 ### Hot Swappable Dimensions
 `Hot swappable dimensionsare used when the same fact table is alternatively paired with different copies of the same dimension`. For example, a single fact table containing stock ticker quotes could be simultaneously exposed to multiple separate investors, each of whom has unique and proprietar y attributes assigned to different stocks.
+
+### Abstract Generic Dimensions
+`Some  modelers are attracted to abstract generic dimensions. For example, their schemas include a single generic location dimension rather than embedded geographic attributes in the store, warehouse, and customer dimensions`. Similarly, their person dimension includes rows for employees, customers, and vendor contacts because they are all human beings, regardless that significantly different attributes are collected for each type. `Abstract generic dimensions should be avoided in dimensional models. The attribute sets associated with each type often differ. If the attributes are common, such as a geographic state, then they should be uniquely labeled to distinguish a store’s state from a customer’s`. Finally, dumping all varieties of locations, people, or products into a single dimension invariably results in a larger dimension table. `Data abstraction may be appropriate in the operational source system or ETL processing, but it negatively impacts query performance and legibility in the dimensional model`.
+
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
