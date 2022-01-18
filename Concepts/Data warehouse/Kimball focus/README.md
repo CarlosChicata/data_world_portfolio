@@ -102,7 +102,10 @@ This is a index to best navigation inside document.
     - [Slightly Ragged or Variable Depth Hierarchies](#slightly-ragged-or-variable-depth-hierarchies)
     - [Ragged or Variable Depth Hierarchies with Hierarchy Bridge Tables](#ragged-or-Variable-depth-hierarchies-with-hierarchy-bridge-tables)
     - [Ragged or Variable Depth Hierarchies with Pathstring Attributes](#ragged-or-variable-depth-hierarchies-with-pathstring-attributes)
-- [Special Purpose Schemas](#Special-Purpose-Schemas)
+- [Special Purpose Schemas](#Special-Purpose-Schemas) 
+  - [Supertype and Subtype Schemas for Heterogeneous Products
+](#Supertype-and-Subtype-Schemas-for-Heterogeneous-Products
+)
 
 # Dimensional modeling introduction
 ## General issues in dimensional modeling
