@@ -78,6 +78,7 @@ This is a index to best navigation inside document.
     - [Hot Swappable Dimensions](#Hot-Swappable-Dimensions)
     - [Abstract Generic Dimensions](#Abstract-Generic-Dimensions)
     - [Audit Dimensions](#Audit-Dimensions)
+    - [Late Arriving Dimensions](#Late-Arriving-Dimensions)
   - [Integration via Conformed Dimensions](#integration-via-conformed-dimensions)
     - [Conformed Dimensions](#conformed-dimensions)
     - [Shrunken Dimensions](#shrunken-dimensions)
@@ -384,6 +385,9 @@ To capture both universal standard time, as well as local times in multi-time zo
 ### Audit Dimensions
 `When a fact table row is created in the ETL back room, it is helpful to create an audit dimension containing the ETL processing metadata known at the time. A simple audit dimension row could contain one or more basic indicators of data quality, perhaps derived from examining an error event schema that records data quality violations encountered while processing the data`. Other useful audit dimension attributes could include environment variables describing the versions of ETL code used to create the fact rows or the ETL process execution time stamps. 
 `These environment variables are especially useful for compliance and auditing purposes` because they enable BI tools to drill down to determine which rows were created with what versions of the ETL software. 
+
+### Late Arriving Dimensions
+`Sometimes the facts from an operational business process arrive minutes, hours, days, or weeks before the associated dimension context`. For example, in a real-time data delivery situation, an inventory depletion row may arrive showing the natural key of a customer committing to purchase a particular product. `In a real-time ETL system, this row must be posted to the BI layer, even if the identity of the customer or product cannot be immediately determined. In these cases, special dimension rows are created with the unresolved natural keys as attributes. Of course, these dimension rows must contain generic unknown values for most of the descriptive columns; presumably the proper dimensional context will follow from the source at a later time`. When this dimensional context is eventually supplied, the placeholder dimension rows are updated with type 1 overwrites. Late arriving dimension data also occurs when retroactive changes are made to type 2 dimension attributes. In this case, a new row needs to be inserted in the dimension table, and then the associated fact rows must be restated
 
 ## Integration via Conformed Dimensions
 Techniques to integrate data from diff erent business processes.
