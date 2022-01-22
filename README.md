@@ -18,5 +18,6 @@ The table is composed by followed columns:
 
 | Title | Company| Gave me up | Topic | Level |
 |----------|----------|---------| ----- | ---- |
-| Data engineering nanodegree | udacity | 17 / july /2021 | `AWS`, `Spark`, `data warehouse`, `data lake`, `redshift`, `data modeling`, `data pipeline` | 200 |
+| Data engineering nanodegree | udacity | 17 / july / 2021 | `AWS`, `Spark`, `data warehouse`, `data lake`, `redshift`, `data modeling`, `data pipeline` | 200 |
+| Big data & Analytics bootcamp | big data iot cloud | 31 / july / 2021 | `AWS`, `data pipeline`, `data layer`, `data lake`, `IoT` | 300 |
 
