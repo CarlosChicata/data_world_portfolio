@@ -21,3 +21,9 @@ The table is composed by followed columns:
 | Data engineering nanodegree | udacity | 17 / july / 2021 | `AWS`, `Spark`, `data warehouse`, `data lake`, `redshift`, `data modeling`, `data pipeline` | 200 |
 | Big data & Analytics bootcamp | big data iot cloud | 31 / july / 2021 | `AWS`, `data pipeline`, `data layer`, `data lake`, `IoT` | 300 |
 
+## Posts
+List of posts i written to show my knowledges and skills
+| Title | Tags | Languages | Tools | Link |
+|----------|----------|----------|----------|----------|
+|Lecciones que aprendí al migrar un sistema de reportería | Reports, software developement, project, knowledges | Spanish | None | https://medium.com/data-world-portafolio/lecciones-que-aprend%C3%AD-al-migrar-un-sistema-de-reporter%C3%ADa-3bddede78961 |
+| Las letras dentro del data pipeline | Data pipeline, knowledges, architecture | Spanish | None | https://medium.com/data-world-portafolio/las-letras-dentro-del-data-pipeline-21604cb6b884 |
