@@ -1,0 +1,151 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Automaticed creation of all infraestructure to support POC case 1."
+
+Parameters:
+  DatalakeDBInGlue:
+    Type: String
+    MinLength: "4"
+    Default: "db-poc-case-1"
+    Description: Name of DB in AWS Glue database
+
+  DatalakeS3Name:
+    Type: String
+    MinLength: "4"
+    Default: "s3-datalake-poc-case-1"
+    Description: "Name of bucket will get all parquet files (tables)."
+  
+  ResultedQueryStoreS3:
+    Type: String
+    MinLength: "4"
+    Default: "s3-stored-queries-poc-case-1"
+    Description: "Name of bucket will store teh result of queries from athena"
+
+
+Resources:
+  ######
+  ### Resource to generate database
+  ######
+
+  ## Role will be used in IaC
+  AWSGlueJobRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - glue.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:  "*"
+                Resource: "*"
+      Path: "/" 
+
+  ## Resource to get tables (AWS S3)
+  DatalakeS3:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref DatalakeS3Name
+      AccessControl: "PublicReadWrite"
+
+  # Resource to store data generated from Athena
+  ResultQueriesAthenaS3:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref ResultedQueryStoreS3
+      AccessControl: "PublicReadWrite"
+
+  ## Resource to prepare database (AWS GLUE)
+  POCCase1Database:
+    Type: "AWS::Glue::Database"
+    Properties:
+      DatabaseInput:
+        Description: "Database to store all table in POC case 1"
+        Name: !Ref DatalakeDBInGlue
+      CatalogId: !Ref AWS::AccountId ## reference the same AWS account
+
+  ## moving file s3-to-s3 using AWS Glue job
+  S3ToS3GlueJob:
+    Type: "AWS::Glue::Job"
+    Properties:
+      Role: !Ref AWSGlueJobRole
+      Name: "S3ToS3Moving"
+      Command : 
+        Name: "pythonshell"
+        PythonVersion: "3.9"
+        ScriptLocation: "s3://template-terraform-poc/load_tables.py"
+      DefaultArguments:
+        "--bucket-origin": "poc-case-1-table-demo"
+        "--bucket-destiny" : !Ref DatalakeS3Name
+      MaxRetries: 0
+      Description: "Moving files from S3 to S3 script"
+
+  ## preparing athena workspace
+  AthenaWorkSpace:
+    Type: "AWS::Athena::WorkGroup"
+    Properties:
+      Description: "Resulted data storage from queries of AWS Athena."
+      Name: "resulted-queries-athena-poc-case-1"
+      WorkGroupConfiguration:
+        ResultConfiguration: 
+          OutputLocation:  !Join
+            - "/"
+            - - "s3:/"
+              - !Ref ResultedQueryStoreS3
+
+  ## get metadata of tables
+  ParserMetadataTableGlueCrawler:
+    Type: "AWS::Glue::Crawler"
+    Properties:
+      Name: "poc-case-1-crawler"
+      Role: !Ref AWSGlueJobRole
+      DatabaseName: !Ref POCCase1Database
+      Targets:
+        S3Targets:
+          - Path : "s3://s3-datalake-poc-case-1/city-table/"
+          - Path : "s3://s3-datalake-poc-case-1/client-table/"
+          - Path : "s3://s3-datalake-poc-case-1/country-table/"
+          - Path : "s3://s3-datalake-poc-case-1/order-table/"
+          - Path : "s3://s3-datalake-poc-case-1/product-size-table/"
+          - Path : "s3://s3-datalake-poc-case-1/route-table/"
+          - Path : "s3://s3-datalake-poc-case-1/service-table/"
+          - Path : "s3://s3-datalake-poc-case-1/trackcode-table/"
+
+  ######
+  ### Resource to generate database
+  ######
+
+Outputs:
+  DatalakeS3Name:
+    Description: "Get name of data lake in S3 in infraestructure."
+    Value: !GetAtt DatalakeS3.DomainName
+  DatalakeS3URL:
+    Description: "URL of website of bucket."
+    Value: !GetAtt DatalakeS3.WebsiteURL
+  MovingJobID:
+    Description: "Logical ID of AWS Glue Job"
+    Value: !Ref S3ToS3GlueJob
+  DBID:
+    Description: "Logical ID of AWS Glue Database"
+    Value: !Ref POCCase1Database
+  DBS3:
+    Description: "S3 Path for stored querie from AWS Athena"
+    Value: !Join
+      - "/"
+      - - "s3:/"
+        - !Ref ResultedQueryStoreS3
+  WorkspaceInAthena:
+    Description: "Workspace to save queries inside Athena"
+    Value: !Ref AthenaWorkSpace
+  CrawlerTables:
+    Description: "Crawler to generate all tables in destiny location S3"
+    Value: !Ref ParserMetadataTableGlueCrawler
+
