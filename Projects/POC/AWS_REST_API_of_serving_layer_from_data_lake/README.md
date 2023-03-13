@@ -39,10 +39,8 @@ These are the main challenges to face:
 
 1. We need to check if the user's token is authorized to access the request's endpoint.
 2. We need to check if the user's token is validated to use.
-3. We need to check the same endpoint from different roles gave the correct data based in rol.
-4. Make a Custom validations in AWS gateway for 1-2 points.
-5. Make a custom queries parameters in AWS Athena based in specified role.
-6. Apply anonimization technique in data during the process.
+3. Make a Custom validations in AWS gateway for 1-2 points.
+4. Make a custom queries parameters in AWS Athena based in specified role.
 
 ## Solution
 
