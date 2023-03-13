@@ -29,8 +29,7 @@ Second, this is the list of common queries will be consumed by our clients:
 5. The number of orders by code generated during a date range.
 6. The number of trackcodes lost.
 7. The most required service using during a date range.
-8. Get billing generated in date range.
-9. Check how many orders are success delivery before the promise time in date range.
+8. Check how many orders are success delivery before the promise time in date range.
 
 
 ## Challenges
