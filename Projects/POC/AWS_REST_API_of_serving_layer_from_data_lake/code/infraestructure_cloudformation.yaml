@@ -13,6 +13,12 @@ Parameters:
     MinLength: "4"
     Default: "s3-datalake-poc-case-1"
     Description: "Name of bucket will get all parquet files (tables)."
+
+  AccessControlDBS3Name:
+    Type: String
+    MinLength: "4"
+    Default: "s3-controlaccess-poc-case-1"
+    Description: "Name of bucket will get all parquet files (tables)."
   
   ResultedQueryStoreS3:
     Type: String
@@ -63,6 +69,12 @@ Resources:
       BucketName: !Ref ResultedQueryStoreS3
       AccessControl: "PublicReadWrite"
 
+  AccessControlDBS3:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref DatalakeS3Name
+      AccessControl: "PublicReadWrite"
+
   ## Resource to prepare database (AWS GLUE)
   POCCase1Database:
     Type: "AWS::Glue::Database"
@@ -109,7 +121,7 @@ Resources:
       Role: !Ref AWSGlueJobRole
       DatabaseName: !Ref POCCase1Database
       Targets:
-        S3Targets:
+        S3Targets: # manual adding data store
           - Path : "s3://s3-datalake-poc-case-1/city-table/"
           - Path : "s3://s3-datalake-poc-case-1/client-table/"
           - Path : "s3://s3-datalake-poc-case-1/country-table/"
@@ -118,6 +130,16 @@ Resources:
           - Path : "s3://s3-datalake-poc-case-1/route-table/"
           - Path : "s3://s3-datalake-poc-case-1/service-table/"
           - Path : "s3://s3-datalake-poc-case-1/trackcode-table/"
+  
+  ParserMetadataAccessControlGlueCrawler:
+    type: "AWS::Glue::Crawler"
+    Properties:
+      Name: "poc-case-1-crawler"
+      Role: !Ref AWSGlueJobRole
+      DatabaseName: !Ref AccessControlDBS3Name
+      Targets:
+        S3Targets: # manual adding data store
+          - Path : "s3://s3-datalake-poc-case-1/access_control_table/"
 
   ######
   ### Resource to generate database
