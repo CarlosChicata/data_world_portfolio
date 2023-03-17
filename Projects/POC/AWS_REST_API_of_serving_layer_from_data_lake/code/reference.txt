@@ -45,4 +45,12 @@ https://medium.com/@shivakumar.mcet/aws-fetch-data-from-amazon-athena-using-api-
 https://catalog.us-east-1.prod.workshops.aws/workshops/e2226f3d-4c4c-4a4a-bf8b-4f05209f02fd/en-US/module-amazon-sustainability-data-initiative-2/hackingasdidata/section-3-apigw-lambda
 [ApiGateway + athena en versión basica : post oficial de AWS]
 https://aws.amazon.com/es/blogs/big-data/access-amazon-athena-in-your-applications-using-the-websocket-api/
+[]
+https://aws.amazon.com/es/premiumsupport/knowledge-center/api-gateway-401-error-lambda-authorizer/
+[]
+
+
+--------
+[recursos para referenciar]
+https://api.klayers.cloud//api/v2/p3.9/layers/latest/us-east-1/html
 
