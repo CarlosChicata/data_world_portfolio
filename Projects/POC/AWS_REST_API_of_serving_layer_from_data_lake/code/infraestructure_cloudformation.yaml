@@ -132,14 +132,18 @@ Resources:
           - Path : "s3://s3-datalake-poc-case-1/trackcode-table/"
   
   ParserMetadataAccessControlGlueCrawler:
-    type: "AWS::Glue::Crawler"
+    Type: "AWS::Glue::Crawler"
     Properties:
       Name: "poc-case-1-crawler"
       Role: !Ref AWSGlueJobRole
       DatabaseName: !Ref AccessControlDBS3Name
       Targets:
         S3Targets: # manual adding data store
-          - Path : "s3://s3-datalake-poc-case-1/access_control_table/"
+          - Path : !Join
+            - "/"
+            - - "s3:/"
+              - !Ref DatalakeS3Name
+              - "access_control_table/"
 
   ######
   ### Resource to generate API
@@ -167,6 +171,21 @@ Resources:
                 Resource: "*"
       Path: "/" 
 
+  LambdaAuthAWS:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Description: "Authorize the request based in permissions of access control tower."
+      Runtime: "python3.9"
+      Role: !Ref AuthLambdaRole
+      Handler: index.lambda_handler
+      Timeout: 900
+      MemorySize: 2000
+      Layers:
+        - "arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p39-pandas:12"
+      Code:
+        S3Bucket: "template-terraform-poc"
+        S3Key: "auth_lambda.py"
+
 
 Outputs:
   DatalakeS3Name:
@@ -193,4 +212,6 @@ Outputs:
   CrawlerTables:
     Description: "Crawler to generate all tables in destiny location S3"
     Value: !Ref ParserMetadataTableGlueCrawler
-
+  AWSAuthLambda:
+    Description: "Custome authorizated method of endpoint"
+    Value: !Ref LambdaAuthAWS
