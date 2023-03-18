@@ -1,20 +1,26 @@
 '''
     Generate a authorizer lambda to handle the authorize and authenticate 
     of endpoints in the REST API service.
+
+    NOTE_DEV:
+        - Add layer of pandas to work 
 '''
 import time
 import io
 
 
 import pandas as pd
-from boto3 import Session
-
+#from boto3 import Session # ONLY LOCAL DEV
+import boto3 # ONLY PROD ENV
 
 
 ACCESS_KEY = ""
 SECRET_KEY = ""
 S3_OUTPUT = "s3://pruebas-generales-para/" # ENV PARAMS
 S3_BUCKET = "pruebas-generales-para" # ENV PARAMS
+
+'''
+## ONLY LOCAL ENV
 
 session = Session(
     aws_access_key_id=ACCESS_KEY,
@@ -24,7 +30,11 @@ session = Session(
 
 athena_cli = session.client("athena", region_name="us-east-1")
 s3_cli = session.client("s3")
+'''
 
+## ONLY PROD ENV
+s3_cli = boto3.client('s3')
+athena_cli = boto3.client('athena')
 
 def get_data_from_athena(key_enterprise, field):
     '''
@@ -102,7 +112,62 @@ def get_data_from_athena(key_enterprise, field):
         return -1
 
 
+def generate_policy(principal_id, effect, method_arn):
+    '''
+        Generate a policy to authorize request access the endpoint.
+    '''
+    auth_response = {}
+    auth_response['principalId'] = principal_id
+
+    if effect and method_arn:
+        policy_document = {
+            'Version': '2012-10-17',
+            'Statement': [
+                {
+                    'Sid': 'FirstStatement',
+                    'Action': 'execute-api:Invoke',
+                    'Effect': effect,
+                    'Resource': method_arn
+                }
+            ]
+        }
+ 
+        auth_response['policyDocument'] = policy_document
+
+    return auth_response
 
 
-print(get_data_from_athena("f1bf44f9-ca62-4df3-93ac-90e0c3fc4dc9", "all_orders_by_range"))
+def lambda_handler(event, context):
+    '''
+        Handler endpoint of lambda for user requests.
+    '''
+    print(event)
+    print(event["headers"])
+    print(event["routeArn"])
+    try:
+        if event["headers"]["token"] is None:
+            print("case 0")
+            return generate_policy(None, 'Deny', event['routeArn'])
+        
+        is_validated = get_data_from_athena(
+                event["headers"]["token"],
+                "all_orders_by_range"
+            )
+        print(is_validated)
+        if is_validated == 1: 
+            print("case 1: accepted and authorized")
+            return generate_policy('user', 'Allow', event['routeArn'])
+        elif is_validated == 0:
+            print("case 2: accepted and not authorized")
+            return generate_policy('user', 'Deny', event['routeArn'])
+        else:
+            print("case 3: unauthorized")
+            return generate_policy(None, 'Deny', event['routeArn'])
+
+    except Exception as e:
+        print("error")
+        print(e)
+        return generate_policy(None, 'Deny', event['routeArn'])
+
+###print(get_data_from_athena("f1bf44f9-ca62-4df3-93ac-90e0c3fc4dc9", "all_orders_by_range"))
 
