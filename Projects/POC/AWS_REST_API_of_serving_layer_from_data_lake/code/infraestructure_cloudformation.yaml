@@ -17,8 +17,8 @@ Parameters:
   AccessControlDBS3Name:
     Type: String
     MinLength: "4"
-    Default: "s3-controlaccess-poc-case-1"
-    Description: "Name of bucket will get all parquet files (tables)."
+    Default: "db-controlaccess-poc-case-1"
+    Description: "DB contain all access control to authorizer process in API."
   
   ResultedQueryStoreS3:
     Type: String
@@ -29,7 +29,7 @@ Parameters:
 
 Resources:
   ######
-  ### Resource to generate database
+  ### Resource to generate database and data processing system
   ######
 
   ## Role will be used in IaC
@@ -69,12 +69,6 @@ Resources:
       BucketName: !Ref ResultedQueryStoreS3
       AccessControl: "PublicReadWrite"
 
-  AccessControlDBS3:
-    Type: 'AWS::S3::Bucket'
-    Properties:
-      BucketName: !Ref DatalakeS3Name
-      AccessControl: "PublicReadWrite"
-
   ## Resource to prepare database (AWS GLUE)
   POCCase1Database:
     Type: "AWS::Glue::Database"
@@ -93,7 +87,7 @@ Resources:
       Command : 
         Name: "pythonshell"
         PythonVersion: "3.9"
-        ScriptLocation: "s3://template-terraform-poc/load_tables.py"
+        ScriptLocation: "s3://script-poc-case-1/load_tables.py"
       DefaultArguments:
         "--bucket-origin": "poc-case-1-table-demo"
         "--bucket-destiny" : !Ref DatalakeS3Name
@@ -131,6 +125,10 @@ Resources:
           - Path : "s3://s3-datalake-poc-case-1/service-table/"
           - Path : "s3://s3-datalake-poc-case-1/trackcode-table/"
   
+  ######
+  ### Resource to generate API
+  ######
+
   ParserMetadataAccessControlGlueCrawler:
     Type: "AWS::Glue::Crawler"
     Properties:
@@ -139,15 +137,7 @@ Resources:
       DatabaseName: !Ref AccessControlDBS3Name
       Targets:
         S3Targets: # manual adding data store
-          - Path : !Join
-            - "/"
-            - - "s3:/"
-              - !Ref DatalakeS3Name
-              - "access_control_table/"
-
-  ######
-  ### Resource to generate API
-  ######
+          - Path : "s3://s3-datalake-poc-case-1/access_control_table/"
 
   AuthLambdaRole:
     Type: "AWS::IAM::Role"
@@ -183,7 +173,7 @@ Resources:
       Layers:
         - "arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p39-pandas:12"
       Code:
-        S3Bucket: "template-terraform-poc"
+        S3Bucket: "script-poc-case-1"
         S3Key: "auth_lambda.py"
 
 
