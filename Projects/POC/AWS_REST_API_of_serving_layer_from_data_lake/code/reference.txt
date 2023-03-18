@@ -47,10 +47,13 @@ https://catalog.us-east-1.prod.workshops.aws/workshops/e2226f3d-4c4c-4a4a-bf8b-4
 https://aws.amazon.com/es/blogs/big-data/access-amazon-athena-in-your-applications-using-the-websocket-api/
 []
 https://aws.amazon.com/es/premiumsupport/knowledge-center/api-gateway-401-error-lambda-authorizer/
-[]
+[AUTH LAMBDA]
+https://medium.com/@sumindaniro/secure-aws-api-gateway-using-a-lambda-authorizer-40a1da825b16
 
 
 --------
-[recursos para referenciar]
+[recursos para referenciar de LAYER EN LAMBDA]
 https://api.klayers.cloud//api/v2/p3.9/layers/latest/us-east-1/html
 
+[AUTH LAMBDA code]
+https://blog.codecentric.de/aws-lambda-authorizer
