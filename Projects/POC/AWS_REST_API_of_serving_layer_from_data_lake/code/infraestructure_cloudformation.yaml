@@ -132,7 +132,7 @@ Resources:
   ParserMetadataAccessControlGlueCrawler:
     Type: "AWS::Glue::Crawler"
     Properties:
-      Name: "poc-case-1-crawler"
+      Name: "poc-case-1-crawler-access-control-data"
       Role: !Ref AWSGlueJobRole
       DatabaseName: !Ref AccessControlDBS3Name
       Targets:
@@ -166,7 +166,7 @@ Resources:
     Properties:
       Description: "Authorize the request based in permissions of access control tower."
       Runtime: "python3.9"
-      Role: !Ref AuthLambdaRole
+      Role: !GetAtt AuthLambdaRole.Arn
       Handler: index.lambda_handler
       Timeout: 900
       MemorySize: 2000
@@ -174,7 +174,7 @@ Resources:
         - "arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p39-pandas:12"
       Code:
         S3Bucket: "script-poc-case-1"
-        S3Key: "auth_lambda.py"
+        S3Key: "auth_lambda.zip"
 
 
 Outputs:
