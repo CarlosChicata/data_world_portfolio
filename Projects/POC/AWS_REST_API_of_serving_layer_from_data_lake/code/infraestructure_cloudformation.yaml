@@ -168,7 +168,7 @@ Resources:
       Description: "Authorize the request based in permissions of access control tower."
       Runtime: "python3.9"
       Role: !GetAtt AuthLambdaRole.Arn
-      Handler: index.lambda_handler
+      Handler: auth_lambda.lambda_handler
       Timeout: 900
       MemorySize: 2000
       Layers:
