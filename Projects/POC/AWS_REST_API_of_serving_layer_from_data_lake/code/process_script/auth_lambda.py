@@ -10,7 +10,7 @@ import io
 
 
 import pandas as pd
-from boto3 import Session
+#from boto3 import Session
 import boto3
 
 
