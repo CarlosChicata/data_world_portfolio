@@ -43,7 +43,7 @@ def get_data_from_athena(key_enterprise, field):
     try:
         tic = time.perf_counter()
         query = '''
-            SELECT * FROM "control-access-test"."access_control_table"
+            SELECT * FROM "db-controlaccess-poc-case-1"."access_control_table"
             where "enterprisekey" = '{0}';
         '''.format(key_enterprise)
         print(query)
