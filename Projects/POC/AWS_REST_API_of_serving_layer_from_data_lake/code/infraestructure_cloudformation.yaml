@@ -137,7 +137,7 @@ Resources:
       DatabaseName: !Ref AccessControlDBS3Name
       Targets:
         S3Targets: # manual adding data store
-          - Path : "s3://s3-datalake-poc-case-1/access_control_table/"
+          - Path : "s3://s3-datalake-poc-case-1/access-control-table/"
 
   AuthLambdaRole:
     Type: "AWS::IAM::Role"
