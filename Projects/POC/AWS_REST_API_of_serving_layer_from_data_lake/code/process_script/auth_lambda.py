@@ -1,6 +1,9 @@
 '''
     Generate a authorizer lambda to handle the authorize and authenticate 
     of endpoints in the REST API service.
+
+    NOTE:
+     you need a pandas, use a layer from: https://api.klayers.cloud//api/v2/p3.9/layers/latest/us-east-1/html
 '''
 import time
 import io
