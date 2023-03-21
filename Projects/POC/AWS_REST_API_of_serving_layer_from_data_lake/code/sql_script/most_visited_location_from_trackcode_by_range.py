@@ -35,7 +35,7 @@ def get_data_from_athena(event):
 
     ## STEP 0 : preparring query to get data
     query = '''
-        SELECT distinct DATE(CAST("t"."creation" as TIMESTAMP)) as "date_creation", "c"."name", count(*)
+        SELECT distinct DATE(CAST("t"."creation" as TIMESTAMP)) as "date_creation", "c"."name", count(*)  as "amount"
         FROM "db-poc-case-1"."trackcode_table" as "t"
         RIGHT JOIN "db-poc-case-1"."client_table"  as "cl"
             ON "t"."client_id" = "cl"."id"
