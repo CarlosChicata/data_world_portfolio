@@ -23,7 +23,7 @@ endpoints = [
 ]
 for endpoint in endpoints:
     df[endpoint] = [
-        random.random() > 0.7 for _ in range(df.shape[0])
+        random.random() > 0.2 for _ in range(df.shape[0])
     ]
 
 endpoints.append("id")
