@@ -39,7 +39,7 @@ def get_data_from_athena(event):
             coalesce("r"."price_official", 10.0) as "price", 
             "r"."distance", 
             "t"."pickup_address", "t"."drop_address",
-            "s"."name" as "service_name", "cl"."enterpris_key"
+            "s"."name" as "service_name", "t"."creation", "cl"."enterpris_key"
         FROM "db-poc-case-1"."route_table" as "r"
         JOIN "db-poc-case-1"."order_table" as "o"
             on "o"."route_id" = "r"."id"
