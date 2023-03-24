@@ -47,6 +47,7 @@ These are the main challenges to face:
 
 I will implement a custom authorization process to check the authorization and authentication of request from API, then processing the request with specified sql query and return it on JSON format.
 
+![Infraestructure POC case 1](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/diagrama%20poc%20case%201%20-%20personal.drawio.png)
 
 ### Project Structure
 
