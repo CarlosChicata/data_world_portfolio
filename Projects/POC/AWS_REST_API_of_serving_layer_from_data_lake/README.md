@@ -49,6 +49,16 @@ I will implement a custom authorization process to check the authorization and a
 
 ![Infraestructure POC case 1](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/diagrama%20poc%20case%201%20-%20personal.drawio.png)
 
+### Tools to implement
+
+1. AWS Athena
+2. Python 3.9
+3. AWS Lambda function and layers.
+4. AWS S3 standard
+5. AWS Cloudformation
+6. AWS Glue: Database, crawler and job
+7. AWS API Gateway: REST API
+
 ### Project Structure
 
  In the __Code__ folder contains all files associated this POC. This folder is structured following topics:
@@ -62,7 +72,25 @@ I will implement a custom authorization process to check the authorization and a
  * __requirements.txt__ file is generate a virtual env. to developer in local enviroment.
  * __reference.txt__ and __demo_template_IAC_1.yaml__ files are documents to guide in this implementation POC.
 
+### How to implement this project?
+
 ### Topic issues
+
+I needed to learn in my few free time some topics about AWS resource like Athena, Lambda, Glue, Cloudformation and API Gatewy; so i built based on simplicity and functional vision such that i got a POC in version 1 with minimum functionality to the main goal: __*delivery data on demand into my users.*__
+
+#### Performance
+
+#### Reusability code
+
+:thumbsup: The great point is the IaC template to implement easily all resource AWS in the POC, so then i need to do minimum steps to implement total infrastructure of project. 
+
+:eyes: One of the great problem in this POC is the duplicate of code in auth lambdas and sql endpoints: I consider the duplicate code in several auth lambdas and process like a chance to improve the structure of code and data model such that:
+
+* In one query, i can get as amount as i can.
+* Don't maintain several file with exactly like content for same goal.
+* Get minimum and necessary logical processes in project.
+
+#### Money
 
 Money, design of solution, performance, scalability, possible problems and limitations of solution.
 
