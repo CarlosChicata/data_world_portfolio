@@ -6,11 +6,11 @@ I have a data model ready to be consumed for several users and apps. This model 
 
 My acceptance criterias are:
 
-* Management of access in specified endpoints in API by users.
-* Management a validation credentials to autenticate the usage of API.
-* Management of access of data in data model associated this specified client.
-* Mecanism to read data based of data model from data lake.
-* Mecanism to apply anonimization in sensitive data of data model. (optional)
+* Management of access in specified endpoints in API by users. :boom: __Note__ : Because the complexity to solve in this POC, i will it in version 2.
+* Management a validation credentials to autenticate the usage of API. :heavy_check_mark:
+* Management of access of data in data model associated this specified client. :heavy_check_mark:
+* Mecanism to read data based of data model from data lake. :heavy_check_mark:
+* Mecanism to apply anonimization in sensitive data of data model. (optional) :boom: __Note__ : Because the complexity to solve in this POC, i will it in version 2.
 
 ## Note about the problem context
 
@@ -39,7 +39,7 @@ These are the main challenges to face:
 1. We need to check if the user's token is authorized to access the request's endpoint :heavy_check_mark:
 2. We need to check if the user's token is validated to use. :heavy_check_mark:
 3. Make a Custom validations in AWS gateway for 1-2 points. :heavy_check_mark:
-4. Make a custom queries parameters in AWS Athena based in specified role. :boom: __Note__ : For this POC i've chosen don't implement this part by complexity to resolve. In version 2 this POC i will it.
+4. Make a custom queries parameters in AWS Athena based in specified role. :boom: __Note__ : For this POC i've chosen don't implement this part by complexity to solve. In version 2 this POC i will it.
 
 ## Solution
 
