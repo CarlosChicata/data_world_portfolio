@@ -43,7 +43,9 @@ These are the main challenges to face:
 
 ## Solution
 
-### General
+### General Idea
+
+I will implement a custom authorization process to check the authorization and authentication of request from API, then processing the request with specified sql query and return it on JSON format.
 
 
 ### Project Structure
