@@ -11,5 +11,5 @@ This is my portfolio projects i built it based in this case.
 
 | N° of Case | Title | Short description | Tools  | Cloud Provider | Concepts | Status |
 |------------|-------|-------------------|--------|----------------|----------|--------|
-| 1 | REST API of Serving layer from data lake | Create a REST API to consume a data model is stored in data lake. | `AWS S3`, `AWS Athena`, `AWS API gateway` | AWS | Data lake, Data modeling  | `Get ready to start` |
+| 1 | REST API of Serving layer from data lake | Create a REST API to consume a data model is stored in data lake. | `AWS S3`, `AWS Athena`, `AWS API gateway` | AWS | Data lake, Data modeling  | `Progress` |
 | 2 | GraphQL API of Serving layer from data lake | Create a GraphQL API to consume a data model is stored in data lake. | `AWS S3`, `AWS Athena`, `AWS AppSync` | AWS |  Data lake, Data modeling | `Get ready to start` |
