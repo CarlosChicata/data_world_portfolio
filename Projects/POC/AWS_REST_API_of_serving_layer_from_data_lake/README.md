@@ -46,11 +46,20 @@ These are the main challenges to face:
 ### General
 
 
-
 ### Project Structure
 
+ In the __Code__ folder contains all files associated this POC. This folder is structured following topics:
+ 
+ * __auth_lambda_script__ folder contains all auth lambdas scripts associated to sql endpoints to extract data based in user request.
+ * __fake_data__ folder contains all generated faking  data in CSV format used in POC.
+ * __fake_parquet__ folder contains all generated faking  data in Parquet format used in POC.
+ * __process_script__ folder contains python scripts to generate tables based in faked data and prepare environment in processing resources.
+ * __sql_script__ folder contains pythons scripts associated the endpoints in API service to extract data based in user request.
+ * __infraestructure_cloudformation.yaml__ file is AWS cloudformation based IaC to generate all infrastructure in POC.
+ * __requirements.txt__ file is generate a virtual env. to developer in local enviroment.
+ * __reference.txt__ and __demo_template_IAC_1.yaml__ files are documents to guide in this implementation POC.
 
-## Topic issues
+### Topic issues
 
 Money, design of solution, performance, scalability, possible problems and limitations of solution.
 
