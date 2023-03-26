@@ -26,6 +26,12 @@ Parameters:
     Default: "s3-stored-queries-poc-case-1"
     Description: "Name of bucket will store teh result of queries from athena"
 
+  DataUserConsumerAPIName:
+    Type: String
+    MinLength: "4"
+    Default: "third-consumer-data-api"
+    Description: "Name of API to deliver data"
+
 
 Resources:
   ######
@@ -189,9 +195,23 @@ Resources:
         S3Bucket: "script-poc-case-1"
         S3Key: "auth_lambda.zip"
 
+  DataUserConsumerAPI:
+    Type: "AWS::ApiGateway::RestApi"
+    Properties:
+      ApiKeySourceType: "HEADER"
+      Description: "API use to deliver data on demand for my third users"
+      Name: !Ref DataUserConsumerAPIName
+
+  DataUserConsumerAPIResource:
+    Type: "AWS::ApiGateway::Resource"
+    Properties:
+      ParentId: !GetAtt DataUserConsumerAPI.RootResourceId
+      PathPart: 
+      RestApiId: !Ref DataUserConsumerAPI
+
 
 Outputs:
-  DatalakeS3Name:
+  DatalakeS3NameID:
     Description: "Get name of data lake in S3 in infraestructure."
     Value: !GetAtt DatalakeS3.DomainName
   DatalakeS3URL:
@@ -203,7 +223,7 @@ Outputs:
   DBID:
     Description: "Logical ID of AWS Glue Database"
     Value: !Ref POCCase1Database
-  DBS3:
+  DBS3ID:
     Description: "S3 Path for stored querie from AWS Athena"
     Value: !Join
       - "/"
@@ -212,9 +232,12 @@ Outputs:
   WorkspaceInAthena:
     Description: "Workspace to save queries inside Athena"
     Value: !Ref AthenaWorkSpace
-  CrawlerTables:
+  CrawlerTablesID:
     Description: "Crawler to generate all tables in destiny location S3"
     Value: !Ref ParserMetadataTableGlueCrawler
-  AWSAuthLambda:
+  AWSAuthLambdaID:
     Description: "Custome authorizated method of endpoint"
     Value: !Ref LambdaAuthAWS
+  DataUserConsumerAPIID:
+    Description: "API to consumer our users"
+    Value: !Ref DataUserConsumerAPI
