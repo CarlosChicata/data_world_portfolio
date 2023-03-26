@@ -78,18 +78,23 @@ I will implement a custom authorization process to check the authorization and a
 
 I needed to learn in my few free time some topics about AWS resource like Athena, Lambda, Glue, Cloudformation and API Gatewy; so i built based on simplicity and functional vision such that i got a POC in version 1 with minimum functionality to the main goal: __*delivery data on demand into my users.*__
 
-#### Scalability: :star2::star2::star2::star2::star:
+#### Scalability: :star2::star2::star2::star2::star2:
 
-:thumbsup: 
+:thumbsup: Because the architecture is serverless focus in general; the resources can created based in demand required in all kind of enviroment to solve all user requests. Any change in data or code can be apply in scale in this infrastructure model.
+
 
 #### Performance: :star2::star2::star::star::star:
 
-:thumbsup: Because the architecture is serverless focus; the resources can created based in demand required in all kind of enviroment.
+:thumbsup: Because the architecture is serverless focus in general; the REST API can responde in high request on 24/7. The auth lambda can cache the same authentication operation for same user.
 
 :eyes: The auth lambda have a delay based in the performance of aws athena to get the data of access control table. I can understand the performance in SQL endpoint is accepted for now; but in high performance the time (average 10ms) can be a problem; so i need to optimize; in priority order; following issues: 
 
 1. The data to use in AWS Athena (depend of use case)
 2. The auth lambda response.
+ 
+Based in AWS Athena behavier, i can do several same SQL operation with same params and don't use the previous generated data file.
+
+Don't work for high amount of data need to return into the user; and depending of your format data in data can be update one easier.
 
 
 #### Reusability code: :star2::star2::star2::star::star:
@@ -102,11 +107,14 @@ I needed to learn in my few free time some topics about AWS resource like Athena
 * Don't maintain several file with exactly like content for same goal.
 * Get minimum and necessary logical processes in project.
 
-#### Security
+#### Security :star2::star2::star::star::star:
 
+:thumbsup: There are an authentication and authorization control the can be easy to use and apply inside the organization for the REST API.
+
+:eyes: The IAM Roles need to be more restricted: anyone can be anything with these roles!. And all internal request in POC is running over internet, it expose to be hacked!.
 
 #### Money
 
-Money, design of solution, performance, scalability, possible problems and limitations of solution.
+Money, possible problems and limitations of solution.
 
 
