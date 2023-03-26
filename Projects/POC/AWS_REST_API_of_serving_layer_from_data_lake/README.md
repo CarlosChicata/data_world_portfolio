@@ -97,7 +97,7 @@ Based in AWS Athena behavier, i can do several same SQL operation with same para
 Don't work for high amount of data need to return into the user; and depending of your format data in data can be update one easier.
 
 
-#### Reusability code: :star2::star2::star2::star::star:
+#### Reusability: :star2::star2::star2::star::star:
 
 :thumbsup: The great point is the IaC template to implement easily all resource AWS in the POC, so then i need to do minimum steps to implement total infrastructure of project. 
 
