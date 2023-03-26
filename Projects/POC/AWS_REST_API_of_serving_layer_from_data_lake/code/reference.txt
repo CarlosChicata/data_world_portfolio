@@ -49,7 +49,8 @@ https://aws.amazon.com/es/blogs/big-data/access-amazon-athena-in-your-applicatio
 https://aws.amazon.com/es/premiumsupport/knowledge-center/api-gateway-401-error-lambda-authorizer/
 [AUTH LAMBDA]
 https://medium.com/@sumindaniro/secure-aws-api-gateway-using-a-lambda-authorizer-40a1da825b16
-
+[API Gateway con AWS cloudformation]
+https://nickolaskraus.io/articles/creating-an-amazon-api-gateway-with-a-lambda-integration-using-cloudformation/
 
 --------
 [recursos para referenciar de LAYER EN LAMBDA]
