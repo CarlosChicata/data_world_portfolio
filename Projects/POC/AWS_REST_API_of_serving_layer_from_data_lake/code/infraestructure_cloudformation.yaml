@@ -126,18 +126,30 @@ Resources:
           - Path : "s3://s3-datalake-poc-case-1/trackcode-table/"
   
   ######
-  ### Resource to generate API
+  ### Resource to generate access control table in API
   ######
+
+  AccessControlDBS3:
+    Type: "AWS::Glue::Database"
+    Properties:
+      DatabaseInput:
+        Description: "Database to store access control in POC case 1"
+        Name: !Ref AccessControlDBS3Name
+      CatalogId: !Ref AWS::AccountId ## reference the same AWS account
 
   ParserMetadataAccessControlGlueCrawler:
     Type: "AWS::Glue::Crawler"
     Properties:
       Name: "poc-case-1-crawler-access-control-data"
       Role: !Ref AWSGlueJobRole
-      DatabaseName: !Ref AccessControlDBS3Name
+      DatabaseName: !Ref AccessControlDBS3
       Targets:
         S3Targets: # manual adding data store
           - Path : "s3://s3-datalake-poc-case-1/access-control-table/"
+
+  ######
+  ### Resource to generate API
+  ######
 
   AuthLambdaRole:
     Type: "AWS::IAM::Role"
