@@ -78,9 +78,21 @@ I will implement a custom authorization process to check the authorization and a
 
 I needed to learn in my few free time some topics about AWS resource like Athena, Lambda, Glue, Cloudformation and API Gatewy; so i built based on simplicity and functional vision such that i got a POC in version 1 with minimum functionality to the main goal: __*delivery data on demand into my users.*__
 
-#### Performance
+#### Scalability: :star2::star2::star2::star2::star:
 
-#### Reusability code
+:thumbsup: 
+
+#### Performance: :star2::star2::star::star::star:
+
+:thumbsup: Because the architecture is serverless focus; the resources can created based in demand required in all kind of enviroment.
+
+:eyes: The auth lambda have a delay based in the performance of aws athena to get the data of access control table. I can understand the performance in SQL endpoint is accepted for now; but in high performance the time (average 10ms) can be a problem; so i need to optimize; in priority order; following issues: 
+
+1. The data to use in AWS Athena (depend of use case)
+2. The auth lambda response.
+
+
+#### Reusability code: :star2::star2::star2::star::star:
 
 :thumbsup: The great point is the IaC template to implement easily all resource AWS in the POC, so then i need to do minimum steps to implement total infrastructure of project. 
 
@@ -89,6 +101,9 @@ I needed to learn in my few free time some topics about AWS resource like Athena
 * In one query, i can get as amount as i can.
 * Don't maintain several file with exactly like content for same goal.
 * Get minimum and necessary logical processes in project.
+
+#### Security
+
 
 #### Money
 
