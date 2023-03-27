@@ -51,6 +51,8 @@ https://aws.amazon.com/es/premiumsupport/knowledge-center/api-gateway-401-error-
 https://medium.com/@sumindaniro/secure-aws-api-gateway-using-a-lambda-authorizer-40a1da825b16
 [API Gateway con AWS cloudformation]
 https://nickolaskraus.io/articles/creating-an-amazon-api-gateway-with-a-lambda-integration-using-cloudformation/
+[API Gateway con AWS cloudformation]
+https://blog.jayway.com/2016/08/17/introduction-to-cloudformation-for-api-gateway/
 
 --------
 [recursos para referenciar de LAYER EN LAMBDA]
