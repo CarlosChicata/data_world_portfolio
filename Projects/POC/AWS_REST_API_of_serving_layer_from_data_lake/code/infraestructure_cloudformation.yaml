@@ -275,7 +275,7 @@ Resources:
     Type: AWS::ApiGateway::Resource
     Properties:
       ParentId: !GetAtt DataUserConsumerAPIGateway.RootResourceId
-      PathPart: '/get/all_orders_by_range'
+      PathPart: 'all_orders_by_range'
       RestApiId: !Ref DataUserConsumerAPIGateway
 
   DataUserConsumerAPIMethod1SQLEndpoint:
