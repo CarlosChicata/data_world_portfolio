@@ -249,7 +249,7 @@ Resources:
   LambdaAuthorizerAPI1SQLEndpoint:
     Type: 'AWS::ApiGateway::Authorizer'
     Properties:
-      Name: "Auth lambda for #1 SQL endpoint"
+      Name: "AuthLambdaFor1SQLendpoint"
       RestApiId: !Ref DataUserConsumerAPIGateway
       Type: "TOKEN"
       IdentitySource: "method.request.header.Authorization"
