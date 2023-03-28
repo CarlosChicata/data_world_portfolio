@@ -182,25 +182,25 @@ Resources:
   DataUserConsumerAPIGatewayRole:
     Type: "AWS::IAM::Role"
     Properties:
-    AssumeRolePolicyDocument:
-      Version: '2012-10-17'
-      Statement:
-        - Sid: ''
-          Effect: 'Allow'
-          Principal:
-            Service:
-              - 'apigateway.amazonaws.com'
-          Action:
-            - 'sts:AssumeRole'
-    Path: '/'
-    Policies:
-      - PolicyName: LambdaAccess
-        PolicyDocument:
-          Version: '2012-10-17'
-          Statement:
-            - Effect: 'Allow'
-              Action: 'lambda:*'
-              Resource: "*"
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: ''
+            Effect: 'Allow'
+            Principal:
+              Service:
+                - 'apigateway.amazonaws.com'
+            Action:
+              - 'sts:AssumeRole'
+      Path: '/'
+      Policies:
+        - PolicyName: LambdaAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: 'Allow'
+                Action: 'lambda:*'
+                Resource: "*"
 
   DataUserConsumerAPIGateway:
     Type: "AWS::ApiGateway::RestApi"
@@ -211,10 +211,10 @@ Resources:
   DataUserConsumerAPIDeployment:
     Type: AWS::ApiGateway::Deployment
     DependsOn: 
-      - DataUserConsumerAPI_Method_1SQL_Endpoint
+      - DataUserConsumerAPIMethod1SQLEndpoint
     Properties:
       Description: "Deployment of third data consumer in API"
-      RestApiId: !Ref ApiGatewayRestApi
+      RestApiId: !Ref DataUserConsumerAPIGateway
 
   DataUserConsumerAPIStage:
     Type: "AWS::ApiGateway::Stage"
@@ -230,7 +230,7 @@ Resources:
 
   ## SQL endpoint #1
 
-  LambdaAuthAWS_1SQL_Endpoint:
+  LambdaAuthAWS1SQLEndpoint:
     Type: "AWS::Lambda::Function"
     Properties:
       FunctionName: "LambdaAuthAWS"
@@ -246,19 +246,19 @@ Resources:
         S3Bucket: "script-poc-case-1"
         S3Key: "custom_auth_lambda/auth_all_orders_by_range.zip"
 
-  LambdaAuthorizerAPI_1SQL_Endpoint:
+  LambdaAuthorizerAPI1SQLEndpoint:
     Type: 'AWS::ApiGateway::Authorizer'
     Properties:
       Name: "Auth lambda for #1 SQL endpoint"
       RestApiId: !Ref DataUserConsumerAPIGateway
       Type: "TOKEN"
       IdentitySource: "method.request.header.Authorization"
-    AuthorizerUri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaAuthAWS_1SQL_Endpoint.Arn}/invocations'
+      AuthorizerUri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2023-03-27/functions/${LambdaAuthAWS1SQLEndpoint.Arn}/invocations'
 
-  Lambda_1SQL_Endpoint:
+  Lambda1SQLEndpoint:
     Type: "AWS::Lambda::Function"
     Properties:
-      FunctionName: "LambdaAuthAWS"
+      FunctionName: "N1SQLEndpoint"
       Description: "Code of #1 sql endpoint."
       Runtime: "python3.9"
       Role: !GetAtt AuthLambdaRole.Arn
@@ -271,30 +271,30 @@ Resources:
         S3Bucket: "script-poc-case-1"
         S3Key: "sql_endpoint/all_orders_by_range.zip"
 
-  DataUserConsumerAPI_Resource_1SQL_Endpoint:
+  DataUserConsumerAPIResource1SQLEndpoint:
     Type: AWS::ApiGateway::Resource
     Properties:
       ParentId: !GetAtt DataUserConsumerAPIGateway.RootResourceId
       PathPart: '/get/all_orders_by_range'
       RestApiId: !Ref DataUserConsumerAPIGateway
 
-  DataUserConsumerAPI_Method_1SQL_Endpoint:
+  DataUserConsumerAPIMethod1SQLEndpoint:
     Type: AWS::ApiGateway::Method
     Properties:
       ApiKeyRequired: false
       AuthorizationType: "CUSTOM"
-      AuthorizerId: !Ref LambdaAuthorizerAPI_1SQL_Endpoint
+      AuthorizerId: !Ref LambdaAuthorizerAPI1SQLEndpoint
       HttpMethod: POST
       Integration:
         ConnectionType: INTERNET
-        Credentials: !GetAtt ApiGatewayIamRole.Arn
+        Credentials: !GetAtt DataUserConsumerAPIGatewayRole.Arn
         IntegrationHttpMethod: POST
         PassthroughBehavior: WHEN_NO_MATCH
         TimeoutInMillis: 29000
         Type: AWS_PROXY
-        Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Lambda_1SQL_Endpoint.Arn}/invocations'
+        Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Lambda1SQLEndpoint.Arn}/invocations'
       OperationName: '/get/all_orders_by_range'
-      ResourceId: !Ref DataUserConsumerAPI_Resource_1SQL_Endpoint
+      ResourceId: !Ref DataUserConsumerAPIResource1SQLEndpoint
       RestApiId: !Ref DataUserConsumerAPIGateway
 
 
@@ -326,9 +326,3 @@ Outputs:
   CrawlerTablesID:
     Description: "Crawler to generate all tables in destiny location S3"
     Value: !Ref ParserMetadataTableGlueCrawler
-  AWSAuthLambdaID:
-    Description: "Custome authorizated method of endpoint"
-    Value: !Ref LambdaAuthAWS
-  DataUserConsumerAPIID:
-    Description: "API to consumer our users"
-    Value: !Ref DataUserConsumerAPI
