@@ -53,8 +53,12 @@ https://medium.com/@sumindaniro/secure-aws-api-gateway-using-a-lambda-authorizer
 https://nickolaskraus.io/articles/creating-an-amazon-api-gateway-with-a-lambda-integration-using-cloudformation/
 [API Gateway con AWS cloudformation]
 https://blog.jayway.com/2016/08/17/introduction-to-cloudformation-for-api-gateway/
+[API Gateway HTTP con AWS cloudformation]
+https://dev.to/lubanasachin/cloudformation-lambda-with-http-api-gateway-3a66
+
 
 --------
+
 [recursos para referenciar de LAYER EN LAMBDA]
 https://api.klayers.cloud//api/v2/p3.9/layers/latest/us-east-1/html
 
