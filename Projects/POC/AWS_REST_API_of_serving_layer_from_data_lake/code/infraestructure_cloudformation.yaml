@@ -203,7 +203,7 @@ Resources:
   LambdaAuthAWS1SQLEndpoint:
     Type: "AWS::Lambda::Function"
     Properties:
-      FunctionName: "LambdaAuthAWS"
+      FunctionName: "LambdaAuthAWS1"
       Description: "Authorize the request based in permissions of access control tower for #1 sql endpoint."
       Runtime: "python3.9"
       Role: !GetAtt AuthLambdaRole.Arn
@@ -287,7 +287,7 @@ Resources:
   LambdaAuthAWS2SQLEndpoint:
     Type: "AWS::Lambda::Function"
     Properties:
-      FunctionName: "LambdaAuthAWS"
+      FunctionName: "LambdaAuthAWS2"
       Description: "Authorize the request based in permissions of access control tower for #1 sql endpoint."
       Runtime: "python3.9"
       Role: !GetAtt AuthLambdaRole.Arn
@@ -358,7 +358,7 @@ Resources:
     Type: AWS::ApiGatewayV2::Route
     Properties:
       ApiId: !Ref DataUserConsumerAPIGateway
-      RouteKey: "POST /all_orders_by_range"
+      RouteKey: "POST /count_delivered_orders_before_promise_time_by_range"
       AuthorizationType: CUSTOM
       AuthorizerId: !Ref LambdaAuthAWS2SQLEndpointAuthorizer
       Target: !Join
@@ -371,8 +371,8 @@ Resources:
   LambdaAuthAWS3SQLEndpoint:
     Type: "AWS::Lambda::Function"
     Properties:
-      FunctionName: "LambdaAuthAWS"
-      Description: "Authorize the request based in permissions of access control tower for #1 sql endpoint."
+      FunctionName: "LambdaAuthAWS3"
+      Description: "Authorize the request based in permissions of access control tower for #3 sql endpoint."
       Runtime: "python3.9"
       Role: !GetAtt AuthLambdaRole.Arn
       Handler: auth_count_orders_by_range.lambda_handler
@@ -455,7 +455,7 @@ Resources:
   LambdaAuthAWS4SQLEndpoint:
     Type: "AWS::Lambda::Function"
     Properties:
-      FunctionName: "LambdaAuthAWS"
+      FunctionName: "LambdaAuthAWS4"
       Description: "Authorize the request based in permissions of access control tower for #4 sql endpoint."
       Runtime: "python3.9"
       Role: !GetAtt AuthLambdaRole.Arn
@@ -496,14 +496,14 @@ Resources:
       Description: "Code of #4 sql endpoint."
       Runtime: "python3.9"
       Role: !GetAtt AuthLambdaRole.Arn
-      Handler: count_orders_by_range.lambda_handler
+      Handler: count_trackcode_by_range.lambda_handler
       Timeout: 900
       MemorySize: 2000
       Layers:
         - "arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p39-pandas:12"
       Code:
         S3Bucket: "script-poc-case-1"
-        S3Key: "sql_endpoint/count_orders_by_range.zip"
+        S3Key: "sql_endpoint/count_trackcode_by_range.zip"
 
   Lambda4SQLEndpointPermission:
     Type: "AWS::Lambda::Permission"
@@ -526,7 +526,7 @@ Resources:
     Type: AWS::ApiGatewayV2::Route
     Properties:
       ApiId: !Ref DataUserConsumerAPIGateway
-      RouteKey: "POST /count_orders_by_range"
+      RouteKey: "POST /count_trackcode_by_range"
       AuthorizationType: CUSTOM
       AuthorizerId: !Ref LambdaAuthAWS4SQLEndpointAuthorizer
       Target: !Join
