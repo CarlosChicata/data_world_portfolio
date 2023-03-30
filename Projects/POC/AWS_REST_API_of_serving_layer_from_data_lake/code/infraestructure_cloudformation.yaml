@@ -348,7 +348,7 @@ Resources:
     Type: AWS::ApiGatewayV2::Integration
     Properties:
       ApiId: !Ref DataUserConsumerAPIGateway
-      Description: "Integration of #1 SQL endpoint process"
+      Description: "Integration of #2 SQL endpoint process"
       IntegrationType: AWS_PROXY
       IntegrationMethod: POST
       PayloadFormatVersion: "2.0"
@@ -366,6 +366,89 @@ Resources:
         - - integrations
           - !Ref Lambda2SQLEndpointIntegration
 
+  ## SQL endpoint #3
+
+  LambdaAuthAWS3SQLEndpoint:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      FunctionName: "LambdaAuthAWS"
+      Description: "Authorize the request based in permissions of access control tower for #1 sql endpoint."
+      Runtime: "python3.9"
+      Role: !GetAtt AuthLambdaRole.Arn
+      Handler: auth_count_orders_by_range.lambda_handler
+      Timeout: 900
+      MemorySize: 2000
+      Layers:
+        - "arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p39-pandas:12"
+      Code:
+        S3Bucket: "script-poc-case-1"
+        S3Key: "custom_auth_lambda/auth_count_orders_by_range.zip"
+
+  LambdaAuthAWS3SQLEndpointPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName: !Ref LambdaAuthAWS3SQLEndpoint
+      Action: "lambda:InvokeFunction"
+      Principal: apigateway.amazonaws.com
+
+  LambdaAuthAWS3SQLEndpointAuthorizer:
+    Type: "AWS::ApiGatewayV2::Authorizer"
+    Properties:
+      ApiId: !Ref DataUserConsumerAPIGateway
+      AuthorizerType: "REQUEST"
+      AuthorizerUri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaAuthAWS3SQLEndpoint.Arn}/invocations'
+      Name: "AuthSQL3Endpoint"
+      IdentitySource:
+        - $request.header.token
+      EnableSimpleResponses: false
+      AuthorizerPayloadFormatVersion: "2.0"
+      AuthorizerResultTtlInSeconds: 300
+
+
+  Lambda3SQLEndpoint:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      FunctionName: "N3SQLEndpoint"
+      Description: "Code of #3 sql endpoint."
+      Runtime: "python3.9"
+      Role: !GetAtt AuthLambdaRole.Arn
+      Handler: count_orders_by_range.lambda_handler
+      Timeout: 900
+      MemorySize: 2000
+      Layers:
+        - "arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p39-pandas:12"
+      Code:
+        S3Bucket: "script-poc-case-1"
+        S3Key: "sql_endpoint/count_orders_by_range.zip"
+
+  Lambda3SQLEndpointPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName: !Ref Lambda3SQLEndpoint
+      Action: "lambda:InvokeFunction"
+      Principal: apigateway.amazonaws.com
+
+  Lambda3SQLEndpointIntegration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: !Ref DataUserConsumerAPIGateway
+      Description: "Integration of #3 SQL endpoint process"
+      IntegrationType: AWS_PROXY
+      IntegrationMethod: POST
+      PayloadFormatVersion: "2.0"
+      IntegrationUri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Lambda3SQLEndpoint.Arn}/invocations'
+
+  Lambda3SQLEndpointRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref DataUserConsumerAPIGateway
+      RouteKey: "POST /count_orders_by_range"
+      AuthorizationType: CUSTOM
+      AuthorizerId: !Ref LambdaAuthAWS3SQLEndpointAuthorizer
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref Lambda3SQLEndpointIntegration
 
 
 Outputs:
