@@ -18,7 +18,7 @@ There are some point you need to know to understand better the problem:
 
 First, this is the data model to extract data. This is a galaxy schema from dimensional data modelling. The theme of the serving data layer is about logistic delivery of product. **Note**: don't focus in design of data model, i don't focus to be correct design to check if the model effects someway the POC case.
 
-![Data model](https://github.com/CarlosChicata/data_world_portfolio/blob/main/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/POC%20serving%20layer%20-%20data%20model.png)
+![Data model](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/POC%20serving%20layer%20-%20data%20model.png)
 
 Second, this is the list of common queries will be consumed by our clients:
 
