@@ -94,8 +94,25 @@ Second; In other or same S3 bucket  you chosen, stored all generated tables will
 
 Third; In AWS Cloudformation, i passed the `infraestructure_cloudformation.yaml` file to generate automatically all recourses in POC. I generate:
 
-* AWS API Gateway, AWS Lambda function and AWS IAM (for lambda)
-* AWS Glue Job and crawler, AWS S3
+* AWS API Gateway, AWS Lambda function and AWS IAM (for lambda) for API to handle user requests.
+* AWS Glue Job, data catalog and crawler services with AWS S3 to preparing the enviroment of AWS Athena to query tables.
+* AWS Athena workgroup to store the result of queries.
+
+Fourth; Go AWS Glue Job, and execute the Job named _S3ToS3Moving_; this move all files in your S3 bucket in second paragraph into destination S3 bucket will store all data tables for AWS AThena.
+
+
+Fifth; Go AWS Glue Crawler, and execute the all crawlers; they only are _poc-case-1-crawler_ and _poc-case-1-crawler-access-control-data_ ; to generate all tables need; those are data and access control tables respectivally. The AWS Cloudformation template had generated database resource of AWS Glue, so you don't bother about it.
+
+Sixth; Check if all resources of data catalog are created and available to use in AWS Athena; so then it works without problems.
+
+Seventh; Check if all resources associated to AWS API Gateway are created and available to handle all user requests. 
+
+Remember This API accept JSON request, with body with params following specifications:
+
+| _Name of params_ | _Must be_ | _Description_ | _Structure_ |
+|------------------|-----------|---------------|-------------|
+| start_datetime | Yes | Start date to find  the resources | `YYYY-MM-DD` |
+| end_datetime | Yes | End date to find the resources | `YYYY-MM-DD` |
 
 ### Topic issues
 
