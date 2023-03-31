@@ -86,7 +86,7 @@ If you wanna prepare the tables with data from CSV format to parquet format; you
 
 Soon i will upload the videos in spanish and english.
 
-#### Documentation 
+#### By step-by-step Documentation 
 
 First; you must uploaded inside S3 bucket you chosen, all python scripts associated to custom auth lambda files and SQL endpoints; the SQL endpoints are code to query on the tables using AWS Athena; because if you wanna use the AWS Cloudformation, you must stores those files in S3 to work. This bucket need to be created manually. Remember; custom auth lamabda and SQL endpoints are implemented with AWS Lambda function and available from AWS API Gateway to access it.
 
@@ -122,6 +122,14 @@ Remember This API accept JSON request, with body with params following specifica
 |------------------|-----------|---------------|-------------|
 | start_datetime | Yes | Start date to find  the resources | `YYYY-MM-DD` |
 | end_datetime | Yes | End date to find the resources | `YYYY-MM-DD` |
+
+### How destroy the POC project? (By step-by-step Documentation )
+
+First; delete all object inside S3 buckets you created with AWS cloudformation template. Remember the non-automaticated created S3 buckets, you need to delete those manually, as AWS cloudformation template won't delete those for you.
+
+Second; Go the AWS Cloudformation to delete the stack of resources in the POC automatically. Be patient. :wink:
+
+Third; check if all resources are deleted by AWS Cloudformation; if there any lived, delete those manually.
 
 ### Topic issues
 
