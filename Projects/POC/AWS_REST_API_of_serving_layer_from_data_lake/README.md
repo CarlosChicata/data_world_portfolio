@@ -82,7 +82,20 @@ If you wanna prepare the tables with data from CSV format to parquet format; you
 
 ### How to set up this project?
 
+#### By video
 
+Soon i will upload the videos in spanish and english.
+
+#### Documentation 
+
+First; you must uploaded inside S3 bucket you chosen, all python scripts associated to custom auth lambda files and SQL endpoints; the SQL endpoints are code to query on the tables using AWS Athena; because if you wanna use the AWS Cloudformation, you must stores those files in S3 to work. This bucket need to be created manually. Remember; custom auth lamabda and SQL endpoints are implemented with AWS Lambda function and available from AWS API Gateway to access it.
+
+Second; In other or same S3 bucket  you chosen, stored all generated tables will use by AWS Athena; because the same reason in previous paragraph. This bucket need to be created manually. I used Job from AWS Glue to prepare the tables inside from S3 and Crawler from AWS Glue to generate tables of DB for AWS Athena.
+
+Third; In AWS Cloudformation, i passed the `infraestructure_cloudformation.yaml` file to generate automatically all recourses in POC. I generate:
+
+* AWS API Gateway, AWS Lambda function and AWS IAM (for lambda)
+* AWS Glue Job and crawler, AWS S3
 
 ### Topic issues
 
@@ -104,7 +117,7 @@ I needed to learn in my few free time some topics about AWS resource like Athena
  
 Based in AWS Athena behavier, i can do several same SQL operation with same params and don't use the previous generated data file.
 
-Don't work for high amount of data need to return into the user; and depending of your format data in data can be update one easier.
+Don't work for high amount of data need to return into the user because the transmission of data from API; and ; other point; depending of your format data in data can be update one easier.
 
 
 #### Reusability: :star2::star2::star2::star::star:
