@@ -98,14 +98,23 @@ Third; In AWS Cloudformation, i passed the `infraestructure_cloudformation.yaml`
 * AWS Glue Job, data catalog and crawler services with AWS S3 to preparing the enviroment of AWS Athena to query tables.
 * AWS Athena workgroup to store the result of queries.
 
+![Generated resources from IaC template file ](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-1.png)
+
 Fourth; Go AWS Glue Job, and execute the Job named _S3ToS3Moving_; this move all files in your S3 bucket in second paragraph into destination S3 bucket will store all data tables for AWS AThena.
 
+![Executed AWS Glue Job](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-2.png)
 
 Fifth; Go AWS Glue Crawler, and execute the all crawlers; they only are _poc-case-1-crawler_ and _poc-case-1-crawler-access-control-data_ ; to generate all tables need; those are data and access control tables respectivally. The AWS Cloudformation template had generated database resource of AWS Glue, so you don't bother about it.
 
+![Executed AWS Glue crawlers](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-3.png)
+
 Sixth; Check if all resources of data catalog are created and available to use in AWS Athena; so then it works without problems.
 
+![Checked available AWS Athena](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-4.png)
+
 Seventh; Check if all resources associated to AWS API Gateway are created and available to handle all user requests. 
+
+![API Gateway worked](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-6.png)
 
 Remember This API accept JSON request, with body with params following specifications:
 
