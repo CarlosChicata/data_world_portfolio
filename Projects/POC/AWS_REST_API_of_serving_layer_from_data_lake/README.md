@@ -127,9 +127,15 @@ Remember This API accept JSON request, with body with params following specifica
 
 First; delete all object inside S3 buckets you created with AWS cloudformation template. Remember the non-automaticated created S3 buckets, you need to delete those manually, as AWS cloudformation template won't delete those for you.
 
+![Delete all object in S3 buckets](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-7.png)
+
 Second; Go the AWS Cloudformation to delete the stack of resources in the POC automatically. Be patient. :wink:
 
+![Delete resource from AWS Cloudformation](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-8.png)
+
 Third; check if all resources are deleted by AWS Cloudformation; if there any lived, delete those manually.
+
+![Check if all resources are deleted](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-9.png)
 
 ### Topic issues
 
