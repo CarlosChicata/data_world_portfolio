@@ -173,12 +173,12 @@ def generate_order_table():
 
 ############ MAIN ############
 
-#generate_country_table()
+generate_country_table()
 generate_city_table()
-#generate_client_table()
-#generate_product_size_table()
-#generate_service_table()
-#generate_trackcode_table()
-#generate_route_table()
-#generate_order_table()
+generate_client_table()
+generate_product_size_table()
+generate_service_table()
+generate_trackcode_table()
+generate_route_table()
+generate_order_table()
 
