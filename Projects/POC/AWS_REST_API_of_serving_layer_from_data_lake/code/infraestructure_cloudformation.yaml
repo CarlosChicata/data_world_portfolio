@@ -534,6 +534,91 @@ Resources:
         - - integrations
           - !Ref Lambda4SQLEndpointIntegration
 
+  ## SQL endpoint #5
+
+  LambdaAuthAWS5SQLEndpoint:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      FunctionName: "LambdaAuthAWS5"
+      Description: "Authorize the request based in permissions of access control tower for #5 sql endpoint."
+      Runtime: "python3.9"
+      Role: !GetAtt AuthLambdaRole.Arn
+      Handler: auth_count_trackcode_lost_by_range.lambda_handler
+      Timeout: 900
+      MemorySize: 2000
+      Layers:
+        - "arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p39-pandas:12"
+      Code:
+        S3Bucket: "script-poc-case-1"
+        S3Key: "custom_auth_lambda/auth_count_trackcode_lost_by_range.zip"
+
+  LambdaAuthAWS5SQLEndpointPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName: !Ref LambdaAuthAWS5SQLEndpoint
+      Action: "lambda:InvokeFunction"
+      Principal: apigateway.amazonaws.com
+
+  LambdaAuthAWS5SQLEndpointAuthorizer:
+    Type: "AWS::ApiGatewayV2::Authorizer"
+    Properties:
+      ApiId: !Ref DataUserConsumerAPIGateway
+      AuthorizerType: "REQUEST"
+      AuthorizerUri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaAuthAWS5SQLEndpoint.Arn}/invocations'
+      Name: "AuthSQL5Endpoint"
+      IdentitySource:
+        - $request.header.token
+      EnableSimpleResponses: false
+      AuthorizerPayloadFormatVersion: "2.0"
+      AuthorizerResultTtlInSeconds: 300
+
+
+  Lambda5SQLEndpoint:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      FunctionName: "N5SQLEndpoint"
+      Description: "Code of #5 sql endpoint."
+      Runtime: "python3.9"
+      Role: !GetAtt AuthLambdaRole.Arn
+      Handler: count_trackcode_lost_by_range.lambda_handler
+      Timeout: 900
+      MemorySize: 2000
+      Layers:
+        - "arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p39-pandas:12"
+      Code:
+        S3Bucket: "script-poc-case-1"
+        S3Key: "sql_endpoint/count_trackcode_lost_by_range.zip"
+
+  Lambda5SQLEndpointPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName: !Ref Lambda5SQLEndpoint
+      Action: "lambda:InvokeFunction"
+      Principal: apigateway.amazonaws.com
+
+  Lambda5SQLEndpointIntegration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: !Ref DataUserConsumerAPIGateway
+      Description: "Integration of #5 SQL endpoint process"
+      IntegrationType: AWS_PROXY
+      IntegrationMethod: POST
+      PayloadFormatVersion: "2.0"
+      IntegrationUri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Lambda5SQLEndpoint.Arn}/invocations'
+
+  Lambda4SQLEndpointRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref DataUserConsumerAPIGateway
+      RouteKey: "POST /count_trackcode_lost_by_range"
+      AuthorizationType: CUSTOM
+      AuthorizerId: !Ref LambdaAuthAWS5SQLEndpointAuthorizer
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref Lambda5SQLEndpointIntegration
+
+
 
 
 Outputs:
