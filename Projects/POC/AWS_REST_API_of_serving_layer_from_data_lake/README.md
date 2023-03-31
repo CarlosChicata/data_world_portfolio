@@ -72,7 +72,17 @@ I will implement a custom authorization process to check the authorization and a
  * __requirements.txt__ file is generate a virtual env. to developer in local enviroment.
  * __reference.txt__ and __demo_template_IAC_1.yaml__ files are documents to guide in this implementation POC.
 
-### How to implement this project?
+### How to prepare this project?
+
+:warning: __I did this part; but if you wanna know how i generate this tables and you wanna generate these in new format, Read this part.__
+
+I have in __fake_data__ folder, several files with faked data i generated based in my experience. Although I used some fields, there are fields that I don't use; if you wanna experiment with this, do it! :smile:
+
+If you wanna prepare the tables with data from CSV format to parquet format; you need to run 2 scripts: `main.py` y `load_tables.py` in __process_script__ folder. I created `load_tables.py` script to generate only access control table; and rest of tables i used `main.py` script. Yyou can run those in any order to create the tables.
+
+### How to set up this project?
+
+
 
 ### Topic issues
 
@@ -112,9 +122,3 @@ Don't work for high amount of data need to return into the user; and depending o
 :thumbsup: There are an authentication and authorization control the can be easy to use and apply inside the organization for the REST API.
 
 :eyes: The IAM Roles need to be more restricted: anyone can be anything with these roles!. And all internal request in POC is running over internet, it expose to be hacked!.
-
-#### Money
-
-Money, possible problems and limitations of solution.
-
-
