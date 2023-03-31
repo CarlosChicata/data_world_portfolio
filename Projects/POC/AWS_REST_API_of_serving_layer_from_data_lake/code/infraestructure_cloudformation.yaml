@@ -288,7 +288,7 @@ Resources:
     Type: "AWS::Lambda::Function"
     Properties:
       FunctionName: "LambdaAuthAWS2"
-      Description: "Authorize the request based in permissions of access control tower for #1 sql endpoint."
+      Description: "Authorize the request based in permissions of access control tower for #2 sql endpoint."
       Runtime: "python3.9"
       Role: !GetAtt AuthLambdaRole.Arn
       Handler: auth_count_delivered_trackcode_before_promise_time_by_range.lambda_handler
