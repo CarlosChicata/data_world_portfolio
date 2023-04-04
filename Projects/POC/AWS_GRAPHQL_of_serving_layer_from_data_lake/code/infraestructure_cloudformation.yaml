@@ -184,7 +184,14 @@ Resources:
     Properties: 
       AuthenticationType: "AWS_LAMBDA"
       Name: "Data consumer GraphQL API"
-      
+  
+  DataConsumerGraphQLSchema:
+    Type: "AWS::AppSync::GraphQLSchema"
+    Properties:
+      ApiId: !Ref DataConsumerGraphQLAPI
+      DefinitionS3Location: "" # add schema of all tables
+
+
 
 
 
