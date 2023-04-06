@@ -2,3 +2,13 @@
 https://catalog.us-east-1.prod.workshops.aws/workshops/67662c95-2007-4281-ae51-5313cd7caa67/en-US/lab1/1-with-console
 [graphql - schema]
 https://hasura.io/docs/latest/schema/common-patterns/data-modeling/one-to-many/
+[dataa type in schema with AppSync]
+https://docs.aws.amazon.com/appsync/latest/devguide/scalars.html#aws-appsync-scalars
+[design schema graphql from AppSync]
+https://docs.aws.amazon.com/appsync/latest/devguide/designing-your-schema.html
+[IAM ROle and other topics about attaching data resources]
+https://docs.aws.amazon.com/appsync/latest/devguide/attaching-a-data-source.html#aws-appsync-getting-started-build-a-schema-from-scratch
+
+
+
+
