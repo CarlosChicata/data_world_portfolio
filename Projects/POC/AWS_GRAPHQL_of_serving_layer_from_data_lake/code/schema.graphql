@@ -1,0 +1,15 @@
+schema {
+    query: Query
+}
+
+type Query {
+    getCountry: [Country]
+}
+
+type Country {
+    id: ID!
+    name: String
+    region: String
+    prefixPhone: String
+    currencyISO: String
+}
