@@ -1,11 +1,11 @@
 schema {
-    query: Query
+  query: Query
 }
 
-## SETUP 
+## SETUP
 
 type Query {
-    getTrackcodes(startDatetime, endDatetime): [Trackcode]
+    getTrackcodes(startDatetime: String, finishDatetime: String): [Trackcode]
 }
 
 ### TYPE/ data models
@@ -75,11 +75,10 @@ type Trackcode {
 }
 
 type Order {
-    trackcodeID : trackcode
+    trackcodeID : Trackcode
     routeID: Route
     id: Int!
     promiseTime: String
     startTime: String
     end_time: String
 }
-
