@@ -16,9 +16,9 @@ type Country {
 
 type ProductSize {
     name: String
-    dimX: String
-    dimY: String
-    dimZ: String
+    dimX: Float
+    dimY: Float
+    dimZ: Float
     id: ID!
 }
 
@@ -47,9 +47,10 @@ type City {
 type Route {
     code: String!
     id: ID!
-    priceOfficial: String!
-    priceWithIncentive: String!
-    distance: String!
+    priceOfficial: Float
+    priceOriginal: Float
+    priceWithIncentive: Float
+    distance: Float
     cityID: City
 }
 
@@ -66,5 +67,14 @@ type Trackcode {
     productWeight: String 
     dropPoint: String
     pickUpPoint: String
+}
+
+type Order {
+    trackcodeID : trackcode
+    routeID: Route
+    id: ID!
+    promiseTime: String
+    startTime: String
+    end_time: String
 }
 
