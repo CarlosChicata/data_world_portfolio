@@ -8,7 +8,10 @@ https://docs.aws.amazon.com/appsync/latest/devguide/scalars.html#aws-appsync-sca
 https://docs.aws.amazon.com/appsync/latest/devguide/designing-your-schema.html
 [IAM ROle and other topics about attaching data resources]
 https://docs.aws.amazon.com/appsync/latest/devguide/attaching-a-data-source.html#aws-appsync-getting-started-build-a-schema-from-scratch
-
+[AWS Athena and appsync #1]
+https://aws.amazon.com/es/blogs/mobile/visualizing-big-data-with-aws-appsync-amazon-athena-and-aws-amplify/
+[AWS Athena and appsync #2]
+https://aws.amazon.com/es/blogs/big-data/how-takeda-uses-the-graphql-api-with-aws-appsync-to-support-data-scientists/
 
 
 
