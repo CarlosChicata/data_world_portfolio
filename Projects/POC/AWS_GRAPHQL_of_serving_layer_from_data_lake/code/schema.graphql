@@ -8,8 +8,63 @@ type Query {
 
 type Country {
     id: ID!
-    name: String
-    region: String
-    prefixPhone: String
-    currencyISO: String
+    name: String!
+    region: String!
+    prefixPhone: String!
+    currencyISO: String!
 }
+
+type ProductSize {
+    name: String
+    dimX: String
+    dimY: String
+    dimZ: String
+    id: ID!
+}
+
+type Service {
+    name: String
+    id: ID!
+}
+
+type Client {
+    commercialName: String
+    businessName: String
+    cityID: City!
+    id: ID!
+    address: String
+    serviceIDS: String
+    enterprise_key: String! 
+}
+
+type City {
+    timezone: String!
+    name: String!
+    countryID: Country!
+    id: ID!
+}
+
+type Route {
+    code: String!
+    id: ID!
+    priceOfficial: String!
+    priceWithIncentive: String!
+    distance: String!
+    cityID: City
+}
+
+type Trackcode {
+    crossdocking: Boolean
+    id: ID!
+    creation: String
+    pickupAddress: String
+    dropAddress: String 
+    serviceID: Service!
+    productDescription: String
+    productPrice: String 
+    productSizeID: ProductSize!
+    productWeight: String 
+    dropPoint: String
+    pickUpPoint: String
+}
+
