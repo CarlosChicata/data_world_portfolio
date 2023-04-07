@@ -3,11 +3,11 @@ schema {
 }
 
 type Query {
-    getCountry: [Country]
+    getTrackcode: [Trackcode]
 }
 
 type Country {
-    id: ID!
+    id: Int!
     name: String!
     region: String!
     prefixPhone: String!
@@ -19,19 +19,19 @@ type ProductSize {
     dimX: Float
     dimY: Float
     dimZ: Float
-    id: ID!
+    id: Int!
 }
 
 type Service {
     name: String
-    id: ID!
+    id: Int!
 }
 
 type Client {
     commercialName: String
     businessName: String
     cityID: City!
-    id: ID!
+    id: Int!
     address: String
     serviceIDS: String
     enterprise_key: String! 
@@ -41,12 +41,12 @@ type City {
     timezone: String!
     name: String!
     countryID: Country!
-    id: ID!
+    id: Int!
 }
 
 type Route {
     code: String!
-    id: ID!
+    id: Int!
     priceOfficial: Float
     priceOriginal: Float
     priceWithIncentive: Float
@@ -56,7 +56,7 @@ type Route {
 
 type Trackcode {
     crossdocking: Boolean
-    id: ID!
+    id: Int!
     creation: String
     clientID: Client
     pickupAddress: String
@@ -73,7 +73,7 @@ type Trackcode {
 type Order {
     trackcodeID : trackcode
     routeID: Route
-    id: ID!
+    id: Int!
     promiseTime: String
     startTime: String
     end_time: String
