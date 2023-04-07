@@ -1,8 +1,8 @@
-# Case 1: REST API of serving layer stored from data lake in AWS 
+# Case 1: API of serving layer stored from data lake in AWS 
 
 ## Purpose and warning
 
-I have a data model ready to be consumed for several users and apps. This model is stored in data lake by data architect decision. So you have a specified queries that are consumed the most of users in your case; so then i wanna implement a REST API to give access this users.
+I have a data model ready to be consumed for several users and apps. This model is stored in data lake by data architect decision. So you have a specified queries that are consumed the most of users in your case; so then i wanna implement a API to give access this users.
 
 My acceptance criterias are:
 
@@ -18,7 +18,7 @@ There are some point you need to know to understand better the problem:
 
 First, this is the data model to extract data. This is a galaxy schema from dimensional data modelling. The theme of the serving data layer is about logistic delivery of product. **Note**: don't focus in design of data model, i don't focus to be correct design to check if the model effects someway the POC case.
 
-![Data model](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/POC%20serving%20layer%20-%20data%20model.png)
+![Data model](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/POC%20serving%20layer%20-%20data%20model.png)
 
 Second, this is the list of common queries will be consumed by our clients:
 
@@ -47,7 +47,7 @@ These are the main challenges to face:
 
 I will implement a custom authorization process to check the authorization and authentication of request from API, then processing the request with specified sql query and return it on JSON format.
 
-![Infraestructure POC case 1](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/diagrama%20poc%20case%201%20-%20personal.drawio.png)
+![Infraestructure POC case 1](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/diagrama%20poc%20case%201%20-%20personal.drawio.png)
 
 ### Tools to implement
 
@@ -57,7 +57,7 @@ I will implement a custom authorization process to check the authorization and a
 4. AWS S3 standard
 5. AWS Cloudformation
 6. AWS Glue: Database, crawler and job
-7. AWS API Gateway: REST API
+7. AWS API Gateway: HTTP API
 
 ### Project Structure
 
@@ -98,23 +98,23 @@ Third; In AWS Cloudformation, i passed the `infraestructure_cloudformation.yaml`
 * AWS Glue Job, data catalog and crawler services with AWS S3 to preparing the enviroment of AWS Athena to query tables.
 * AWS Athena workgroup to store the result of queries.
 
-![Generated resources from IaC template file ](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-1.png)
+![Generated resources from IaC template file ](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/img-poc-case-1.png)
 
 Fourth; Go AWS Glue Job, and execute the Job named _S3ToS3Moving_; this move all files in your S3 bucket in second paragraph into destination S3 bucket will store all data tables for AWS AThena.
 
-![Executed AWS Glue Job](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-2.png)
+![Executed AWS Glue Job](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/img-poc-case-2.png)
 
 Fifth; Go AWS Glue Crawler, and execute the all crawlers; they only are _poc-case-1-crawler_ and _poc-case-1-crawler-access-control-data_ ; to generate all tables need; those are data and access control tables respectivally. The AWS Cloudformation template had generated database resource of AWS Glue, so you don't bother about it.
 
-![Executed AWS Glue crawlers](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-3.png)
+![Executed AWS Glue crawlers](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/img-poc-case-3.png)
 
 Sixth; Check if all resources of data catalog are created and available to use in AWS Athena; so then it works without problems.
 
-![Checked available AWS Athena](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-4.png)
+![Checked available AWS Athena](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/img-poc-case-4.png)
 
 Seventh; Check if all resources associated to AWS API Gateway are created and available to handle all user requests. 
 
-![API Gateway worked](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-6.png)
+![API Gateway worked](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/img-poc-case-6.png)
 
 Remember This API accept JSON request, with body with params following specifications:
 
@@ -127,15 +127,15 @@ Remember This API accept JSON request, with body with params following specifica
 
 First; delete all object inside S3 buckets you created with AWS cloudformation template. Remember the non-automaticated created S3 buckets, you need to delete those manually, as AWS cloudformation template won't delete those for you.
 
-![Delete all object in S3 buckets](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-7.png)
+![Delete all object in S3 buckets](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/img-poc-case-7.png)
 
 Second; Go the AWS Cloudformation to delete the stack of resources in the POC automatically. Be patient. :wink:
 
-![Delete resource from AWS Cloudformation](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-8.png)
+![Delete resource from AWS Cloudformation](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-8.png)
 
 Third; check if all resources are deleted by AWS Cloudformation; if there any lived, delete those manually.
 
-![Check if all resources are deleted](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_REST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-9.png)
+![Check if all resources are deleted](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/img-poc-case-9.png)
 
 ### Topic issues
 
@@ -148,7 +148,7 @@ I needed to learn in my few free time some topics about AWS resource like Athena
 
 #### Performance: :star2::star2::star::star::star:
 
-:thumbsup: Because the architecture is serverless focus in general; the REST API can responde in high request on 24/7. The auth lambda can cache the same authentication operation for same user.
+:thumbsup: Because the architecture is serverless focus in general; the HTTP API can responde in high request on 24/7. The auth lambda can cache the same authentication operation for same user.
 
 :eyes: The auth lambda have a delay based in the performance of aws athena to get the data of access control table. I can understand the performance in SQL endpoint is accepted for now; but in high performance the time (average 10ms) can be a problem; so i need to optimize; in priority order; following issues: 
 
@@ -172,6 +172,6 @@ Don't work for high amount of data need to return into the user because the tran
 
 #### Security :star2::star2::star::star::star:
 
-:thumbsup: There are an authentication and authorization control the can be easy to use and apply inside the organization for the REST API.
+:thumbsup: There are an authentication and authorization control the can be easy to use and apply inside the organization for the HTTP API.
 
 :eyes: The IAM Roles need to be more restricted: anyone can be anything with these roles!. And all internal request in POC is running over internet, it expose to be hacked!.
