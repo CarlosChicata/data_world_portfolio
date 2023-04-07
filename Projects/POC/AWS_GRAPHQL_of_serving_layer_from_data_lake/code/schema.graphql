@@ -58,6 +58,7 @@ type Trackcode {
     crossdocking: Boolean
     id: ID!
     creation: String
+    clientID: Client
     pickupAddress: String
     dropAddress: String 
     serviceID: Service!
