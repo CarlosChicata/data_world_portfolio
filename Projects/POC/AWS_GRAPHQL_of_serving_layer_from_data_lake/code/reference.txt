@@ -12,6 +12,9 @@ https://docs.aws.amazon.com/appsync/latest/devguide/attaching-a-data-source.html
 https://aws.amazon.com/es/blogs/mobile/visualizing-big-data-with-aws-appsync-amazon-athena-and-aws-amplify/
 [AWS Athena and appsync #2]
 https://aws.amazon.com/es/blogs/big-data/how-takeda-uses-the-graphql-api-with-aws-appsync-to-support-data-scientists/
-
+[appsync ppts]
+https://pages.awscloud.com/rs/112-TZM-766/images/2020_0918-MBL_Slide-Deck.pdf
+[data lake + appsync architecture AWS recommend]
+https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/expose-your-data-lake-as-a-graphql-api-ra.pdf?did=wp_card&trk=wp_card
 
 
