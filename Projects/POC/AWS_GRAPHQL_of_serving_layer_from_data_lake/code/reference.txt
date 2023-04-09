@@ -18,4 +18,10 @@ https://pages.awscloud.com/rs/112-TZM-766/images/2020_0918-MBL_Slide-Deck.pdf
 https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/expose-your-data-lake-as-a-graphql-api-ra.pdf?did=wp_card&trk=wp_card
 [lambdas + RDS + appsync github code project]
 https://github.com/amazon-archives/aws-appsync-rds-aurora-sample#readme
+[appsync and SQL integration]
+https://aws.amazon.com/es/blogs/mobile/appsync-graphql-sql-rds-proxy/
+
+
+
+
 
