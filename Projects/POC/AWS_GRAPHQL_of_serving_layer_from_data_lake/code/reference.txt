@@ -20,7 +20,8 @@ https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/expose-your-
 https://github.com/amazon-archives/aws-appsync-rds-aurora-sample#readme
 [appsync and SQL integration]
 https://aws.amazon.com/es/blogs/mobile/appsync-graphql-sql-rds-proxy/
-
+[SQL & appsync]
+https://advancedweb.hu/how-to-use-rds-as-a-data-source-for-appsync/
 
 
 
