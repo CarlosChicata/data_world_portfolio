@@ -193,7 +193,11 @@ Resources:
       DefinitionS3Location: "" # add schema of all tables
 
 
+# Crear un cloud log group para el graph API
 
+# Crear un lambda para origen de datos
+
+# crear un lambda para resolver
 
 
 Outputs:
