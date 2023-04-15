@@ -192,10 +192,18 @@ Resources:
       ApiId: !Ref DataConsumerGraphQLAPI
       DefinitionS3Location: "" # add schema of all tables
 
+  DataConsumerGraphQLDataSouorce:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      ApiId: !Ref DataConsumerGraphQLAPI
+      Description: "Data source for table in AWS Athena"
+      Name: LambdaConnectAthena
+      Type: "AWS_LAMBDA"
+      LambdaConfig : 
+        LambdaFunctionArn: "" # add when preparing data
+
 
 # Crear un cloud log group para el graph API
-
-# Crear un lambda para origen de datos
 
 # crear un lambda para resolver
 
