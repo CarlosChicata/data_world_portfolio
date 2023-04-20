@@ -10,7 +10,7 @@ import pandas as pd
 from boto3 import Session
 #import boto3
 
-
+'''
 ACCESS_KEY = ""
 SECRET_KEY = ""
 session = Session()
@@ -22,8 +22,9 @@ s3_cli = session.client("s3")
 ATHENA_S3_OUTPUT = os.environ["ATHENA_S3_OUTPUT"]
 ATHENA_WORKGROUP = os.environ["ATHENA_WORKGROUP"]
 ATHENA_S3_BUCKET_OUTPUT = os.environ["ATHENA_S3_BUCKET_OUTPUT"]
+'''
 
-
+# working ....
 def get_data_from_sql_engine(query):
     '''
         Execute a SQL sentences and return data.
@@ -81,6 +82,14 @@ def get_data_from_sql_engine(query):
         raise e
 
 
+def processing_graphql_request(gql_request_field):
+    '''
+        Convert GraphQL request to object to manage field and relations.
+    '''
+    
+    
+    
+
 def lambda_handler(event, context):
     '''
         Handler endpoint of lambda for user requests.
@@ -104,3 +113,17 @@ def lambda_handler(event, context):
         print("error")
         print(e)
         return {}
+
+gplr = [
+      'address', # -> 1
+      'cityID', # -> 1*
+      'cityID/id', # -> 2 
+      'cityID/countryID', # -> 2*
+      'cityID/countryID/currencyISO', # -> 3
+      'cityID/countryID/id', # -> 3
+      'cityID/countryID/name', # ->  3
+      'cityID/name', # -> 2
+      'commercialName', # -> 1 
+      'enterprise_key' # ->  1
+    ]
+processing_graphql_request(gplr)
