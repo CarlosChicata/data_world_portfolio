@@ -55,14 +55,23 @@ def generate_format_request( gql_request, format_obj, name_level ):
         raise e  
 
 
-# working
 def parsing_gql_request_to_obj(fields, name_level, format):
+    '''
+    Generate the format object to generate SQL query. Recursive focus working.
+    
+    Params
+    field (list of string): list of fields in graphql request to process.
+    name_level (string): name of base node.
+    format (object): Node will store the data of graphql request.
+    
+    return format with data of graphql request to work
+    '''
     try:
 
-
-        #  Step 2: setup to recorring element
+        #  Step 1: generate the base node
         new_object = generate_format_request(fields, format, name_level)
 
+        # Step 2: generate the subnode of base node
         for  index in range(len(new_object["node"])):
             node_fields = new_object["node"][index]
             name_node = node_fields[0].split("/")[0]
@@ -77,6 +86,7 @@ def parsing_gql_request_to_obj(fields, name_level, format):
             
             new_object["node"][index] = new_node
         
+        # Step 3: return a base node
         return new_object
     except Exception as e:
         print(e)
