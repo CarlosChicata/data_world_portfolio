@@ -1,5 +1,18 @@
 def generate_format_request(level, gql_request, format_obj, name_level ):
+    '''
+        Generate the level based in list of field
+        
+        Parmas:
+        Level (int): current level of work.
+        gql_request (list of string): list of field of graphql request.
+        format_obj (object): node will store data associate this level.
+        name_level (string): name of this node.
+        
+        return a node 
+    '''
     try:
+        print(level, gql_request, format_obj, name_level)
+        print("\n")
         rich_fields = [ (field, field.count('/')) for field in gql_request]
         
         # setting format obj
@@ -15,7 +28,7 @@ def generate_format_request(level, gql_request, format_obj, name_level ):
         for field in rich_fields:
             if field[1] == level:
                 #print(field)
-                format_obj["field"].append(field[0])
+                format_obj["field"].append(field[0].split("/")[0])
             else:
                 temp_gql_request.append(field)
         
@@ -47,6 +60,7 @@ def generate_format_request(level, gql_request, format_obj, name_level ):
         
         
         print(format_obj)
+        print("----------------------")
         
         return format_obj
     except Exception as e:
@@ -55,19 +69,29 @@ def generate_format_request(level, gql_request, format_obj, name_level ):
 
 
 # working
-def parsing_gql_request_to_obj(fields):
+def parsing_gql_request_to_obj(fields, level, name_level, format):
     try:
-        # Step 1: get the level of deep by fields
-        rich_fields = [ (field, field.count('/')) for field in fields]
-        max_level = max([ field[1] for field in rich_fields])
 
-        format_request = {}
+
         #  Step 2: setup to recorring element
-        generate_format_request(0, fields, {}, 'Client')
-        #while len(rich_fields) > 0:
-        #    True
+        new_object = generate_format_request(level, fields, format, name_level)
+
+        for  index in range(len(new_object["node"])):
+            node_fields = new_object["node"][index]
+            name_node = node_fields[0].split("/")[0]
+            
+            node_fields = [ field[len(name_node)+1:] for field in node_fields]
+            
+            new_node = parsing_gql_request_to_obj(
+                node_fields,
+                0,
+                name_node,
+                {}
+            )
+            
+            new_object["node"][index] = new_node
         
-        return format_request
+        return new_object
     except Exception as e:
         print(e)
         raise e
@@ -99,4 +123,6 @@ GQL2 = [
 ]
 
 #generate_format_request(0, GQL, {}, "Client")
-parsing_gql_request_to_obj(GQL)
+rpta = parsing_gql_request_to_obj(GQL, 0, 'Client', {})
+print("rpta")
+print(rpta)
