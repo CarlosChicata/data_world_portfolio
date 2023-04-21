@@ -1,4 +1,4 @@
-def generate_format_request(level, gql_request, format_obj, name_level ):
+def generate_format_request( gql_request, format_obj, name_level ):
     '''
         Generate the level based in list of field
         
@@ -11,7 +11,7 @@ def generate_format_request(level, gql_request, format_obj, name_level ):
         return a node 
     '''
     try:
-        print(level, gql_request, format_obj, name_level)
+        print(gql_request, format_obj, name_level)
         print("\n")
         rich_fields = [ (field, field.count('/')) for field in gql_request]
         
@@ -26,15 +26,11 @@ def generate_format_request(level, gql_request, format_obj, name_level ):
 
         # add only field of level
         for field in rich_fields:
-            if field[1] == level:
+            if field[1] == 0:
                 #print(field)
                 format_obj["field"].append(field[0].split("/")[0])
             else:
                 temp_gql_request.append(field)
-        
-        #print(format_obj)
-        #print(temp_gql_request)
-        #print("--------------")
         
         # check what is the node field in this level
         for field in temp_gql_request:
@@ -45,11 +41,6 @@ def generate_format_request(level, gql_request, format_obj, name_level ):
                 format_obj["field"].remove(inner_field)
                 format_obj["node"].append([])
 
-        #print(format_obj)
-        #print(node_fields)
-        #print(temp_gql_request)
-        #print("--------------")
-
         # fill node of level with field need to formatting
         for field in temp_gql_request:
             inner_field = field[0].split("/")[0]
@@ -58,10 +49,6 @@ def generate_format_request(level, gql_request, format_obj, name_level ):
         
         # remove field not needed
         
-        
-        print(format_obj)
-        print("----------------------")
-        
         return format_obj
     except Exception as e:
         print(e)
@@ -69,12 +56,12 @@ def generate_format_request(level, gql_request, format_obj, name_level ):
 
 
 # working
-def parsing_gql_request_to_obj(fields, level, name_level, format):
+def parsing_gql_request_to_obj(fields, name_level, format):
     try:
 
 
         #  Step 2: setup to recorring element
-        new_object = generate_format_request(level, fields, format, name_level)
+        new_object = generate_format_request(fields, format, name_level)
 
         for  index in range(len(new_object["node"])):
             node_fields = new_object["node"][index]
@@ -84,7 +71,6 @@ def parsing_gql_request_to_obj(fields, level, name_level, format):
             
             new_node = parsing_gql_request_to_obj(
                 node_fields,
-                0,
                 name_node,
                 {}
             )
@@ -110,7 +96,11 @@ GQL = [
       'cityID/countryID/name', # ->  3
       'cityID/name', # -> 2
       'commercialName', # -> 1 
-      'enterprise_key' # ->  1
+      'enterprise_key', # ->  1
+      'address/direction',
+      'address/direction/name',
+      'address/direction/CP',
+      'address/secondaryDirection',
     ]
 
 GQL2 = [
@@ -123,6 +113,6 @@ GQL2 = [
 ]
 
 #generate_format_request(0, GQL, {}, "Client")
-rpta = parsing_gql_request_to_obj(GQL, 0, 'Client', {})
+rpta = parsing_gql_request_to_obj(GQL, 'Client', {})
 print("rpta")
 print(rpta)
