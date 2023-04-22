@@ -106,23 +106,10 @@ GQL = [
       'cityID/countryID/name', # ->  3
       'cityID/name', # -> 2
       'commercialName', # -> 1 
-      'enterprise_key', # ->  1
-      'address/direction',
-      'address/direction/name',
-      'address/direction/CP',
-      'address/secondaryDirection',
+      'enterprise_key' # ->  1
     ]
 
-GQL2 = [
-    'cityID/id',
-    'cityID/countryID', 
-    'cityID/countryID/currencyISO', 
-    'cityID/countryID/id', 
-    'cityID/countryID/name', 
-    'cityID/name'
-]
 
 #generate_format_request(0, GQL, {}, "Client")
 rpta = parsing_gql_request_to_obj(GQL, 'Client', {})
-print("rpta")
 print(rpta)
