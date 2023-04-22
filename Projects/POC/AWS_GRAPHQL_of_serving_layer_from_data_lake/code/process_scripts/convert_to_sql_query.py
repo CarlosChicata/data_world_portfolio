@@ -97,7 +97,7 @@ def walk_thourgh_formatter(gql):
 
 def generate_table_name(table_name, mapper, used_table):
     '''
-        Generate the unique name will use in SQL query.
+        Generate the unique name of table will use in SQL query.
         
         Params:
         table_name (string): name of table from graphql request.
@@ -136,6 +136,15 @@ def generate_table_name(table_name, mapper, used_table):
 
 def generate_field_of_table_name(table_name, fields, parents):
     '''
+        Generate the unique name for all field in table will use in SQL query.
+        
+        Params:
+        table_name (string): name of table from graphql request.
+        fields (list of string): list of field of table.
+        parents (list of string): list of name of previous node go through to 
+            get the field.
+        
+        return a name of field of table in SQL   
     '''
     base_field = "/".join(parents)
     
@@ -183,3 +192,4 @@ print(generate_table_name(
     'Client', 
     mapper, used_table))
 print(used_table)
+print(generate_field_of_table_name("cli", ["name", "currencyISO"], ["Client", "CountryID"]))
