@@ -6,23 +6,24 @@ mapper = {
        "short_table": "cli",
        "database": "db-poc-case-1",
        "join": {
-           "cityID": ["id", "city_id"], 
-           # primero es del tabla externa, el siguiente de la tabla base
-       }
+           # primero es del tabla externa, el siguiente de la tabla actual
+        }
    },
    "cityID": {
        "table": "city_table",
        "short_table": "ci",
        "database": "db-poc-case-1",
        "join": {
-           "countryID": ["id", "country_id"]
+           "Client": {"container_table": "city_id", "current_table": "id" }
        }
    },
    "countryID":  {
        "table": "country_table",
        "short_table": "co",
        "database": "db-poc-case-1",
-       "join": {}
+       "join": {
+           "cityID": {"container_table": "country_id", "current_table": "id" }
+       }
    }
 }
 
@@ -94,7 +95,61 @@ def walk_thourgh_formatter(gql):
         print(e)
         raise e
 
+# OK
+def extract_data_from_formatter(node, level, mapper, used_table, parents_node, \
+        short_previous_table_name):
+    '''
+    '''
+    try:
 
+        #  Step 1: generate fields and table name for SQL query
+        table_name, short_table_name = generate_table_name(
+                node["name"], 
+                mapper, 
+                used_table
+            )
+        fields_table = generate_field_of_table_name(
+                short_table_name, 
+                node["field"],
+                parents_node + [node["name"]]
+            )
+
+        # Step 2: specify table name of this node for SQL query
+        if level == 0:
+            table_name = '''FROM %s''' % (table_name)
+        else:
+            joining_tables = mapper[node["name"]]["join"][parents_node[-1]]
+            
+            table_name = '''JOIN %s on  %s = %s''' % (
+                table_name,
+                ".".join([short_previous_table_name, joining_tables["container_table"]]),
+                ".".join([short_table_name, joining_tables["current_table"]])
+            )
+
+        table_name = [table_name]
+
+        # Step 3: generate the fields and tables name of  the subnode of base node
+        for  index in range(len(node["node"])):
+            deep_fields, deep_table = extract_data_from_formatter(
+                node["node"][index],
+                level + 1,
+                mapper,
+                used_table,
+                parents_node + [node["name"]],
+                short_table_name
+            )
+            
+            fields_table = fields_table + deep_fields
+            table_name = table_name + deep_table
+
+        # Step 3: return a base node
+        return fields_table, table_name
+    except Exception as e:
+        print(e)
+        raise e
+
+
+# OK
 def generate_table_name(table_name, mapper, used_table):
     '''
         Generate the unique name of table will use in SQL query.
@@ -134,6 +189,7 @@ def generate_table_name(table_name, mapper, used_table):
     return rpta, short_rpta
 
 
+# OK
 def generate_field_of_table_name(table_name, fields, parents):
     '''
         Generate the unique name for all field in table will use in SQL query.
@@ -176,8 +232,20 @@ def gql_formatter_to_sql(mapper, gql):
     return None
         
 
-# test 
+# test
+used_table = defaultdict(lambda: -1)
 
+rpta = extract_data_from_formatter(
+    gql_formatter_1,
+    0,
+    mapper,
+    used_table,
+    [],
+    None
+)
+print(rpta)
+
+'''
 used_table = defaultdict(lambda: -1)
 #print(walk_thourgh_formatter(gql_formatter_2))
 print(generate_table_name(
@@ -193,3 +261,4 @@ print(generate_table_name(
     mapper, used_table))
 print(used_table)
 print(generate_field_of_table_name("cli", ["name", "currencyISO"], ["Client", "CountryID"]))
+'''
