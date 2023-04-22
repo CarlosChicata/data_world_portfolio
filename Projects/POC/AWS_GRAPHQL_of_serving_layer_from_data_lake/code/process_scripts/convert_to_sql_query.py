@@ -137,6 +137,18 @@ def generate_table_name(table_name, mapper, used_table):
 def generate_field_of_table_name(table_name, fields, parents):
     '''
     '''
+    base_field = "/".join(parents)
+    
+    rpta = []
+    
+    for field in fields:
+        value_field = '''%s as %s''' % (
+            ".".join([table_name, field]),
+            "/".join([base_field, field])
+        )
+        rpta.append(value_field)
+    
+    return rpta
     
 
 # working
