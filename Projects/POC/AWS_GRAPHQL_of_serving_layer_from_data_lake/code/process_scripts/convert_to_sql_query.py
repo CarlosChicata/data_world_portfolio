@@ -220,12 +220,23 @@ def generate_field_of_table_name(table_name, fields, parents):
 def gql_formatter_to_sql(mapper, gql):
     '''
     '''
-    list_params_sql_query = walk_thourgh_formatter(gql)
-        
-    if len(list_params_sql_query) <= 0:
-        return "",
-    elif len(list_params_sql_query) >= 1:
+    try:
         used_table = defaultdict(lambda: -1)
+
+        fields, tables = extract_data_from_formatter(
+            gql,
+            0,
+            mapper,
+            used_table,
+            [],
+            None
+        )
+        select = "SELECT " + ",\n".join(fields)
+        tables = "\n".join(tables)
+        return select + "\n" + tables
+    except Exception as e:
+        print(str(e))
+        raise e
         
         
         
@@ -233,6 +244,10 @@ def gql_formatter_to_sql(mapper, gql):
         
 
 # test
+print(gql_formatter_to_sql(mapper, gql_formatter_1))
+
+
+'''
 used_table = defaultdict(lambda: -1)
 
 rpta = extract_data_from_formatter(
@@ -245,7 +260,7 @@ rpta = extract_data_from_formatter(
 )
 print(rpta)
 
-'''
+
 used_table = defaultdict(lambda: -1)
 #print(walk_thourgh_formatter(gql_formatter_2))
 print(generate_table_name(
