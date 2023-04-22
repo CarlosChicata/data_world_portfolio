@@ -76,6 +76,7 @@ gql_formatter_1 = {
 
 def walk_thourgh_formatter(gql):
     '''
+        Travel all formatter of graphql request to get all field and table.
     '''
     try:
 
@@ -96,6 +97,14 @@ def walk_thourgh_formatter(gql):
 
 def generate_table_name(table_name, mapper, used_table):
     '''
+        Generate the unique name will use in SQL query.
+        
+        Params:
+        table_name (string): name of table from graphql request.
+        mapper (object/dict): mapper to Graphql to SQL resource.
+        used_table (defaultdict): state of concurrence of table.
+        
+        return a name of table in SQL, en short name references this table.
     '''
     
     if mapper.get(table_name) is None:
@@ -124,6 +133,11 @@ def generate_table_name(table_name, mapper, used_table):
 
     return rpta, short_rpta
 
+
+def generate_field_of_table_name(table_name, fields, parents):
+    '''
+    '''
+    
 
 # working
 def gql_formatter_to_sql(mapper, gql):
