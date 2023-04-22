@@ -14,8 +14,8 @@ type Country {
     id: Int!
     name: String!
     region: String!
-    prefixPhone: String!
-    currencyISO: String!
+    prefixphone: String!
+    currencyiso: String!
 }
 
 type ProductSize {
@@ -32,19 +32,19 @@ type Service {
 }
 
 type Client {
-    commercialName: String
-    businessName: String
+    comercial_name: String
+    business_name: String
     cityID: City!
     id: Int!
     address: String
-    serviceIDS: String
-    enterprise_key: String! 
+    serviceids: String
+    enterpris_key: String! 
 }
 
 type City {
     timezone: String!
     name: String!
-    countryID: Country!
+    country_id: Country!
     id: Int!
 }
 
