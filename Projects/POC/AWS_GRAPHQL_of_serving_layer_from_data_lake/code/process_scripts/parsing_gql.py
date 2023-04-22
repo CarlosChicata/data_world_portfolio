@@ -109,7 +109,21 @@ GQL = [
       'enterprise_key' # ->  1
     ]
 
+GQL_1 = [
+    'address',
+    'comercial_name',
+    'business_name',
+    'city_id',
+    'city_id/name',
+    'city_id/timezone',
+    'city_id/country_id',
+    'city_id/country_id/currencyiso',
+    'city_id/country_id/region',
+    'city_id/country_id/name',
+    'city_id/country_id/prefixphone',
+    'enterpris_key'
+]
 
 #generate_format_request(0, GQL, {}, "Client")
-rpta = parsing_gql_request_to_obj(GQL, 'Client', {})
+rpta = parsing_gql_request_to_obj(GQL_1, 'Client', {})
 print(rpta)

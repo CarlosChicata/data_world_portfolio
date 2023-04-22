@@ -27,34 +27,51 @@ mapper = {
    }
 }
 
-gql_formatter_2 =  {
-    'field': ['commercialName', 'enterprise_key'], 
+mapper_2 = {
+   "Client": {
+       "table": "client_table",
+       "short_table": "cli",
+       "database": "db-poc-case-1",
+       "join": {
+           # primero es del tabla externa, el siguiente de la tabla actual
+        }
+   },
+   "city_id": {
+       "table": "city_table",
+       "short_table": "ci",
+       "database": "db-poc-case-1",
+       "join": {
+           "Client": {"container_table": "city_id", "current_table": "id" }
+       }
+   },
+   "country_id":  {
+       "table": "country_table",
+       "short_table": "co",
+       "database": "db-poc-case-1",
+       "join": {
+           "city_id": {"container_table": "country_id", "current_table": "id" }
+       }
+   }
+}
+
+
+gql_formatter_2 = {
+    'field': ['address', 'comercial_name', 'business_name', 'enterpris_key'], 
     'name': 'Client', 
     'node': [
-        {
-            'field': ['id', 'name'], 
-            'name': 'cityID', 
-            'node': [
-                {
-                    'field': ['currencyISO', 'id', 'name'], 
-                    'name': 'countryID', 
-                    'node': []
-                }
+            {
+                'field': ['name', 'timezone'], 
+                'name': 'city_id', 
+                'node': [
+                        {
+                            'field': ['currencyiso', 'region', 'name', 'prefixphone'], 
+                            'name': 'country_id', 
+                            'node': []
+                        }
+                        ]
+            }
             ]
-        }, 
-        {
-            'field': ['secondaryDirection'], 
-            'name': 'address', 
-            'node': [
-                {
-                    'field': ['name', 'CP'], 
-                    'name': 'direction', 
-                    'node': []
-                }
-            ]
-        }
-    ]
-}
+    }
 
 gql_formatter_1 = {
     'field': ['address', 'commercialName', 'enterprise_key'], 
@@ -250,7 +267,7 @@ def gql_formatter_to_sql(mapper, gql):
         
 
 # test
-print(gql_formatter_to_sql(mapper, gql_formatter_1))
+print(gql_formatter_to_sql(mapper_2, gql_formatter_2))
 
 
 '''
