@@ -122,8 +122,14 @@ def extract_data_from_formatter(node, level, mapper, used_table, parents_node, \
             
             table_name = '''JOIN %s on  %s = %s''' % (
                 table_name,
-                ".".join([short_previous_table_name, joining_tables["container_table"]]),
-                ".".join([short_table_name, joining_tables["current_table"]])
+                ".".join([
+                            '''"%s"''' % (short_previous_table_name,), 
+                            '''"%s"''' % (joining_tables["container_table"],)
+                        ]),
+                ".".join([
+                            '''"%s"''' % (short_table_name,), 
+                            '''"%s"''' %  (joining_tables["current_table"],)
+                        ])
             )
 
         table_name = [table_name]
@@ -170,7 +176,7 @@ def generate_table_name(table_name, mapper, used_table):
 
     # Step 1: naming the table with unique name in sql
     if used_table[table_name] == -1:
-        rpta = '''%s as %s''' % (
+        rpta = ''' "%s" as "%s"''' % (
                 mapper[table_name]["table"],
                 mapper[table_name]["short_table"]
             )
@@ -179,7 +185,7 @@ def generate_table_name(table_name, mapper, used_table):
         
     else:
         ite = used_table[table_name]
-        rpta = '''%s as %s''' % (
+        rpta = '''"%s" as "%s"''' % (
                 mapper[table_name]["table"],
                 mapper[table_name]["short_table"] + "_" + str( ite + 1)
             )
@@ -203,12 +209,12 @@ def generate_field_of_table_name(table_name, fields, parents):
         return a name of field of table in SQL   
     '''
     base_field = "/".join(parents)
-    
+
     rpta = []
     
     for field in fields:
-        value_field = '''%s as %s''' % (
-            ".".join([table_name, field]),
+        value_field = '''%s as "%s"''' % (
+            ".".join(['''"%s"''' % (table_name,), '''"%s"''' % (field,)]),
             "/".join([base_field, field])
         )
         rpta.append(value_field)
@@ -216,7 +222,7 @@ def generate_field_of_table_name(table_name, fields, parents):
     return rpta
     
 
-# working
+# ok
 def gql_formatter_to_sql(mapper, gql):
     '''
     '''
