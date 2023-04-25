@@ -91,7 +91,7 @@ gql_formatter_1 = {
     ]
 }
 
-
+# prototype
 def walk_thourgh_formatter(gql):
     '''
         Travel all formatter of graphql request to get all field and table.
@@ -116,6 +116,21 @@ def walk_thourgh_formatter(gql):
 def extract_data_from_formatter(node, level, mapper, used_table, parents_node, \
         short_previous_table_name):
     '''
+        Extract data from GraphQL requesto to structure the SQL Query.
+        
+        Args
+        Node(object): node of table to process.
+        level(int): current level in formatter object of GraphQL request.
+        Mapper(object): Auxilitary object to map the conection of node from 
+            data sources view.
+        used_table (object): utility object to store used table name in 
+            formatter object.
+        parents_node(list of string): name of previos parents node of 
+            current node.
+        short_previous_table_name (string): short name of father node of
+            current node.
+            
+        Return a fields and name of node to use.
     '''
     try:
 
@@ -242,6 +257,13 @@ def generate_field_of_table_name(table_name, fields, parents):
 # ok
 def gql_formatter_to_sql(mapper, gql):
     '''
+        Generate a SQL query from fomatter object of GraphQL request.
+        
+        Args:
+        mapper(object): utility object to map conection of table from tables.
+        gql (object): fomatter  object of GraphQL request.
+        
+        return a SQL query to execute
     '''
     try:
         used_table = defaultdict(lambda: -1)
