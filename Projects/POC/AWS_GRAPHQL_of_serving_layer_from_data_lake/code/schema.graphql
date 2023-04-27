@@ -10,6 +10,7 @@ type Query {
 
 ### TYPE/ data models
 
+# OK
 type Country {
     id: Int!
     name: String!
@@ -31,16 +32,18 @@ type Service {
     id: Int!
 }
 
+# OK
 type Client {
     comercial_name: String
     business_name: String
-    cityID: City!
+    city_id: City!
     id: Int!
     address: String
     serviceids: String
     enterpris_key: String! 
 }
 
+# OK
 type City {
     timezone: String!
     name: String!
