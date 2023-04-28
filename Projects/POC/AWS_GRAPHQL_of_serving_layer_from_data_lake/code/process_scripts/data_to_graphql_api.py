@@ -15,6 +15,22 @@ SQL= [
         'city_id/country_id/prefixphone'
     ]
 
+RPTA_SQL = {
+    'comercial_name': 'Client/comercial_name', 
+    'business_name': 'Client/business_name', 
+    'enterpris_key': 'Client/enterpris_key', 
+    'city_id': {
+        'name': 'Client/city_id/name', 
+        'timezone': 'Client/city_id/timezone', 
+        'country_id': {
+            'currencyiso': 'Client/city_id/country_id/currencyiso', 
+            'region': 'Client/city_id/country_id/region', 
+            'name': 'Client/city_id/country_id/name', 
+            'prefixphone': 'Client/city_id/country_id/prefixphone'
+        }
+    }
+}
+
 # OK
 def generate_node_fields(fields, parents):
     '''
@@ -45,21 +61,17 @@ def generate_node_fields(fields, parents):
         raise(e)
     
 
-
 # OK
 def generate_graphq_response_structure(node, base_name):
     '''
 
     '''
     try:
-        print("node:", base_name)
         #  Step 1: generate fields and table name for SQL query
         node = generate_node_fields(node, base_name)
 
         # Step 2: specify table name of this node for SQL query
         for key, value  in node.items():
-            print(type(value) is list)
-            print(value)
             if type(value) is list:
                 node[key] = generate_graphq_response_structure(
                         value,
@@ -73,17 +85,21 @@ def generate_graphq_response_structure(node, base_name):
         raise e
 
 
+# OK
+def get_rpta_from_file(filename, basename):
+    
+    headers = pd.read_csv(filename, index_col=0, nrows=0).columns.tolist()
+    headers = [ col[len(basename)+1:] for col in headers]
 
-headers = pd.read_csv(QUERY_DATA_FILE, index_col=0, nrows=0).columns.tolist()
+    rpta = generate_graphq_response_structure(headers, [basename])
+    return rpta
 
-print(headers)
+
+
+
+
+
+## test
 base_cap = "Client"
 
-headers = [ col[len(base_cap)+1:] for col in headers]
-
-print(headers)
-
-print("***********************")
-rpta = generate_graphq_response_structure(SQL, ["Client"])
-print("-----------")
-print(rpta)
+print(get_rpta_from_file(QUERY_DATA_FILE, base_cap))
