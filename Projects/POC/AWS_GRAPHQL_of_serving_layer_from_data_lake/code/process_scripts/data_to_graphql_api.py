@@ -91,10 +91,10 @@ def generate_graphq_response_structure(node, base_name):
 def get_rpta_from_file(filename, basename):
     
     headers = pd.read_csv(filename, index_col=0, nrows=0).columns.tolist()
-    headers = [ col[len(basename)+1:] for col in headers]
+    clean_headers = [ col[len(basename)+1:] for col in headers]
 
-    rpta = generate_graphq_response_structure(headers, [basename])
-    return rpta
+    rpta = generate_graphq_response_structure(clean_headers, [basename])
+    return rpta, headers
 
 
 # generate data of response in graphql request
@@ -107,9 +107,9 @@ def generate_node_response(structure, row):
         node = {}
         
         # add associated field to group of fields
-        for key, value in structure:
+        for key, value in structure.items():
             if type(value) is not dict:
-                node[key] = row[key]
+                node[key] = row[value]
             else:
                 node[key] = value
 
@@ -117,18 +117,48 @@ def generate_node_response(structure, row):
     except Exception as e:
         print(str(e))
         raise(e)
- 
 
 
-#def generate_rpta_graphql(filename, basename):
-#    structure = get_rpta_from_file(filename, basename)
+# OK
+def generate_graphql_response(structure, row):
+    '''
+    '''
+    try:
+        #  Step 1: generate fields and table name for SQL query
+        node = generate_node_response(structure, row)
+
+        # Step 2: specify table name of this node for SQL query
+        for key, value  in node.items():
+            if type(value) is dict:
+                node[key] = generate_graphql_response(
+                        value,
+                        row
+                    )
+
+        # Step 3: return a base node
+        return node
+    except Exception as e:
+        print(e)
+        raise e
+
+
+# OK
+def generate_rpta_graphql(filename, basename):
+    structure, headers = get_rpta_from_file(filename, basename)
     
-    
+    df_data = pd.read_csv(filename)
+    rpta = []
 
+    for _, row in df_data.iterrows():
+        rpta_node = generate_graphql_response(structure, row.to_dict())
+        rpta.append(rpta_node)
+    
+    return rpta
 
 
 
 ## test
 base_cap = "Client"
 
-print(get_rpta_from_file(QUERY_DATA_FILE, base_cap))
+print(generate_rpta_graphql(QUERY_DATA_FILE, base_cap))
+#print(get_rpta_from_file(QUERY_DATA_FILE, base_cap))
