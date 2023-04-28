@@ -12,6 +12,8 @@ My acceptance criterias are:
 * Create a process to optimize number of query need to structure the wanted data.
 * Available reading on demand and real time notification methods as a services to other components on your service system.
 
+__If you want to expose the generated data from your service in serverless architecture, that it will be consumed for internal services neighborhood based in their own data requirements and requirements are different each others. I think this POC is for your.__.
+
 ## Note about the problem context
 
 There are some point you need to know to understand better the problem:
