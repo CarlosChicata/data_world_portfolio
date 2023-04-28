@@ -15,6 +15,7 @@ SQL= [
         'city_id/country_id/prefixphone'
     ]
 
+# OK
 def generate_node_fields(fields, parents):
     '''
     '''
@@ -38,7 +39,7 @@ def generate_node_fields(fields, parents):
         for key, value  in group_fields.items():
             format_obj[key] = value
 
-        return format_obj    
+        return format_obj
     except Exception as e:
         print(str(e))
         raise(e)
@@ -46,23 +47,27 @@ def generate_node_fields(fields, parents):
 
 
 # OK
-def generate_graphq_response_structure(node):
+def generate_graphq_response_structure(node, base_name):
     '''
 
     '''
     try:
-
+        print("node:", base_name)
         #  Step 1: generate fields and table name for SQL query
-
+        node = generate_node_fields(node, base_name)
 
         # Step 2: specify table name of this node for SQL query
+        for key, value  in node.items():
+            print(type(value) is list)
+            print(value)
+            if type(value) is list:
+                node[key] = generate_graphq_response_structure(
+                        value,
+                        base_name + [key]
+                    )
 
-
-        # Step 3: generate the fields and tables name of  the subnode of base node
-
-
-        # Step 4: return a base node
-        return None
+        # Step 3: return a base node
+        return node
     except Exception as e:
         print(e)
         raise e
@@ -78,7 +83,7 @@ headers = [ col[len(base_cap)+1:] for col in headers]
 
 print(headers)
 
-
-rpta = generate_node_fields(SQL, ["Client"])
+print("***********************")
+rpta = generate_graphq_response_structure(SQL, ["Client"])
 print("-----------")
 print(rpta)
