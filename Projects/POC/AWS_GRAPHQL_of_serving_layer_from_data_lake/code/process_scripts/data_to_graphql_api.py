@@ -31,6 +31,8 @@ RPTA_SQL = {
     }
 }
 
+# generate structure of response in graphql request
+
 # OK
 def generate_node_fields(fields, parents):
     '''
@@ -95,6 +97,33 @@ def get_rpta_from_file(filename, basename):
     return rpta
 
 
+# generate data of response in graphql request
+
+# OK
+def generate_node_response(structure, row):
+    '''
+    '''
+    try:
+        node = {}
+        
+        # add associated field to group of fields
+        for key, value in structure:
+            if type(value) is not dict:
+                node[key] = row[key]
+            else:
+                node[key] = value
+
+        return node
+    except Exception as e:
+        print(str(e))
+        raise(e)
+ 
+
+
+#def generate_rpta_graphql(filename, basename):
+#    structure = get_rpta_from_file(filename, basename)
+    
+    
 
 
 
