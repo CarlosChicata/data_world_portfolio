@@ -6,11 +6,11 @@ I have a data model ready to be consumed for several software components in our 
 
 My acceptance criterias are:
 
-* Management of access of data in data schema based in authorization permimssions.
-* Get a GraphQL API with data source based in data lake.
-* Management a validation credentials to autenticate the usage of data schema.
-* Create a process to optimize number of query need to structure the wanted data.
-* Available reading on demand and real time notification methods as a services to other components on your service system.
+* _Management of access of data in data schema based in authorization permissions._ :boom: __Note__ : Because the complexity to solve in this POC, i will it in version 2.
+* _Get a GraphQL API with data source based in data lake._ :heavy_check_mark:
+* _Management a validation credentials to autenticate the usage of data schema._ :heavy_check_mark:
+* _Create a process to optimize number of query need to structure the wanted data._ :heavy_check_mark:
+* _Available reading on demand and real time notification methods as a services to other components on your service system._ 🤔: __Note__ : Because the complexity to solve the real time service in this POC, i will it in version 2.
 
 __If you want to expose the generated data from your service in serverless architecture, that it will be consumed for internal services neighborhood based in their own data requirements and requirements are different each others. I think this POC is for your.__.
 
@@ -28,9 +28,9 @@ Second, you can modify or add new content in the tables of your data lake, so yo
 
 These are the main challenges to face:
 
-* We need to support query and subscription operations in your graphQL api.
-* We need to connect data lake in S3 with Athena as a data source.
-* We need to reduce the number of independent query to table get structure the wanted data.
-* We need to to support management of select authorized fields in data schema based in role.
-* We need to authenticate used will use the data schema
+* _We need to support query and subscription operations in your graphQL api_. 🤔 __Note:__ i implemented a query service based in range but the real time service wasn't implemented by complexity to solve it; so in the version 2 of this POC i will solve it.
+* _We need to connect data lake in S3 with Athena as a data source._ :heavy_check_mark:
+* _We need to reduce the number of independent query to table get structure the wanted data._ :heavy_check_mark:
+* _We need to  support management of select authorized fields in data schema based in role._ :boom: __Note:__ For this POC i've chosen don't implement this part by complexity to solve. In version 2 this POC i will it.
+* _We need to use a authenticate method will use the data schema._ 🤔 __Note:__ AWS Appsync create authentication methods ( API Key) by default; but i think i can create a custom authentication method to get a fine-granular control and implement more interesting things. So in the version 2 of this POC i will solve it.
 
