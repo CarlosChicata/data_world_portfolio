@@ -8,9 +8,7 @@ from boto3 import Session
 
 
 ### MACRO STEP #1 : convert graphql fields list to json graph (AKA formatter)
-## script: parsing_gql.py
 
-# OK
 def generate_format_request( gql_request, format_obj, name_level ):
     '''
         Generate the level based in list of field
@@ -66,7 +64,6 @@ def generate_format_request( gql_request, format_obj, name_level ):
         raise e  
 
 
-# OK
 def parsing_gql_request_to_obj(fields, name_level, format):
     '''
     Generate the format object to generate SQL query. Recursive focus working.
@@ -286,14 +283,44 @@ def gql_formatter_to_sql(mapper, gql):
 
 ### MAIN PROCESS: 
 
-def get_sql_query_from_graphql(gql_fields, name):
-    rpta = parsing_gql_request_to_obj(gql_fields, name, {})
+def get_sql_query_from_graphql(gql_fields, name, mapper_relationships):
+    # step 1: get formatter from graphql request
+    formatter_gql = parsing_gql_request_to_obj(gql_fields, name, {})
+    
+    # step 2: get SQL query from formatter
+    rpta = gql_formatter_to_sql(mapper_relationships, formatter_gql)
     print(rpta)
     
 
 ### TEST - TEST - TEST - TEST - TEST - TEST - TEST - TEST
 
-NAME_CLIENT = "Client",
+NAME_CLIENT = "Client"
 GQL_FIELDS = ['id', 'enterpris_key', 'comercial_name', 'city_id', 'city_id/id', 'city_id/timezone']
+MAPPER_RELATIONSHIPS = {
+   "Client": {
+       "table": "client_table",
+       "short_table": "cli",
+       "database": "db-poc-case-1",
+       "join": {
+           # primero es del tabla externa, el siguiente de la tabla actual
+        }
+   },
+   "city_id": {
+       "table": "city_table",
+       "short_table": "ci",
+       "database": "db-poc-case-1",
+       "join": {
+           "Client": {"container_table": "city_id", "current_table": "id" }
+       }
+   },
+   "country_id":  {
+       "table": "country_table",
+       "short_table": "co",
+       "database": "db-poc-case-1",
+       "join": {
+           "city_id": {"container_table": "country_id", "current_table": "id" }
+       }
+   }
+}
 
-get_sql_query_from_graphql(GQL_FIELDS, NAME_CLIENT)
+get_sql_query_from_graphql(GQL_FIELDS, NAME_CLIENT, MAPPER_RELATIONSHIPS)
