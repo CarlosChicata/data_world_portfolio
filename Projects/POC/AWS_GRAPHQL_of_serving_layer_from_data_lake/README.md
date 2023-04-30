@@ -38,7 +38,9 @@ These are the main challenges to face:
 
 ### General Idea
 
-I receive all needing fields in graphql request, turn it to SQL query to execute on athena; the response will structur based in graphql request in JSON format and return it to API.
+I receive all graphql request with needing fields, turn it to SQL query to execute on athena; the response will structure based in graphql request in JSON format and return it to API.
+
+![Architecture solution of POC](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/appsync%2Bdatalake.drawio.png)
 
 ### Conversion GraphQL request - SQL query - Graphql response
 
