@@ -1,4 +1,3 @@
-import time
 import io
 import os
 
@@ -20,7 +19,7 @@ s3_cli = session.client("s3")
 #athena_cli = boto3.client('athena')
 
 ATHENA_S3_OUTPUT = "s3://pruebas-generales-para/"
-ATHENA_WORKGROUP = "resulted-queries-athena-poc-case-1"
+ATHENA_S3_BUCKET_OUTPUT = "pruebas-generales-para"
 
 #ATHENA_S3_OUTPUT = os.environ["ATHENA_S3_OUTPUT"]
 #ATHENA_WORKGROUP = os.environ["ATHENA_WORKGROUP"]
@@ -121,7 +120,6 @@ def parsing_gql_request_to_obj(fields, name_level, format):
         raise e
     
 ### MACRO STEP #2 : convert formatter to  SQL query
-
 
 def extract_data_from_formatter(node, level, mapper, used_table, parents_node, \
         short_previous_table_name):
@@ -295,7 +293,6 @@ def gql_formatter_to_sql(mapper, gql):
     return None
      
 ### MACRO STEP #3 : get data from AWS ATHENA
-# process_graph_request.py
 
 def get_data_from_sql_engine(query):
     '''
@@ -338,18 +335,160 @@ def get_data_from_sql_engine(query):
                     print(STATE)
                     raise Exception("error: not allow to get data; maybe it was failed or cancelled.")
                 if STATE == "SUCCEEDED":
-                    print("Get data!")
                     break
 
         ## STEP 3 : get data of query
         file_query_solved = query_id["QueryExecutionId"] + ".csv"
         
-        return file_query_solved, ATHENA_S3_OUTPUT
+        return  ATHENA_S3_BUCKET_OUTPUT, file_query_solved
     except Exception as e:
         print("error")
         print(e)
         raise e
 
+
+### MACRO STEP #4 : convert csv file to json
+
+## STEP 4.1 : generate structure of response from formatter
+
+# OK
+def generate_node_fields(fields, parents):
+    '''
+    '''
+    try:
+        rich_fields = [ (field, field.count('/')) for field in fields]
+        format_obj = {}
+        group_fields = defaultdict(lambda: -1)
+        
+        # add associated field to group of fields
+        for field in rich_fields:
+            if field[1] == 0:
+                format_obj[field[0]] = "/".join(parents + [field[0]])
+            else:
+                inner_field = field[0].split("/")
+
+                if group_fields[inner_field[0]] == -1:
+                    group_fields[inner_field[0]] = ["/".join(inner_field[1:])]
+                else:
+                    group_fields[inner_field[0]].append("/".join(inner_field[1:]))
+    
+        for key, value  in group_fields.items():
+            format_obj[key] = value
+
+        return format_obj
+    except Exception as e:
+        print(str(e))
+        raise(e)
+    
+
+# OK
+def generate_graphq_response_structure(node, base_name):
+    '''
+
+    '''
+    try:
+        #  Step 1: generate fields and table name for SQL query
+        node = generate_node_fields(node, base_name)
+
+        # Step 2: specify table name of this node for SQL query
+        for key, value  in node.items():
+            if type(value) is list:
+                node[key] = generate_graphq_response_structure(
+                        value,
+                        base_name + [key]
+                    )
+
+        # Step 3: return a base node
+        return node
+    except Exception as e:
+        print(e)
+        raise e
+
+
+# OK
+def get_rpta_from_file(bucket, key, basename):
+    
+    s3_object = s3_cli.get_object(
+        Bucket=bucket,
+        Key=key
+    )
+    headers = pd.read_csv(
+            io.BytesIO(s3_object['Body'].read()), 
+            encoding='utf8', 
+            index_col=0, 
+            nrows=0
+    ).columns.tolist()
+    
+    clean_headers = [ col[len(basename)+1:] for col in headers]
+
+    rpta = generate_graphq_response_structure(clean_headers, [basename])
+    return rpta, headers
+
+
+## STEP 4.2 : generate data of response in graphql request
+
+# OK
+def generate_node_response(structure, row):
+    '''
+    '''
+    try:
+        node = {}
+        
+        # add associated field to group of fields
+        for key, value in structure.items():
+            if type(value) is not dict:
+                node[key] = row[value]
+            else:
+                node[key] = value
+
+        return node
+    except Exception as e:
+        print(str(e))
+        raise(e)
+
+
+# OK
+def generate_graphql_response(structure, row):
+    '''
+    '''
+    try:
+        #  Step 1: generate fields and table name for SQL query
+        node = generate_node_response(structure, row)
+
+        # Step 2: specify table name of this node for SQL query
+        for key, value  in node.items():
+            if type(value) is dict:
+                node[key] = generate_graphql_response(
+                        value,
+                        row
+                    )
+
+        # Step 3: return a base node
+        return node
+    except Exception as e:
+        print(e)
+        raise e
+
+
+# OK
+def generate_rpta_graphql(bucket, key, basename):
+    structure, headers = get_rpta_from_file(bucket, key, basename)
+    
+    s3_object = s3_cli.get_object(
+        Bucket=bucket,
+        Key=key
+    )
+    data_body = pd.read_csv(
+            io.BytesIO(s3_object['Body'].read()), 
+            encoding='utf8',
+    )
+    rpta = []
+
+    for _, row in data_body.iterrows():
+        rpta_node = generate_graphql_response(structure, row.to_dict())
+        rpta.append(rpta_node)
+    
+    return rpta
 
 
 
@@ -363,7 +502,10 @@ def get_sql_query_from_graphql(gql_fields, name, mapper_relationships):
     query = gql_formatter_to_sql(mapper_relationships, formatter_gql)
 
     # step 3: generate the data of graphql request in aws athena    
-    rpta = get_data_from_sql_engine(query)
+    bucket_data, key_data = get_data_from_sql_engine(query)
+    
+    # step 4: generate response structure mapper from formatter
+    rpta = generate_rpta_graphql( bucket_data, key_data, name)
     print(rpta)
     
 
@@ -408,5 +550,5 @@ SQL_QUERY ='''
 '''
 
 
-#get_sql_query_from_graphql(GQL_FIELDS, NAME_CLIENT, MAPPER_RELATIONSHIPS)
-print(get_data_from_sql_engine(SQL_QUERY))
+get_sql_query_from_graphql(GQL_FIELDS, NAME_CLIENT, MAPPER_RELATIONSHIPS)
+#print(get_data_from_sql_engine(SQL_QUERY))
