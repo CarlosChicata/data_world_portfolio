@@ -44,6 +44,8 @@ I receive all graphql request with needing fields, turn it to SQL query to execu
 
 ### Conversion GraphQL request - SQL query - Graphql response
 
+![Main idea to manage the graphQL request with several tables](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/gql-sql-gql%20(1).png)
+
 ### Tools to implement
 
 1. AWS Athena
