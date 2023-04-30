@@ -44,7 +44,16 @@ I receive all graphql request with needing fields, turn it to SQL query to execu
 
 ### Conversion GraphQL request - SQL query - Graphql response
 
+I think i front two main challenges:
+
+1. I need to select several tables in one data source to get the data.
+2. I need to select specific fields to be available in the response.
+
+So these challenges will solve when i can manage the query in its making. I thought the solution: to format the graphql request fields to build a object of field management; then it translated to SQL query; with the help of a mapping of table relationships for data source; and execute in AWS Athena, i got the file with data, and it pass to response generator to structure the data with graphql response; with the help of structure mapper; to send the list of requested data.
+
 ![Main idea to manage the graphQL request with several tables](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/gql-sql-gql%20(1).png)
+
+I can use it as a data source in appsync or convert it a lambda layer to resusable code. 😄
 
 ### Tools to implement
 
