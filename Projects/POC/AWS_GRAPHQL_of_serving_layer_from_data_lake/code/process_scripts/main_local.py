@@ -414,8 +414,7 @@ def get_rpta_from_file(bucket, key, basename):
     )
     headers = pd.read_csv(
             io.BytesIO(s3_object['Body'].read()), 
-            encoding='utf8', 
-            index_col=0, 
+            encoding='utf8',
             nrows=0
     ).columns.tolist()
     
@@ -512,7 +511,7 @@ def get_sql_query_from_graphql(gql_fields, name, mapper_relationships):
 ### TEST - TEST - TEST - TEST - TEST - TEST - TEST - TEST
 
 NAME_CLIENT = "Client"
-GQL_FIELDS = ['id', 'enterpris_key', 'comercial_name', 'city_id', 'city_id/id', 'city_id/timezone']
+GQL_FIELDS = ['serviceids', 'id']
 MAPPER_RELATIONSHIPS = {
    "Client": {
        "table": "client_table",
