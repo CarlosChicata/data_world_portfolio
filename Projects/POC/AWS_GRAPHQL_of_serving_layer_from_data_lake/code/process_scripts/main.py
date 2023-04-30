@@ -5,7 +5,26 @@ import os
 import pandas as pd
 from collections import defaultdict
 from boto3 import Session
+#import boto3
 
+
+ACCESS_KEY = ""
+SECRET_KEY = ""
+session = Session(
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY
+)
+athena_cli = session.client("athena", region_name="us-east-1")
+s3_cli = session.client("s3")
+#s3_cli = boto3.client('s3')
+#athena_cli = boto3.client('athena')
+
+ATHENA_S3_OUTPUT = "s3://pruebas-generales-para/"
+ATHENA_WORKGROUP = "resulted-queries-athena-poc-case-1"
+
+#ATHENA_S3_OUTPUT = os.environ["ATHENA_S3_OUTPUT"]
+#ATHENA_WORKGROUP = os.environ["ATHENA_WORKGROUP"]
+#ATHENA_S3_BUCKET_OUTPUT = os.environ["ATHENA_S3_BUCKET_OUTPUT"]
 
 ### MACRO STEP #1 : convert graphql fields list to json graph (AKA formatter)
 
@@ -102,9 +121,8 @@ def parsing_gql_request_to_obj(fields, name_level, format):
         raise e
     
 ### MACRO STEP #2 : convert formatter to  SQL query
-## script: convert_to_sql_query.py
 
-# OK
+
 def extract_data_from_formatter(node, level, mapper, used_table, parents_node, \
         short_previous_table_name):
     '''
@@ -179,7 +197,6 @@ def extract_data_from_formatter(node, level, mapper, used_table, parents_node, \
         raise e
 
 
-# OK
 def generate_table_name(table_name, mapper, used_table):
     '''
         Generate the unique name of table will use in SQL query.
@@ -219,7 +236,6 @@ def generate_table_name(table_name, mapper, used_table):
     return rpta, short_rpta
 
 
-# OK
 def generate_field_of_table_name(table_name, fields, parents):
     '''
         Generate the unique name for all field in table will use in SQL query.
@@ -246,7 +262,6 @@ def generate_field_of_table_name(table_name, fields, parents):
     return rpta
     
 
-# ok
 def gql_formatter_to_sql(mapper, gql):
     '''
         Generate a SQL query from fomatter object of GraphQL request.
@@ -279,6 +294,63 @@ def gql_formatter_to_sql(mapper, gql):
         
     return None
      
+### MACRO STEP #3 : get data from AWS ATHENA
+# process_graph_request.py
+
+def get_data_from_sql_engine(query):
+    '''
+        Execute a SQL sentences in AWS AThena and return data.
+        
+        Params
+        query (string): sql query to extract data
+        
+        return a location of generated file: key of file and bucket
+    '''
+    try:
+        # setting params to control de Athena
+        STATE = "RUNNING"
+
+        ## STEP 1 : go the SQL sentence to athena
+        
+        query_id = athena_cli.start_query_execution(
+            QueryString = query,
+            QueryExecutionContext = {
+                "Database": "db-poc-case-1"
+            },
+            ResultConfiguration= {"OutputLocation": ATHENA_S3_OUTPUT}
+        )
+
+        ## STEP 2 : waiting the finish operation: asynchronic ops
+
+        while STATE in ["RUNNING", "QUEUED"]:
+            #MAX_EXECUTION -= 1
+            response = athena_cli.get_query_execution(
+                    QueryExecutionId=query_id["QueryExecutionId"]
+                )
+
+            if "QueryExecution" in response and \
+                "Status" in response["QueryExecution"] and \
+                "State" in response["QueryExecution"]["Status"]:
+
+                STATE = response["QueryExecution"]["Status"]["State"]
+
+                if STATE == 'FAILED' or STATE == 'CANCELLED':
+                    print(STATE)
+                    raise Exception("error: not allow to get data; maybe it was failed or cancelled.")
+                if STATE == "SUCCEEDED":
+                    print("Get data!")
+                    break
+
+        ## STEP 3 : get data of query
+        file_query_solved = query_id["QueryExecutionId"] + ".csv"
+        
+        return file_query_solved, ATHENA_S3_OUTPUT
+    except Exception as e:
+        print("error")
+        print(e)
+        raise e
+
+
 
 
 ### MAIN PROCESS: 
@@ -288,7 +360,10 @@ def get_sql_query_from_graphql(gql_fields, name, mapper_relationships):
     formatter_gql = parsing_gql_request_to_obj(gql_fields, name, {})
     
     # step 2: get SQL query from formatter
-    rpta = gql_formatter_to_sql(mapper_relationships, formatter_gql)
+    query = gql_formatter_to_sql(mapper_relationships, formatter_gql)
+
+    # step 3: generate the data of graphql request in aws athena    
+    rpta = get_data_from_sql_engine(query)
     print(rpta)
     
 
@@ -322,5 +397,16 @@ MAPPER_RELATIONSHIPS = {
        }
    }
 }
+SQL_QUERY ='''
+    SELECT "cli"."id" as "Client/id",
+    "cli"."enterpris_key" as "Client/enterpris_key",
+    "cli"."comercial_name" as "Client/comercial_name",
+    "ci"."id" as "Client/city_id/id",
+    "ci"."timezone" as "Client/city_id/timezone"
+    FROM  "client_table" as "cli"
+    JOIN  "city_table" as "ci" on  "cli"."city_id" = "ci"."id"
+'''
 
-get_sql_query_from_graphql(GQL_FIELDS, NAME_CLIENT, MAPPER_RELATIONSHIPS)
+
+#get_sql_query_from_graphql(GQL_FIELDS, NAME_CLIENT, MAPPER_RELATIONSHIPS)
+print(get_data_from_sql_engine(SQL_QUERY))
