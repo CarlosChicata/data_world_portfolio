@@ -34,3 +34,20 @@ These are the main challenges to face:
 * _We need to  support management of select authorized fields in data schema based in role._ :boom: __Note:__ For this POC i've chosen don't implement this part by complexity to solve. In version 2 this POC i will it.
 * _We need to use a authenticate method will use the data schema._ 🤔 __Note:__ AWS Appsync create authentication methods ( API Key) by default; but i think i can create a custom authentication method to get a fine-granular control and implement more interesting things. So in the version 2 of this POC i will solve it.
 
+## Solution
+
+### General Idea
+
+I receive all needing fields in graphql request, turn it to SQL query to execute on athena; the response will structur based in graphql request in JSON format and return it to API.
+
+### Conversion GraphQL request - SQL query - Graphql response
+
+### Tools to implement
+
+1. AWS Athena
+2. Python 3.9
+3. AWS S3 standard
+4. AWS AppSync
+5. AWS Lambda function and layers.
+6. AWS Glue: Database
+
