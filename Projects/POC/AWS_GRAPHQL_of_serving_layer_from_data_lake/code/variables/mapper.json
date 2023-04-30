@@ -23,4 +23,4 @@
             "city_id": {"container_table": "country_id", "current_table": "id" }
         }
     }
- }
+}
