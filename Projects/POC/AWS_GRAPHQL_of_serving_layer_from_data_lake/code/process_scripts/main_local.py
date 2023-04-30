@@ -1,19 +1,29 @@
-import json
 import io
 import os
 
 import pandas as pd
 from collections import defaultdict
 from boto3 import Session
-import boto3
+#import boto3
 
 
-s3_cli = boto3.client('s3')
-athena_cli = boto3.client('athena')
+ACCESS_KEY = ""
+SECRET_KEY = ""
+session = Session(
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY
+)
+athena_cli = session.client("athena", region_name="us-east-1")
+s3_cli = session.client("s3")
+#s3_cli = boto3.client('s3')
+#athena_cli = boto3.client('athena')
 
 ATHENA_S3_OUTPUT = "s3://pruebas-generales-para/"
 ATHENA_S3_BUCKET_OUTPUT = "pruebas-generales-para"
 
+#ATHENA_S3_OUTPUT = os.environ["ATHENA_S3_OUTPUT"]
+#ATHENA_WORKGROUP = os.environ["ATHENA_WORKGROUP"]
+#ATHENA_S3_BUCKET_OUTPUT = os.environ["ATHENA_S3_BUCKET_OUTPUT"]
 
 ### MACRO STEP #1 : convert graphql fields list to json graph (AKA formatter)
 
@@ -111,7 +121,8 @@ def parsing_gql_request_to_obj(fields, name_level, format):
     
 ### MACRO STEP #2 : convert formatter to  SQL query
 
-def extract_data_from_formatter(node, level, mapper, used_table, parents_node, short_previous_table_name):
+def extract_data_from_formatter(node, level, mapper, used_table, parents_node, \
+        short_previous_table_name):
     '''
         Extract data from GraphQL requesto to structure the SQL Query.
         
@@ -340,6 +351,7 @@ def get_data_from_sql_engine(query):
 
 ## STEP 4.1 : generate structure of response from formatter
 
+# OK
 def generate_node_fields(fields, parents):
     '''
     '''
@@ -369,6 +381,7 @@ def generate_node_fields(fields, parents):
         raise(e)
     
 
+# OK
 def generate_graphq_response_structure(node, base_name):
     '''
 
@@ -392,6 +405,7 @@ def generate_graphq_response_structure(node, base_name):
         raise e
 
 
+# OK
 def get_rpta_from_file(bucket, key, basename):
     
     s3_object = s3_cli.get_object(
@@ -413,6 +427,7 @@ def get_rpta_from_file(bucket, key, basename):
 
 ## STEP 4.2 : generate data of response in graphql request
 
+# OK
 def generate_node_response(structure, row):
     '''
     '''
@@ -432,6 +447,7 @@ def generate_node_response(structure, row):
         raise(e)
 
 
+# OK
 def generate_graphql_response(structure, row):
     '''
     '''
@@ -454,6 +470,7 @@ def generate_graphql_response(structure, row):
         raise e
 
 
+# OK
 def generate_rpta_graphql(bucket, key, basename):
     structure, headers = get_rpta_from_file(bucket, key, basename)
     
@@ -471,9 +488,8 @@ def generate_rpta_graphql(bucket, key, basename):
         rpta_node = generate_graphql_response(structure, row.to_dict())
         rpta.append(rpta_node)
     
-    if len(rpta) == 0: rpta = [{}]
-    
     return rpta
+
 
 
 ### MAIN PROCESS: 
@@ -491,41 +507,48 @@ def get_sql_query_from_graphql(gql_fields, name, mapper_relationships):
     # step 4: generate response structure mapper from formatter
     rpta = generate_rpta_graphql( bucket_data, key_data, name)
     print(rpta)
-    return rpta
+    
 
+### TEST - TEST - TEST - TEST - TEST - TEST - TEST - TEST
 
-
-def lambda_handler(event, context):
-    print(event[0]['info']["selectionSetList"])
-    NAME_CLIENT = "Client"
-    MAPPER_RELATIONSHIPS = {
-       "Client": {
-           "table": "client_table",
-           "short_table": "cli",
-           "database": "db-poc-case-1",
-           "join": {
-               # primero es del tabla externa, el siguiente de la tabla actual
-            }
-       },
-       "city_id": {
-           "table": "city_table",
-           "short_table": "ci",
-           "database": "db-poc-case-1",
-           "join": {
-               "Client": {"container_table": "city_id", "current_table": "id" }
-           }
-       },
-       "country_id":  {
-           "table": "country_table",
-           "short_table": "co",
-           "database": "db-poc-case-1",
-           "join": {
-               "city_id": {"container_table": "country_id", "current_table": "id" }
-           }
+NAME_CLIENT = "Client"
+GQL_FIELDS = ['id', 'enterpris_key', 'comercial_name', 'city_id', 'city_id/id', 'city_id/timezone']
+MAPPER_RELATIONSHIPS = {
+   "Client": {
+       "table": "client_table",
+       "short_table": "cli",
+       "database": "db-poc-case-1",
+       "join": {
+           # primero es del tabla externa, el siguiente de la tabla actual
+        }
+   },
+   "city_id": {
+       "table": "city_table",
+       "short_table": "ci",
+       "database": "db-poc-case-1",
+       "join": {
+           "Client": {"container_table": "city_id", "current_table": "id" }
        }
-    }
-    return get_sql_query_from_graphql(
-            event[0]['info']["selectionSetList"],
-            NAME_CLIENT,
-            MAPPER_RELATIONSHIPS
-        )
+   },
+   "country_id":  {
+       "table": "country_table",
+       "short_table": "co",
+       "database": "db-poc-case-1",
+       "join": {
+           "city_id": {"container_table": "country_id", "current_table": "id" }
+       }
+   }
+}
+SQL_QUERY ='''
+    SELECT "cli"."id" as "Client/id",
+    "cli"."enterpris_key" as "Client/enterpris_key",
+    "cli"."comercial_name" as "Client/comercial_name",
+    "ci"."id" as "Client/city_id/id",
+    "ci"."timezone" as "Client/city_id/timezone"
+    FROM  "client_table" as "cli"
+    JOIN  "city_table" as "ci" on  "cli"."city_id" = "ci"."id"
+'''
+
+
+get_sql_query_from_graphql(GQL_FIELDS, NAME_CLIENT, MAPPER_RELATIONSHIPS)
+#print(get_data_from_sql_engine(SQL_QUERY))

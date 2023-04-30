@@ -1,0 +1,26 @@
+{
+    "Client": {
+        "table": "client_table",
+        "short_table": "cli",
+        "database": "db-poc-case-1",
+        "join": {
+            # primero es del tabla externa, el siguiente de la tabla actual
+        }
+    },
+    "city_id": {
+        "table": "city_table",
+        "short_table": "ci",
+        "database": "db-poc-case-1",
+        "join": {
+            "Client": {"container_table": "city_id", "current_table": "id" }
+        }
+    },
+    "country_id":  {
+        "table": "country_table",
+        "short_table": "co",
+        "database": "db-poc-case-1",
+        "join": {
+            "city_id": {"container_table": "country_id", "current_table": "id" }
+        }
+    }
+ }
