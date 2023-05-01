@@ -86,11 +86,17 @@ Zero, i used all tables i generated in the POC case 1; so i won't repeat the pro
 
 First; go the Appsync and click in "from the scratch", then introduce the name of the graphql API and click in "create".
 
+![Create GraphQL API](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/POCCase2Step1.png)
+
 Second, create a lambda function with code of the __main.py__ script. This lambda is built python 3.9, add it pandas layers to work, set up ATHENA_S3_OUTPUT ( S3 URL of the bucket) and ATHENA_S3_BUCKET_OUTPUT (Name of bucket) variables to store the file. For this POC it named _data-source-athena_.
+
+![create a data source](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/POCCase2Step2.png)
 
 The NAME_CLIENT is the name of main table ( first table in data schema) of the query; and MAPPER_RELATIONSHIPS is the mapper of table relationships in the AWS Athena. Remember get access the fields of graphql request; maybe it change the way how it pass in lambda.
 
 Third; return into api in appsync, go the "schema" section and add the following data schema __Remember__: This is a part of completed data schema in schema.graphql. Then to click in "Save".
+
+![create data schema in Appsync API](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/POCCase2Step4.png)
 
 ```
 type City {
@@ -129,8 +135,11 @@ schema {
 
 Fourth; go the "data source" section, clicj in "create a data source", add a name ; i named athena_data_source like a lambda; and select type of data source, click in "lambda", select the region and lambda will use, and click "save".
 
+![Add data source in API](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/POCCase2Step3.png)
+
 Fifth; go the "queries" section, structure the query you want and execute it; soon you will get all data based in the graphql request. Congrats 🎉✨
 
+![create a query in API](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/POCCase2Step5.png)
 
 ### Topic issues
 
