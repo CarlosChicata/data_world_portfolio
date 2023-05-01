@@ -142,7 +142,7 @@ Third; check if all resources are deleted by AWS Cloudformation; if there any li
 
 ### Topic issues
 
-I needed to learn in my few free time some topics about AWS resource like Athena, Lambda, Glue, Cloudformation and API Gatewy; so i built based on simplicity and functional vision such that i got a POC in version 1 with minimum functionality to the main goal: __*delivery data on demand into my users.*__
+I needed to learn in my few free time some topics about AWS resources like Athena, Lambda, Glue, Cloudformation and API Gatewy; so i built based on simplicity and functional vision such that i got a POC in version 1 with minimum functionality to the main goal: __*delivery data on demand into my users.*__
 
 #### Scalability: :star2::star2::star2::star2::star2:
 
