@@ -1,0 +1,3 @@
+[data]
+
+data.world -> crowdflower -> Disasters on Social Media (downloaded in 1/may/2023)
