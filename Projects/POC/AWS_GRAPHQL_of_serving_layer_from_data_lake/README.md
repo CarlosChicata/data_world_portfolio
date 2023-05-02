@@ -47,11 +47,22 @@ I receive all graphql request with needing fields, turn it to SQL query to execu
 I think i front two main challenges:
 
 1. I need to select several tables in one data source to get the data.
-2. I need to select specific fields to be available in the response.
+2. I need to select specific fields in each table to be available in the response.
 
-So these challenges will solve when i can manage the query in its making. I thought the solution: to format the graphql request fields to build a object of field management; then it translated to SQL query; with the help of a mapping of table relationships for data source; and execute in AWS Athena, i got the file with data, and it pass to response generator to structure the data with graphql response; with the help of structure mapper; to send the list of requested data.
+So these challenges will solve when i can manage the query in its making. I thought in a solution: to format the graphql request fields to build a object of field management; then it translated to a SQL query; with the help of a mapping of table relationships for data source; and execute in AWS Athena, i get the file with data, and it pass to response generator to structure the data with graphql response; with the help of structure mapper; to send the list of requested data.
 
 ![Main idea to manage the graphQL request with several tables](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/gql-sql-gql%20(1).png)
+
+How is the mapping of table relationships? and how is it working?; This is a JSON with following instructions:
+
+* Each high key is a data type in data schema; i use the name to map to table in data source.
+* For each data type, i assign:
+	* Full name of table in  data source.
+	* Short name of table in  data source.
+	* Name of database store the table.
+	* The data type contains it with field of parent data type from data source and then the inner field itself from data source.
+	
+![Mapping of table relationships](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_GRAPHQL_of_serving_layer_from_data_lake/code/images/POCCase2Step6.png)
 
 I can use it as a data source in appsync or convert it a lambda layer to resusable code. 😄
 
