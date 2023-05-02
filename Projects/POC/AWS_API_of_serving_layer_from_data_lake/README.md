@@ -134,7 +134,7 @@ First; delete all object inside S3 buckets you created with AWS cloudformation t
 
 Second; Go the AWS Cloudformation to delete the stack of resources in the POC automatically. Be patient. :wink:
 
-![Delete resource from AWS Cloudformation](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWST_API_of_serving_layer_from_data_lake/code/image/img-poc-case-8.png)
+![Delete resource from AWS Cloudformation](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake/code/image/img-poc-case-8.png)
 
 Third; check if all resources are deleted by AWS Cloudformation; if there any lived, delete those manually.
 
