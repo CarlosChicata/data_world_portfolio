@@ -74,14 +74,14 @@ def generate_format_request( gql_request, format_obj, name_level ):
 
 def parsing_gql_request_to_obj(fields, name_level, format):
     '''
-    Generate the format object to generate SQL query. Recursive focus working.
+        Generate the format object to generate SQL query. Recursive focus working.
     
-    Params
-    field (list of string): list of fields in graphql request to process.
-    name_level (string): name of base node.
-    format (object): Node will store the data of graphql request.
+        Params
+        field (list of string): list of fields in graphql request to process.
+        name_level (string): name of base node.
+        format (object): Node will store the data of graphql request.
     
-    return format with data of graphql request to work
+        return format with data of graphql request to work
     '''
     try:
 
@@ -342,6 +342,14 @@ def get_data_from_sql_engine(query):
 
 def generate_node_fields(fields, parents):
     '''
+        Generate the node estructure for the mapper of graphql and SQL data.
+        This is a recursive method.
+        
+        Args
+        fields (List of string): list of field to process.
+        parents (list of string): list of previous nodes contain it.
+        
+        Return the ready node to work.
     '''
     try:
         rich_fields = [ (field, field.count('/')) for field in fields]
@@ -371,7 +379,14 @@ def generate_node_fields(fields, parents):
 
 def generate_graphq_response_structure(node, base_name):
     '''
-
+        Generate the structure of graphql response.
+        This is a recursive method.
+        
+        Args:
+        node (list of string): list of field to generate the node.
+        base_name (list of string): list of previous container node.
+        
+        return a structure to work like mapper graphql-SQL data
     '''
     try:
         #  Step 1: generate fields and table name for SQL query
@@ -393,7 +408,17 @@ def generate_graphq_response_structure(node, base_name):
 
 
 def get_rpta_from_file(bucket, key, basename):
-    
+    '''
+        Generate estructure of graphql response base in header of data file 
+        from aws athena
+        
+        Args:
+        bucket (String): name of bucket contain the data file.
+        key (String): name of object contain the data file
+        basename (string): name of first node in query method of data schema.
+        
+        return a structure of mapper to SQL data to graphql request
+    '''
     s3_object = s3_cli.get_object(
         Bucket=bucket,
         Key=key
@@ -414,6 +439,14 @@ def get_rpta_from_file(bucket, key, basename):
 
 def generate_node_response(structure, row):
     '''
+        Map the field of graphql response to column in row of data file; but
+        in node level. This is a recursive method.
+        
+        Args
+        structure (object): mapper of graphl request and SQL data.
+        row (row of dataframe): row of data file.
+        
+        return a partial graphql data item related with SQL data
     '''
     try:
         node = {}
@@ -433,6 +466,14 @@ def generate_node_response(structure, row):
 
 def generate_graphql_response(structure, row):
     '''
+        Generate the structure of graphql response for row of data file
+        This is a recursive method..
+        
+        Args:
+        structure (object): mapper of graphl request and SQL data.
+        row (row of dataframe): row of data file.
+        
+        return a completed graphql data item related with SQL data
     '''
     try:
         #  Step 1: generate fields and table name for SQL query
@@ -454,6 +495,16 @@ def generate_graphql_response(structure, row):
 
 
 def generate_rpta_graphql(bucket, key, basename):
+    '''
+        Generate the graphql response from data file.
+        
+        Args:
+        bucket (String): name of bucket contain the data file.
+        key (String): name of object contain the data file
+        basename (string): name of first node in query method of data schema.
+        
+        return graphql data items
+    '''
     structure, headers = get_rpta_from_file(bucket, key, basename)
     
     s3_object = s3_cli.get_object(
@@ -478,6 +529,16 @@ def generate_rpta_graphql(bucket, key, basename):
 ### MAIN PROCESS: 
 
 def get_sql_query_from_graphql(gql_fields, name, mapper_relationships):
+    '''
+        Response the graphql request with data file from Athena.
+        
+        Args
+        gql_fields (list of string): list of required fields from graphql request.
+        name (string): name of main container node in data schema.
+        mapper_relationships (object) mapper of table relationships.
+        
+        return a required graphql data items
+    '''
     # step 1: get formatter from graphql request
     formatter_gql = parsing_gql_request_to_obj(gql_fields, name, {})
     
