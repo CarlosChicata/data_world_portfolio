@@ -1,5 +1,6 @@
 '''
-    Process to emulate the send of tweets in real time enviroment
+    Process to emulate the send of tweets in real time enviroment.
+    It sends tweets of list in JSON format to AWS kinesis data firehose.
 '''
 import time
 import json
@@ -8,6 +9,19 @@ import random
 
 import requests
 import pandas as pd
+import numpy as np
+from boto3 import Session
+
+
+ACCESS_KEY = ""
+SECRET_KEY = ""
+session = Session(
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY,
+    region_name="us-east-1"
+)
+
+firehose = session.client('firehose')
 
 
 # ok
@@ -21,21 +35,6 @@ def get_data_from_file(filename):
         return a data frame
     '''
     return pd.read_csv(filename, encoding="latin9")
-
-
-# need to test
-def http_request_send(url, data):
-    '''
-        Send a tweet to infra from http request
-        
-        Args
-        url (string): url will receive the tweets.
-        data (object) List of tweets will process.
-        
-        return none
-    '''
-    headers_req = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    requests.post(url, data=json.dumps(data), headers=headers_req)
 
 
 # ok
@@ -59,15 +58,25 @@ def real_time_generator_emulator(filename, url):
         second_sleepy = random.randint(1, 30)
         
         selected_tweets = database.iloc[count_tweets : count_tweets + chunk_size]
+        selected_tweets.replace(np.nan, None, inplace=True)
         selected_tweets = selected_tweets.to_dict(orient="records")
-        print(selected_tweets)
-        print(type(selected_tweets))
-        print(second_sleepy)
-        print(chunk_size)
         
+        data_chunk = json.dumps(selected_tweets)
+
+
         count_tweets += chunk_size
-        http_request_send(url, selected_tweets)
+
+        response = firehose.put_record(
+            DeliveryStreamName=url,
+            Record={
+                "Data": json.dumps(data_chunk)
+            }
+        )
+        if(200 <= response['ResponseMetadata']["HTTPStatusCode"] < 300): print("Sent ok!")
+        elif(response['ResponseMetadata']["HTTPStatusCode"] >= 400): print(data_chunk, "chunk don't received")
+        else: print(data_chunk, "weird thing happened")
+        print("sleeping for: ", second_sleepy)
         time.sleep(second_sleepy)
     
 
-real_time_generator_emulator("./sample_data/database.csv", "FAKE URL SERVICE")
+real_time_generator_emulator("../sample_data/database.csv", "PUT-S3-OnlPK")
