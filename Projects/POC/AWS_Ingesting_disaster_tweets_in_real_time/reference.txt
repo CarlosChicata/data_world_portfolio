@@ -1,3 +1,6 @@
 [data]
 
 data.world -> crowdflower -> Disasters on Social Media (downloaded in 1/may/2023)
+
+[example of POC]
+https://github.com/SatadruMukherjee/Data-Preprocessing-Models/blob/main/convert_json_to_csv_in_kinesis_firehose_transformation.ipynb
