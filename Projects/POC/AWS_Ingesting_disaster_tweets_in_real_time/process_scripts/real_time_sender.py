@@ -1,6 +1,6 @@
 '''
     Process to emulate the send of tweets in real time enviroment.
-    It sends tweets of list in JSON format to AWS kinesis data firehose.
+    It sends tweets of list in JSON format to AWS kinesis data firehose from AWS Kinesis data stream
 '''
 import time
 import json
