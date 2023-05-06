@@ -21,7 +21,7 @@ session = Session(
     region_name="us-east-1"
 )
 
-firehose = session.client('firehose')
+kinesis = session.client('kinesis')
 
 
 # ok
@@ -61,22 +61,22 @@ def real_time_generator_emulator(filename, url):
         selected_tweets.replace(np.nan, None, inplace=True)
         selected_tweets = selected_tweets.to_dict(orient="records")
         
-        data_chunk = json.dumps(selected_tweets)
-
 
         count_tweets += chunk_size
+        transformed_tweets = []
 
-        response = firehose.put_record(
-            DeliveryStreamName=url,
-            Record={
-                "Data": json.dumps(data_chunk)
-            }
+        for tweet in selected_tweets:
+            transformed_tweets.append({"Data": json.dumps(tweet), "PartitionKey": "1"})
+    
+        response = kinesis.put_records(
+            StreamName =url,
+            Records=transformed_tweets
         )
         if(200 <= response['ResponseMetadata']["HTTPStatusCode"] < 300): print("Sent ok!")
-        elif(response['ResponseMetadata']["HTTPStatusCode"] >= 400): print(data_chunk, "chunk don't received")
-        else: print(data_chunk, "weird thing happened")
+        elif(response['ResponseMetadata']["HTTPStatusCode"] >= 400): print(transformed_tweets, "chunk don't received")
+        else: print(transformed_tweets, "weird thing happened")
         print("sleeping for: ", second_sleepy)
         time.sleep(second_sleepy)
     
 
-real_time_generator_emulator("../sample_data/database.csv", "PUT-S3-OnlPK")
+real_time_generator_emulator("../sample_data/database.csv", "tweets-stream-buffer")
