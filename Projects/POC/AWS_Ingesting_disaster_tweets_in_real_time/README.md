@@ -28,6 +28,7 @@ My acceptance criterias are:
 3. AWS Kinesis Firehose
 4. AWS S3
 5. AWS Lambda
+6. AWS Comprehend
 
 ### Project Structure
 
