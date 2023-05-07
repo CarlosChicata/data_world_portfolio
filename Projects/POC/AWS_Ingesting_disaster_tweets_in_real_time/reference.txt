@@ -10,4 +10,8 @@ https://medium.com/analytics-vidhya/append-newline-to-amazon-kinesis-firehose-js
 https://docs.aws.amazon.com/code-library/latest/ug/comprehend_code_examples.html
 [AWS comprehend : create a custom classifier]
 https://predictivehacks.com/how-to-build-a-custom-text-classification-model-with-aws-comprehend/
+[AWS handle the topic model in aws comprehend]
+https://pub.towardsai.net/nlp-use-case-with-aws-comprehend-a6fcb9efc4e0
+
+
 
