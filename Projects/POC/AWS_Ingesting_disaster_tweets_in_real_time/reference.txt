@@ -6,3 +6,8 @@ data.world -> crowdflower -> Disasters on Social Media (downloaded in 1/may/2023
 https://github.com/SatadruMukherjee/Data-Preprocessing-Models/blob/main/convert_json_to_csv_in_kinesis_firehose_transformation.ipynb
 [example of POC]
 https://medium.com/analytics-vidhya/append-newline-to-amazon-kinesis-firehose-json-formatted-records-with-python-f58498d0177a
+[AWS example of comprehend]
+https://docs.aws.amazon.com/code-library/latest/ug/comprehend_code_examples.html
+[AWS comprehend : create a custom classifier]
+https://predictivehacks.com/how-to-build-a-custom-text-classification-model-with-aws-comprehend/
+
