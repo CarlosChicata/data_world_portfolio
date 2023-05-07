@@ -7,7 +7,6 @@ import json
 import random
 
 
-import requests
 import pandas as pd
 import numpy as np
 from boto3 import Session
