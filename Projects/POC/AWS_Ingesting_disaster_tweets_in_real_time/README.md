@@ -13,8 +13,21 @@ My acceptance criterias are:
 
 ## Note about the problem context
 
+This is a interesting problem because i need to classify a tweets about the disaster; but i have several points to resolve:
+
+1. I need to assign label to train my classifier. I have a dirty dataset and i need to clean it first.
+2. I need to learn how insert a bunk of data to data warehouse system service (AWS redshift) without negatively impact its performance.
+3. I need to link the tweets file stored in S3 with record in data warehouse system service for each tweets processed.
+
+This is a diagram of the  data modeling will support the operation in data warehouse system service. as i'm processing texts, i think i need to apply some points from the unstructure data warehouse from [this post i wrote](https://medium.com/data-world-portafolio/empezando-con-el-data-warehouse-datos-no-estructurados-1b4c42236cf3) in the data modelling diagram.
+
 ## Challenges
 
+These are the main challenges to face:
+
+1. Link the tweets file stored in S3 with record in data warehouse system service for each tweets processed.
+2. How insert a bunk of data to data warehouse system service (AWS redshift) without negatively impact its performance.
+3. Classify the tweets in kind of disaster and its whether joke or not.
 
 ## Solution
 
