@@ -33,6 +33,7 @@ These are the main challenges to face:
 
 ### General Idea
 
+I receive and buffer all JSON data in AWS kinesis firehose, then transform it (mean classify and format all records to be ready consume), then store it in AWS S3 and redshift.
 
 ### Tools to implement
 
