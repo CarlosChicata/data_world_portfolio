@@ -54,6 +54,23 @@ Soon i will upload the videos in spanish and english.
 
 #### By step-by-step Documentation
 
+First; create a lambda function with process of transformation to classify and format all chunk of data to be ready to consume in data warehouse service.
+
+Second; create a AWS kinesis firehose service to buffer and call the transformation process; for this POC, i will choose "the Direct PUT" option in source and "Amazon S3" in destination.
+
+![basic setup firehose ](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_firehose_part1.png)
+
+Third; to continue with the creation of AWS kinesis firehose, click in "enable of data transformation" option in the "data transformation" section; link with created lambda in first step and set up of variables of process to generate the bulk of data will process in the lambda and latency of operation. Read more about it in this [link](https://catalog.us-east-1.prod.workshops.aws/workshops/c342c6d1-2baf-4827-ba42-52ef9eb173f6/en-US/beam-on-kda/create-infrastructure/firehose/configure-settings).
+
+![enable transformation opcion](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_firehose_part2.png)
+
+Fourth; to  end with the creation of AWS kinesis firehose, link with the AWS S3 will store all  prepared data from lambda in the AWS Kinesis firehose; then click in "create" and wait because it will take a few minutes to complete.
+
+![link the destination point](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_firehose_part3.png)
+
+Fifth; then you turn on the enviroment of project, go to "process_scripts" folder and execute `python firehose_real_time_sender.py`. This script will emulate the data producer; Remember setup this script with name of firehose service and other credencials to work.
+
+!(Send faked data from sender generator)[https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/sender_json_data.png]
 
 ### Topic issues
 
