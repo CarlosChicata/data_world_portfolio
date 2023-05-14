@@ -70,7 +70,7 @@ Fourth; to  end with the creation of AWS kinesis firehose, link with the AWS S3 
 
 Fifth; then you turn on the enviroment of project, go to "process_scripts" folder and execute `python firehose_real_time_sender.py`. This script will emulate the data producer; Remember setup this script with name of firehose service and other credencials to work.
 
-!(Send faked data from sender generator)[https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/sender_json_data.png]
+![Send faked data from sender generator](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/sender_json_data.png)
 
 ### Topic issues
 
