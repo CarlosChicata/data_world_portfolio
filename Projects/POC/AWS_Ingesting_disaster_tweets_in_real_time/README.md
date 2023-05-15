@@ -35,6 +35,8 @@ These are the main challenges to face:
 
 I receive and buffer all JSON data in AWS kinesis firehose, then transform it (mean classify and format all records to be ready consume), then store it in AWS S3 and redshift.
 
+![Diagram of architecture of POC case 3](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/diagram_architecture_poc_case_3.drawio.png)
+
 ### Tools to implement
 
 1. Python 3.9
