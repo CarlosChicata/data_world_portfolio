@@ -37,6 +37,12 @@ I receive and buffer all JSON data in AWS kinesis firehose, then transform it (m
 
 ![Diagram of architecture of POC case 3](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/diagram_architecture_poc_case_3.drawio.png)
 
+### How did you assign label in the faked dataset?
+
+Well, i applied a cleaning processing to understand how the dataset work, clean it and generate a approx. label based on own ideas. I did't focus on a depth-in cleaning processing on dataset ( this is a POC ); but i effort to get more cleaning data i can.
+
+If you want to know how i clean it; check `Assign better label to dataset.ipynb` file in process_script folder: this a notebook in jupyter you can execute 😄.
+
 ### Tools to implement
 
 1. Python 3.9
