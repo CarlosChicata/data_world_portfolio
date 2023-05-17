@@ -17,6 +17,8 @@ https://github.com/tanyazyabkina/AWS_Comprehend_Sentiment_Analysis/blob/main/AWS
 [SAMPLE CODE]
 https://github.com/hervenivon/aws-experiments-comprehend-custom-classifier/blob/master/comprehend.ipynb
 [workshop classifier aws oficial]
+https://catalog.workshops.aws/intelligent-document-processing/en-US/02-getting-started/module-1-doc-classification#step-5:-classify-documents-with-amazon-comprehend-custom-classifier
+[BOTO 3 python batch custom classifier ]
 https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/comprehend/client/start_document_classification_job.html
 
 
