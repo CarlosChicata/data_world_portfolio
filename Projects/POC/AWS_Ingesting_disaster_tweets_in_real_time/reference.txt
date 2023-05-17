@@ -12,6 +12,14 @@ https://docs.aws.amazon.com/code-library/latest/ug/comprehend_code_examples.html
 https://predictivehacks.com/how-to-build-a-custom-text-classification-model-with-aws-comprehend/
 [AWS handle the topic model in aws comprehend]
 https://pub.towardsai.net/nlp-use-case-with-aws-comprehend-a6fcb9efc4e0
+[SAMPLE CODE]
+https://github.com/tanyazyabkina/AWS_Comprehend_Sentiment_Analysis/blob/main/AWS%20Comprehend%20Sentiment%20Analysis%20using%20Python-GitHub.ipynb
+[SAMPLE CODE]
+https://github.com/hervenivon/aws-experiments-comprehend-custom-classifier/blob/master/comprehend.ipynb
+[workshop classifier aws oficial]
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/comprehend/client/start_document_classification_job.html
+
+
 
 
 
