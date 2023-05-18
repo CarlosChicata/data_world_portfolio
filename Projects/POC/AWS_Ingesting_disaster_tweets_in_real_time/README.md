@@ -71,19 +71,35 @@ Soon i will upload the videos in spanish and english.
 
 First; create a lambda function with process of transformation to classify and format all chunk of data to be ready to consume in data warehouse service.
 
-Second; create a AWS kinesis firehose service to buffer and call the transformation process; for this POC, i will choose "the Direct PUT" option in source and "Amazon S3" in destination.
+Second, Run `Assign better label to dataset.ipynb` script to generate all train and test data set models to train the classifier and use to send in the emulator of twitter ingester.
+
+![Creat dataset models](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_dataset_classifier.png)
+
+Third; Create a custom classifier with AWS Comprehend; go to the service, click in "custom classifier", click in "create new model", and assign the name of classifier and select the language of dataset.
+
+![Classifier name](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_clasifier_part1.png)
+
+Fourth; to continue in creating of classifier, select the mode of classifier; you need the single-label mode; and select the dataset model that you will use to train your classifier. Rememeber the dataset model need to be located in S3.
+
+![Preparing data](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_clasifier_part2.png)
+
+Fifth;  to finish in creating of classifier, select the S3 bucket to store the confusion matrix to understand the classifier and specify new IAM role for classfier to access S3 resource; then click in "create".
+
+![FInish classifier](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_clasifier_part3.png)
+
+Sixth; create a AWS kinesis firehose service to buffer and call the transformation process; for this POC, i will choose "the Direct PUT" option in source and "Amazon S3" in destination.
 
 ![basic setup firehose ](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_firehose_part1.png)
 
-Third; to continue with the creation of AWS kinesis firehose, click in "enable of data transformation" option in the "data transformation" section; link with created lambda in first step and set up of variables of process to generate the bulk of data will process in the lambda and latency of operation. Read more about it in this [link](https://catalog.us-east-1.prod.workshops.aws/workshops/c342c6d1-2baf-4827-ba42-52ef9eb173f6/en-US/beam-on-kda/create-infrastructure/firehose/configure-settings).
+Seventh; to continue with the creation of AWS kinesis firehose, click in "enable of data transformation" option in the "data transformation" section; link with created lambda in first step and set up of variables of process to generate the bulk of data will process in the lambda and latency of operation. Read more about it in this [link](https://catalog.us-east-1.prod.workshops.aws/workshops/c342c6d1-2baf-4827-ba42-52ef9eb173f6/en-US/beam-on-kda/create-infrastructure/firehose/configure-settings).
 
 ![enable transformation opcion](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_firehose_part2.png)
 
-Fourth; to  end with the creation of AWS kinesis firehose, link with the AWS S3 will store all  prepared data from lambda in the AWS Kinesis firehose; then click in "create" and wait because it will take a few minutes to complete.
+Eighth; to  end with the creation of AWS kinesis firehose, link with the AWS S3 will store all  prepared data from lambda in the AWS Kinesis firehose; then click in "create" and wait because it will take a few minutes to complete.
 
 ![link the destination point](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_firehose_part3.png)
 
-Fifth; then you turn on the enviroment of project, go to "process_scripts" folder and execute `python firehose_real_time_sender.py`. This script will emulate the data producer; Remember setup this script with name of firehose service and other credencials to work.
+Nineth; then you turn on the enviroment of project, go to "process_scripts" folder and execute `python firehose_real_time_sender.py`. This script will emulate the data producer; Remember setup this script with name of firehose service and other credencials to work.
 
 ![Send faked data from sender generator](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/sender_json_data.png)
 
