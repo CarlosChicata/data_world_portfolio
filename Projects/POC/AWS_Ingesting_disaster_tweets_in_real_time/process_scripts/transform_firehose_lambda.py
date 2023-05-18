@@ -9,6 +9,7 @@ from functools import reduce
 from boto3 import Session
 
 
+BUCKET = "script-poc-case-1"
 ACCESS_KEY = ""
 SECRET_KEY = ""
 session = Session(
@@ -79,25 +80,20 @@ cleaning_sentence = abs_transform_sentence(
 
 def lambda_handler(event, context):
     output = []
-    file_data = []
+    sentences = []
 
+    # STEP #1: preparing data to classifier
     for record in event['records']:
-        payload = base64.b64decode(record['data']).decode('latin9') + "\n"
-        data_ = json.loads(base64.b64decode(record['data']))
-        
-        print(data_["text"])
-        cleaning_data_ = cleaning_sentence(data_["text"])
-        print("************")
-        print(cleaning_data_)
-        print("--------------------")
-        # Do custom processing on the payload here
+        record_dict = json.loads(base64.b64decode(record['data']))
+        cleaning_data_ = cleaning_sentence(record_dict["text"])
+        sentences.append(cleaning_data_)
 
-        output_record = {
-            'recordId': record['recordId'],
-            'result': 'Ok',
-            'data': base64.b64encode(payload.encode('latin9')).decode('latin9')
-        }
-        output.append(output_record)
+    sentences = "\n".join(sentences)
+    s3.put_object(
+        Body=bytes(sentences, "latin9"), 
+        Bucket=BUCKET, 
+        Key="datalake/test-backup.txt"
+    )
 
     print('Successfully processed {} records.'.format(len(event['records'])))
 
@@ -137,3 +133,28 @@ input_data_test = {
 
 
 lambda_handler(input_data_test, None)
+
+
+'''
+import base64
+
+print('Loading function')
+
+
+def lambda_handler(event, context):
+    output = []
+
+    for record in event['records']:
+        payload = base64.b64decode(record['data']).decode('latin9') + "\n"
+
+        output_record = {
+            'recordId': record['recordId'],
+            'result': 'Ok',
+            'data': base64.b64encode(payload.encode('latin9')).decode('latin9')
+        }
+        output.append(output_record)
+
+    print('Successfully processed {} records.'.format(len(event['records'])))
+
+    return {'records': output}
+'''
