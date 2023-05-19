@@ -3,12 +3,15 @@
 import base64
 import re
 import json
+import time
 from functools import reduce
+from datetime import datetime
 
 
 from boto3 import Session
 
-
+IAM_ROLE = ""
+CLASSIFIER = ""
 BUCKET = "script-poc-case-1"
 ACCESS_KEY = ""
 SECRET_KEY = ""
@@ -19,6 +22,7 @@ session = Session(
 )
 
 s3 = session.client('s3')
+comprehend = session.client("comprehend")
 
 ### UTILITY FUNCTION
 
@@ -89,13 +93,56 @@ def lambda_handler(event, context):
         sentences.append(cleaning_data_)
 
     sentences = "\n".join(sentences)
+
+    key_file = "datalake/origin/" + datetime.now().strftime("%d-%m-%YT%H:%M:%S") + \
+        "_bulk_tweets.txt"
+    key_classifier_file = "datalake/classifier/" + \
+        datetime.now().strftime("%d-%m-%YT%H:%M:%S") + "_bulk_tweets.txt"
+    
     s3.put_object(
         Body=bytes(sentences, "latin9"), 
         Bucket=BUCKET, 
-        Key="datalake/test-backup.txt"
+        Key=key_file
     )
+    s3_uri_object = "s3://" + BUCKET + "/" + key_file
+    s3_uri_classified_object = "s3://" + BUCKET + "/" + key_classifier_file
+    
+    # STEP #2: classify your data
+    classifing_sentences_job = comprehend.start_document_classification_job(
+        JobName="Classifier_data",
+        DocumentClassifierArn=CLASSIFIER,
+        InputDataConfig={
+           "S3Uri": s3_uri_object,
+           "InputFormat": "ONE_DOC_PER_LINE",
+        },
+        OutputDataConfig={
+            "S3Uri": s3_uri_classified_object
+        },
+        DataAccessRoleArn=IAM_ROLE
+    )
+    job_id = classifing_sentences_job["JobId"]
 
-    print('Successfully processed {} records.'.format(len(event['records'])))
+    continue_classifing_work = True
+
+    while continue_classifing_work == True:
+        status_classifier_job = comprehend.describe_document_classification_job(
+            JobId=job_id
+        )
+        
+        status = status_classifier_job["DocumentClassificationJobProperties"]["JobStatus"]
+
+        if status == 'COMPLETED':
+            print("completed job!")
+            print(status_classifier_job["DocumentClassificationJobProperties"]["OutputDataConfig"]["S3Uri"])
+            continue_classifing_work = False
+        elif status == 'FAILED':
+            continue_classifing_work = False
+            print("Failed job :(")
+            print(status_classifier_job["DocumentClassificationJobProperties"]["Message"])
+        else:
+            print("working in status: " + status)
+        time.sleep(5)
+            
 
     return {'records': output}
 
