@@ -4,17 +4,20 @@ import base64
 import re
 import json
 import time
+import tarfile
 from functools import reduce
 from datetime import datetime
 
 
+
 from boto3 import Session
 
-IAM_ROLE = ""
-CLASSIFIER = ""
+IAM_ROLE=""
+CLASSIFIER= ""
 BUCKET = "script-poc-case-1"
 ACCESS_KEY = ""
 SECRET_KEY = ""
+
 session = Session(
     aws_access_key_id=ACCESS_KEY,
     aws_secret_access_key=SECRET_KEY,
@@ -25,6 +28,8 @@ s3 = session.client('s3')
 comprehend = session.client("comprehend")
 
 ### UTILITY FUNCTION
+
+##### Cleaning processing
 
 def remove_urls(x):
   ''' Remove URLs from sentence'''
@@ -80,6 +85,18 @@ cleaning_sentence = abs_transform_sentence(
     )
 
 
+##### Handle classifier file: unzip file
+
+def extract_targz(targz_file, output_path = ''):
+    if targz_file.endswith("tar.gz"):
+        tar = tarfile.open(targz_file, "r:gz")
+        tar.extractall(path = output_path)
+        tar.close()
+    elif targz_file.endswith("tar"):
+        tar = tarfile.open(targz_file, "r:")
+        tar.extractall(path = output_path)
+        tar.close()
+
 ### MAIN FUNCTION
 
 def lambda_handler(event, context):
@@ -89,8 +106,9 @@ def lambda_handler(event, context):
     # STEP #1: preparing data to classifier
     for record in event['records']:
         record_dict = json.loads(base64.b64decode(record['data']))
-        cleaning_data_ = cleaning_sentence(record_dict["text"])
-        sentences.append(cleaning_data_)
+        cleaning_tweet = cleaning_sentence(record_dict["text"])
+        output.append(cleaning_tweet)
+        sentences.append(cleaning_tweet)
 
     sentences = "\n".join(sentences)
 
@@ -121,20 +139,24 @@ def lambda_handler(event, context):
         DataAccessRoleArn=IAM_ROLE
     )
     job_id = classifing_sentences_job["JobId"]
+    classifier_file = None
+    iterTime = 400
 
     continue_classifing_work = True
 
-    while continue_classifing_work == True:
+    while continue_classifing_work == True or iterTime <= 0:
         status_classifier_job = comprehend.describe_document_classification_job(
             JobId=job_id
         )
+        iterTime = iterTime - 1
         
         status = status_classifier_job["DocumentClassificationJobProperties"]["JobStatus"]
 
         if status == 'COMPLETED':
             print("completed job!")
-            print(status_classifier_job["DocumentClassificationJobProperties"]["OutputDataConfig"]["S3Uri"])
             continue_classifing_work = False
+            classifier_file = status_classifier_job["DocumentClassificationJobProperties"]["OutputDataConfig"]["S3Uri"]
+            print(classifier_file)
         elif status == 'FAILED':
             continue_classifing_work = False
             print("Failed job :(")
@@ -143,7 +165,7 @@ def lambda_handler(event, context):
             print("working in status: " + status)
         time.sleep(5)
             
-
+    # STEP #3: read the file
     return {'records': output}
 
 
