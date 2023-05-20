@@ -13,11 +13,6 @@ from datetime import datetime
 import pandas as pd
 from boto3 import Session
 
-IAM_ROLE=""
-CLASSIFIER= ""
-BUCKET = "script-poc-case-1"
-ACCESS_KEY = ""
-SECRET_KEY = ""
 
 session = Session(
     aws_access_key_id=ACCESS_KEY,
@@ -88,21 +83,10 @@ cleaning_sentence = abs_transform_sentence(
 
 ##### Handle classifier file: unzip file
 
-# Unzip the file
-def extract_targz(targz_file, output_path = ''):
-    if targz_file.endswith("tar.gz"):
-        tar = tarfile.open(targz_file, "r:gz")
-        tar.extractall(path = output_path)
-        tar.close()
-    elif targz_file.endswith("tar"):
-        tar = tarfile.open(targz_file, "r:")
-        tar.extractall(path = output_path)
-        tar.close()
-
-
 def extract_targz_v2(targz_file, filename):
     tar = tarfile.open(fileobj=targz_file)
     content_file = None
+    rpta = []
 
     for member in tar.getmembers():
         if member.name == filename:
@@ -111,11 +95,8 @@ def extract_targz_v2(targz_file, filename):
             break
 
     for line in content_file.readlines():
-        print(line)
-        print(json.load(line))
-    print(type(content_file))
-    print(content_file)
-    return content_file
+        rpta.append(json.loads(line))
+    return rpta
 
 ### MAIN FUNCTION
 
@@ -193,20 +174,12 @@ def process_classifier_file(file):
     # download file
     len_prefix_file = len(BUCKET) + 6
     key_file = file[len_prefix_file:]
-    s3.download_file(BUCKET, key_file, "Comprehend.tar.gz") # on disk
-    # download file - v2
     memory_file = io.BytesIO()
     s3.download_fileobj(BUCKET, key_file, memory_file) # on memory
     memory_file.seek(0)
     # create a tempo file called "output"
-    output_path = "comprehend/outputs_extracted"
-    extract_targz("Comprehend.tar.gz", output_path)# on disk
-    # create a tempo file called "output" - v2
     classifier_file = extract_targz_v2(memory_file, 'predictions.jsonl') # on memory
-    # process the extracted file
-    input_file = output_path + '/predictions.jsonl'
-    results = [json.loads(line) for line in open(input_file, 'r')]
-    #print(results)
+    print(classifier_file)
     return
 
 input_data_test = {
