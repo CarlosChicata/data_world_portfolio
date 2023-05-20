@@ -13,6 +13,11 @@ from datetime import datetime
 import pandas as pd
 from boto3 import Session
 
+IAM_ROLE=""
+CLASSIFIER= ""
+BUCKET = "script-poc-case-1"
+ACCESS_KEY = ""
+SECRET_KEY = ""
 
 session = Session(
     aws_access_key_id=ACCESS_KEY,
@@ -83,7 +88,7 @@ cleaning_sentence = abs_transform_sentence(
 
 ##### Handle classifier file: unzip file
 
-def extract_targz_v2(targz_file, filename):
+def extract_targz(targz_file, filename):
     tar = tarfile.open(fileobj=targz_file)
     content_file = None
     rpta = []
@@ -108,7 +113,7 @@ def lambda_handler(event, context):
     for record in event['records']:
         record_dict = json.loads(base64.b64decode(record['data']))
         cleaning_tweet = cleaning_sentence(record_dict["text"])
-        output.append(cleaning_tweet)
+        output.append((cleaning_tweet, record_dict["text"]))
         sentences.append(cleaning_tweet)
 
     sentences = "\n".join(sentences)
@@ -165,8 +170,30 @@ def lambda_handler(event, context):
         else:
             print("working in status: " + status)
         time.sleep(5)
-            
+
     # STEP #3: read the file
+    if classifier_file is not None:
+        len_prefix_file = len(BUCKET) + 6
+        key_file = classifier_file[len_prefix_file:]
+        memory_file = io.BytesIO()
+        s3.download_fileobj(BUCKET, key_file, memory_file) # on memory
+        memory_file.seek(0)
+        classifier_data = extract_targz(memory_file, 'predictions.jsonl') # on memory
+        proccessed_rpta = []
+        
+        for classify_rpta, tweet in zip(classifier_data, output):
+            proccessed_rpta.append({
+                "tweet_text" : tweet[0],
+                "label": classify_rpta["Classes"][0]["Name"],
+                "classifier_score": classify_rpta["Classes"][0]["Score"],
+                "bulk_name": classify_rpta["File"],
+                "original_tweet_text": tweet[1]
+            })
+        
+        output = proccessed_rpta
+    
+    print(output)
+            
     return {'records': output}
 
 
@@ -178,7 +205,7 @@ def process_classifier_file(file):
     s3.download_fileobj(BUCKET, key_file, memory_file) # on memory
     memory_file.seek(0)
     # create a tempo file called "output"
-    classifier_file = extract_targz_v2(memory_file, 'predictions.jsonl') # on memory
+    classifier_file = extract_targz(memory_file, 'predictions.jsonl') # on memory
     print(classifier_file)
     return
 
@@ -216,8 +243,8 @@ input_data_test = {
 classifier_file = "s3://script-poc-case-1/datalake/classifier/18-05-2023T19:27:35_bulk_tweets.txt/778360244763-CLN-5d056439e71aa489229d0b2d7dcaa061/output/output.tar.gz"
 
 
-process_classifier_file(classifier_file)
-#lambda_handler(input_data_test, None)
+#process_classifier_file(classifier_file)
+lambda_handler(input_data_test, None)
 
 
 '''
