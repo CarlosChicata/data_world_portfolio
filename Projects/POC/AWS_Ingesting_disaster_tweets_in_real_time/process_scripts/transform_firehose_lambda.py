@@ -13,7 +13,7 @@ from datetime import datetime
 from boto3 import Session
 
 IAM_ROLE=""
-CLASSIFIER=""
+CLASSIFIER= ""
 BUCKET = "script-poc-case-1"
 ACCESS_KEY = ""
 SECRET_KEY = ""
@@ -109,7 +109,7 @@ def lambda_handler(event, context):
 
     # STEP #1: preparing data to classifier
     for record in event['records']:
-        record_dict = json.loads(base64.b64decode(record['data']))
+        record_dict = json.loads(base64.b64decode(record['data']).decode('latin9'))
         cleaning_tweet = cleaning_sentence(record_dict["text"])
         output.append((cleaning_tweet, record_dict["text"], record['recordId']))
         sentences.append(cleaning_tweet)
