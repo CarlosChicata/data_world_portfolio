@@ -12,6 +12,7 @@ from datetime import datetime
 
 from boto3 import Session
 
+ENDPOINT_CLASSIFIER = ""
 IAM_ROLE=""
 CLASSIFIER= ""
 BUCKET = "script-poc-case-1"
@@ -202,6 +203,66 @@ def lambda_handler(event, context):
     return {'records': output}
 
 
+def lambda_handler_v2(event, context):
+    output = []
+    sentences = []
+
+    # STEP #1: preparing data to classifier
+    for record in event['records']:
+        record_dict = json.loads(base64.b64decode(record['data']))
+        cleaning_tweet = cleaning_sentence(record_dict["text"])
+        output.append((cleaning_tweet, record_dict["text"], record['recordId']))
+        sentences.append(cleaning_tweet)
+
+    #sentences = "\n".join(sentences)
+
+    key_file = "datalake/origin/" + datetime.now().strftime("%d-%m-%YT%H:%M:%S") + \
+        "_bulk_tweets.txt"
+    key_classifier_file = "datalake/classifier/" + \
+        datetime.now().strftime("%d-%m-%YT%H:%M:%S") + "_bulk_tweets.txt"
+    
+    s3.put_object(
+        Body=bytes(sentences, "latin9"), 
+        Bucket=BUCKET, 
+        Key=key_file
+    )
+    s3_uri_object = "s3://" + BUCKET + "/" + key_file
+    s3_uri_classified_object = "s3://" + BUCKET + "/" + key_classifier_file
+    
+    # STEP #2: classify your data
+    classifing_sentences_job = comprehend.start_document_classification_job(
+        JobName="Classifier_data",
+        DocumentClassifierArn=CLASSIFIER,
+        InputDataConfig={
+           "S3Uri": s3_uri_object,
+           "InputFormat": "ONE_DOC_PER_LINE",
+        },
+        OutputDataConfig={
+            "S3Uri": s3_uri_classified_object
+        },
+        DataAccessRoleArn=IAM_ROLE
+    )
+    job_id = classifing_sentences_job["JobId"]
+    classifier_file = None
+    iterTime = 400
+
+    continue_classifing_work = True
+
+    for sentence in sentences:
+        t1 = datetime.now()
+        rpta_sentence = comprehend.classify_document(
+            Text=sentence,
+            EndpointArn=ENDPOINT_CLASSIFIER
+        )
+        t2 = datetime.now()
+        print(rpta_sentence)
+        delta = t2 - t1
+        print(f"Time difference is {delta.total_seconds()} seconds")
+
+
+
+
+
 input_data_test = {
     'records': [
         {'recordId': '49640491891290384533425070480178768347599342808133009458000000', 'approximateArrivalTimestamp': 1683343228611, 
@@ -234,7 +295,7 @@ input_data_test = {
 }
 
 
-lambda_handler(input_data_test, None)
+lambda_handler_v2(input_data_test, None)
 
 
 '''
