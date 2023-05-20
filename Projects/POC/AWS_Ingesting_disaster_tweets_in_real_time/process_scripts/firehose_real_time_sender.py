@@ -53,7 +53,7 @@ def real_time_generator_emulator(filename, url):
     count_tweets = 0
     
     while count_tweets < database_size:
-        chunk_size = random.randint(1, 10)
+        chunk_size = random.randint(1, 5)
         second_sleepy = random.randint(1, 30)
         
         selected_tweets = database.iloc[count_tweets : count_tweets + chunk_size]
@@ -78,4 +78,4 @@ def real_time_generator_emulator(filename, url):
         time.sleep(second_sleepy)
     
 
-real_time_generator_emulator("../sample_data/database.csv", "PUT-S3-Jf1bH")
+real_time_generator_emulator("../sample_data/train_kind_of_disaster_dataset.csv", "PUT-S3-Jf1bH")
