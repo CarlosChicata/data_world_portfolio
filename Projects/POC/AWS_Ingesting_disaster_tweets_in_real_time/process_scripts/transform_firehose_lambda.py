@@ -14,7 +14,6 @@ import pandas as pd
 from boto3 import Session
 
 
-
 session = Session(
     aws_access_key_id=ACCESS_KEY,
     aws_secret_access_key=SECRET_KEY,
