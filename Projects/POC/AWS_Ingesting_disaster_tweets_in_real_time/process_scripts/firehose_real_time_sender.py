@@ -78,4 +78,4 @@ def real_time_generator_emulator(filename, url):
         time.sleep(second_sleepy)
     
 
-real_time_generator_emulator("../sample_data/train_kind_of_disaster_dataset.csv", "PUT-S3-Jf1bH")
+real_time_generator_emulator("../sample_data/database.csv", "PUT-S3-Jf1bH")
