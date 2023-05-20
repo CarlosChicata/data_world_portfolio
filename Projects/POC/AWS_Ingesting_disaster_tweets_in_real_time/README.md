@@ -1,11 +1,11 @@
 # Case 3: Ingesting disaster tweets in real time
 
 ## Purpose and warning
-The purpose this POC is to get several tweets about real disaster in real time, classify it and store in data warehouse system to analysis from data team; but you need to be cared because  some tweets are joke.
+The purpose this POC is to get several tweets about real disaster in real time, classify it and store in data warehouse system to analysis from data team.
 
 My acceptance criterias are:
 
-* Classify the tweet: like disaster or joke; and kind of disaster.
+* Classify the tweet: kind of disaster.
 * Processing in (near) real time the tweets.
 * Store all tweets in data warehouse to consume.
 * Create a data model to support the storage.
@@ -27,7 +27,7 @@ These are the main challenges to face:
 
 1. Link the tweets file stored in S3 with record in data warehouse system service for each tweets processed.
 2. How insert a bunk of data to data warehouse system service (AWS redshift) without negatively impact its performance.
-3. Classify the tweets in kind of disaster and its whether joke or not.
+3. Classify the tweets in kind of disaster.
 
 ## Solution
 
@@ -46,7 +46,7 @@ If you want to know how i clean it; check `Assign better label to dataset.ipynb`
 In This script will you know:
 
 1.  How i select fields in faked dataset to preparing label.
-2.  How generate the label of kind of disaster and either joke or not.
+2.  How generate the label of kind of disaster.
 3.  How i split the original dataset into training and testing dataset for classifier process.
 
 
@@ -116,5 +116,5 @@ Nineth; then you turn on the enviroment of project, go to "process_scripts" fold
 
 #### Security: 🌟🌟🌟🌟⭐
 
-
+#### Security: 🌟⭐⭐⭐⭐
 
