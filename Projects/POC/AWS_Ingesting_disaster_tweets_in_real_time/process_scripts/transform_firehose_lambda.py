@@ -10,11 +10,10 @@ from functools import reduce
 from datetime import datetime
 
 
-import pandas as pd
 from boto3 import Session
 
 IAM_ROLE=""
-CLASSIFIER= ""
+CLASSIFIER=""
 BUCKET = "script-poc-case-1"
 ACCESS_KEY = ""
 SECRET_KEY = ""
@@ -248,7 +247,11 @@ def lambda_handler(event, context):
     output = []
 
     for record in event['records']:
+        print(record['recordId'])
+        print(record['data'])
         payload = base64.b64decode(record['data']).decode('latin9') + "\n"
+
+        # Do custom processing on the payload here
 
         output_record = {
             'recordId': record['recordId'],
