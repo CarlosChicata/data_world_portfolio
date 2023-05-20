@@ -13,11 +13,7 @@ from datetime import datetime
 import pandas as pd
 from boto3 import Session
 
-IAM_ROLE=""
-CLASSIFIER= ""
-BUCKET = "script-poc-case-1"
-ACCESS_KEY = ""
-SECRET_KEY = ""
+
 
 session = Session(
     aws_access_key_id=ACCESS_KEY,
@@ -104,7 +100,6 @@ def extract_targz(targz_file, filename):
     return rpta
 
 ### MAIN FUNCTION
-
 def lambda_handler(event, context):
     output = []
     sentences = []
@@ -187,7 +182,9 @@ def lambda_handler(event, context):
                 "label": classify_rpta["Classes"][0]["Name"],
                 "classifier_score": classify_rpta["Classes"][0]["Score"],
                 "bulk_name": classify_rpta["File"],
-                "original_tweet_text": tweet[1]
+                "original_tweet_text": tweet[1],
+                "classifier_rpta_location": classifier_file,
+                "bulk_location": s3_uri_object
             })
         
         output = proccessed_rpta
@@ -208,6 +205,7 @@ def process_classifier_file(file):
     classifier_file = extract_targz(memory_file, 'predictions.jsonl') # on memory
     print(classifier_file)
     return
+
 
 input_data_test = {
     'records': [
