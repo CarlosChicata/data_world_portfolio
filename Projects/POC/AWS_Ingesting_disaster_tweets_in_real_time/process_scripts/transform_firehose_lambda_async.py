@@ -13,12 +13,12 @@ from datetime import datetime
 
 from boto3 import Session
 
-ENDPOINT_CLASSIFIER = "arn:aws:comprehend:us-east-1:778360244763:document-classifier-endpoint/disaster-kind-classifier"
-IAM_ROLE="arn:aws:iam::778360244763:role/service-role/AmazonComprehendServiceRoleS3FullAccess-comprehed_permission"
-CLASSIFIER= "arn:aws:comprehend:us-east-1:778360244763:document-classifier/disaster-kind-classifier"
+ENDPOINT_CLASSIFIER = ""
+IAM_ROLE=""
+CLASSIFIER= ""
 BUCKET = "script-poc-case-1"
-ACCESS_KEY = "AKIA3KOPCZIN24AJQBOI"
-SECRET_KEY = "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"
+ACCESS_KEY = ""
+SECRET_KEY = ""
 
 session = Session(
     aws_access_key_id=ACCESS_KEY,
