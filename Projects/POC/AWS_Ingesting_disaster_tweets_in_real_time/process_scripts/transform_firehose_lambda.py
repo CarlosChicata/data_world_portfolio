@@ -5,11 +5,12 @@ import re
 import json
 import time
 import tarfile
+import io
 from functools import reduce
 from datetime import datetime
 
 
-
+import pandas as pd
 from boto3 import Session
 
 IAM_ROLE=""
@@ -87,6 +88,7 @@ cleaning_sentence = abs_transform_sentence(
 
 ##### Handle classifier file: unzip file
 
+# Unzip the file
 def extract_targz(targz_file, output_path = ''):
     if targz_file.endswith("tar.gz"):
         tar = tarfile.open(targz_file, "r:gz")
@@ -96,6 +98,24 @@ def extract_targz(targz_file, output_path = ''):
         tar = tarfile.open(targz_file, "r:")
         tar.extractall(path = output_path)
         tar.close()
+
+
+def extract_targz_v2(targz_file, filename):
+    tar = tarfile.open(fileobj=targz_file)
+    content_file = None
+
+    for member in tar.getmembers():
+        if member.name == filename:
+            f = tar.extractfile(member)
+            content_file = f
+            break
+
+    for line in content_file.readlines():
+        print(line)
+        print(json.load(line))
+    print(type(content_file))
+    print(content_file)
+    return content_file
 
 ### MAIN FUNCTION
 
@@ -169,6 +189,26 @@ def lambda_handler(event, context):
     return {'records': output}
 
 
+def process_classifier_file(file):
+    # download file
+    len_prefix_file = len(BUCKET) + 6
+    key_file = file[len_prefix_file:]
+    s3.download_file(BUCKET, key_file, "Comprehend.tar.gz") # on disk
+    # download file - v2
+    memory_file = io.BytesIO()
+    s3.download_fileobj(BUCKET, key_file, memory_file) # on memory
+    memory_file.seek(0)
+    # create a tempo file called "output"
+    output_path = "comprehend/outputs_extracted"
+    extract_targz("Comprehend.tar.gz", output_path)# on disk
+    # create a tempo file called "output" - v2
+    classifier_file = extract_targz_v2(memory_file, 'predictions.jsonl') # on memory
+    # process the extracted file
+    input_file = output_path + '/predictions.jsonl'
+    results = [json.loads(line) for line in open(input_file, 'r')]
+    #print(results)
+    return
+
 input_data_test = {
     'records': [
         {'recordId': '49640491891290384533425070480178768347599342808133009458000000', 'approximateArrivalTimestamp': 1683343228611, 
@@ -200,8 +240,11 @@ input_data_test = {
     ]
 }
 
+classifier_file = "s3://script-poc-case-1/datalake/classifier/18-05-2023T19:27:35_bulk_tweets.txt/778360244763-CLN-5d056439e71aa489229d0b2d7dcaa061/output/output.tar.gz"
 
-lambda_handler(input_data_test, None)
+
+process_classifier_file(classifier_file)
+#lambda_handler(input_data_test, None)
 
 
 '''
