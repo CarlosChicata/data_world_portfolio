@@ -3,3 +3,16 @@
 CREATE EXTERNAL SCHEMA integration_firehose
 FROM KINESIS
 IAM_ROLE '<ARN OF REDSHIFT CAN READ KINESIS FIREHOSE>';
+
+
+
+### Create a table will use from kinesis firehose
+
+create table disaster_tweets(
+    original_text TEXT,
+    cleaning_text text,
+    disaster_label TEXT,
+    classifier_score REAL,
+    arrived_datetime_from_kinesis BIGINT,
+    processing_time REAL
+);
