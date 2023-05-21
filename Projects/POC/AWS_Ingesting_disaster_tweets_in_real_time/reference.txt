@@ -22,7 +22,7 @@ https://catalog.workshops.aws/intelligent-document-processing/en-US/02-getting-s
 https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/comprehend/client/start_document_classification_job.html
 [Python s3 download]
 https://stackoverflow.com/questions/44043036/how-to-read-image-file-from-s3-bucket-directly-into-memory
-
-
+[redshift with kinesis data stream: integration]
+https://www.youtube.com/watch?v=L4jjmfBspQA
 
 
