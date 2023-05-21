@@ -26,4 +26,15 @@ https://stackoverflow.com/questions/44043036/how-to-read-image-file-from-s3-buck
 https://www.youtube.com/watch?v=L4jjmfBspQA
 [STL_ERROR in Redshift]
 https://repost.aws/knowledge-center/redshift-stl-load-errors
+[behavier of COPY redshift]
+https://docs.aws.amazon.com/redshift/latest/dg/ingest-super.html
+[behavier of COPY redshift]
+https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html
+[LOAD JSON data of firehose into redshift]
+https://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-format.html#copy-json-jsonpaths
+[LOAD JSON data of firehose into redshift]
+https://stackoverflow.com/questions/42880368/delimiter-not-found-error-aws-redshift-load-from-s3-using-kinesis-firehose
+[SAMPLE of JSON data loading inro readshift]
+https://medium.com/@soletechie/fixing-issues-related-to-s3-copy-command-to-redshift-702d9978d505
+
 
