@@ -69,7 +69,9 @@ Soon i will upload the videos in spanish and english.
 
 #### By step-by-step Documentation
 
-First; create a lambda function with process of transformation to classify and format all chunk of data to be ready to consume in data warehouse service.
+First; create a lambda function with process of transformation to classify and format all chunk of data to be ready to consume in data warehouse service. The code will be stay in `transform_firehose_lambda.py` in **process_script** folder. Remember setup the `ENDPOINT_CLASSIFIER` variable to use the custom classifier from endpoint in AWS comprehend.
+
+![Create a transform lambda](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_transform_lambda.png)
 
 Second, Run `Assign better label to dataset.ipynb` script to generate all train and test data set models to train the classifier and use to send in the emulator of twitter ingester.
 
