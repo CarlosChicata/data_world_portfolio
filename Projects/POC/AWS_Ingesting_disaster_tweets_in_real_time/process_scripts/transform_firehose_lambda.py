@@ -139,7 +139,7 @@ def lambda_handler(event, context):
         output.append({
             'recordId': record["recordId"],
             'result': 'Ok',
-            "data": base64.b64encode(str(row_data).encode('utf-8')).decode('utf-8')
+            "data": base64.b64encode(json.dumps(row_data).encode('utf-8')).decode('utf-8')
         })
         
     print(output)
