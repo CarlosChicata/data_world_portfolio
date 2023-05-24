@@ -89,19 +89,23 @@ Fifth;  to finish in creating of classifier, select the S3 bucket to store the c
 
 ![FInish classifier](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_clasifier_part3.png)
 
-Sixth; create a AWS kinesis firehose service to buffer and call the transformation process; for this POC, i will choose "the Direct PUT" option in source and "Amazon Redshift" in destination.
+Sixth; create a endpoint of AWS comprehend; in this section, go to "endpoint", click "create endpoint", name the endpoint and select the classifier model and version you want to use.
+
+![endpoint comprehend part 1](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_comprehend_endpoint.png)
+
+; create a AWS kinesis firehose service to buffer and call the transformation process; for this POC, i will choose "the Direct PUT" option in source and "Amazon Redshift" in destination.
 
 ![part 1 in setup kinesis firehose](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_redshift_part3.png)
 
-Seventh; to continue with the creation of AWS kinesis firehose, click in "enable of data transformation" option in the "data transformation" section; link with created lambda in first step and set up of variables of process to generate the bulk of data will process in the lambda and latency of operation. Read more about it in this [link](https://catalog.us-east-1.prod.workshops.aws/workshops/c342c6d1-2baf-4827-ba42-52ef9eb173f6/en-US/beam-on-kda/create-infrastructure/firehose/configure-settings).
+; to continue with the creation of AWS kinesis firehose, click in "enable of data transformation" option in the "data transformation" section; link with created lambda in first step and set up of variables of process to generate the bulk of data will process in the lambda and latency of operation. Read more about it in this [link](https://catalog.us-east-1.prod.workshops.aws/workshops/c342c6d1-2baf-4827-ba42-52ef9eb173f6/en-US/beam-on-kda/create-infrastructure/firehose/configure-settings).
 
 ![enable transformation opcion](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_firehose_part2.png)
 
-Eighth; to continue with the creation of AWS kinesis firehose; set up the access of redshift: user credentials, cluster, database and table will store classifier tweets.
+; to continue with the creation of AWS kinesis firehose; set up the access of redshift: user credentials, cluster, database and table will store classifier tweets.
 
 ![setup redshift](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_kinesis_redshift_part_1.png)
 
-Ninth; to end with creation of AWS kinesis firehose, you need to setup the intermedie S3 destination: select the S3 bucket will store and way to handle the records in redshift. If you wanna learn about how way read records in redshift, use [this](https://docs.aws.amazon.com/redshift/latest/dg/copy-usage_notes-copy-from-json.html).
+; to end with creation of AWS kinesis firehose, you need to setup the intermedie S3 destination: select the S3 bucket will store and way to handle the records in redshift. If you wanna learn about how way read records in redshift, use [this](https://docs.aws.amazon.com/redshift/latest/dg/copy-usage_notes-copy-from-json.html).
 
 ![redshift setup kinesis](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_setup_redshift_part2.png)
 
