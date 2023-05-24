@@ -133,6 +133,15 @@ Sixteenth; then you turn on the enviroment of project, go to "process_scripts" f
 
 ![Send faked data from sender generator](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/sender_json_data.png)
 
+
+Eighteenth; check if the processed data is stored in intermediated S3. If it is; then the process work well! 😄
+
+![verification intermediate storage in process](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/stored_processed_data.png)
+
+Ninetheenth; create a query in redshift to use the classifier data in your data warehouse.
+
+![]()
+
 ### Topic issues
 
 
