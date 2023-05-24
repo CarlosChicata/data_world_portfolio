@@ -109,6 +109,9 @@ Tenth; to end the creation a redshift; go to the click in "addtional setup" sect
 
 ![finish set up of redshift](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/redshift_setup_part3.png)
 
+Eleventh; in additional setup in redshift, check the IP of kinesis firehose service inside of VPC of redshift can access all records stored in kinesis firehose. This verification is in security group of VPC redshift's
+
+![security group in redshift](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_security_group_income_ports.png)
 
 ; create a AWS kinesis firehose service to buffer and call the transformation process; for this POC, i will choose "the Direct PUT" option in source and "Amazon Redshift" in destination.
 
