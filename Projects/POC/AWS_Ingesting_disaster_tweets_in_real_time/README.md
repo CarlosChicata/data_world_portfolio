@@ -140,7 +140,7 @@ Eighteenth; check if the processed data is stored in intermediated S3. If it is;
 
 Ninetheenth; create a query in redshift to use the classifier data in your data warehouse.
 
-![]()
+![Querying in redshift](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/redshift_queries.png)
 
 ### Topic issues
 
