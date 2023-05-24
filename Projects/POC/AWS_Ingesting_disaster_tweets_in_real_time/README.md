@@ -101,6 +101,10 @@ Eighth; create a redshift, setup the kind of vm the cluster will use. I chosen t
 
 ![setup vm in cluster](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/redshift_setup_part1.png)
 
+Nineth; to continue the creation a redshift,  set up the user credentials; this is a admin level; will use to connnect in DB. Rememeber to set up IAM credentials can read the Kinesis firehose and S3.
+
+![set up DB](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/redshift_setup_part2.png)
+
 ; create a AWS kinesis firehose service to buffer and call the transformation process; for this POC, i will choose "the Direct PUT" option in source and "Amazon Redshift" in destination.
 
 ![part 1 in setup kinesis firehose](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_redshift_part3.png)
