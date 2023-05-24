@@ -93,6 +93,10 @@ Sixth; create a endpoint of AWS comprehend; in this section, go to "endpoint", c
 
 ![endpoint comprehend part 1](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_comprehend_endpoint.png)
 
+Seventh; to end with creation the endpoint of AWS comprehend, setup the IUs; length of tweets; that classifier accept.
+
+![finish the setup endpoint comprehed](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_comprehend_endpoint_part1.png)
+
 ; create a AWS kinesis firehose service to buffer and call the transformation process; for this POC, i will choose "the Direct PUT" option in source and "Amazon Redshift" in destination.
 
 ![part 1 in setup kinesis firehose](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_redshift_part3.png)
