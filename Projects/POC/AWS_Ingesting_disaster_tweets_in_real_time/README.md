@@ -101,9 +101,14 @@ Eighth; create a redshift, setup the kind of vm the cluster will use. I chosen t
 
 ![setup vm in cluster](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/redshift_setup_part1.png)
 
-Nineth; to continue the creation a redshift,  set up the user credentials; this is a admin level; will use to connnect in DB. Rememeber to set up IAM credentials can read the Kinesis firehose and S3.
+Nineth; to continue the creation a redshift, set up the user credentials; this is a admin level; will use to connnect in DB. Rememeber to set up IAM credentials can read the Kinesis firehose and S3.
 
 ![set up DB](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/redshift_setup_part2.png)
+
+Tenth; to end the creation a redshift; go to the click in "addtional setup" section, go to the "security and network" section, click in "active available public" box and select "none" option in "Elastic IP address" select. All of this enables access the redshift outsite of internal net.
+
+![finish set up of redshift](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/redshift_setup_part3.png)
+
 
 ; create a AWS kinesis firehose service to buffer and call the transformation process; for this POC, i will choose "the Direct PUT" option in source and "Amazon Redshift" in destination.
 
