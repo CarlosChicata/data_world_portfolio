@@ -101,6 +101,10 @@ Eighth; to continue with the creation of AWS kinesis firehose; set up the access
 
 ![setup redshift](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/setup_kinesis_redshift_part_1.png)
 
+Ninth; to end with creation of AWS kinesis firehose, you need to setup the intermedie S3 destination: select the S3 bucket will store and way to handle the records in redshift. If you wanna learn about how way read records in redshift, use [this](https://docs.aws.amazon.com/redshift/latest/dg/copy-usage_notes-copy-from-json.html).
+
+![redshift setup kinesis](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/create_setup_redshift_part2.png)
+
 ; then you turn on the enviroment of project, go to "process_scripts" folder and execute `python firehose_real_time_sender.py`. This script will emulate the data producer; Remember setup this script with name of firehose service and other credencials to work.
 
 ![Send faked data from sender generator](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_Ingesting_disaster_tweets_in_real_time/images/sender_json_data.png)
