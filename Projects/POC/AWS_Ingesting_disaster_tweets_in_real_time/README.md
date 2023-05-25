@@ -144,16 +144,25 @@ Ninetheenth; create a query in redshift to use the classifier data in your data 
 
 ### Topic issues
 
+I needed to learn in my few free time some topics about AWS resources like redshift, Comprehed and Kinesis Firehose; so i built based on simplicity and functional vision such that i got a POC to the main goal: formatting in real time using IA classifier to data warehouse service.
 
 #### Scalability: 🌟🌟🌟🌟🌟
 
+👍 The kinesis firehose can support the bulk of sent data using kinesis data stream; and transform it with help of lambda and comprenhed. Only for didactic point, i chosen the direct sending method in kinesis firehose to show the POC.
 
-#### Performance: 🌟🌟⭐⭐⭐
+#### Performance: 🌟🌟🌟🌟🌟
 
+👍 It's (near) real time processing!, depending of setup in kinesis firehose; buffer size and interval; it can be more or less fast. As i use a emulator with low size of tweets to sent, i think it can't be show well. The custom classifier endpoint allow generate the answer so fast, then it can't be a stopper for us.
+
+If you wanna use kinesis data stream instead direct sending data for kinesis firehose, you can! the `real_time_sender.py` use data stream; create a kinesis data stream service and you need to setup in kinesis firehose to use; if you need to store you data to process temporally.
 
 #### Reusability:  🌟🌟🌟⭐⭐
 
-#### Security: 🌟🌟🌟🌟⭐
+#### Security: 🌟🌟🌟⭐⭐
 
-#### Security: 🌟⭐⭐⭐⭐
+#### Price: 🌟🌟🌟⭐⭐
+
+👍 I think the price of redshift, kinesis firehose and S3 are default price i need to pay to work and doesn't variable and handle to support. In base of lambda; it depende how amount bulk send to it, then i can be a reasonable price.
+
+👀 One point i think it can be a big problem is the price of custom classifier endpoint: it depend in the count of IUs, for 2 UI's i will pay aprox. $1200 monthly. If I don't use it, the service will still charge me the price for having it.
 
