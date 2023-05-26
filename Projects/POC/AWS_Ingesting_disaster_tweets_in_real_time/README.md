@@ -49,6 +49,16 @@ In This script will you know:
 2.  How generate the label of kind of disaster.
 3.  How i split the original dataset into training and testing dataset for classifier process.
 
+The destination table will store in data warehouse service allow the follow schema.
+
+| Name | Description | Type of data |
+|------|------------|--------------|
+| `original_text` | Raw text from tweet. | Text |
+| `cleaning_text` |  Cleaning text based in raw tweet. | Text |
+| `disaster_label` | Label of classified text based in IA model. | Text |
+| `classifier_score` | Score of label based in IA model. |  Decimal |
+| `arrived_datetime_from_kinesis`  | Datetime the tweet arrived in kinesis firehose. | Big int |
+| `processing_time`  | Time of processing to generate the label in IA model. | decimal |
 
 ### Tools to implement
 
