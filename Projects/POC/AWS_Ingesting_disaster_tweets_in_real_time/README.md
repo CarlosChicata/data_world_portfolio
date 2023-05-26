@@ -156,9 +156,18 @@ I needed to learn in my few free time some topics about AWS resources like redsh
 
 If you wanna use kinesis data stream instead direct sending data for kinesis firehose, you can! the `real_time_sender.py` use data stream; create a kinesis data stream service and you need to setup in kinesis firehose to use; if you need to store you data to process temporally.
 
-#### Reusability:  🌟🌟🌟⭐⭐
-
 #### Security: 🌟🌟🌟⭐⭐
+
+👍 With the security group, you can management what IP can access of data in cluster of redshift.
+
+👀 In my opinion, i don't like the idea to enable public IP access in cluster of redshift, i think it expose to me attack for external and evil hackers to get our data. I think it can be improve using VPC network with kinesis firehose, s3 and lambda.
+
+I can improve the IAM permissions in all resource to get access all specified resources it need.
+
+#### Replication: 🌟⭐⭐⭐⭐
+
+👀 All resources were created manually, so i think if i need to duplicate the ecosystem for environments i need to do again. It's  so tired!, I think I need to use IaC template to automatic of creation the most of resource possible.
+
 
 #### Price: 🌟🌟🌟⭐⭐
 
