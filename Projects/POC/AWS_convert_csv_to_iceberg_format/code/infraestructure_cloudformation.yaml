@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Automaticed creation of all infraestructure to support POC case 4."
+
+Parameters:
+  DatabaseInGlue:
+    Type: String
+    MinLength: "4"
+    Default: "db-poc-case-4"
+    Description: Name of DB in AWS Glue database for POC case 4
+
+  StorageLayerS3:
+    Type: String
+    MinLength: "4"
+    Default: "s3-storage-layer"
+    Description: Name of S3 for POC case 4
+
+
+Resources:
+  ## Resource to store all table in format iceberg
+  DatalakeS3:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref StorageLayerS3
+      AccessControl: "PublicReadWrite"
+
+
+  ## Resource to prepare database (AWS GLUE)
+  POCCase1Database:
+    Type: "AWS::Glue::Database"
+    Properties:
+      DatabaseInput:
+        Description: "Database to store all tables in glue"
+        Name: !Ref DatabaseInGlue
+      CatalogId: !Ref AWS::AccountId ## reference the same AWS account
+
