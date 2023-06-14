@@ -21,7 +21,14 @@ Resources:
     Type: 'AWS::S3::Bucket'
     Properties:
       BucketName: !Ref StorageLayerS3
-      AccessControl: "PublicReadWrite"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: False
+        BlockPublicPolicy: False
+        IgnorePublicAcls: False
+        RestrictPublicBuckets: False
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
 
 
   ## Resource to prepare database (AWS GLUE)
