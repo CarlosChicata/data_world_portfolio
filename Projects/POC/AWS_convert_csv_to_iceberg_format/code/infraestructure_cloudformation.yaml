@@ -17,7 +17,7 @@ Parameters:
 
 Resources:
   ## Resource to store all table in format iceberg
-  DatalakeS3:
+  DataStorageLayer:
     Type: 'AWS::S3::Bucket'
     Properties:
       BucketName: !Ref StorageLayerS3
@@ -25,7 +25,7 @@ Resources:
 
 
   ## Resource to prepare database (AWS GLUE)
-  POCCase1Database:
+  DBGlue:
     Type: "AWS::Glue::Database"
     Properties:
       DatabaseInput:
