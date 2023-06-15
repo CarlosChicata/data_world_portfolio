@@ -1,0 +1,8 @@
+[connect iceberg with aws glue - dremio]
+https://iceberg.apache.org/docs/1.2.1/aws/#catalogs
+[CRUD with aws athena]
+https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html
+
+
+
+
