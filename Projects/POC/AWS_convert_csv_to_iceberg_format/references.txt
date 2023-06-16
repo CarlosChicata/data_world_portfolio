@@ -2,7 +2,7 @@
 https://iceberg.apache.org/docs/1.2.1/aws/#catalogs
 [CRUD with aws athena]
 https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html
-
-
+[aws athena workshop]
+https://catalog.us-east-1.prod.workshops.aws/workshops/9981f1a1-abdc-49b5-8387-cb01d238bb78/en-US/90-athena-acid/9011-prepare-data-acidtable
 
 
