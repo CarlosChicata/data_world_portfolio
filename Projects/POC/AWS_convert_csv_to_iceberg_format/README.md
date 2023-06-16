@@ -23,6 +23,13 @@ My acceptance criterias are:
 
 ## Solution
 
+There are some way to convert data in CSV format to iceberg format.
+
+### Athena
+
+The strategy is create a new table in iceberg format and insert all data in batch mode from csv dataset by AWS Athena. 
+
+
 ### General Idea
 
 
