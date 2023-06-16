@@ -8,7 +8,7 @@ https://catalog.us-east-1.prod.workshops.aws/workshops/9981f1a1-abdc-49b5-8387-c
 https://medium.com/@life-is-short-so-enjoy-it/aws-athena-iceberg-experiment-time-and-version-travel-3d83772a418
 [docs athena + iceberg]
 https://docs.aws.amazon.com/es_es/athena/latest/ug/querying-iceberg.html
-[docs athena + iceberg creation]
+[docs athena + iceberg creation][******]
 https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html
 
 
