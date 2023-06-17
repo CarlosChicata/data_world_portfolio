@@ -17,7 +17,7 @@ My acceptance criterias are:
 
 ## Note about the problem context
 
-We need to convert send data from app is in csv format into iceberg to use in data lake. Even though the csv format is a file format and the iceberg format is a table format; check this [post](https://shahrajesh2006.medium.com/data-lakes-understanding-file-format-and-table-formats-38d7999c0ec2 ) to understand the difference both; i need to use a file format inside table format to manage the data; so i choose parquet as a main file format; based in this format is best in analytics operations;  and avro as a secondary file format; based in this is best in write operation.
+We need to convert sent data from app is in csv format into iceberg format to use in data lake. Even though the csv format is a file format and the iceberg format is a table format; check this [post](https://shahrajesh2006.medium.com/data-lakes-understanding-file-format-and-table-formats-38d7999c0ec2 ) to understand the difference both; i need to use a file format inside table format to manage the data; so i choose parquet as a main file format; based in this format is best in analytics operations;  and avro as a secondary file format; based in this is best in write operation.
 
 ## Challenges
 
@@ -29,7 +29,7 @@ There are some way to convert data in CSV format to iceberg format.
 
 ### Athena
 
-The strategy is create a new table in iceberg format and insert all data in batch mode from csv dataset by AWS Athena. 
+The strategy is create a new table in iceberg format natively by AWS Athena and insert all data in batch mode from csv dataset by AWS Athena. The data producer got all data will be stored in data lake.
 
 ![Athena Architecture infra](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/athena_infra_poc_4.drawio.png)
 
