@@ -10,7 +10,8 @@ https://medium.com/@life-is-short-so-enjoy-it/aws-athena-iceberg-experiment-time
 https://docs.aws.amazon.com/es_es/athena/latest/ug/querying-iceberg.html
 [docs athena + iceberg creation][******]
 https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html
-
+[GLUE + iceberg]
+https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format-iceberg.html
 
 
 
