@@ -28,9 +28,25 @@ def sending_batch_data(size_chunk):
     )
     chunk_iter = 0
     top_limit_dataset = faked_dataset.shape[0]
+    top_limit_dataset = 5
+
     while chunk_iter <= top_limit_dataset:
-        chunk_iter += size_chunk
+        sql_data = [] 
 
         for idx in range(chunk_iter, min(chunk_iter + size_chunk, top_limit_dataset)):
+            data = faked_dataset.iloc[[idx]].values.tolist()[0]
+            data[4] = data[4][0:-6]
+            sql_data.append(
+                "(%s, '%s', %s, '%s', TIMESTAMP '%s', '%s')" % tuple(data)
+            )
+
+        sql_data = ",".join(sql_data)
+        sql_insert = 'INSERT INTO csv_to_iceberg_order ("id","code", "enterprise_id", "size", "creation", "pick_address") values ' + sql_data
+        print(sql_insert)
+        chunk_iter += size_chunk
 
     print(faked_dataset.shape)
+
+
+####  MAIN PROCESS
+sending_batch_data(2)
