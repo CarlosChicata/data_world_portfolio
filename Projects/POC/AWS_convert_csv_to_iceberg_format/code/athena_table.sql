@@ -6,7 +6,7 @@ CREATE TABLE csv_to_iceberg_order (
     creation timestamp,
     pick_address string
 )
-PARTITIONED BY (creation)
+PARTITIONED BY (enterprise_id)
 LOCATION 's3://s3-storage-layer/athena/'
 TBLPROPERTIES (
     'table_type'='ICEBERG',
