@@ -1,10 +1,12 @@
-CREATE TABLE csv_to_iceberg (
+CREATE TABLE csv_to_iceberg_order (
     id bigint,
-    name string,
-    year int,
-    category string
+    code string,
+    enterprise_id int,
+    size string,
+    creation timestamp,
+    pick_address string
 )
-PARTITIONED BY (year)
+PARTITIONED BY (creation)
 LOCATION 's3://s3-storage-layer/athena/'
 TBLPROPERTIES (
     'table_type'='ICEBERG',
