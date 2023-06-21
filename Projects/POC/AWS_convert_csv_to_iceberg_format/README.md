@@ -21,8 +21,6 @@ We need to convert sent data from app is in csv format into iceberg format to us
 
 ## Challenges
 
-
-
 ## Solution
 
 There are some way to convert data in CSV format to iceberg format.
@@ -33,38 +31,14 @@ The strategy is create a new table in iceberg format natively by AWS Athena and 
 
 ![Athena Architecture infra](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/athena_infra_poc_4.drawio.png)
 
-### General Idea
-
-
-### Tools to implement
-
-
-### Project Structure
-
 ### How to prepare this project?
-
 
 ### How to set up this project?
 
 #### By video
 
-
 #### By step-by-step Documentation 
-
 
 ### How destroy the POC project? (By step-by-step Documentation )
 
 ### Topic issues
-
-
-#### Scalability: :star2::star2::star2::star2::star2:
-
-
-
-#### Performance: :star2::star2::star::star::star:
-
-#### Reusability: :star2::star2::star2::star::star:
-
-
-#### Security :star2::star2::star::star::star:
-
