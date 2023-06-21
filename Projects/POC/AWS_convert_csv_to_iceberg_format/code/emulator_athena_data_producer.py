@@ -13,7 +13,8 @@ session = Session(
 )
 
 athena_cli = session.client("athena", region_name="us-east-1")
-S3_OUTPUT = ""
+S3_OUTPUT = "s3://s3-storage-layer/temp-athena-sql/"
+ATHENA_DB = "db-poc-case-4"
 
 
 def send_data_to_athena_table(sql_query):
@@ -29,7 +30,8 @@ def send_data_to_athena_table(sql_query):
     ## STEP 1 : go the SQL sentence to athena
     query_id = athena_cli.start_query_execution(
         QueryString = sql_query,
-        ResultConfiguration= {"OutputLocation": S3_OUTPUT}
+        ResultConfiguration= {"OutputLocation": S3_OUTPUT},
+        QueryExecutionContext={"Database": ATHENA_DB, "Catalog": "AwsDataCatalog"}
     )
     print("request of query: ", query_id)
 
@@ -51,7 +53,8 @@ def send_data_to_athena_table(sql_query):
             if STATE == "SUCCEEDED":
                 print("Get data!")
                 break
-        
+            else:
+                print("waiting...")
         time.sleep(10)
 
     return None
@@ -76,7 +79,6 @@ def sending_batch_data(size_chunk):
     )
     chunk_iter = 0
     top_limit_dataset = faked_dataset.shape[0]
-    top_limit_dataset = 5
 
     while chunk_iter <= top_limit_dataset:
         sql_data = [] 
@@ -88,13 +90,15 @@ def sending_batch_data(size_chunk):
                 "(%s, '%s', %s, '%s', TIMESTAMP '%s', '%s')" % tuple(data)
             )
 
-        sql_data = ",".join(sql_data)
-        sql_insert = 'INSERT INTO csv_to_iceberg_order ("id","code", "enterprise_id", "size", "creation", "pick_address") values ' + sql_data
-        print(sql_insert)
-        chunk_iter += size_chunk
+        if len(sql_data) > 0:
+            sql_data = ",".join(sql_data)
+            sql_insert = 'INSERT INTO csv_to_iceberg_order ("id","code", "enterprise_id", "size", "creation", "pick_address") values ' + sql_data
+            print(sql_insert)
+            send_data_to_athena_table(sql_insert)
+            chunk_iter += size_chunk
 
     print(faked_dataset.shape)
 
 
 ####  MAIN PROCESS
-sending_batch_data(2)
+sending_batch_data(20)
