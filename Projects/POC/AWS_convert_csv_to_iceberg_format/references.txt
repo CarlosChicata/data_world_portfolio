@@ -18,8 +18,8 @@ https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python.html
 https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format-iceberg.html
 [spark + iceberg setup]
 https://iceberg.apache.org/docs/latest/aws/#spark
-
-
+[spark + setup glue job basic]
+https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-setup.html
 
 
 
