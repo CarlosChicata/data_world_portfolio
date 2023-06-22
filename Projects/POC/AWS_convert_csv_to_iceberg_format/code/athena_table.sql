@@ -1,4 +1,4 @@
-CREATE TABLE csv_to_iceberg_order (
+CREATE TABLE csv_to_iceberg_order_athena (
     id bigint,
     code string,
     enterprise_id int,
