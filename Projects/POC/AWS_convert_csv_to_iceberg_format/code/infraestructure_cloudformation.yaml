@@ -30,7 +30,6 @@ Resources:
         Rules:
           - ObjectOwnership: BucketOwnerPreferred
 
-
   ## Resource to prepare database (AWS GLUE)
   DBGlue:
     Type: "AWS::Glue::Database"
@@ -39,4 +38,46 @@ Resources:
         Description: "Database to store all tables in glue"
         Name: !Ref DatabaseInGlue
       CatalogId: !Ref AWS::AccountId ## reference the same AWS account
+
+  ## Role in aws glue job
+  AWSGlueJobRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - glue.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:  "*"
+                Resource: "*"
+      Path: "/" 
+
+  ## AWS Glue job
+  CSVToIcebergGlueJob:
+    Type: "AWS::Glue::Job"
+    Properties:
+      Role: !Ref AWSGlueJobRole
+      Name: "CSVToIcebergTransform"
+      Command : 
+        Name: "glueetl"
+        PythonVersion: "3.9"
+        ScriptLocation: "s3://s3-storage-layer/script/emulator_glue_job.py"
+      DefaultArguments:
+        "--bucket-origin": "s3-storage-layer/raw-csv-file"
+        "--bucket-destiny": "s3-storage-layer/athena"
+      MaxRetries: 0
+      Description: "transform files from CSV format to iceberg format script"
+
+
+
 
