@@ -12,8 +12,7 @@ https://docs.aws.amazon.com/es_es/athena/latest/ug/querying-iceberg.html
 https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html
 [GLUE + iceberg]
 https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format-iceberg.html
-
-
-
+[pyspark and glue job]
+https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python.html
 
 
