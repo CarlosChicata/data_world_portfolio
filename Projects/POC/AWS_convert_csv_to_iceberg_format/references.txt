@@ -14,5 +14,12 @@ https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.ht
 https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format-iceberg.html
 [pyspark and glue job]
 https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python.html
+[Glue job + iceberg format setup in spark]
+https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format-iceberg.html
+[spark + iceberg setup]
+https://iceberg.apache.org/docs/latest/aws/#spark
+
+
+
 
 
