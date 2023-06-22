@@ -73,8 +73,10 @@ Resources:
         PythonVersion: "3.9"
         ScriptLocation: "s3://s3-storage-layer/script/emulator_glue_job.py"
       DefaultArguments:
-        "--bucket-origin": "s3-storage-layer/raw-csv-file"
-        "--bucket-destiny": "s3-storage-layer/athena"
+        "bucket_origin": "s3-storage-layer/raw-csv-file"
+        "bucket_destiny": "s3-storage-layer/athena"
+        "object_bucket_origin": "faked_orders.csv"
+        "object_bucket_destiny": "faked_orders.parquet"
       MaxRetries: 0
       Description: "transform files from CSV format to iceberg format script"
 
