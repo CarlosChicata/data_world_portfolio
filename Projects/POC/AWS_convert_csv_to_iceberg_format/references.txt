@@ -20,6 +20,7 @@ https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format-icebe
 https://iceberg.apache.org/docs/latest/aws/#spark
 [spark + setup glue job basic]
 https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-setup.html
-
+[issue the spark + iceberg]
+https://github.com/apache/iceberg/issues/2202
 
 
