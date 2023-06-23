@@ -37,7 +37,7 @@ Resources:
       DatabaseInput:
         Description: "Database to store all tables in glue"
         Name: !Ref DatabaseInGlue
-        LocationUri: "s3://s3-storage-layer/athena"
+        LocationUri: "s3://s3-storage-layer/glue/"
       CatalogId: !Ref AWS::AccountId ## reference the same AWS account
 
   ## Role in aws glue job
