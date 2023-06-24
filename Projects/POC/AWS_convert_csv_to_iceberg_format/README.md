@@ -37,6 +37,10 @@ The strategy is create a new table in iceberg format natively by AWS Athena and 
 
 The strategy is create a glue job in spark batch mode by AWS Glue to create a table in Athena and move all data from CSV format file into iceberg format file. The data file is stored in S3 bucket, and we can change the code to glue job in streaming mode with a few minimum changes.
 
+![Glue Architecture infra](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/glue_infra_poc_4.png)
+
+The AWS Glue can work in streaming mode and use the workflow to create more complexity data pipeline if you need; that's great!
+
 ### How to prepare this project?
 
 ### How to set up this project?
