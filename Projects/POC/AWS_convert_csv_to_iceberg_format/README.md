@@ -66,7 +66,9 @@ Second;  create 4 folder to store all script and organize your data in S3: scrip
 
 ##### Glue way
 
-Second; 
+Third; In this case, i will execute the `CSVToIcebergTransformer` glue job to create a table and insert data from CSV file.
+
+![Execute glue job](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/glue_insert_data.png)
 
 ### How destroy the POC project? (By step-by-step Documentation )
 
