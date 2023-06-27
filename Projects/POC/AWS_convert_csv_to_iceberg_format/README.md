@@ -70,6 +70,10 @@ Third; In this case, i will execute the `CSVToIcebergTransformer` glue job to cr
 
 ![Execute glue job](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/glue_insert_data.png)
 
+Fourth; Go the AWS Athena and exeute `SELECT * from csv_to_iceberg_glue;` query in `db_poc_case_fourth` database in glue data catalog to verify if all data is store.
+
+![Check data in glue](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/check_data_glue.png)
+
 ### How destroy the POC project? (By step-by-step Documentation )
 
 ### Topic issues
