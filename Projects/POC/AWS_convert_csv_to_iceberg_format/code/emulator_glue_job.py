@@ -54,10 +54,10 @@ df.registerTempTable("csv_data_orders")
 
 # write a iceberg table in glue catalog using csv file
 sql_stmnt = f"""
-CREATE OR REPLACE TABLE iceberg_catalog.db_poc_for_glue.csv_to_iceberg_glue
+CREATE OR REPLACE TABLE iceberg_catalog.db_poc_case_fourth.csv_to_iceberg_glue
 USING iceberg
 TBLPROPERTIES ('table_type'='ICEBERG', 'format-version'='2', 'format'='parquet')
-LOCATION 's3://s3-storage-layer/glue/data/db_poc_for_glue/csv_to_iceberg_glue'
+LOCATION 's3://s3-storage-layer/glue/data/db_poc_case_fourth/csv_to_iceberg_glue'
 AS SELECT * FROM csv_data_orders
 """
 spark.sql(sql_stmnt).show()

@@ -5,7 +5,7 @@ Parameters:
   DatabaseInGlue:
     Type: String
     MinLength: "4"
-    Default: "db_poc_case_4"
+    Default: "db_poc_case_fourth"
     Description: Name of DB in AWS Glue database for POC case 4
 
   StorageLayerS3:
