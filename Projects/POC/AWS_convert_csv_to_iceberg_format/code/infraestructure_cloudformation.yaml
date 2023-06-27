@@ -69,11 +69,14 @@ Resources:
     Properties:
       Role: !Ref AWSGlueJobRole
       Name: "CSVToIcebergTransformer"
+      GlueVersion: "3.0"
+      WorkerType: "G.2X"
+      NumberOfWorkers: 2
       Command : 
         Name: "glueetl"
-        PythonVersion: "3.9"
         ScriptLocation: "s3://s3-storage-layer/script/emulator_glue_job.py"
       DefaultArguments:
+        "--job-bookmark-option": "job-bookmark-disable"
         "--bucket_origin": "s3-storage-layer/raw-csv-file"
         "--object_bucket_origin": "faked_orders.csv"
         "--datalake-formats": "iceberg"
