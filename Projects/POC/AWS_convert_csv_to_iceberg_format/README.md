@@ -74,6 +74,12 @@ Fourth; Go the AWS Athena and exeute `SELECT * from csv_to_iceberg_glue;` query 
 
 ![Check data in glue](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/check_data_glue.png)
 
+##### Athena way
+
+Third; you need to turn on the script to emulate.
+
+![Insert data in athena](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/sendin_data_athena_poc.png)
+
 ### How destroy the POC project? (By step-by-step Documentation )
 
 ### Topic issues
