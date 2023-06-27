@@ -14,7 +14,7 @@ session = Session(
 
 athena_cli = session.client("athena", region_name="us-east-1")
 S3_OUTPUT = "s3://s3-storage-layer/temp-athena-sql/"
-ATHENA_DB = "db-poc-case-4"
+ATHENA_DB = "db_poc_case_fourth"
 
 
 def send_data_to_athena_table(sql_query):
@@ -92,7 +92,7 @@ def sending_batch_data(size_chunk):
 
         if len(sql_data) > 0:
             sql_data = ",".join(sql_data)
-            sql_insert = 'INSERT INTO csv_to_iceberg_order ("id","code", "enterprise_id", "size", "creation", "pick_address") values ' + sql_data
+            sql_insert = 'INSERT INTO csv_to_iceberg_order_athena ("id","code", "enterprise_id", "size", "creation", "pick_address") values ' + sql_data
             print(sql_insert)
             send_data_to_athena_table(sql_insert)
             chunk_iter += size_chunk
