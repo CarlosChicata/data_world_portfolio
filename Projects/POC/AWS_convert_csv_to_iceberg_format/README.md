@@ -43,11 +43,20 @@ The AWS Glue can work in streaming mode and use the workflow to create more comp
 
 ### How to prepare this project?
 
+⚠️ I did this part; but if you wanna know how i generate this tables and you wanna generate these in new format, Read this part.
+
+I have in data folder, one file with faked data i generated based in my experience. Although I used some fields, there are fields that I don't use; if you wanna experiment with this, do it! 😄
+
 ### How to set up this project?
 
 #### By video
+Soon i will upload the videos in spanish and english.
 
-#### By step-by-step Documentation 
+#### By step-by-step Documentation
+
+First, You need to create you will use in this POC. Go to cloudformation, create a Stack using the template and pass `infraestructure_cloudformation.yaml` file to create all resource.
+
+![Create resource](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/create_resource_poc_4.png)
 
 ### How destroy the POC project? (By step-by-step Documentation )
 
