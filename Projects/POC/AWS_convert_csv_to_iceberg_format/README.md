@@ -54,9 +54,19 @@ Soon i will upload the videos in spanish and english.
 
 #### By step-by-step Documentation
 
+##### Common part
+
 First, You need to create you will use in this POC. Go to cloudformation, create a Stack using the template and pass `infraestructure_cloudformation.yaml` file to create all resource.
 
 ![Create resource](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/create_resource_poc_4.png)
+
+Second;  create 4 folder to store all script and organize your data in S3: script (store all scripts), glue (use for glue way ), athena (use for athena way) and raw-csv-file (store faked csv data)
+
+![Create folder S3](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/create_folder_in_s3.png)
+
+##### Glue way
+
+Second; 
 
 ### How destroy the POC project? (By step-by-step Documentation )
 
