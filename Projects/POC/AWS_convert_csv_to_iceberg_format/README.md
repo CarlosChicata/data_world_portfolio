@@ -87,3 +87,9 @@ Fourth; Go the AWS Athena and exeute `SELECT * from csv_to_iceberg_order_athena;
 ### How destroy the POC project? (By step-by-step Documentation )
 
 ### Topic issues
+
+| Category | Glue | Athena |
+|----------|------|--------|
+| Processing mode | Apply: you can use programtic enviroment to develop ETL pipeline. | Not apply: you just can use SQL commands. |
+| Extract data from data source kind | Static and streaming | Static and streaming |
+| Kind of hardware to use | Based in predetermined options | Depend of service (EC2, function o fargate) to use |
