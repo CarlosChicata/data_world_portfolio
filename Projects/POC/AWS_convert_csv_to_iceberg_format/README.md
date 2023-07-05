@@ -9,10 +9,10 @@ In This POC; i will search the ways to generate this data conversion; check limi
 
 My acceptance criterias are:
 
-* _List the ways to convert from csv format to iceberg format_ :white_large_square:
-* _Create a matrix to comparing the ways of data conversion_ :white_large_square:
+* _List the ways to convert from csv format to iceberg format_ :white_check_mark:
+* _Create a matrix to comparing the ways of data conversion_ :white_check_mark:
 * _Indicate the limitations and benefits for each ways of data conversion_ :white_large_square:
-* _Diagram of arquitecture for all each ways of data conversion_ :white_large_square:
+* _Diagram of arquitecture for all each ways of data conversion_ :white_check_mark:
 * _Indicate the important of iceberg format_ :white_large_square:
 
 ## Note about the problem context
