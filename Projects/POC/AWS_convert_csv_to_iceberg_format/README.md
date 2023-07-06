@@ -90,6 +90,7 @@ Fourth; Go the AWS Athena and exeute `SELECT * from csv_to_iceberg_order_athena;
 
 | Category | Glue | Athena |
 |----------|------|--------|
-| Processing mode | Apply: you can use programtic enviroment to develop ETL pipeline. | Not apply: you just can use SQL commands. |
-| Extract data from data source kind | Static and streaming | Static and streaming |
-| Kind of hardware to use | Based in predetermined options | Depend of service (EC2, function o fargate) to use |
+| Processing mode | Apply: you can use programatic enviroment to develop ETL pipeline. | Not apply: you just can use SQL commands. |
+| Kind of hardware to use | Based in predetermined options | Depend of service (EC2, function o fargate) to use. AWS Athena is serverless. |
+| Versión of iceberg can use | release 1.0.0 in version 4 of glue; depend of  version of glue. | Use only version 2 of iceberge table. |
+| what kind of managed service is? | Serverless | Serverless |
