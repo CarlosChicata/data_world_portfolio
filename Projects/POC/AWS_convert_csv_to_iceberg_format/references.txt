@@ -26,4 +26,10 @@ https://github.com/apache/iceberg/issues/2202
 https://www.projectpro.io/article/aws-glue-vs-emr/649
 [commparing glue and EMR serverless]
 https://www.missioncloud.com/blog/amazon-emr-serverless-vs-aws-glue
+[using iceberg in EMR serverless]
+https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/using-iceberg.html
+[using python library in EMR serverless]
+https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/using-python-libraries.html
+[start with EMR serverless + ROLE to use]
+https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/getting-started.html
 
