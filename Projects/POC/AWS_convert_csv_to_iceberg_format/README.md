@@ -43,6 +43,8 @@ The AWS Glue can work in streaming mode and use the workflow to create more comp
 
 ### EMR
 
+⚠️ __Note__: in AWS EMR you have two options: serverless or serverfull. For this POC, i chosen the serverless options because i don't worry about configuring, managing, and scaling clusters or servers.
+
 ## How to prepare this project?
 
 ⚠️ I did this part; but if you wanna know how i generate this tables and you wanna generate these in new format, Read this part.
