@@ -24,5 +24,6 @@ https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-setup.htm
 https://github.com/apache/iceberg/issues/2202
 [comparing EMR and Glue service]
 https://www.projectpro.io/article/aws-glue-vs-emr/649
-[]
+[commparing glue and EMR serverless]
+https://www.missioncloud.com/blog/amazon-emr-serverless-vs-aws-glue
 
