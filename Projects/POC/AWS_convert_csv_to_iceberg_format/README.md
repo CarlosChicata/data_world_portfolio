@@ -41,7 +41,9 @@ The strategy is create a glue job in spark batch mode by AWS Glue to create a ta
 
 The AWS Glue can work in streaming mode and use the workflow to create more complexity data pipeline if you need; that's great!
 
-### How to prepare this project?
+### EMR
+
+## How to prepare this project?
 
 ⚠️ I did this part; but if you wanna know how i generate this tables and you wanna generate these in new format, Read this part.
 
@@ -84,13 +86,12 @@ Fourth; Go the AWS Athena and exeute `SELECT * from csv_to_iceberg_order_athena;
 
 ![Check data in Athena](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/insert_data_athena_poc.png)
 
-### How destroy the POC project? (By step-by-step Documentation )
 
 ### Topic issues
 
-| Category | Glue | Athena |
-|----------|------|--------|
-| Processing mode | Apply: you can use programatic enviroment to develop ETL pipeline. | Not apply: you just can use SQL commands. |
-| Kind of hardware to use | Based in predetermined options | Depend of service (EC2, function o fargate) to use. AWS Athena is serverless. |
-| Versión of iceberg can use | release 1.0.0 in version 4 of glue; depend of  version of glue. | Use only version 2 of iceberge table. Don't say nothing about release version of apache iceberg. |
-| what kind of managed service is? | Serverless | Serverless |
+| Category | Glue | Athena | EMR |
+|----------|------|--------|-----|
+| Processing mode | Apply: you can use programatic enviroment to develop ETL pipeline. | Not apply: you just can use SQL commands. | |
+| Kind of hardware to use | Based in predetermined options | Depend of service (EC2, function o fargate) to use. AWS Athena is serverless. | |
+| Versión of iceberg can use | release 1.0.0 in version 4 of glue; depend of  version of glue. | Use only version 2 of iceberge table. Don't say nothing about release version of apache iceberg. | |
+| what kind of managed service is? | Serverless | Serverless | |
