@@ -9,10 +9,10 @@ In This POC; i will search the ways to generate this data conversion; check limi
 
 My acceptance criterias are:
 
-* _List the ways to convert from csv format to iceberg format_ :white_large_square:
-* _Create a matrix to comparing the ways of data conversion_ :white_large_square:
+* _List the ways to convert from csv format to iceberg format_ :white_check_mark:
+* _Create a matrix to comparing the ways of data conversion_ :white_check_mark:
 * _Indicate the limitations and benefits for each ways of data conversion_ :white_large_square:
-* _Diagram of arquitecture for all each ways of data conversion_ :white_large_square:
+* _Diagram of arquitecture for all each ways of data conversion_ :white_check_mark:
 * _Indicate the important of iceberg format_ :white_large_square:
 
 ## Note about the problem context
@@ -41,14 +41,59 @@ The strategy is create a glue job in spark batch mode by AWS Glue to create a ta
 
 The AWS Glue can work in streaming mode and use the workflow to create more complexity data pipeline if you need; that's great!
 
-### How to prepare this project?
+### EMR
+
+⚠️ __Note__: in AWS EMR you have two options: serverless or serverfull. For this POC, i chosen the serverless options because i don't worry about configuring, managing, and scaling clusters or servers.
+
+## How to prepare this project?
+
+⚠️ I did this part; but if you wanna know how i generate this tables and you wanna generate these in new format, Read this part.
+
+I have in data folder, one file with faked data i generated based in my experience. Although I used some fields, there are fields that I don't use; if you wanna experiment with this, do it! 😄
 
 ### How to set up this project?
 
 #### By video
+Soon i will upload the videos in spanish and english.
 
-#### By step-by-step Documentation 
+#### By step-by-step Documentation
 
-### How destroy the POC project? (By step-by-step Documentation )
+##### Common part
+
+First, You need to create you will use in this POC. Go to cloudformation, create a Stack using the template and pass `infraestructure_cloudformation.yaml` file to create all resource.
+
+![Create resource](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/create_resource_poc_4.png)
+
+Second;  create 4 folder to store all script and organize your data in S3: script (store all scripts), glue (use for glue way ), athena (use for athena way) and raw-csv-file (store faked csv data)
+
+![Create folder S3](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/create_folder_in_s3.png)
+
+##### Glue way
+
+Third; In this case, i will execute the `CSVToIcebergTransformer` glue job to create a table and insert data from CSV file.
+
+![Execute glue job](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/glue_insert_data.png)
+
+Fourth; Go the AWS Athena and exeute `SELECT * from csv_to_iceberg_glue;` query in `db_poc_case_fourth` database in glue data catalog to verify if all data is store.
+
+![Check data in glue](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/check_data_glue.png)
+
+##### Athena way
+
+Third; you need to turn on the script to emulate.
+
+![Insert data in athena](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/sendin_data_athena_poc.png)
+
+Fourth; Go the AWS Athena and exeute `SELECT * from csv_to_iceberg_order_athena;` query in `db_poc_case_fourth` database in glue data catalog to verify if all data is store.
+
+![Check data in Athena](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/insert_data_athena_poc.png)
+
 
 ### Topic issues
+
+| Category | Glue | Athena | EMR |
+|----------|------|--------|-----|
+| Processing mode | Apply: you can use programatic enviroment to develop ETL pipeline. | Not apply: you just can use SQL commands. | |
+| Kind of hardware to use | Based in predetermined options | Depend of service (EC2, function o fargate) to use. AWS Athena is serverless. | |
+| Versión of iceberg can use | release 1.0.0 in version 4 of glue; depend of  version of glue. | Use only version 2 of iceberge table. Don't say nothing about release version of apache iceberg. | |
+| what kind of managed service is? | Serverless | Serverless | |
