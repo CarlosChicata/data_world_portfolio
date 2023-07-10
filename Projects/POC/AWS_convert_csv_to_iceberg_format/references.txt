@@ -22,5 +22,7 @@ https://iceberg.apache.org/docs/latest/aws/#spark
 https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-setup.html
 [issue the spark + iceberg]
 https://github.com/apache/iceberg/issues/2202
-
+[comparing EMR and Glue service]
+https://www.projectpro.io/article/aws-glue-vs-emr/649
+[]
 
