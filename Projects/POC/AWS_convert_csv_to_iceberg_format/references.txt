@@ -32,4 +32,6 @@ https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/using-iceberg.ht
 https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/using-python-libraries.html
 [start with EMR serverless + ROLE to use]
 https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/getting-started.html
+[EMR serverless workshop oficial]
+https://catalog.us-east-1.prod.workshops.aws/workshops/e8e8fbb5-c3fb-4f86-bf77-0ba1fe402c55/en-US/transactional-data-lake/iceberg
 
