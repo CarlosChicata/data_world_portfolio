@@ -64,7 +64,7 @@ First, You need to create you will use in this POC. Go to cloudformation, create
 
 ![Create resource](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/create_resource_poc_4.png)
 
-Second;  create 4 folder to store all script and organize your data in S3: script (store all scripts), glue (use for glue way ), athena (use for athena way) and raw-csv-file (store faked csv data)
+Second;  create 5 folder to store all script and organize your data in S3: script (store all scripts to execute), emr-serverless(for emr way), glue (use for glue way ), athena (use for athena way) and raw-csv-file (store faked csv data)
 
 ![Create folder S3](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/create_folder_in_s3.png)
 
@@ -88,8 +88,37 @@ Fourth; Go the AWS Athena and exeute `SELECT * from csv_to_iceberg_order_athena;
 
 ![Check data in Athena](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/insert_data_athena_poc.png)
 
+##### EMR serverless way
 
-### Topic issues
+Third; in this case, check the IAM role will use the EMR have glue data catalog and S3 permission to use these objects. Check [this doc](https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/getting-started.html#gs-prerequisites) to know the needed permissions.
+
+Fourth; go to EMR, click in "serverless" button and click in " Create and launch Studio" button.
+
+![star EMR studio](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/EMR_serverless_start.png)
+
+Fifth; setup the hardware you will use in your EMR. select the spark option, the 6.11 version and give the name of application. Let's leave the other configurations by default and click the create button.
+
+![setup hardware](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/emr_serverless-setup_part1.png)
+
+Sixth; after the application is "created" status, select the created application and click "start application" to use the application.
+
+Seventh; after the application is "starting" status, click in "submit job" button and setup the job name, role to access AWS resources, location of spark script in S3 and params will be used in spark script.
+
+![dada](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/emr_serverless_setup_job_part1.png)
+
+Eighth; in setting job, set up all spark configuration to use Glue in spark script. Use [This doc](https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/using-iceberg.html) to know what params you will need.
+
+![setup service](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/emr_serverless_setup_job_part2.png)
+
+Tenth; click in "submit" button to create and execute the job. After few a minutes, i will get a sucess status from your job.
+
+![sucess job in ERM serverless](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/emr_serverless_setup_job_part3.png)
+
+Eleventh; Go to the AWS Athena and check if the csv_to_iceberg_order_emr_serverless table exist.
+
+![](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/emr_serverless_success_job.png)
+
+## Topic issues
 
 | Category | Glue | Athena | EMR |
 |----------|------|--------|-----|
