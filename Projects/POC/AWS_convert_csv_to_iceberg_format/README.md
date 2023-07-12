@@ -13,13 +13,34 @@ My acceptance criterias are:
 * _Create a matrix to comparing the ways of data conversion_ :white_check_mark:
 * _Indicate the limitations and benefits for each ways of data conversion_ :white_large_square:
 * _Diagram of arquitecture for all each ways of data conversion_ :white_check_mark:
-* _Indicate the important of iceberg format_ :white_large_square:
+* _Indicate the important of iceberg format_ :white_check_mark:
 
 ## Note about the problem context
 
 We need to convert sent data from app is in csv format into iceberg format to use in data lake. Even though the csv format is a file format and the iceberg format is a table format; check this [post](https://shahrajesh2006.medium.com/data-lakes-understanding-file-format-and-table-formats-38d7999c0ec2 ) to understand the difference both; i need to use a file format inside table format to manage the data; so i choose parquet as a main file format; based in this format is best in analytics operations;  and avro as a secondary file format; based in this is best in write operation.
 
 I will use AWS Athena to use the data lake by the data consumer services.
+
+## Why did i choose iceberg for data lake?
+
+Apache iceberg is a distributed, community-driver, 100% open-source data table formt that helps simplify data processing on large datasets stored in data lakes; convert it to transactional data lake!
+
+The transactional data lake store (structured and unstructured) data at any scale but also supports transactional operations and ensures that data is accurate, consistent, and allows you to track how data and data structure changes over time; as like ACID operations.
+
+This focus give following benefits:
+
+* __Familiary of SQL__: If you know SQL, then you can build data lakes and perform most data lake operations directly; i can be helping for data analysts and engineers.
+* __Incremental processingy__: Iceberg supports incremental processing, which allows users to process only the data that has changed since the last run. This can help improve data processing efficiency and performance.
+* __Schema evolution__: With Iceberg support for schema evolution, users can add, drop, rename, update, and reorder columns in a table without the need for the table to be rewritten.
+* __Hidden partitioning__: Users no longer need to know the structural layout of files in their table before running queries on them. Iceberg hides the table partitioning from you and finds the exact record relating to the query specified without requiring any extra query filters.
+* __Time Travel and Rollback__: Time-travel enables reproducible queries that use exactly the same table snapshot, or lets users easily examine changes. Version rollback allows users to quickly correct problems by resetting tables to a good state.
+* __Data Compaction__: Data compaction is supported out-of-the-box and you can choose from different rewrite strategies such as bin-packing or sorting to optimize file layout and size.
+* __Reliable reads__: Every transaction (update, add, drop) on Iceberg creates a new snapshot
+* __Snapshot isolation__: This guarantees that any read of the dataset sees a consistent snapshot. In essence, it reads the last committed value that was present at the time the read is executed.
+* __File-level operations__: With Iceberg, you can directly target a single record and make any update to it without making any changes to the folder. This is possible because of the records stored in its metadata.
+
+This format is designed for large datasets with fast and efficient way for processing it in distribute enviroment. It  can be integrated with popular data processing frameworks such as Apache Spark, Apache Flink, Apache Hive and Presto.
+
 
 ## Challenges
 
