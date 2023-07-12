@@ -35,15 +35,19 @@ The strategy is create a new table in iceberg format natively by AWS Athena and 
 
 ### Glue
 
-The strategy is create a glue job in spark batch mode by AWS Glue to create a table in Athena and move all data from CSV format file into iceberg format file. The data file is stored in S3 bucket, and we can change the code to glue job in streaming mode with a few minimum changes.
+The strategy is create a glue job in spark batch mode by AWS Glue Job to create a table in Athena from AWS Glue data catalog and move all data from CSV format file into iceberg format. The data file is stored in S3 bucket, and we can change the code to glue job in streaming mode with a few minimum changes. I used SPark and AWS Glue python package in scrip.
 
-![Glue Architecture infra](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/glue_infra_poc_4.png)
+![Glue Architecture infra](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/glue_infra_poc_4.drawio.png)
 
 The AWS Glue can work in streaming mode and use the workflow to create more complexity data pipeline if you need; that's great!
 
 ### EMR
 
 ⚠️ __Note__: in AWS EMR you have two options: serverless or serverfull. For this POC, i chosen the serverless options because i don't worry about configuring, managing, and scaling clusters or servers.
+
+The strategy is create a glue job in spark batch mode by AWS Glue Job to create a table in Athena from AWS Glue data catalog and move all data from CSV format file into iceberg format in S3 Bucket. I just can use Spark library in script.
+
+![]()
 
 ## How to prepare this project?
 
