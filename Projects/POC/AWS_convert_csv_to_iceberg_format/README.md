@@ -45,9 +45,9 @@ The AWS Glue can work in streaming mode and use the workflow to create more comp
 
 ⚠️ __Note__: in AWS EMR you have two options: serverless or serverfull. For this POC, i chosen the serverless options because i don't worry about configuring, managing, and scaling clusters or servers.
 
-The strategy is create a glue job in spark batch mode by AWS Glue Job to create a table in Athena from AWS Glue data catalog and move all data from CSV format file into iceberg format in S3 Bucket. I just can use Spark library in script.
+The strategy is create a glue job in spark batch mode by AWS Glue Job to create a table in Athena from AWS Glue data catalog and move all data from CSV format file into iceberg format in S3 Bucket. I just can use Spark library in script. The infrastructure is same with Glue way because botn use spark to implement the solutions.
 
-![]()
+![EMR serverless infra diagram](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_convert_csv_to_iceberg_format/images/emr-serverless_infra.png)
 
 ## How to prepare this project?
 
