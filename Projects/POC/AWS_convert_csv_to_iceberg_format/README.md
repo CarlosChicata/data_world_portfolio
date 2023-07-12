@@ -120,9 +120,11 @@ Eleventh; Go to the AWS Athena and check if the csv_to_iceberg_order_emr_serverl
 
 ## Topic issues
 
-| Category | Glue | Athena | EMR |
+| Category | Glue | Athena | EMR Serverless |
 |----------|------|--------|-----|
-| Processing mode | Apply: you can use programatic enviroment to develop ETL pipeline. | Not apply: you just can use SQL commands. | |
-| Kind of hardware to use | Based in predetermined options | Depend of service (EC2, function o fargate) to use. AWS Athena is serverless. | |
-| Versión of iceberg can use | release 1.0.0 in version 4 of glue; depend of  version of glue. | Use only version 2 of iceberge table. Don't say nothing about release version of apache iceberg. | |
-| what kind of managed service is? | Serverless | Serverless | |
+| Processing mode | Apply: you can use programatic enviroment to develop ETL pipeline. only for spark and aws glue library | Not apply: you just can use SQL commands. | Apply: you can use programatic enviroment to develop ETL pipeline. only for spark library. |
+| Kind of hardware to use | Based in predetermined options | Depend of service (EC2, function o fargate) to use. AWS Athena is serverless. | Have default option and custom option. You need to create a image of compute to use the custom option. |
+| Versión of iceberg can use | release 1.0.0 in version 4 of glue; depend of  version of glue. | Use only version 2 of iceberge table. Don't say nothing about release version of apache iceberg. | Version of iceberg 1.2.0-amzn-0 |
+| what kind of managed service is? | Serverless | Serverless | Serverless |
+| file format support | parquet, AVRO, or ORC | Parquet, ORC (only v3) and AVRO (only v3) | Parquet, ORC, Avro |
+| analytics engine | Spark | Spark | Spark, Trino, PrestoDB, Flink, Hive |
