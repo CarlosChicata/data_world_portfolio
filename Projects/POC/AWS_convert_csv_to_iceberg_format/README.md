@@ -11,7 +11,7 @@ My acceptance criterias are:
 
 * _List the ways to convert from csv format to iceberg format_ :white_check_mark:
 * _Create a matrix to comparing the ways of data conversion_ :white_check_mark:
-* _Indicate the limitations and benefits for each ways of data conversion_ :white_large_square:
+* _Indicate the limitations and benefits for each ways of data conversion_ :white_check_mark:
 * _Diagram of arquitecture for all each ways of data conversion_ :white_check_mark:
 * _Indicate the important of iceberg format_ :white_check_mark:
 
@@ -153,3 +153,15 @@ Eleventh; Go to the AWS Athena and check if the csv_to_iceberg_order_emr_serverl
 | what kind of managed service is? | Serverless | Serverless | Serverless |
 | file format support | parquet, AVRO, or ORC | Parquet, ORC (only v3) and AVRO (only v3) | Parquet, ORC, Avro |
 | analytics engine | Spark | Spark | Spark, Trino, PrestoDB, Flink, Hive |
+| Security tools you can use |  | | |
+
+### Conclusions
+
+1.- The Athena way is used for few users with least in writing operations and most reading operations. This tool is used for interactived queries service. I think i can use to mantain records and tables or to  insert  small chunk data in tables not frequently. And Athena and EMR way, i will use it to massive data insertation if i need with the chance to manage the data by programming way (divide the file or  transform it).
+
+2.- The Athena way can ingest data in batch format, but the Glue and EMR serverless way can ingest data in batch and micro-batch(streaming) format.
+
+3.- The ranking of pricing i think it will be: glue way (most expensive), EMR serverless way and Athena way (least expensive).
+
+4.- If your data is unprocessed; need ETL and use several tools  for a long time; use Glue or EMR serverless way; but in case of processing in petabyte-scale focus in prefered format data, only use EMR way; otherwise use glue to transform and prepare data. The Athena way is used for small scale processing
+ and prefered format data.
