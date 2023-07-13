@@ -1,0 +1,66 @@
+[IAM de JOB para realizar un trabajo]
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html
+[workshop sobre GLue]
+https://catalog.us-east-1.prod.workshops.aws/workshops/ee59d21b-4cb8-4b3d-a629-24537cf37bb5/en-US/lab4
+[Como mover archivos de un S3 a otro S3 con archivos python]
+https://www.datastackpros.com/2020/07/move-file-from-one-s3-folder-to-another.html
+[Como mover archivos de un S3 a otro S3 con comandos de linea]
+https://blog.vizuri.com/how-to-copy/move-objects-from-one-s3-bucket-to-another-between-aws-accounts
+[Uploading local artifacts to an S3 bucket]
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-cli-package.html
+[deploy static file in S3 using cloudformation]
+https://developer.okta.com/blog/2018/07/31/use-aws-cloudformation-to-automate-static-site-deployment-with-s3
+[deploy S3 using cloudformation]
+https://serverless.pub/deploy-frontend-to-s3-and-sar/
+[cloudformation transform using lambda]
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-aws-serverless.html
+[custome resource]
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html
+[script de AAWS sample de ETL orchestrator]
+https://github.com/aws-samples/aws-etl-orchestrator/blob/master/glue-scripts/process_marketing_data.py
+[script moving s3-to-s3  spark glue job]
+https://ujjwalbhardwaj.me/post/migrate-relational-databases-to-amazon-s3-using-aws-glue/
+[Para configurar el JOB de AWS Glue como script de python]
+https://docs.aws.amazon.com/glue/latest/dg/add-job-python.html
+[automatizar la interaccion de terminado el rastreo de tablas con el job]
+https://aws.amazon.com/es/premiumsupport/knowledge-center/start-glue-job-crawler-completes-lambda/#:~:text=To%20start%20a%20job%20when,when%20a%20crawler%20run%20completes.
+[add classifier to a crawler in AWS Glue]
+https://docs.aws.amazon.com/glue/latest/dg/add-classifier.html
+[video de como realizaro multiples datastore en solo un crawler]
+https://www.youtube.com/watch?v=9OHcwNgh_3E
+[verificar que macros en aws cloudformation]
+https://www.alexdebrie.com/posts/cloudformation-macros/
+[profundizar sobre cloudformation]
+https://aws.amazon.com/es/blogs/infrastructure-and-automation/best-practices-automating-deployments-with-aws-cloudformation/
+[workshop oficial de cloud formation]
+ttps://catalog.workshops.aws/cfn101/en-US/basics/templates/mappings
+
+----------------------------------------
+
+[control de accesos con IAM role para acceso a tablas]
+https://aws.amazon.com/es/blogs/big-data/restrict-access-to-your-aws-glue-data-catalog-with-resource-level-iam-permissions-and-resource-based-policies/
+[ApiGateway + athena en versión basica]
+https://medium.com/@shivakumar.mcet/aws-fetch-data-from-amazon-athena-using-api-gateway-and-aws-lambda-4e5729519940
+[ApiGateway + athena en versión medium : workshop oficial AWS ]
+https://catalog.us-east-1.prod.workshops.aws/workshops/e2226f3d-4c4c-4a4a-bf8b-4f05209f02fd/en-US/module-amazon-sustainability-data-initiative-2/hackingasdidata/section-3-apigw-lambda
+[ApiGateway + athena en versión basica : post oficial de AWS]
+https://aws.amazon.com/es/blogs/big-data/access-amazon-athena-in-your-applications-using-the-websocket-api/
+[]
+https://aws.amazon.com/es/premiumsupport/knowledge-center/api-gateway-401-error-lambda-authorizer/
+[AUTH LAMBDA]
+https://medium.com/@sumindaniro/secure-aws-api-gateway-using-a-lambda-authorizer-40a1da825b16
+[API Gateway con AWS cloudformation]
+https://nickolaskraus.io/articles/creating-an-amazon-api-gateway-with-a-lambda-integration-using-cloudformation/
+[API Gateway con AWS cloudformation]
+https://blog.jayway.com/2016/08/17/introduction-to-cloudformation-for-api-gateway/
+[API Gateway HTTP con AWS cloudformation]
+https://dev.to/lubanasachin/cloudformation-lambda-with-http-api-gateway-3a66
+
+
+--------
+
+[recursos para referenciar de LAYER EN LAMBDA]
+https://api.klayers.cloud//api/v2/p3.9/layers/latest/us-east-1/html
+
+[AUTH LAMBDA code]
+https://blog.codecentric.de/aws-lambda-authorizer
