@@ -4,6 +4,15 @@
 
 The goal is show all proof of concept that i implemented based in several cloud providers. The main goal is show my hard skills to using the tools of several cloud providers to achieve a specified given goal by the POC. i want a be a good data engineering
 
+## Type of project
+
+This is the classification of projects that a POC can be oriented.
+
+| Kind of project | the need | The goal |
+|-----------------|----------|---------|
+| Analytics | needs data to inform decision making.| Deliver insights |
+| Automation | save time and/or money by replacing manual tasks with automated processes | Save money and be productive |
+| Product development | Turn raw data into products from which revenue  can be generated | Make money |
 
 ## List of portfolio cases
 
