@@ -50,6 +50,7 @@ These are the main challenges to face:
 
 ## Solution
 
+### General Idea
 I think the solutions for each group of challenge can be following ideas:
 
 1. Could use AWS DynamoDB instead AWS Athena in the custom authorization process to get response. This service is serverless and high performance; i think it will give me a best performance with demand based pricing.
@@ -60,9 +61,7 @@ I think the solutions for each group of challenge can be following ideas:
 
 4. Extend the services of authentication to pass what fields will return to clients; and the REST API to modify the query to accept the need fields based in permissions of client.
 
-### General Idea
-
-### Project Structure
+### Diagram of solution
 
 ### How to prepare this project?
 
