@@ -61,6 +61,8 @@ I think the solutions for each group of challenge can be following ideas:
 
 4. Extend the services of authentication to pass what fields will return to clients; and the REST API to modify the query to accept the need fields based in permissions of client.
 
+5. Modify data modelling of authorization and authentication control client: extend roles permission of clients.
+
 ### Diagram of solution
 
 ### How to prepare this project?
