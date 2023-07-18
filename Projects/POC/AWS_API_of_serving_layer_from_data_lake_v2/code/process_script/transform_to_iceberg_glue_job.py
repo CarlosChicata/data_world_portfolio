@@ -66,7 +66,7 @@ def processing_data(object_bucket_origin, name_table, rename_cols):
     CREATE OR REPLACE TABLE iceberg_catalog.%s.%s
     USING iceberg
     TBLPROPERTIES ('table_type'='ICEBERG', 'format-version'='2', 'format'='parquet')
-    LOCATION 's3://s3-storage-layer-poc-5/glue/data/db_poc_case_fourth/csv_to_iceberg_glue'
+    LOCATION 's3://s3-storage-layer-poc-5/glue/data/db_poc_case_5/csv_to_iceberg_glue'
     AS SELECT * FROM %s
     """ % (glue_schema_db, name_table, temp_name_table,)
     spark.sql(sql_stmnt).show()
