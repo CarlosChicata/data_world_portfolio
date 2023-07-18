@@ -65,7 +65,7 @@ Resources:
       DatabaseInput:
         Description: "Database to store all table in POC case 5"
         Name: !Ref DatalakeDBInGlue
-        LocationUri: "s3://s3://s3-storage-layer-poc-5/glue/"
+        LocationUri: "s3://s3-storage-layer-poc-5/glue/"
       CatalogId: !Ref AWS::AccountId ## reference the same AWS account
 
   ## moving file s3-to-s3 using AWS Glue job
