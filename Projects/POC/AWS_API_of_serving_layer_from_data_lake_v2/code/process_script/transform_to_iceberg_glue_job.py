@@ -72,10 +72,11 @@ def processing_data(object_bucket_origin, name_table, rename_cols):
     LOCATION 's3://s3-storage-layer-poc-5/glue/data/db_poc_case_fourth/csv_to_iceberg_glue'
     AS SELECT * FROM %s
     """ % (glue_schema_db, name_table, temp_name_table,)
+    print(sql_stmnt)
     spark.sql(sql_stmnt).show()
 
 ### main processes
-processing_data("fake_city_table.csv", "city_table", [("countryID","country_id"), ("timeZone","timezone")])
+processing_data("fake_city_table.csv", "city_table", [("cityPoint", "city_point"),("countryID","country_id"), ("timeZone","timezone")])
 
 job.commit()
 
