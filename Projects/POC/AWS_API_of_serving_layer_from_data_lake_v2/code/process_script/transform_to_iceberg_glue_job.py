@@ -32,7 +32,7 @@ conf_list = [
     #Configs needed for Iceberg
     ("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions"),
     ("spark.sql.catalog.iceberg_catalog", "org.apache.iceberg.spark.SparkCatalog"),
-    ("spark.sql.catalog.iceberg_catalog.warehouse", "s3://s3-storage-layer/iceberg_catalog/"),
+    ("spark.sql.catalog.iceberg_catalog.warehouse", "s3:///s3-storage-layer-poc-5/iceberg_catalog/"),
     ("spark.sql.catalog.iceberg_catalog.catalog-impl", "org.apache.iceberg.aws.glue.GlueCatalog")
 ]
  
@@ -57,6 +57,9 @@ def processing_data(object_bucket_origin, name_table, rename_cols):
     for old_name, new_name in rename_cols:
         df = df.withColumnRenamed(old_name, new_name)
 
+    print(df.show(2))
+    print(df.count())
+
     # create tem tamble with data from csv file inside spark
     temp_name_table = "temp" + name_table
     df.registerTempTable(temp_name_table)
@@ -66,7 +69,7 @@ def processing_data(object_bucket_origin, name_table, rename_cols):
     CREATE OR REPLACE TABLE iceberg_catalog.%s.%s
     USING iceberg
     TBLPROPERTIES ('table_type'='ICEBERG', 'format-version'='2', 'format'='parquet')
-    LOCATION 's3://s3-storage-layer-poc-5/glue/data/db_poc_case_5/csv_to_iceberg_glue'
+    LOCATION 's3://s3-storage-layer-poc-5/glue/data/db_poc_case_fourth/csv_to_iceberg_glue'
     AS SELECT * FROM %s
     """ % (glue_schema_db, name_table, temp_name_table,)
     spark.sql(sql_stmnt).show()
