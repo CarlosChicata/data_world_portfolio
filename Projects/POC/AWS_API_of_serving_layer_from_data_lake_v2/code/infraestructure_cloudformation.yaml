@@ -65,6 +65,7 @@ Resources:
       DatabaseInput:
         Description: "Database to store all table in POC case 5"
         Name: !Ref DatalakeDBInGlue
+        LocationUri: "s3://s3://s3-storage-layer-poc-5/glue/"
       CatalogId: !Ref AWS::AccountId ## reference the same AWS account
 
   ## moving file s3-to-s3 using AWS Glue job
@@ -72,13 +73,13 @@ Resources:
     Type: "AWS::Glue::Job"
     Properties:
       Role: !Ref AWSGlueJobRole
-      Name: "S3ToS3Moving"
+      Name: "CSVToIcebergTransformPOC1"
       GlueVersion: "3.0"
       WorkerType: "G.2X"
       NumberOfWorkers: 2
       Command : 
         Name: "glueetl"
-        ScriptLocation: "s3://script-poc-case-5/transform_to_iceberg_glue_job.py"
+        ScriptLocation: "s3://s3-storage-layer-poc-5/script/transform_to_iceberg_glue_job.py"
       DefaultArguments:
         "--job-bookmark-option": "job-bookmark-disable"
         "--datalake-formats": "iceberg"
