@@ -72,7 +72,7 @@ def processing_data(object_bucket_origin, name_table, rename_cols):
     spark.sql(sql_stmnt).show()
 
 ### main processes
-processing_data()
+processing_data("fake_city_table.csv", "city_table", [("countryID","country_id"), ("timeZone","timezone")])
 
 job.commit()
 
