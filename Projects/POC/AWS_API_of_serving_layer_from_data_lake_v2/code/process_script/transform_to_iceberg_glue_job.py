@@ -51,7 +51,7 @@ def processing_data(object_bucket_origin, name_table, rename_cols):
 
     print(csv_file_s3_url)
 
-    df = spark.read.format("csv").option("delimiter", ";").option("header", "true").option("charset", "UTF-16").load(csv_file_s3_url)
+    df = spark.read.format("csv")format("csv").option("delimiter", ";").option("encoding", "ISO-8859-1").option("header", True).load(csv_file_s3_url)
 
     # rename based in new columns
     for old_name, new_name in rename_cols:
