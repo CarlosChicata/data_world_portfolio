@@ -105,7 +105,7 @@ processing_data(
     "id",
     '"enterpriseKey"�'
 )
-'''
+
 processing_data(
     "fake_country_table.csv",
     "country_table",
@@ -113,6 +113,15 @@ processing_data(
     "id",
     '"currencyISO"�'
 )
+
+processing_data(
+    "fake_order_table.csv",
+    "order_table",
+    [("orderID", "order_id"),("routeID", "route_id"),("promiseTime","promise_time"), ("startTime","start_time"), ('"endTime"�', "end_time")],
+    "orderID",
+    '"endTime"�'
+)
+'''
 
 
 job.commit()
