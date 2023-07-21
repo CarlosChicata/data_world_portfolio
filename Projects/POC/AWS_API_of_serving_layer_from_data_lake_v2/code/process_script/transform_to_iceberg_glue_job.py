@@ -137,7 +137,6 @@ processing_data(
     "id",
     '"cityID"�'
 )
-'''
 
 processing_data(
     "fake_service_table.csv",
@@ -146,5 +145,6 @@ processing_data(
     "name",
     '"id"�'
 )
+'''
 
 job.commit()
