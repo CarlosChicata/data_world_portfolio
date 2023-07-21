@@ -123,6 +123,13 @@ processing_data(
 )
 '''
 
+processing_data(
+    "fake_product_size_table.csv",
+    "product_size_table",
+    [("dimX", "dim_x"), ("dimY", "dim_y"), ('"dimZ"�', "dim_z")],
+    "id",
+    '"dimZ"�'
+)
 
 job.commit()
 
