@@ -145,6 +145,14 @@ processing_data(
     "name",
     '"id"�'
 )
+
+processing_data(
+    "fake_trackcode_table.csv",
+    "trackcode_table",
+    [("packageSizeID","package_size_id"),("packageWeight","package_weight"),("dropPoint","drop_point"),("createdAt","created_at"),("enterpriseID","enterprise_id"),("pickUpAddress", "pick_up_address"),("dropAddress","drop_address"),("serviceID","service_id"),("productDescription","product_description"),("productPrice","product_price"),('"pickUpPoint"�', "pick_up_point")],
+    "id",
+    '"pickUpPoint"�'
+)
 '''
 
 job.commit()
