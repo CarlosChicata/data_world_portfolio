@@ -89,7 +89,7 @@ def processing_data(object_bucket_origin, name_table, rename_cols, filter_column
     spark.sql(sql_stmnt).show()
 
 ### main processes
-'''
+
 processing_data(
     "fake_city_table.csv", 
     "city_table", 
@@ -153,6 +153,5 @@ processing_data(
     "id",
     '"pickUpPoint"�'
 )
-'''
 
 job.commit()
