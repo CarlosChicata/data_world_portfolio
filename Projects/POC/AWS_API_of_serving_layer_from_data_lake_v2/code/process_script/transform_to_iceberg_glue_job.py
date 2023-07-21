@@ -5,7 +5,7 @@ from pyspark.context import SparkConf, SparkContext
 from pyspark.sql import SparkSession
 from awsglue.context import GlueContext
 from awsglue.job import Job
-from pyspark.sql.functions import col
+from pyspark.sql.functions import col, when, regexp_replace
 
 
 # get passed params from aws glue job
@@ -44,7 +44,7 @@ job.init(args['JOB_NAME'], args)
 
 ### define utiity functions
 
-def processing_data(object_bucket_origin, name_table, rename_cols, filter_column):
+def processing_data(object_bucket_origin, name_table, rename_cols, filter_column, clean_column):
     
     # read the csv file in dynamicframe obj.
     csv_file_s3_url = "s3://" +  bucket_origin + "/" + object_bucket_origin
@@ -60,6 +60,11 @@ def processing_data(object_bucket_origin, name_table, rename_cols, filter_column
         )
     
     print(df.show(2))
+    
+    # remove useless unknown character
+    df = df.withColumn(clean_column, 
+        when(df[clean_column].contains("�"), (regexp_replace(df[clean_column],"�", "")))
+    )
 
     # rename based in new columns
     for old_name, new_name in rename_cols:
@@ -90,14 +95,16 @@ processing_data(
     "fake_city_table.csv", 
     "city_table_v1", 
     [('"cityPoint"�', "city_point"),("countryID","country_id"), ("timeZone","timezone")],
-    "name"
+    "name",
+    '"cityPoint"�',
 )
 '''
 processing_data(
     "fake_client_table.csv",
-    "client_table",
+    "client_table_v2",
     [("businessName", "business_name"), ("comercialName", "comercial_name"),("cityID","city_id"),("serviceIDs","service_ids"),('"enterpriseKey"�',"enterprise_key")],
-    "id"
+    "id",
+    '"enterpriseKey"�'
 )
 
 job.commit()
