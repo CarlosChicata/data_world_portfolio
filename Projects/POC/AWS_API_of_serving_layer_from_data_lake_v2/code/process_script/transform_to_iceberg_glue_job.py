@@ -121,7 +121,6 @@ processing_data(
     "orderID",
     '"endTime"�'
 )
-'''
 
 processing_data(
     "fake_product_size_table.csv",
@@ -130,6 +129,14 @@ processing_data(
     "id",
     '"dimZ"�'
 )
+'''
+
+processing_data(
+    "fake_route_table.csv",
+    "route_table",
+    [("routeCode", "route_code"), ("estimatedTotalDistance", "estimated_total_distance"), ('"cityID"�', "city_id"), ("priceIncentive","price_incentive"), ("priceOriginal","price_original")],
+    "id",
+    '"cityID"�'
+)
 
 job.commit()
-
