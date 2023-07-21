@@ -129,7 +129,6 @@ processing_data(
     "id",
     '"dimZ"�'
 )
-'''
 
 processing_data(
     "fake_route_table.csv",
@@ -137,6 +136,15 @@ processing_data(
     [("routeCode", "route_code"), ("estimatedTotalDistance", "estimated_total_distance"), ('"cityID"�', "city_id"), ("priceIncentive","price_incentive"), ("priceOriginal","price_original")],
     "id",
     '"cityID"�'
+)
+'''
+
+processing_data(
+    "fake_service_table.csv",
+    "service_table",
+    [('"id"�', "id")],
+    "name",
+    '"id"�'
 )
 
 job.commit()
