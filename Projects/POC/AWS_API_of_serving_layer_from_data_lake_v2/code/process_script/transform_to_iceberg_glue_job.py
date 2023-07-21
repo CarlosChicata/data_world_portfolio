@@ -44,14 +44,22 @@ job.init(args['JOB_NAME'], args)
 
 ### define utiity functions
 
-def processing_data(object_bucket_origin, name_table, rename_cols):
+def processing_data(object_bucket_origin, name_table, rename_cols, filter_column):
     
     # read the csv file in dynamicframe obj.
     csv_file_s3_url = "s3://" +  bucket_origin + "/" + object_bucket_origin
 
     print(csv_file_s3_url)
 
-    df = spark.read.format("csv")format("csv").option("delimiter", ";").option("encoding", "ISO-8859-1").option("header", True).load(csv_file_s3_url)
+    df = spark.read.format("csv").option("delimiter", ";").option("encoding", "utf-16").option("header", True).load(csv_file_s3_url)
+
+    print(df.show(2))
+
+    df = df.filter(
+            ~(col(filter_column).contains("�"))
+        )
+    
+    print(df.show(2))
 
     # rename based in new columns
     for old_name, new_name in rename_cols:
@@ -76,7 +84,11 @@ def processing_data(object_bucket_origin, name_table, rename_cols):
     spark.sql(sql_stmnt).show()
 
 ### main processes
-processing_data("fake_city_table.csv", "city_table", [("cityPoint", "city_point"),("countryID","country_id"), ("timeZone","timezone")])
+processing_data(
+    "fake_city_table.csv", 
+    "city_table_v2", 
+    [('"cityPoint"�', "city_point"),("countryID","country_id"), ("timeZone","timezone")],
+    "name"
+)
 
 job.commit()
-
