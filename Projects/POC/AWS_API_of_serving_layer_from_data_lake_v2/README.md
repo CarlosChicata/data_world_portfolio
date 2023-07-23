@@ -40,7 +40,7 @@ Second, this is the list of common queries will be consumed by our clients:
 
 I improve the access control table that can be related with client table. These improvements are to support new feature of authentication and authorization process in lambda auth.
 
-![Access control data model](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake_v2/code/image/POC%205%20-%20data%20model%20case%20%231.png)
+![Access control data model](https://github.com/CarlosChicata/data_world_portfolio/blob/master/Projects/POC/AWS_API_of_serving_layer_from_data_lake_v2/code/image/POC%205%20-%20data%20model%20case%20%232.png)
 
 ## Challenges
 
