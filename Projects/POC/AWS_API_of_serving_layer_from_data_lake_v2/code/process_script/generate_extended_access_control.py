@@ -7,6 +7,7 @@ from awsglue.transforms import *
 from awsglue.utils import getResolvedOptions
 from pyspark.context import SparkConf, SparkContext
 from pyspark.sql import SparkSession, Row
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, TimestampType
 from awsglue.context import GlueContext
 from awsglue.job import Job
 
@@ -181,6 +182,17 @@ sql_process_table_data = []
 datetime_now = datetime.now()
 
 for index in range(len(endpoints)):
+    '''
+    sql_process_table_data.append(Row(
+        id=index+1,
+        sql_command=SQL_TEMPLATE[endpoints[index]],
+        version="v1",
+        created_at=datetime_now,
+        finished_in=None,
+        process=endpoints[index],
+        description=ENDPOINT_DESCRIPTION[endpoints[index]]
+    ))
+    '''
     sql_process_table_data.append(Row(
         id=index+1,
         sql_command=SQL_TEMPLATE[endpoints[index]],
@@ -191,7 +203,18 @@ for index in range(len(endpoints)):
         description=ENDPOINT_DESCRIPTION[endpoints[index]]
     ))
 
-sql_process_table_df = spark.createDataFrame(sql_process_table_data)
+print(sql_process_table_data)
+sql_process_table_schema = StructType([
+    StructField('id', IntegerType(), False),
+    StructField('sql_command', StringType(), False),
+    StructField('version', StringType(), False),
+    StructField('created_at', TimestampType(), False),
+    StructField('finished_in', TimestampType(), True),
+    StructField('process', StringType(), False),
+    StructField('description', StringType(), True),
+])
+
+sql_process_table_df = spark.createDataFrame(sql_process_table_data, sql_process_table_schema)
 sql_process_table_df.printSchema()
 temp_name_table = "temp_sql_process_table"
 
