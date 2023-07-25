@@ -211,7 +211,7 @@ sql_process_table_schema = StructType([
     StructField('created_at', TimestampType(), False),
     StructField('finished_in', TimestampType(), True),
     StructField('process', StringType(), False),
-    StructField('description', StringType(), True),
+    StructField('description', StringType(), True)
 ])
 
 sql_process_table_df = spark.createDataFrame(sql_process_table_data, sql_process_table_schema)
