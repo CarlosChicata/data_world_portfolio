@@ -178,21 +178,11 @@ ENDPOINT_DESCRIPTION = {
     "count_delivered_trackcode_before_promise_time_by_range": "Check how many orders are success delivery before the promise time in date range",
 }
 
+'''
 sql_process_table_data = []
 datetime_now = datetime.now()
 
 for index in range(len(endpoints)):
-    '''
-    sql_process_table_data.append(Row(
-        id=index+1,
-        sql_command=SQL_TEMPLATE[endpoints[index]],
-        version="v1",
-        created_at=datetime_now,
-        finished_in=None,
-        process=endpoints[index],
-        description=ENDPOINT_DESCRIPTION[endpoints[index]]
-    ))
-    '''
     sql_process_table_data.append(Row(
         id=index+1,
         sql_command=SQL_TEMPLATE[endpoints[index]],
@@ -232,7 +222,7 @@ print(sql_stmnt)
 spark.sql(sql_stmnt).show()
 
 spark.catalog.dropTempView(sql_stmnt)
-
+'''
 ### Generate "access control" table
 
 fake_users_account = random.randint(50, 200)
@@ -245,7 +235,7 @@ client_df = glue_context.create_data_frame.from_catalog(
 
 for fake_user_id in range(fake_users_account):
     flag_endpoint = [ random.uniform(0, 1) < 0.5 for _ in range(len(endpoints)) ]
-    random_client_id = random.randint(0, client_df.shape[0])
+    random_client_id = random.randint(0, client_df.count())
     
     row_data = { key: value for key,value in zip(endpoints, flag_endpoint) }
     row_data["index"] = fake_user_id + 1
