@@ -220,7 +220,7 @@ temp_name_table = "temp_sql_process_table"
 
 sql_process_table_df.createOrReplaceTempView(temp_name_table)
 
-### save in data lake in iceberg table
+#### save in data lake in iceberg table
 sql_stmnt = """
     CREATE OR REPLACE TABLE iceberg_catalog.%s.%s
     USING iceberg
@@ -232,5 +232,17 @@ print(sql_stmnt)
 spark.sql(sql_stmnt).show()
 
 spark.catalog.dropTempView(sql_stmnt)
+
+### Generate "access control" table
+
+fake_users_account = random.randint(50, 200)
+sql_access_control_data = []
+
+for fake_user_id in range(fake_users_account):
+    flag_endpoint = [ random.uniform(0, 1) < 0.5 for _ in range(len(endpoints)) ]
+    row_data = { key: value for key,value in zip(endpoints, flag_endpoint) }
+    row_data["index"] = fake_user_id + 1
+    row_data["enterprise_key"] = str(uuid.uuid4())
+    sql_access_control_data.append(Row())
 
 job.commit()
