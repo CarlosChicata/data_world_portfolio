@@ -238,11 +238,37 @@ spark.catalog.dropTempView(sql_stmnt)
 fake_users_account = random.randint(50, 200)
 sql_access_control_data = []
 
+client_df = glue_context.create_data_frame.from_catalog(
+    database=glue_schema_db,
+    table_name="client_table"
+)
+
 for fake_user_id in range(fake_users_account):
     flag_endpoint = [ random.uniform(0, 1) < 0.5 for _ in range(len(endpoints)) ]
+    random_client_id = random.randint(0, client_df.shape[0])
+    
     row_data = { key: value for key,value in zip(endpoints, flag_endpoint) }
     row_data["index"] = fake_user_id + 1
     row_data["enterprise_key"] = str(uuid.uuid4())
-    sql_access_control_data.append(Row())
+    row_data["client_id"] = client_df.collect()[random_client_id][0]
+    sql_access_control_data.append(Row(row_data))
+
+access_control_table_df = spark.createDataFrame(sql_access_control_data)
+access_control_table_df.printSchema()
+temp_name_table = "temp_access_controls_table"
+
+access_control_table_df.createOrReplaceTempView(temp_name_table)
+
+#### save in data lake in iceberg table
+sql_stmnt = """
+    CREATE OR REPLACE TABLE iceberg_catalog.%s.%s
+    USING iceberg
+    TBLPROPERTIES ('table_type'='ICEBERG', 'format-version'='2', 'format'='parquet')
+    LOCATION 's3://s3-storage-layer-poc-5/glue/data/db_poc_case_fourth/csv_to_iceberg_glue'
+    AS SELECT * FROM %s
+    """ % (glue_schema_db, "access_controls", temp_name_table,)
+print(sql_stmnt)
+spark.sql(sql_stmnt).show()
+
 
 job.commit()
