@@ -57,6 +57,19 @@ endpoints = [
     "most_required_service_by_range", 
     "count_delivered_trackcode_before_promise_time_by_range"
 ]
+columns_in_endpoints = {
+    "all_orders_by_range": ["trackcode_id", "enterpris_key", "creation", "crossdocking", \
+        "pickup_address", "drop_address", "product_description", "business_name", "product_weight", \
+        "product_price", "comercial_name", "service_name", "city_name"],
+    "get_money_from_routes_by_range": ["route_id", "route_code", "trackcode_id", "price", \
+        "distance", "pickup_address", "drop_address", "service_name", "creation", "enterpris_key"], 
+    "most_visited_location_from_trackcode_by_range": ["date_creation", "name", "amount"], 
+    "count_trackcode_by_range": ["date_creation","counting" ], 
+    "count_orders_by_range": ["count"], 
+    "count_trackcode_lost_by_range": ["trackcode_id"], 
+    "most_required_service_by_range": ["name","counting"], 
+    "count_delivered_trackcode_before_promise_time_by_range": ["total_orders","counting_delivered_orders"]
+}
 
 SQL_TEMPLATE_all_orders_by_range = '''
         SELECT distinct "t"."id" as "trackcode_id", "cl"."enterpris_key", "t"."creation",  
@@ -78,7 +91,7 @@ SQL_TEMPLATE_count_delivered_trackcode_before_promise_time_by_range = '''
                     then 1 
                     else null 
                 end
-            ) as "counting delivered orders",
+            ) as "counting_delivered_orders",
             count(*) as  "total_orders"
         FROM "db-poc-case-1"."order_table" as "o"
         JOIN "db-poc-case-1"."trackcode_table" as "t"
@@ -88,7 +101,7 @@ SQL_TEMPLATE_count_delivered_trackcode_before_promise_time_by_range = '''
         WHERE "t"."creation" BETWEEN '{0}' and '{1}' and "cl"."enterpris_key" = '{2}';
     '''
 SQL_TEMPLATE_count_orders_by_range = '''
-        SELECT count(*)
+        SELECT count(*) as "count"
         FROM "db-poc-case-1"."order_table" as "o"
         JOIN "db-poc-case-1"."trackcode_table" as "t"
             on "t"."id" = "o"."trackcode_id"
@@ -223,7 +236,8 @@ sql_stmnt = """
 print(sql_stmnt)
 spark.sql(sql_stmnt).show()
 
-spark.catalog.dropTempView(sql_stmnt)
+spark.catalog.dropTempView(temp_name_table)
+sql_process_table_data = []
 
 ###############
 ### Generate "access control" table
@@ -281,9 +295,15 @@ sql_stmnt = """
 print(sql_stmnt)
 spark.sql(sql_stmnt).show()
 
+spark.catalog.dropTempView(temp_name_table)
+sql_access_control_data = []
 
 ###############
-### Generate "..." table
+### Generate "column of access control" table
 ###############
+
+sql_column_of_access_control_data = []
+
+
 
 job.commit()
