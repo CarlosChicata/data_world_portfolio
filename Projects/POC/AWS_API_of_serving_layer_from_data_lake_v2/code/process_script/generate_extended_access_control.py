@@ -58,17 +58,48 @@ endpoints = [
     "count_delivered_trackcode_before_promise_time_by_range"
 ]
 columns_in_endpoints = {
-    "all_orders_by_range": ["trackcode_id", "enterpris_key", "creation", "crossdocking", \
-        "pickup_address", "drop_address", "product_description", "business_name", "product_weight", \
-        "product_price", "comercial_name", "service_name", "city_name"],
-    "get_money_from_routes_by_range": ["route_id", "route_code", "trackcode_id", "price", \
-        "distance", "pickup_address", "drop_address", "service_name", "creation", "enterpris_key"], 
-    "most_visited_location_from_trackcode_by_range": ["date_creation", "name", "amount"], 
-    "count_trackcode_by_range": ["date_creation","counting" ], 
-    "count_orders_by_range": ["count"], 
-    "count_trackcode_lost_by_range": ["trackcode_id"], 
-    "most_required_service_by_range": ["name","counting"], 
-    "count_delivered_trackcode_before_promise_time_by_range": ["total_orders","counting_delivered_orders"]
+    "all_orders_by_range": [
+        '"t"."id" as "trackcode_id"', 
+        '"cl"."enterpris_key"', 
+        '"t"."creation"', 
+        '"t"."crossdocking"',
+        '"t"."pickup_address"', 
+        '"t"."drop_address"', 
+        '"t"."product_description"', 
+        '"cl"."business_name"', 
+        '"t"."product_weight"',
+        '"t"."product_price"', 
+        '"cl"."comercial_name"', 
+        '"s"."name" as "service_name"', 
+        '"c"."name" as "city_name"'],
+    "get_money_from_routes_by_range": [
+        '"r"."id" as "route_id"', 
+        '"r"."code" as "route_code"', 
+        '"t"."id" as "trackcode_id"', 
+        'coalesce("r"."price_official", 10.0) as "price"',
+        '"r"."distance"', 
+        '"t"."pickup_address"', 
+        '"t"."drop_address"', 
+        '"s"."name" as "service_name"', 
+        '"t"."creation"', 
+        '"cl"."enterpris_key"'], 
+    "most_visited_location_from_trackcode_by_range": [
+        'DATE(CAST("t"."creation" as TIMESTAMP)) as "date_creation"', 
+        '"c"."name"', 
+        'count(*)  as "amount"'], 
+    "count_trackcode_by_range": [
+        'DATE(CAST("t"."creation" as TIMESTAMP)) as "date_creation"', 
+        'count(*) as "counting"' 
+    ], 
+    "count_orders_by_range": ['count(*) as "count"'], 
+    "count_trackcode_lost_by_range": ['"t"."id" as "trackcode_id"'], 
+    "most_required_service_by_range": [
+        '"s"."name"',
+        'count(*) as "counting"'], 
+    "count_delivered_trackcode_before_promise_time_by_range": [
+        'count(*) as "total_orders"', 
+        'case when "o"."end_time" is not null and "o"."end_time" >= "o"."promise_time" then 1 else null  end ) as "counting delivered orders"'
+    ]
 }
 selected_field_in_endpoints = [
     "get_money_from_routes_by_range",

@@ -36,11 +36,7 @@ def get_data_from_athena(event):
     ## STEP 0 : preparring query to get data
     query = '''
         SELECT count( 
-                case when "o"."end_time" is not null and "o"."end_time" >= "o"."promise_time"
-                    then 1 
-                    else null 
-                end
-            ) as "counting delivered orders",
+                case when "o"."end_time" is not null and "o"."end_time" >= "o"."promise_time" then 1 else null  end ) as "counting delivered orders",
             count(*) as  "total_orders"
         FROM "db-poc-case-1"."order_table" as "o"
         JOIN "db-poc-case-1"."trackcode_table" as "t"
