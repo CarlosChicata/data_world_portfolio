@@ -107,10 +107,7 @@ selected_field_in_endpoints = [
 ]
 
 SQL_TEMPLATE_all_orders_by_range = '''
-        SELECT distinct "t"."id" as "trackcode_id", "cl"."enterpris_key", "t"."creation",  
-            "t"."crossdocking", "t"."pickup_address", "t"."drop_address", "t"."product_description", 
-            "t"."product_price", "t"."product_weight", "cl"."business_name", 
-            "cl"."comercial_name", "s"."name" as "service_name", "c"."name" as "city_name"
+        SELECT distinct {3}
         FROM "db-poc-case-1"."trackcode_table" as "t"
         RIGHT JOIN "db-poc-case-1"."client_table"  as "cl"
             on "t"."client_id" = "cl"."id"
@@ -121,13 +118,7 @@ SQL_TEMPLATE_all_orders_by_range = '''
         WHERE "t"."creation" BETWEEN '{0}' and '{1}' and "cl"."enterpris_key" = '{2}';
     '''
 SQL_TEMPLATE_count_delivered_trackcode_before_promise_time_by_range = '''
-        SELECT count( 
-                case when "o"."end_time" is not null and "o"."end_time" >= "o"."promise_time"
-                    then 1 
-                    else null 
-                end
-            ) as "counting_delivered_orders",
-            count(*) as  "total_orders"
+        SELECT {3}
         FROM "db-poc-case-1"."order_table" as "o"
         JOIN "db-poc-case-1"."trackcode_table" as "t"
             on "t"."id" = "o"."trackcode_id"
@@ -136,7 +127,7 @@ SQL_TEMPLATE_count_delivered_trackcode_before_promise_time_by_range = '''
         WHERE "t"."creation" BETWEEN '{0}' and '{1}' and "cl"."enterpris_key" = '{2}';
     '''
 SQL_TEMPLATE_count_orders_by_range = '''
-        SELECT count(*) as "count"
+        SELECT {3}
         FROM "db-poc-case-1"."order_table" as "o"
         JOIN "db-poc-case-1"."trackcode_table" as "t"
             on "t"."id" = "o"."trackcode_id"
@@ -145,7 +136,7 @@ SQL_TEMPLATE_count_orders_by_range = '''
         WHERE "t"."creation" BETWEEN '{0}' and '{1}' and "cl"."enterpris_key" = '{2}';
     '''
 SQL_TEMPLATE_count_trackcode_by_range = '''
-        SELECT distinct DATE(CAST("t"."creation" as TIMESTAMP)) as "date_creation", count(*) as "counting"
+        SELECT distinct {3}
         FROM "db-poc-case-1"."trackcode_table" as "t"
         JOIN "db-poc-case-1"."client_table"  as "cl"
             on "t"."client_id" = "cl"."id"
@@ -153,7 +144,7 @@ SQL_TEMPLATE_count_trackcode_by_range = '''
         GROUP BY DATE(CAST("t"."creation" as TIMESTAMP));
     '''
 SQL_TEMPLATE_count_trackcode_lost_by_range = '''
-        SELECT distinct "t"."id" as "trackcode_id"
+        SELECT distinct {3}
         FROM "db-poc-case-1"."route_table" as "r"
         JOIN "db-poc-case-1"."order_table" as "o"
             on "o"."route_id" = "r"."id"
@@ -165,11 +156,7 @@ SQL_TEMPLATE_count_trackcode_lost_by_range = '''
         GROUP BY "t"."id";
     '''
 SQL_TEMPLATE_get_money_from_routes_by_range = '''
-        SELECT DISTINCT "r"."id" as "route_id", "r"."code" as "route_code", "t"."id" as "trackcode_id",
-            coalesce("r"."price_official", 10.0) as "price", 
-            "r"."distance", 
-            "t"."pickup_address", "t"."drop_address",
-            "s"."name" as "service_name", "t"."creation", "cl"."enterpris_key"
+        SELECT DISTINCT {3}
         FROM "db-poc-case-1"."route_table" as "r"
         JOIN "db-poc-case-1"."order_table" as "o"
             on "o"."route_id" = "r"."id"
@@ -184,7 +171,7 @@ SQL_TEMPLATE_get_money_from_routes_by_range = '''
         WHERE "t"."creation" BETWEEN '{0}' and '{1}' and "cl"."enterpris_key" = '{2}';
     '''
 SQL_TEMPLATE_most_required_service_by_range = '''
-        SELECT distinct "s"."name", count(*) as "counting"
+        SELECT distinct {3}
         FROM "db-poc-case-1"."trackcode_table" as "t"
         JOIN "db-poc-case-1"."client_table" as "cl"
             on "cl"."id" = "t"."client_id"
@@ -196,7 +183,7 @@ SQL_TEMPLATE_most_required_service_by_range = '''
         GROUP BY "s"."name;
     '''
 SQL_TEMPLATE_most_visited_location_from_trackcode_by_range = '''
-        SELECT distinct DATE(CAST("t"."creation" as TIMESTAMP)) as "date_creation", "c"."name", count(*)  as "amount"
+        SELECT distinct {3}
         FROM "db-poc-case-1"."trackcode_table" as "t"
         RIGHT JOIN "db-poc-case-1"."client_table"  as "cl"
             ON "t"."client_id" = "cl"."id"
