@@ -70,6 +70,10 @@ columns_in_endpoints = {
     "most_required_service_by_range": ["name","counting"], 
     "count_delivered_trackcode_before_promise_time_by_range": ["total_orders","counting_delivered_orders"]
 }
+selected_field_in_endpoints = [
+    "get_money_from_routes_by_range",
+    "all_orders_by_range"
+]
 
 SQL_TEMPLATE_all_orders_by_range = '''
         SELECT distinct "t"."id" as "trackcode_id", "cl"."enterpris_key", "t"."creation",  
@@ -291,7 +295,7 @@ sql_stmnt = """
     TBLPROPERTIES ('table_type'='ICEBERG', 'format-version'='2', 'format'='parquet')
     LOCATION 's3://s3-storage-layer-poc-5/glue/data/db_poc_case_fourth/csv_to_iceberg_glue'
     AS SELECT * FROM %s
-    """ % (glue_schema_db, "access_controls_v1", temp_name_table,)
+    """ % (glue_schema_db, "access_controls", temp_name_table,)
 print(sql_stmnt)
 spark.sql(sql_stmnt).show()
 
@@ -303,7 +307,49 @@ sql_access_control_data = []
 ###############
 
 sql_column_of_access_control_data = []
+iter_column_of_access_control = 1
 
+for row in access_control_table_df.collect():
+    for endpoint in endpoints:
+        if row[endpoint] == True:
+            index_endpoint = endpoints.index(endpoint)
+            fields_in_query = columns_in_endpoints[endpoint]
+            
+            # case its too much columns
+            if endpoint in selected_field_in_endpoints:
+                get_columns = columns_in_endpoints[endpoint]
+                column_acount = random.randint(1,len(get_columns))
+                fields_in_query = random.sample(get_columns, column_acount)
+                
+            
+            sql_column_of_access_control_data.append(Row(
+                id=iter_column_of_access_control,
+                access_control_id=row["id"],
+                process_key='',
+                sql_body_id=index_endpoint,
+                columns=fields_in_query
+            ))
+            iter_column_of_access_control += 1
+
+print(len(sql_column_of_access_control_data))
+column_of_access_control_df = spark.createDataFrame(sql_column_of_access_control_data)
+
+column_of_access_control_df.printSchema()
+temp_name_table = "temp_column_of_access_control"
+
+column_of_access_control_df.createOrReplaceTempView(temp_name_table)
+sql_stmnt = """
+    CREATE OR REPLACE TABLE iceberg_catalog.%s.%s
+    USING iceberg
+    TBLPROPERTIES ('table_type'='ICEBERG', 'format-version'='2', 'format'='parquet')
+    LOCATION 's3://s3-storage-layer-poc-5/glue/data/db_poc_case_fourth/csv_to_iceberg_glue'
+    AS SELECT * FROM %s
+    """ % (glue_schema_db, "column_of_access_control", temp_name_table,)
+print(sql_stmnt)
+spark.sql(sql_stmnt).show()
+
+spark.catalog.dropTempView(temp_name_table)
+sql_column_of_access_control_data = []
 
 
 job.commit()
