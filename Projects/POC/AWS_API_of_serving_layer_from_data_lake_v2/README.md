@@ -69,7 +69,7 @@ I think the solutions for each group of challenge can be following ideas:
 
 5. Modify data modelling of authorization and authentication control client: get control of access of data in authorized tables for several users with differents needs of data in service. ✔️
 
-6. Create a template of SQL commands to generate the data based in authorized controll. These SQL commands will be stored in data lake.
+6. Create a template of SQL commands to generate the data based in authorized controls. These SQL commands will be stored in data lake. ✔️
 
 ### Diagram of solution
 
