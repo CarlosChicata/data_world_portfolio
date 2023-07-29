@@ -312,7 +312,7 @@ iter_column_of_access_control = 1
 for row in access_control_table_df.collect():
     for endpoint in endpoints:
         if row[endpoint] == True:
-            index_endpoint = endpoints.index(endpoint)
+            index_endpoint = endpoints.index(endpoint) + 1
             fields_in_query = columns_in_endpoints[endpoint]
             
             # case its too much columns
