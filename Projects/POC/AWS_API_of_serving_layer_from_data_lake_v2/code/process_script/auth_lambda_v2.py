@@ -27,9 +27,12 @@ SQL_command = '''
         cac.columns
     from "access_controls" ac 
     join "column_of_access_control" cac 
-        on cac.access_control_id = ac.id
+    on cac.access_control_id = ac.id
     join "sql_process" sp 
-        on sp.id = cac.sql_body_id
+    on sp.id = cac.sql_body_id
+    where ac."enterprise_key" = '{0}' 
+        and ac."{1}" = false
+        and sp."process" = {2};
 '''
 
 athena_cli = boto3.client('athena')
@@ -75,10 +78,7 @@ def get_data_from_athena(key_enterprise, field):
     '''
     try:
         tic = time.perf_counter()
-        query = '''
-            SELECT * FROM "db-controlaccess-poc-case-1"."access_control_table"
-            where "enterprisekey" = '{0}';
-        '''.format(key_enterprise)
+        query = SQL_command.format(key_enterprise)
         print(query)
         STATE = "RUNNING"
         MAX_EXECUTION = 10
