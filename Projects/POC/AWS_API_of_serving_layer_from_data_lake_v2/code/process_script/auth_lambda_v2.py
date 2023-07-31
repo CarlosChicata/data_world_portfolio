@@ -18,7 +18,13 @@ import boto3
 ACCESS_KEY = ""
 SECRET_KEY = ""
 SQL_command = '''
-    select * 
+    select ac.id,
+        cac.id,
+        sp.id,
+        cac.access_control_id,
+        ac.enterprise_key,
+        sp.sql_command,
+        cac.columns
     from "access_controls" ac 
     join "column_of_access_control" cac 
         on cac.access_control_id = ac.id
