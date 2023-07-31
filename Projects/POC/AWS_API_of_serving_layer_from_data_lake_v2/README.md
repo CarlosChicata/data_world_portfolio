@@ -71,7 +71,7 @@ I think the solutions for each group of challenge can be following ideas:
 
 6. Create a template of SQL commands to generate the data based in authorized controls. These SQL commands will be stored in data lake. ✔️
 
-7. Restructure code of implementation in processes from  REST service to use less code and get the same results.
+7. Restructure code of implementation in processes from  REST service to use less code and get the same results in auth and processing lambda.
 
 ### Diagram of solution
 
