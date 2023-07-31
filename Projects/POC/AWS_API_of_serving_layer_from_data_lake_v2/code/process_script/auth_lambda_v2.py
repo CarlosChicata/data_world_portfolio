@@ -14,7 +14,6 @@ import pandas as pd
 import boto3
 
 
-
 ACCESS_KEY = ""
 SECRET_KEY = ""
 SQL_command = '''
@@ -37,7 +36,7 @@ SQL_command = '''
 
 athena_cli = boto3.client('athena')
 
-def generate_policy(principal_id, effect, method_arn, columns):
+def generate_policy(principal_id, effect, method_arn, columns, sql_comm, enterprise_key):
     '''
         Generate a policy to authorize request access the endpoint.
     '''
@@ -52,7 +51,12 @@ def generate_policy(principal_id, effect, method_arn, columns):
                     'Sid': 'FirstStatement',
                     'Action': 'execute-api:Invoke',
                     'Effect': effect,
-                    'Resource': method_arn
+                    'Resource': method_arn,
+                    'context': {
+                        "columns": columns,
+                        "sql_body": sql_comm,
+                        "enterprise_key": enterprise_key
+                    }
                 }
             ]
         }
