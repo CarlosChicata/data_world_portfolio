@@ -31,9 +31,12 @@ SQL_command = '''
     on sp.id = cac.sql_body_id
     where ac."enterprise_key" = '{0}' 
         and ac."{1}" = false
-        and sp."process" = {2};
+        and sp."process" = '{2}';
 '''
 
+S3_OUTPUT = "s3://pruebas-generales-para/" # ENV PARAMS
+S3_BUCKET = "pruebas-generales-para" # ENV PARAMS
+s3_cli = boto3.client('s3')
 athena_cli = boto3.client('athena')
 
 def generate_policy(principal_id, effect, method_arn, columns, sql_comm, enterprise_key):
@@ -66,12 +69,13 @@ def generate_policy(principal_id, effect, method_arn, columns, sql_comm, enterpr
     return auth_response
 
 
-def get_data_from_athena(key_enterprise, field):
+def get_data_from_athena(key_enterprise, process_name):
     '''
         How to get data to validate from aws athena table.
 
         Params:
         key_enterprise (string): key of client to access.
+        process_name (string): name of available process in serving layer 
 
         Return a flag to indicate of access.
 
@@ -82,7 +86,7 @@ def get_data_from_athena(key_enterprise, field):
     '''
     try:
         tic = time.perf_counter()
-        query = SQL_command.format(key_enterprise)
+        query = SQL_command.format(key_enterprise, process_name,process_name)
         print(query)
         STATE = "RUNNING"
         MAX_EXECUTION = 10
@@ -113,7 +117,7 @@ def get_data_from_athena(key_enterprise, field):
                     print("Get data!")
                     break
 
-            time.sleep(8)
+            time.sleep(2)
 
         ## STEP 3 : get data of query
         file_query_solved = query_id["QueryExecutionId"] + ".csv"
@@ -127,16 +131,19 @@ def get_data_from_athena(key_enterprise, field):
         if df_solved.shape[0] == 0 or df_solved.shape[0] > 1:
             toc = time.perf_counter()
             print(f"Downloaded the tutorial in {toc - tic:0.4f} seconds")
-            return -1
+            return (-1, None, None)
         else:
             toc = time.perf_counter()
             print(f"Downloaded the tutorial in {toc - tic:0.4f} seconds")
-            return 1 if df_solved.iloc[0][field] == True else 0
+            if df_solved.iloc[0]["sql_command"] == None and  df_solved.iloc[0]["columns"] == None:
+                return (1, df_solved.iloc[0]["sql_command"], df_solved.iloc[0]["columns"] )
+            else: 
+                return (0, None, None)
     except Exception as e:
         print(e)
         toc = time.perf_counter()
         print(f"Downloaded the tutorial in {toc - tic:0.4f} seconds")
-        return -1
+        return (-1, None, None)
 
 
 def lambda_handler(event, context):
@@ -157,16 +164,16 @@ def lambda_handler(event, context):
                 event["headers"]["token"],
                 "all_orders_by_range"
             )
-        print(is_validated)
-        if is_validated == 1: 
+        print(is_validated[0])
+        if is_validated[0] == 1: 
             print("case 1: accepted and authorized")
-            return generate_policy('user', 'Allow', event['routeArn'])
-        elif is_validated == 0:
+            return generate_policy('user', 'Allow', event['routeArn'], is_validated[2], is_validated[1], event["headers"]["token"])
+        elif is_validated[0] == 0:
             print("case 2: accepted and not authorized")
-            return generate_policy('user', 'Deny', event['routeArn'])
+            return generate_policy('user', 'Deny', event['routeArn'], is_validated[2], is_validated[1], event["headers"]["token"])
         else:
             print("case 3: unauthorized")
-            return generate_policy(None, 'Deny', event['routeArn'])
+            return generate_policy(None, 'Deny', event['routeArn'], is_validated[2], is_validated[1], event["headers"]["token"])
 
     except Exception as e:
         print("error")
