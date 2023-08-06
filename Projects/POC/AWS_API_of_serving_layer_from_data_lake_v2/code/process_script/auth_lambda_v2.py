@@ -160,10 +160,14 @@ def lambda_handler(event, context):
             print("case 0")
             return generate_policy(None, 'Deny', event['routeArn'])
         
+        # get pass of service will use
+        path_service = event["rawPath"].split("/")[-1]
+        
         is_validated = get_data_from_athena(
                 event["headers"]["token"],
-                "all_orders_by_range"
+                path_service
             )
+        #is_validated = (1, "TEST_DATA", "TEST_DATA")
         print(is_validated[0])
         if is_validated[0] == 1: 
             print("case 1: accepted and authorized")
