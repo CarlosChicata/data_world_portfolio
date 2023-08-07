@@ -30,7 +30,7 @@ SQL_command = '''
     join "sql_process" sp 
     on sp.id = cac.sql_body_id
     where ac."enterprise_key" = '{0}' 
-        and ac."{1}" = false
+        and ac."{1}" = true
         and sp."process" = '{2}';
 '''
 
@@ -118,7 +118,7 @@ def get_data_from_athena(key_enterprise, process_name):
                     print("Get data!")
                     break
 
-            time.sleep(2)
+            time.sleep(1)
 
         ## STEP 3 : get data of query
         file_query_solved = query_id["QueryExecutionId"] + ".csv"
@@ -136,7 +136,7 @@ def get_data_from_athena(key_enterprise, process_name):
         else:
             toc = time.perf_counter()
             print(f"Downloaded the tutorial in {toc - tic:0.4f} seconds")
-            if df_solved.iloc[0]["sql_command"] == None and  df_solved.iloc[0]["columns"] == None:
+            if df_solved.iloc[0]["sql_command"] != None and  df_solved.iloc[0]["columns"] != None:
                 return (1, df_solved.iloc[0]["sql_command"], df_solved.iloc[0]["columns"] )
             else: 
                 return (0, None, None)
