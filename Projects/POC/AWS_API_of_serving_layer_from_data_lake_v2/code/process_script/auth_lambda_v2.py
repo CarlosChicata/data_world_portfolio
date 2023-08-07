@@ -60,6 +60,11 @@ def generate_policy(principal_id, effect, method_arn, columns, sql_comm, enterpr
         }
  
         auth_response['policyDocument'] = policy_document
+        auth_response['context'] = {
+            "enterprise_key": enterprise_key,
+            "command": sql_comm,
+            "columns": columns
+        }
 
     return auth_response
 
@@ -118,7 +123,7 @@ def get_data_from_athena(key_enterprise, process_name):
                     print("Get data!")
                     break
 
-            time.sleep(0.3)
+            time.sleep(0.5)
 
         ## STEP 3 : get data of query
         file_query_solved = query_id["QueryExecutionId"] + ".csv"
@@ -168,7 +173,7 @@ def lambda_handler(event, context):
             )
             
         print(is_validated[0])
-        if is_validated[0] == 1: 
+        if is_validated[0] == 1:
             print("case 1: accepted and authorized")
             return generate_policy('user', 'Allow', event['routeArn'], is_validated[2], is_validated[1], event["headers"]["token"])
         elif is_validated[0] == 0:
