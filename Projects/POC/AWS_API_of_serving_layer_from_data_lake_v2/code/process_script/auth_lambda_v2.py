@@ -118,7 +118,7 @@ def get_data_from_athena(key_enterprise, process_name):
                     print("Get data!")
                     break
 
-            time.sleep(1)
+            time.sleep(0.3)
 
         ## STEP 3 : get data of query
         file_query_solved = query_id["QueryExecutionId"] + ".csv"
@@ -151,11 +151,6 @@ def lambda_handler(event, context):
     '''
         Handler endpoint of lambda for user requests.
     '''
-    print(event)
-    print(context)
-    print(event["headers"])
-    print(event["headers"]["token"])
-    print("test")
     event['methodArn'] = event["routeArn"]
     try:
         if event["headers"]["token"] is None:
