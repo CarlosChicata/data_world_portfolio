@@ -14,8 +14,6 @@ import pandas as pd
 import boto3
 
 
-ACCESS_KEY = ""
-SECRET_KEY = ""
 SQL_command = '''
     select ac.id,
         cac.id,
