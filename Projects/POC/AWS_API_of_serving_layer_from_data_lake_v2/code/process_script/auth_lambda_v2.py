@@ -54,12 +54,7 @@ def generate_policy(principal_id, effect, method_arn, columns, sql_comm, enterpr
                     'Sid': 'FirstStatement',
                     'Action': 'execute-api:Invoke',
                     'Effect': effect,
-                    'Resource': method_arn,
-                    'context': {
-                        "columns": columns,
-                        "sql_body": sql_comm,
-                        "enterprise_key": enterprise_key
-                    }
+                    'Resource': method_arn
                 }
             ]
         }
@@ -94,6 +89,9 @@ def get_data_from_athena(key_enterprise, process_name):
         ## STEP 1 : go the SQL sentence to athena
         query_id = athena_cli.start_query_execution(
             QueryString = query,
+            QueryExecutionContext = {
+                "Database": "db_poc_case_fifth"
+            },
             ResultConfiguration= {"OutputLocation": S3_OUTPUT}
         )
         print("request of query: ", query_id)
@@ -111,7 +109,10 @@ def get_data_from_athena(key_enterprise, process_name):
                 "State" in response["QueryExecution"]["Status"]:
 
                 STATE = response["QueryExecution"]["Status"]["State"]
+
                 if STATE == 'FAILED' or STATE == 'CANCELLED':
+                    print(response)
+                    print(STATE)
                     raise Exception("error: not allow to get data; maybe it was failed or cancelled.")
                 if STATE == "SUCCEEDED":
                     print("Get data!")
@@ -154,20 +155,23 @@ def lambda_handler(event, context):
     print(context)
     print(event["headers"])
     print(event["headers"]["token"])
+    print("test")
     event['methodArn'] = event["routeArn"]
     try:
         if event["headers"]["token"] is None:
             print("case 0")
             return generate_policy(None, 'Deny', event['routeArn'])
         
-        # get pass of service will use
         path_service = event["rawPath"].split("/")[-1]
+        
+        print(event["headers"]["token"])
+        print(path_service)
         
         is_validated = get_data_from_athena(
                 event["headers"]["token"],
                 path_service
             )
-        #is_validated = (1, "TEST_DATA", "TEST_DATA")
+            
         print(is_validated[0])
         if is_validated[0] == 1: 
             print("case 1: accepted and authorized")
