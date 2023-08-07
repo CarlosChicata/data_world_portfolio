@@ -59,19 +59,19 @@ These are the main challenges to face:
 ### General Idea
 I think the solutions for each group of challenge can be following ideas:
 
-1. Could use AWS DynamoDB instead AWS Athena in the custom authorization process to get response. This service is serverless and high performance; i think it will give me a best performance with demand based pricing.
+1. I can use a caching in auth lambda to improve the performance. ✔️
 
 2. Could use iceberg format in Athena to manage the tables in data lake. I can get CRUD operations in data lake and manage it easily. ✔️
 
-3. Review all needed roles for all used service in this project, and delimit those.
+3. Review all needed roles for all used service in this project, and delimit those.🔄
 
-4. Extend the services of authentication to pass what fields will return to clients; and the REST API to modify the query to accept the need fields based in permissions of client.
+4. Extend the services of authentication to pass what fields will return to clients; and the REST API to modify the query to accept the need fields based in permissions of client.🔄
 
 5. Modify data modelling of authorization and authentication control client: get control of access of data in authorized tables for several users with differents needs of data in service. ✔️
 
 6. Create a template of SQL commands to generate the data based in authorized controls. These SQL commands will be stored in data lake. ✔️
 
-7. Restructure code of implementation in processes from  REST service to use less code and get the same results in auth and processing lambda.
+7. Restructure code of implementation in processes from  REST service to use less code and get the same results in auth and processing lambda. (auth: ✔️ and processing: 🔄)
 
 ### Diagram of solution
 
